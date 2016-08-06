@@ -1,0 +1,8 @@
+@media screen and (max-width: 550px) {
+    .navbar {
+		padding-bottom:20px !important;
+	}
+	.search .col-sm-3, .search .col-sm-9{
+		padding: 10px 10px;
+	}
+}

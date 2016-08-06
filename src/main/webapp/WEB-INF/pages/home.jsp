@@ -1,27 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="app" >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NHAM EY Welcome </title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
 
 </head>
-<body>
+<body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded" style="background-color: #ffffff;">
 		<div class="container">
 				 <a href="#"><img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
 			  <div class="menu">
-				  <ul class="nav navbar-nav pull-md-right">
+				  <ul class="nav navbar-nav pull-xs-right">
 				    <li class="nav-item">
-				      <a class="nav-link" href="#">ចូលប្រើ</a>
+				      <a class="nav-link" href="#" data-toggle="modal" data-target="#login">ចូលប្រើ</a>
 				    </li>
 				    <li class="nav-item">
 				      <a class="nav-link" href="#">បង្កើតគណនី</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" href="#">អំពីយើង</a>
 				    </li>
 				  </ul>
 			  </div>
@@ -58,105 +65,168 @@
 			</div>
 		</div>
 	</section>
+	<!--  Search Section
+	<section>
+		<div class="container search">
+			<div class="text-md-center row">
+				<div class="col-sm-3">
+					<select class="form-control">
+					  <option>​​​​ ---Select Category--- </option>
+					  <option ng-repeat="restype in restypes">{{restype.restype_name}}</option>
+					</select>
+				</div>
+				<div class="col-sm-9">
+					 <form class="">
+					  <div class="form-group">
+					    <div class="input-group">
+					      <input type="text" class="form-control" id="keyword" placeholder="search by category .....">
+					      <div class="input-group-addon">
+					      	<button type="submit" class=""><i class="fa fa-search"></i></button>
+					      </div>
+					    </div>
+					  </div>
+					</form>
+				</div>
+	 		</div>
+ 		 </div>
+	</section>  -->
 	<!--  Search Section -->
 	<section>
 		<div class="container search">
-			<div class="text-md-center ">
-				 <form class="">
-				  <div class="form-group">
-				    <div class="input-group">
-				      <input type="text" class="form-control" id="keyword" placeholder="search by category .....">
-				      <div class="input-group-addon">
-				      	<button type="submit" class=""><i class="fa fa-search"></i></button>
-				      </div>
-				    </div>
-				  </div>
-				  
-				</form>
-	 		 </div>
+			<div class="text-md-center row">
+				<div class="col-sm-12">
+					 <form class="">
+					  <div class="form-group">
+					    <div class="input-group">
+					      <input type="text" class="form-control" id="keyword" placeholder="search by category .....">
+					      <div class="input-group-addon">
+					      	<button type="submit" class=""><i class="fa fa-search"></i></button>
+					      </div>
+					    </div>
+					  </div>
+					</form>
+				</div>
+	 		</div>
  		 </div>
 	</section>
 	<!-- ======== Category Content ========= -->
-	<section class="content">
+	<section class="category">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="card">
+			  <div class="card-header bg-success">
+			  	 Popular Category
+			  </div>
+			  <div class="card-block">
+			   	<div class="row">
+					<div class="col-md-3 col-xs-6"  ng-repeat="restype in restypes">
 						<div class="box-img">
-							<h2>ភីស្សា</h2>
-							<h4>Pizza</h4>
+							<h2>{{restype.restype_name_kh}}</h2>
+							<h4 class="text-capitalize">{{restype.restype_name}}</h4>
 							<a href="#category1" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
 						</div>
-
-				</div>
-				
-				<div class="col-md-3 col-sm-4 col-xs-6">
-					<div class="box-img">
-						<h2>ភីស្សា</h2>
-						<h4>Pizza</h4>
-						<a href="##category2" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
 					</div>
-				</div>
-				<div class="col-md-3 col-sm-4 col-xs-6">
-					<div class="box-img">
-						<h2>ភីស្សា</h2>
-						<h4>Pizza</h4>
-						<a href="##category3" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-4 col-xs-6">
-					<div class="box-img">
-						<h2>ភីស្សា</h2>
-						<h4>Pizza</h4>
-						<a href="##category4" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-					</div>
-				</div>
-			</div><!-- end row -->
-			<div class="row">
-				<div class="col-md-3 col-sm-4 col-xs-6">
-						<div class="box-img">
-							<h2>ភីស្សា</h2>
-							<h4>Pizza</h4>
-							<a href="#" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-						</div>
-				</div>
-				
-				<div class="col-md-3 col-sm-4 col-xs-6">
-					<div class="box-img">
-						<h2>ភីស្សា</h2>
-						<h4>Pizza</h4>
-						<a href="#" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-4 col-xs-6">
-					<div class="box-img">
-						<h2>ភីស្សា</h2>
-						<h4>Pizza</h4>
-						<a href="#" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-4 col-xs-6">
-					<div class="box-img">
-						<h2>ភីស្សា</h2>
-						<h4>Pizza</h4>
-						<a href="#" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-					</div>
-				</div>
-			</div><!-- end row 2 -->
+					
+				</div><!-- end row 2 -->
+			  </div>
+			</div>
 			
-		</div>
+			
+		</div><!-- end container -->
+	</section><!--  end Category -->
+	
+	<section class="cotainer text-xs-center">
+		<nav aria-label="...">
+		  <ul class="pagination">
+		    <li class="page-item disabled">
+		      <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		        <span class="sr-only">Previous</span>
+		      </a>
+		    </li>
+		    <li class="page-item active">
+		      <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+		    </li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item"><a class="page-link" href="#">4</a></li>
+		    <li class="page-item"><a class="page-link" href="#">5</a></li>
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		        <span class="sr-only">Next</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
 	</section>
 	
 	<!-- ========= footer ============ -->
 	<footer>
 		<div class="container">
-			<div class="row">
-				
-			</div>
 			<p>Copy Right 2016. All right reserved.</p>
 		</div>
 	</footer>
+	
+	<!--  ========  Model LOgin ====== -->
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-xs-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img id="myModalLabel" class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
+      </div>
+      <div class="modal-body">
+      	<form class="formlogin">
+      		<fieldset>
+      			<h3 class="text-success text-xs-center">Welcome</h3>
+      			<div class="form-group">
+      				<label class="text-xs-left">Username</label>
+      				<input type="text" class="form-control form-control-succes" name="username" placeholder="enter your username">
+      			</div>
+      			<div class="form-group">
+      				<label class="text-xs-left">Password</label>
+      				<input type="password" class="form-control form-control-succes" name="password" placeholder="enter your password">
+      			</div>
+      			<div class="form-group">
+      				<button type="button" class="btn btn-outline-success">Sing in</button>
+      				-- or --
+      				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
+      			</div>
+      		</fieldset>
+      	</form>
+      </div>
+      <!--  
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+      -->
+    </div>
+  </div>
+</div>
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script>
+	<script>
+		var app = angular.module("app", []);
+		app.controller("mainCtrl", function($scope, $http){
+			$scope.getRestype = function(){
+				$http.get("${pageContext.request.contextPath}/rest/restype")
+			    .then(function(response) {
+			       $scope.restypes = response.data.DATA;
+			       console.log(response);
+			       console.log($scope.restypes);
+			    });
+			}
+			
+			$scope.getRestype();
+		});
+		
+	</script>
 </body>
 </html>

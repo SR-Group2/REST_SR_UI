@@ -8,11 +8,28 @@ body{
 .menu{
 	padding-top:30px;
 }
-
+.btn-outline-success {
+    color: #5cb85c;
+    background-image: none;
+    background-color: transparent;
+    border-color: #5cb85c;
+    border-radius: 10px;
+}
+.has-success .form-control {
+    border-color: #5cb85c;
+}
+/*======== Customize Nav bar===== */
+.navbar-light .navbar-nav .nav-link {
+    border: 1px solid #35ac2a;
+    border-radius: 10px;
+    padding: 6px 10px !important;
+}
 .navbar-light .navbar-nav .nav-link {
     color: #35ac2a;
 }
-
+.navbar {
+	padding: 0px !important;	
+}
 .navbar-light .navbar-nav .nav-link {
 	border:1px solid  #35ac2a;
 	border-radius: 10px;
@@ -59,8 +76,12 @@ body{
 }
 footer{
 	background-color:#ffffff;
-	padding:50px 0px;
+	padding:0px;
 	margin-top:20px;
+	line-height:65px;
+}
+footer p{
+	color: #5cb85c;
 }
 .fa{
 	color: #35ac2a;
@@ -70,4 +91,41 @@ footer{
 	border: none;
 	background: transparent;
 	
+}
+
+/* ======= Customize ==========*/
+.modal-header {
+    border-bottom: 0px !important;
+}
+.modal-body {
+    position: relative;
+    padding:10px 50px;
+}
+.formlogin{
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 25px 45px;
+    border-radius: 20px;
+}
+.formlogin .form-group{
+	padding: 15px 0px;
+}
+/*======== Customize Card Property ===================*/
+.category .card {
+	background-color: transparent !important;
+}
+/*============== Pagination =============*/
+.page-link {
+    color: #5cb85c;
+}
+.page-item.active .page-link,
+ .page-item.active .page-link:focus,
+  .page-item.active .page-link:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #5cb85c;
+    border: 1px solid #5cb85c; 
+}
+.input-group-addon {
+    border-radius: 1.25rem;
 }
