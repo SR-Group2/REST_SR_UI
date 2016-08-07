@@ -14,8 +14,8 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/access-denied").setViewName("/errors/access-denied");
 		registry.addViewController("/home").setViewName("home");
+		registry.addViewController("/user").setViewName("home");
 		registry.addViewController("/admin").setViewName("admin/admin");
-		
 	}
 	
 	@Override
