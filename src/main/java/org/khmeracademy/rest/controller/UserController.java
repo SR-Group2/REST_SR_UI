@@ -31,7 +31,6 @@ public class UserController {
 	private String WS_URL;
 	
 	
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getUser(){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);

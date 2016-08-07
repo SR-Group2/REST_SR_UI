@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,10 +29,19 @@ public class RestypeController {
 	@Autowired
 	private String WS_URL;
 	
+//	@RequestMapping(method = RequestMethod.GET)
+//	public ResponseEntity<Map<String , Object>> getRestype(){
+//		HttpEntity<Object> request = new HttpEntity<Object>(header);
+//		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/get-restype", HttpMethod.GET , request , Map.class) ;
+//		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+//	}
+//	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Map<String , Object>> getRestype(){
+	public ResponseEntity<Map<String , Object>> getRestype(
+										  @RequestParam(value = "page", required = false , defaultValue="1") int page 
+									    , @RequestParam(value="limit" , required = false , defaultValue="2") int limit){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/get-restype", HttpMethod.GET , request , Map.class) ;
+		ResponseEntity<Map> response = rest.exchange(WS_URL + "/restype/get-restype?page="+page+"&limit="+limit, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 }

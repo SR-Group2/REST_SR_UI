@@ -65,36 +65,11 @@
 			</div>
 		</div>
 	</section>
-	<!--  Search Section
-	<section>
-		<div class="container search">
-			<div class="text-md-center row">
-				<div class="col-sm-3">
-					<select class="form-control">
-					  <option>​​​​ ---Select Category--- </option>
-					  <option ng-repeat="restype in restypes">{{restype.restype_name}}</option>
-					</select>
-				</div>
-				<div class="col-sm-9">
-					 <form class="">
-					  <div class="form-group">
-					    <div class="input-group">
-					      <input type="text" class="form-control" id="keyword" placeholder="search by category .....">
-					      <div class="input-group-addon">
-					      	<button type="submit" class=""><i class="fa fa-search"></i></button>
-					      </div>
-					    </div>
-					  </div>
-					</form>
-				</div>
-	 		</div>
- 		 </div>
-	</section>  -->
 	<!--  Search Section -->
 	<section>
 		<div class="container search">
 			<div class="text-md-center row">
-				<div class="col-sm-12">
+				<div class="col-sm-offset-3 col-sm-6">
 					 <form class="">
 					  <div class="form-group">
 					    <div class="input-group">
@@ -143,13 +118,12 @@
 		        <span class="sr-only">Previous</span>
 		      </a>
 		    </li>
-		    <li class="page-item active">
+		   <!--  <li class="page-item active">
 		      <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+		    </li> -->
+		    <li class="page-item">
+		    	<a class="page-link" href="#"></a>
 		    </li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item"><a class="page-link" href="#">4</a></li>
-		    <li class="page-item"><a class="page-link" href="#">5</a></li>
 		    <li class="page-item">
 		      <a class="page-link" href="#" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
@@ -198,12 +172,6 @@
       		</fieldset>
       	</form>
       </div>
-      <!--  
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
-      -->
     </div>
   </div>
 </div>
@@ -219,14 +187,18 @@
 				$http.get("${pageContext.request.contextPath}/rest/restype")
 			    .then(function(response) {
 			       $scope.restypes = response.data.DATA;
+			       $scope.pages = response.data.PAGINATION;
+			       $scope.totalPage = pages.TOTAL_PAGES;
+			       $scope.limitPage = pages.LIMIT;
+			       $scope.page = pages.PAGE;
+			       $scope.totalCount = pages.TOTAL_COUNT;
+			       $scopt.totalPage = pages.TOTAL_PAGES;
 			       console.log(response);
-			       console.log($scope.restypes);
+			       console.log($scope.pages.PAGE);
 			    });
 			}
-			
 			$scope.getRestype();
 		});
-		
 	</script>
 </body>
 </html>

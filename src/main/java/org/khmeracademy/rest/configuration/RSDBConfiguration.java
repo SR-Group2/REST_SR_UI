@@ -10,11 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.mangofactory.swagger.plugin.EnableSwagger;
 
 @Configuration
 @MapperScan("org.khmeracademy.rest.repositories")
-@EnableSwagger
+//@EnableSwagger
 
 public class RSDBConfiguration {
 	@Bean 
