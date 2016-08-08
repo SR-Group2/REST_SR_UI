@@ -74,7 +74,7 @@
 					  <div class="form-group">
 					    <div class="input-group">
 					      <input type="text" class="form-control" id="keyword" placeholder="search by category .....">
-					      <div class="input-group-addon">
+					      <div class="input-group-addon" id="btnsearch">
 					      	<button type="submit" class=""><i class="fa fa-search"></i></button>
 					      </div>
 					    </div>
@@ -92,34 +92,9 @@
 			  	 Popular Category
 			  </div>
 			  <div class="card-block">
-			   	<div class="row" id="getRest">
-					<%-- <div class="col-md-3 col-xs-6"  ng-repeat="restype in restypes">
-						<div class="box-img">
-							<h2>{{restype.restype_name_kh}}</h2>
-							<h4 class="text-capitalize">{{restype.restype_name}}</h4>
-							<a href="#category1" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
-						</div>
-					</div> --%>
+			   	<div class="row" id="getRest">				
 					
-					<!-- <div class="col-md-3 col-xs-6">
-						<div class="box-img">
-							<h2>Test</h2>
-							<h4 class="text-capitalize">Name</h4>
-							<a href="#category1"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
-						</div>
-					</div> -->
-					
-					
-					
-					
-					
-				</div><!-- end row 2 -->
-				
-				<div id="pagination" class="text-xs-center">
-												
-				</div>
-				    
-				    
+				</div><!-- end row 2 -->		    
 			  </div>
 			</div>
 			
@@ -127,31 +102,10 @@
 		</div><!-- end container -->
 	</section><!--  end Category -->
 	
+	<!-- ========= Pagination ============ -->
 	<section class="cotainer text-xs-center">
-		<nav aria-label="...">
-		  <ul class="pagination">
-		    <li class="page-item disabled">
-		      <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		        <span class="sr-only">Previous</span>
-		      </a>
-		    </li>
-		    <li class="page-item active">
-		      <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-		    </li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item">
-		    	<a class="page-link" href="#">3</a>
-		    </li>
-		    <li class="page-item">
-		      <a class="page-link" href="#" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		        <span class="sr-only">Next</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav>
-	</section>
+		<nav id="pagination"  class="pagination"></nav>
+	</section> 
     
 	<!-- ========= footer ============ -->
 	<footer>
@@ -196,16 +150,12 @@
 </div>
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
-<%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script> --%>
-<%-- <%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script> --%> --%>
-<%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script> --%>
-<%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script> --%>
-	
-	
-
+	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
+    
+    
     
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
 		<div class="col-md-3 col-xs-6">
@@ -220,43 +170,28 @@
 	
 	<script>
 		
-	
-		/* var app = angular.module("app", []);
-		app.controller("mainCtrl", function($scope, $http){
-			$scope.getRestype = function(){
-				$http.get("${pageContext.request.contextPath}/rest/restype")
-			    .then(function(response) {
-			       $scope.restypes = response.data.DATA;
-			       $scope.pages = response.data.PAGINATION;
-			       console.log($scope.restypes);
-			      /*  $scope.totalPage = pages.TOTAL_PAGES;
-			       $scope.limitPage = pages.LIMIT;
-			       $scope.page = pages.PAGE;
-			       $scope.totalCount = pages.TOTAL_COUNT;
-			       $scopt.totalPage = pages.TOTAL_PAGES;
-			       console.log(response);
-			       console.log($scope.pages.PAGE); 
-			    });
-			}
-			$scope.getRestype();
-		}); */
 		
-	/* 	$('#page-selection').bootpag({
-	            total: 10
-        }).on("page", function(event, /* page number here num){
-             $("#content").html("Insert content"); // some ajax content loading...
-        }); */
-		
-        $(document).ready(function(){
-        		
+        $(function(){
+
         		course = {};
         		currentPage = 1;
         		var check = true;
+        		var keyword = "";
         		
+        		$('#btnsearch').on("click", function(e){
+        			e.preventDefault();
+        			
+        			keyword = $('#keyword').val();
+        			
+        			course.courses(currentPage,keyword);
+        		});
         		
-	        	course.courses = function(){
+	        	course.courses = function(currentPage, keyword){
+	        		if(keyword == undefined){
+	        			keyword = "";
+	        		}
 	       			$.ajax({ 
-	    			    url:"${pageContext.request.contextPath}/rest/restype?page=1&limit=2", 
+	    			    url:"${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4", 
 	    			    type: 'GET',
 	    			    beforeSend: function(xhr) {
 	                        xhr.setRequestHeader("Accept", "application/json");
@@ -264,10 +199,9 @@
 	                    },
 	    			    success: function(data) { 
 	    			    	
-	    			    	if(data.STATUS != false){
-	    			    		console.log(data.DATA);
-	    			    		console.log(data.DATA);
-	    			    		console.log(data.PAGINATION.TOTAL_PAGES);
+	    			    	console.log(data);
+	    			    	
+	    			    	if(data.STATUS != false AND data.MESSAGE = "DATA FOUND!"){
 	    			    		$("#getRest").empty();
 	    			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 	    						if(check){
@@ -275,25 +209,23 @@
 	    					    	 check=false;
 	    					    } 
 	    			    	}else{
-	    			    		/* $("#totalrecord").text(0 + " Course");
-	    			    		$("tbody#content").html('<div class="alert alert-danger alert-bold-border square fade in alert-dismissable">'+
-	    								  '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
-	    								  '<strong>No course</strong>'+
-	    								'</div>'); */
+	    						
+	    			    		
 	    			    	}
 	    			    }
 	       			});
 	       		};
         		
         		course.setPagination = function(totalPage, currentPage){
-			    	$('#pagination').bootpag({
+			    	
+        			$('#pagination').bootpag({
 				        total: totalPage,
 				        page: currentPage,
 				        maxVisible: 10,
 				        leaps: true,
 				        firstLastUse: true,
-				        first: 'First',
-				        last: 'Last',
+				        first: '←',
+				        last: '→',
 				        wrapClass: 'pagination',
 				        activeClass: 'active',
 				        disabledClass: 'disabled',
@@ -303,14 +235,19 @@
 				        firstClass: 'first'
 				    }).on("page", function(event, currentPage){
 				    	check = false;
-				    	getCurrentPage = currentPage;
-				    	 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
-			   		 }); 
+				    	course.courses(currentPage);
+		
+			   		 });
+        			
+        			 $('#pagination .bootpag li').addClass("page-item");
+        			 $('#pagination .bootpag li a').addClass("page-link");
+			    	
 				}; 
 				 
 				
+				course.courses(currentPage, "");
+				 
 				
-				 course.courses();
         });
         
         
