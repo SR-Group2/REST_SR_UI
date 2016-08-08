@@ -69,7 +69,7 @@
 	<section>
 		<div class="container search">
 			<div class="text-md-center row">
-				<div class="col-sm-offset-3 col-sm-6">
+				<div class="offset-sm-3 col-sm-6">
 					 <form class="">
 					  <div class="form-group">
 					    <div class="input-group">
@@ -92,16 +92,34 @@
 			  	 Popular Category
 			  </div>
 			  <div class="card-block">
-			   	<div class="row">
-					<div class="col-md-3 col-xs-6"  ng-repeat="restype in restypes">
+			   	<div class="row" id="getRest">
+					<%-- <div class="col-md-3 col-xs-6"  ng-repeat="restype in restypes">
 						<div class="box-img">
 							<h2>{{restype.restype_name_kh}}</h2>
 							<h4 class="text-capitalize">{{restype.restype_name}}</h4>
 							<a href="#category1" ><img class="img-fluid" alt="" src="${pageContext.request.contextPath}/resources/images/pizza-png-23.png"></a>
 						</div>
-					</div>
+					</div> --%>
+					
+					<!-- <div class="col-md-3 col-xs-6">
+						<div class="box-img">
+							<h2>Test</h2>
+							<h4 class="text-capitalize">Name</h4>
+							<a href="#category1"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
+						</div>
+					</div> -->
+					
+					
+					
+					
 					
 				</div><!-- end row 2 -->
+				
+				<div id="pagination" class="text-xs-center">
+												
+				</div>
+				    
+				    
 			  </div>
 			</div>
 			
@@ -118,11 +136,12 @@
 		        <span class="sr-only">Previous</span>
 		      </a>
 		    </li>
-		   <!--  <li class="page-item active">
+		    <li class="page-item active">
 		      <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-		    </li> -->
+		    </li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
 		    <li class="page-item">
-		    	<a class="page-link" href="#"></a>
+		    	<a class="page-link" href="#">3</a>
 		    </li>
 		    <li class="page-item">
 		      <a class="page-link" href="#" aria-label="Next">
@@ -133,7 +152,7 @@
 		  </ul>
 		</nav>
 	</section>
-	
+    
 	<!-- ========= footer ============ -->
 	<footer>
 		<div class="container">
@@ -177,28 +196,126 @@
 </div>
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script> --%>
+<%-- <%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script> --%> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script> --%>
+	
+	
+
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
+    
+	<script id="rest_tmpl" type="text/x-jquery-tmpl">
+		<div class="col-md-3 col-xs-6">
+			<div class="box-img">
+				<h2>{{= restype_name_kh }}</h2>
+				<h4 class="text-capitalize">{{= restype_name }}</h4>
+				<a href="#category1"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
+			</div>
+		</div>
+	</script>
+	
+	
 	<script>
-		var app = angular.module("app", []);
+		
+	
+		/* var app = angular.module("app", []);
 		app.controller("mainCtrl", function($scope, $http){
 			$scope.getRestype = function(){
 				$http.get("${pageContext.request.contextPath}/rest/restype")
 			    .then(function(response) {
 			       $scope.restypes = response.data.DATA;
 			       $scope.pages = response.data.PAGINATION;
-			       $scope.totalPage = pages.TOTAL_PAGES;
+			       console.log($scope.restypes);
+			      /*  $scope.totalPage = pages.TOTAL_PAGES;
 			       $scope.limitPage = pages.LIMIT;
 			       $scope.page = pages.PAGE;
 			       $scope.totalCount = pages.TOTAL_COUNT;
 			       $scopt.totalPage = pages.TOTAL_PAGES;
 			       console.log(response);
-			       console.log($scope.pages.PAGE);
+			       console.log($scope.pages.PAGE); 
 			    });
 			}
 			$scope.getRestype();
-		});
+		}); */
+		
+	/* 	$('#page-selection').bootpag({
+	            total: 10
+        }).on("page", function(event, /* page number here num){
+             $("#content").html("Insert content"); // some ajax content loading...
+        }); */
+		
+        $(document).ready(function(){
+        		
+        		course = {};
+        		currentPage = 1;
+        		var check = true;
+        		
+        		
+	        	course.courses = function(){
+	       			$.ajax({ 
+	    			    url:"${pageContext.request.contextPath}/rest/restype?page=1&limit=2", 
+	    			    type: 'GET',
+	    			    beforeSend: function(xhr) {
+	                        xhr.setRequestHeader("Accept", "application/json");
+	                        xhr.setRequestHeader("Content-Type", "application/json");
+	                    },
+	    			    success: function(data) { 
+	    			    	
+	    			    	if(data.STATUS != false){
+	    			    		console.log(data.DATA);
+	    			    		console.log(data.DATA);
+	    			    		console.log(data.PAGINATION.TOTAL_PAGES);
+	    			    		$("#getRest").empty();
+	    			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+	    						if(check){
+	    							 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
+	    					    	 check=false;
+	    					    } 
+	    			    	}else{
+	    			    		/* $("#totalrecord").text(0 + " Course");
+	    			    		$("tbody#content").html('<div class="alert alert-danger alert-bold-border square fade in alert-dismissable">'+
+	    								  '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+	    								  '<strong>No course</strong>'+
+	    								'</div>'); */
+	    			    	}
+	    			    }
+	       			});
+	       		};
+        		
+        		course.setPagination = function(totalPage, currentPage){
+			    	$('#pagination').bootpag({
+				        total: totalPage,
+				        page: currentPage,
+				        maxVisible: 10,
+				        leaps: true,
+				        firstLastUse: true,
+				        first: 'First',
+				        last: 'Last',
+				        wrapClass: 'pagination',
+				        activeClass: 'active',
+				        disabledClass: 'disabled',
+				        nextClass: 'next',
+				        prevClass: 'prev',
+				        lastClass: 'last',
+				        firstClass: 'first'
+				    }).on("page", function(event, currentPage){
+				    	check = false;
+				    	getCurrentPage = currentPage;
+				    	 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
+			   		 }); 
+				}; 
+				 
+				
+				
+				 course.courses();
+        });
+        
+        
 	</script>
+	
+    
 </body>
 </html>

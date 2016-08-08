@@ -39,7 +39,7 @@ public class RestypeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getRestype(
 										  @RequestParam(value = "page", required = false , defaultValue="1") int page 
-									    , @RequestParam(value="limit" , required = false , defaultValue="2") int limit){
+									    , @RequestParam(value="limit" , required = false , defaultValue="4") int limit){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL + "/restype/get-restype?page="+page+"&limit="+limit, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
