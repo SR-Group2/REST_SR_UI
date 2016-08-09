@@ -8,6 +8,9 @@ body{
 .menu{
 	padding-top:30px;
 }
+.button{
+	out-line
+}
 .btn-outline-success {
     color: #5cb85c;
     background-image: none;
@@ -96,7 +99,7 @@ footer p{
 .search button{
 	border: none;
 	background: transparent;
-	
+	outline: none;
 }
 
 /* ======= Customize ==========*/

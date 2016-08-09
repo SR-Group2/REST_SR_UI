@@ -108,7 +108,7 @@
 	</section> 
     
 	<!-- ========= footer ============ -->
-	<footer class="navbar-fixed-bottom">
+	<footer class="">
 		<div class="container">
 			<p>Copy Right 2016. All right reserved.</p>
 		</div>
@@ -162,17 +162,23 @@
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2>{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize">{{= restype_name }}</h4>
-				<a href="#category1"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
+				<a href="#"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
 			</div>
 		</div>
 	</script>
 	
 	
 	<script>
-		
-		
-        $(function(){
+	
+		function detailRest(id){
+			window.location.href = "${pageContext.request.contextPath}/rest_lists/"+id;
+		}
 
+        $(function(){
+        	
+        	
+        	
+			/* =======================  Pagination ================== */
         		course = {};
         		currentPage = 1;
         		var check = true;
@@ -204,13 +210,14 @@
 	    			    	if(data.STATUS != false){
 	    			    		$("#getRest").empty();
 	    			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+	    			    		$('#getRest').css("cursor", "pointer");
 	    						if(check){
 	    							 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
 	    					    	 check=false;
 	    					    } 
 	    			    	}else{
 	    						
-	    			    		
+	    			    		$("#getRest").empty();
 	    			    	}
 	    			    }
 	       			});

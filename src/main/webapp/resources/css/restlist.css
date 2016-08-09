@@ -1,5 +1,6 @@
 
 /* ======================== Page Restaurant List ======================= */
+
 .rest-list{
 	margin-top:30px;	
 }
@@ -11,6 +12,9 @@
 	background-color: #41c130;
 	padding: 20px 0px 15px 10px;
 	color: #ffffff;
+}
+.box-filter{
+	margin: 20px 0px 0px 0px;
 }
  .box-sort{
 	margin-top:30px;
@@ -25,7 +29,7 @@
  .list-box{
 	background-color:#ffffff;
 	 box-shadow: 5px 5px 5px #dedede;
-	
+	    margin: 20px 0px;
 }
  .list-box img{
 	padding: 5px 5px 5px 10px;
@@ -63,6 +67,7 @@
 
   .list-des{
 	margin-left:20px;
+	padding-bottom: 30px;
 }
  .range-slider ,.radio-btn{
 	margin-top:15px;

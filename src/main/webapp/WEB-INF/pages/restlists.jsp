@@ -390,10 +390,38 @@
 			<p>Copy Right 2016. All right reserved.</p>
 		</div>
 	</footer>
+	
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/freshslider.js"></script>
+
+	<script>
+	$(function(){
+		var url = window.location.href;
+		console.log(url);
+		
+		restaurants = {};
+		restaurants.get = function(){
+   			$.ajax({ 
+			    url: "http://localhost:8080/rest/restaurant/3", 
+			    type: 'GET', 
+			    beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                },
+			    success: function(data) { 
+					console.log(data);  
+					
+			    },
+			    error:function(data,status,er) { 
+			        console.log("error: "+data+" status: "+status+" er:"+er);
+			    }
+			});
+   		};
+			
+   		restaurants.get();
+	});
+	</script>
 </body>
 </html>		
