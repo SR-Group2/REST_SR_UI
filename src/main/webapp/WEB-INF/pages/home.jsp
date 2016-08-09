@@ -171,11 +171,10 @@
 	<script>
 	
 		function detailRest(id){
-			window.location.href = "${pageContext.request.contextPath}/rest_lists/"+id;
+			window.location.href = "${pageContext.request.contextPath}/restaurant/"+id;
 		}
 
         $(function(){
-        	
         	
         	
 			/* =======================  Pagination ================== */
