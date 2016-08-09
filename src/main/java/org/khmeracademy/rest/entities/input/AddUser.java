@@ -89,4 +89,12 @@ public class AddUser {
 	public void setRole(Roles role) {
 		this.role = role;
 	}
+	@Override
+	public String toString() {
+		return "AddUser [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", username="
+				+ username + ", email=" + email + ", password=" + password + ", salt=" + salt + ", dob=" + dob
+				+ ", joined=" + joined + ", picture=" + picture + ", role=" + role + "]";
+	}
+	
+	
 }

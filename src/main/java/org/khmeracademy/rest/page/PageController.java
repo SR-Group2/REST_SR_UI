@@ -22,4 +22,11 @@ public class PageController {
 		map.addAttribute("page", "category.jsp");
 		return "admin/admin";
 	}
+	@RequestMapping(value="/restaurant", method = RequestMethod.GET)
+	public String restaurntPage(ModelMap map){
+		map.addAttribute("page", "restaurant.jsp");
+		return "admin/admin";
+	}
+	
+	
 }

@@ -1,6 +1,10 @@
 package org.khmeracademy.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Roles {
+	@JsonProperty("ID")
+	private int id;
 	private int role_id;
 	private String role_name;
 	
@@ -16,4 +20,11 @@ public class Roles {
 	public void setRole_name(String role_name) {
 		this.role_name = role_name;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }

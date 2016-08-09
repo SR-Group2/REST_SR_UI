@@ -2,7 +2,7 @@ package org.khmeracademy.rest.controller;
 
 import java.util.Map;
 
-import org.khmeracademy.rest.entities.input.AddUser;
+import org.khmeracademy.rest.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -46,8 +46,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Map<String , Object>> adduser(@RequestBody AddUser addUser){
-		HttpEntity<Object> request = new HttpEntity<Object>(addUser,header);
+	public ResponseEntity<Map<String , Object>> adduser(@RequestBody Users user){
+		user.toString();
+		System.out.println("ROLE ID ====== "+ user.getRole().getId());
+		HttpEntity<Object> request = new HttpEntity<Object>(user,header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/insert-user", HttpMethod.POST , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
@@ -60,8 +62,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Map<String , Object>> updateUser(@RequestBody AddUser addUser){
-		HttpEntity<Object> request = new HttpEntity<Object>(addUser, header);
+	public ResponseEntity<Map<String , Object>> updateUser(@RequestBody Users user){
+		HttpEntity<Object> request = new HttpEntity<Object>(user, header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/", HttpMethod.PUT , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
