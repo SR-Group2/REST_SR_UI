@@ -16,7 +16,7 @@
       			<img class="navbar-brand img-fluid logo text-xs-center" src="${pageContext.request.contextPath}/resources/images/logo.png">
       		</div>
       		<div style="width:500px;margin:0 auto;">
-	      		<form class="formlogin"  action="login" id="frmLogin" method="POST">
+	      		<form class="formlogin"  id="frmLogin">
 	      			<fieldset>
 		      			<h3 class="text-success text-xs-center">Welcome</h3>
 		      			<div class="form-group">
@@ -43,34 +43,34 @@
         	
         	$("#frmLogin").submit(function(e){
        		
-       		  e.preventDefault();
-       			
-       		  $.ajax({
-  	            url: "${pageContext.request.contextPath}/login",
-  	            type: "POST",
-  	            data: $("#frmLogin").serialize(),
-//   	            beforeSend: function (xhr) {
-//   	                xhr.setRequestHeader("X-Ajax-call", "true");
-//   	            },
-  	            success: function(data) {
-  	            	if(data == "User account is locked"){
-  	            		alert(data);
-  	            	}else if(data == "User is disabled"){
-  	            		alert(data);
-  	            	}else if(data == "Bad credentials"){
-  	            		alert(data);
-  	            	}else{
-  	            		alert(data);
-  	            		location.href = "${pageContext.request.contextPath}/"+data;
-  	            	}
-  	            	
-  	            },
-  	         	error: function(data){
-  	         		console.log(data);
-  				}
-  	        });
-       			
-       		});
+	       		  e.preventDefault();
+	       			
+	       		  $.ajax({
+	  	            url: "${pageContext.request.contextPath}/login",
+	  	            type: "POST",
+	  	            data: $("#frmLogin").serialize(),
+	  	            success: function(data) {
+	  	            	if(data == "User account is locked"){
+	  	            		alert(data);
+	  	            	}else if(data == "User is disabled"){
+	  	            		alert(data);
+	  	            	}else if(data == "Bad credentials"){
+	  	            		alert(data);
+	  	            	}else{
+	  	            		alert("success");
+	  	            		window.location.href = "${pageContext.request.contextPath}/"+data;
+	  	            		
+	  	            	}
+	  	            	
+	  	            },
+	  	         	error: function(data){
+	  	         		console.log(data);
+	  	         	}
+	       		  });
+       		  
+        	});
+        	
+        });
 	      
 
         </script>

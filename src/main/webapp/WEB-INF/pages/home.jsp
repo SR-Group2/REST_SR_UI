@@ -108,7 +108,7 @@
 	</section> 
     
 	<!-- ========= footer ============ -->
-	<footer>
+	<footer class="navbar-fixed-bottom">
 		<div class="container">
 			<p>Copy Right 2016. All right reserved.</p>
 		</div>
@@ -159,7 +159,7 @@
     
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
 		<div class="col-md-3 col-xs-6">
-			<div class="box-img">
+			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2>{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize">{{= restype_name }}</h4>
 				<a href="#category1"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
@@ -201,7 +201,7 @@
 	    			    	
 	    			    	console.log(data);
 	    			    	
-	    			    	if(data.STATUS != false AND data.MESSAGE = "DATA FOUND!"){
+	    			    	if(data.STATUS != false){
 	    			    		$("#getRest").empty();
 	    			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 	    						if(check){
