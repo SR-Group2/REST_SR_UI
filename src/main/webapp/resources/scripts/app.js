@@ -95,12 +95,12 @@ app.controller('RestaurantCtrl',function($scope,$http){
 			data={
 					  "rest_name": $scope.txtrestname,
 					  "contact": $scope.txtcontact,
-					  "about": txtabout,
-					  "open_close": txttime,
-					  "location": txtlocation
+					  "about": $scope.txtabout,
+					  "open_close": $scope.txttime,
+					  "location": $scope.txtlocation
 			}
 			console.log(data);
-			$http.post('http://localhost:8080/rest/restaurant',data).then(function(response){
+			$http.post('http://localhost:8080/rest/restaurant', data).then(function(response){
 				alert('success');
 			});
 		}

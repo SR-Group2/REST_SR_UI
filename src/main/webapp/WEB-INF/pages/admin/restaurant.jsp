@@ -90,7 +90,7 @@
 					  
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
-					      <input type="button" class="btn btn-success" ng-click="addUser()" value="Submit" data-dismiss="modal"  >
+					      <input type="button" class="btn btn-success" ng-click="addRestaurant()" value="Submit" data-dismiss="modal"  >
 					    </div>
 					  </div>
 				</form>

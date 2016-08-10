@@ -44,13 +44,13 @@ public class RestaurantController {
 //		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 //	}
 //	
-//	@RequestMapping(method = RequestMethod.POST)
-//	public ResponseEntity<Map<String , Object>> insertRestaurant(@RequestBody Restaurants restaurnat){
-//		restaurnat.toString();
-//		HttpEntity<Object> request = new HttpEntity<Object>(restaurnat,header);
-//		ResponseEntity<Map> response = rest.exchange(WS_URL+"/rest/insert-user", HttpMethod.POST , request , Map.class) ;
-//		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
-//	}
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Map<String , Object>> insertRestaurant(@RequestBody Restaurants restaurnat){
+		restaurnat.toString();
+		HttpEntity<Object> request = new HttpEntity<Object>(restaurnat,header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/rest/insert-restaurant", HttpMethod.POST , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
 //	
 //	@RequestMapping(value="/{rest_id}", method = RequestMethod.DELETE)
 //	public ResponseEntity<Map<String , Object>> deleteUser(@PathVariable int rest_id){
