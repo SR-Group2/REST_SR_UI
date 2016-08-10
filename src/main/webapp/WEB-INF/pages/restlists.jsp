@@ -45,7 +45,7 @@
 				<div class="col-md-3">
 					<div class="row">
 						<div class="box-filter">
-							<h2>SEARCH:</h2>
+							<h2>ស្វែងរក:</h2>
 								<form>
 								  <div class="form-group">
 								      <input type="text" class="form-control" id="keyword" placeholder="I want to eat..." 
@@ -68,7 +68,7 @@
 								        </select>
 								        <i class="fa fa-chevron-down"></i>							        
 								      </div>
-									<h5>PRICE : <output id="rangevalue"></output>$</h5>
+									<h5>តម្លៃ : <output id="rangevalue"></output>$</h5>
 									<!-- end option sort -->
 									<!-- range-slider -->
 									<div class="range-slider">
@@ -241,7 +241,7 @@
 					<i class="fa fa-star text-warning"></i>
 					<i class="fa fa-star text-secondary"></i>
 					<i class="fa fa-star text-secondary"></i>
-					<p>text food description here</p>
+					<p>{{= about}}</p>
 				</div>
 			</div>
 		</div>
