@@ -79,7 +79,7 @@
 					  <div class="form-group">
 					    <label for="" class="col-sm-2 control-label">Date of Birth</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{dob}}" ng-model="txtdob"  name="dob" required>
+					      <input type="text" class="form-control" ng-model="txtdob"  name="dob" required>
 					    </div>
 					  </div>
 					  
@@ -91,6 +91,13 @@
 					      		<option value="2">ROLE_OWNER</option>
 					      		<option value="3">ROLE_ADMIN</option>
 					      </select>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="" class="col-sm-2 control-label">Profile</label>
+					    <div class="col-sm-10">
+					      <input type="file" class="form-control"  ng-model="imgpicture"  name="picture" required>
 					    </div>
 					  </div>
 					  

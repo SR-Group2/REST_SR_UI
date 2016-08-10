@@ -15,28 +15,37 @@ app.controller('mainCtrl', function( $scope, $http){
 				
 				
 				$scope.getRoleId = function(roles){
-					
 					$scope.role_id = parseInt(roles);
 				}
-				
+				$scope.getDay=function(day){
+					$scope.bday=parseInt(day);
+				}
+				$scope.getMonth=function(month){
+					$scope.bmonth=parseInt(month);
+				}
+				$scope.getYear=function(year){
+					$scope.byear=parseInt(year);
+				}
+				$scope.getDOB= function(){
+					$scope.dob= $scope.bday+'-'+$scope.bmonth+'-'+ $scope.byear;
+				}
 				$scope.addUser=function(){
-					
 					data={
-							  "first_name": $scope.txtfirstname,
-							  "last_name": $scope.txtlastname,
-							  "dob": $scope.txtdob,
-							  "picture": "string",
-							  "USERNAME": $scope.txtusername,
-							  "PASSWORD": $scope.txtpassword,
-							  "ROLE": {
-							    "ID": 3
+							"first_name": $scope.txtfirstname,
+							"last_name": $scope.txtlastname,
+							"dob": $scope.dob,
+							"picture": "string",
+							"USERNAME": $scope.txtusername,
+							"PASSWORD": $scope.txtpassword,
+							"ROLE": {
+								"ID": $scope.role_id
 							  },
-							  "EMAIl": $scope.txtemail
+							 "EMAIl": $scope.txtemail
 							};
 					console.log(data);
 					$http.post('http://localhost:8080/rest/user', data).then(function(response){
-						
-						alert("success");
+						alert('success');
+						$scope.getAllUsers();
 					});
 				}
 				

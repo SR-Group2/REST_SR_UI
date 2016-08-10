@@ -16,6 +16,11 @@ public class PageController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping(value="/adduser", method = RequestMethod.GET)
+	public String adduserPage(ModelMap map){
+		map.addAttribute("page", "frmadduser.jsp");
+		return "admin/admin";
+	}
 	
 	@RequestMapping(value="/category", method = RequestMethod.GET)
 	public String categoryPage(ModelMap map){
@@ -27,6 +32,8 @@ public class PageController {
 		map.addAttribute("page", "restaurant.jsp");
 		return "admin/admin";
 	}
+	
+	
 	
 	
 }

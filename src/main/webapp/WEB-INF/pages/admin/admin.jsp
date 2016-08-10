@@ -28,7 +28,6 @@
 
 </head>
 <body >
-
 <div class="page-container">
 	<div class="sidebar-menu">
 		<div class="sidebar-menu-inner">
@@ -67,21 +66,21 @@
 						<i class="entypo-user"></i>
 						<span class="title">Users</span>
 					</a>
-					<!--  			
+				 			
 					<ul>
-						<li>
-							<a href="#">
-								<span class="title">Add New User</span>
-							</a>	
-						</li>
 						<li>
 							<a href="${pageContext.request.contextPath}/admin/user" target="_self">
 								<span class="title">View User</span>
 							</a>
 						</li>
+						<li>
+							<a href="${pageContext.request.contextPath}/admin/adduser">
+								<span class="title">Add New User</span>
+							</a>	
+						</li>
+						
 					</ul>
-					-->	
-					
+				
 				</li>
 				
 				
@@ -148,14 +147,14 @@
 			
 		</div>
 				
-		<!-- Footer -->
+		<!-- Footer 
 		<footer class="main">
 			&copy; 2016 <strong>KHMAEY</strong> Admin Theme by SRGroup2
 		</footer>
+		-->
 	
 	</div><!-- end main content -->
 </div>
-
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<!-- Bottom scripts (common) -->
