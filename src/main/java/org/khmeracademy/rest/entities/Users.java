@@ -3,7 +3,6 @@ package org.khmeracademy.rest.entities;
 import java.util.Date;
 import java.util.List;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Users {
@@ -29,11 +28,13 @@ private Roles role;
 @JsonProperty("EMAIl")
 private String email;
 @JsonProperty("ROLE_NAME")
+
+
+
 private String role_name;
 
 
 private List<Roles> roles;
-
 public String getFirst_name() {
 	return first_name;
 }
@@ -57,10 +58,6 @@ public Date getDob() {
 public void setDob(Date dob) {
 	this.dob = dob;
 }
-
-//	private String username;
-//	private String email;
-//	private String password;
 
 public String getSalt() {
 	return salt;
@@ -87,7 +84,6 @@ public void setPicture(String picture) {
 	this.picture = picture;
 }
 
-	
 	public Users() {
 		username = "";
 		password = "";

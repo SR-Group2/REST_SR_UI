@@ -20,6 +20,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-core.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-icons/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/sweetalert.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
+	
+	
+	
 	
 	
 
@@ -61,13 +66,13 @@
 						<span class="title">Dashboard</span>
 					</a>
 				</li>
-				<li>
+				<li >
 					<a href="${pageContext.request.contextPath}/admin/user" target="_self" >
 						<i class="entypo-user"></i>
 						<span class="title">Users</span>
 					</a>
 				 			
-					<ul>
+					<ul >
 						<li>
 							<a href="${pageContext.request.contextPath}/admin/user" target="_self">
 								<span class="title">View User</span>
@@ -90,6 +95,7 @@
 						<i class="entypo-layout"></i>
 						<span class="title">Category</span>
 					</a>
+					
 				</li>
 				<li>
 					<a href="index.html" target="_blank">
@@ -168,8 +174,12 @@
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-custom.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/resources/scripts/moment.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/script.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/dist//sweetalert.min.js"></script> 
+	
 
 </body>
 </html>

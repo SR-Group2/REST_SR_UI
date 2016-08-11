@@ -1,6 +1,6 @@
 var app= angular.module('myApp',[]);
 
-app.controller('mainCtrl', function( $scope, $http){
+app.controller('mainCtrl', function( $scope, $http, $filter){
 				$scope.getAllUsers=function(){
 					$http.get('http://localhost:8080/rest/user').then(function(response){
 						$scope.users=response.data.DATA;
@@ -12,7 +12,6 @@ app.controller('mainCtrl', function( $scope, $http){
 					
 					$('#frmUser')[0].reset();
 				}
-				
 				
 				$scope.getRoleId = function(roles){
 					$scope.role_id = parseInt(roles);
@@ -33,7 +32,7 @@ app.controller('mainCtrl', function( $scope, $http){
 					data={
 							"first_name": $scope.txtfirstname,
 							"last_name": $scope.txtlastname,
-							"dob": $scope.dob,
+							"dob": $('input[name=dob]').val(),
 							"picture": "string",
 							"USERNAME": $scope.txtusername,
 							"PASSWORD": $scope.txtpassword,
@@ -44,15 +43,42 @@ app.controller('mainCtrl', function( $scope, $http){
 							};
 					console.log(data);
 					$http.post('http://localhost:8080/rest/user', data).then(function(response){
-						alert('success');
 						$scope.getAllUsers();
+						swal("Successfully Inserted!", "You clicked the button!", "success")
+						$scope.clearInput();
+						
 					});
 				}
 				
+				
 				$scope.deleteUsers=function(id){
-					$http.delete('http://localhost:8080/rest/user/'+id).then(function(response){
-						$scope.getAllUsers();
+					
+					swal({   title: "Are you sure?",
+						text: "You will not be able to recover this imaginary file!",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "Yes, delete it!",
+						cancelButtonText: "No, cancel",
+						closeOnConfirm: false,
+						closeOnCancel: false },
+						function(isConfirm){
+							if (isConfirm) {   
+								
+								$http.delete('http://localhost:8080/rest/user/'+id).then(function(response){
+									$scope.getAllUsers();
+								});
+								
+								swal("Deleted!",
+									"Your imaginary file has been deleted.",
+									"success");   
+							} else {     
+								swal("Cancelled", "Your imaginary file is safe :)", "error");   
+							} 
 					});
+					
+					
+					
 				}
 				$scope.getUserById=function(id){
 					$http.get('http://localhost:8080/rest/user/'+id).then(function(response){
@@ -63,6 +89,7 @@ app.controller('mainCtrl', function( $scope, $http){
 						$scope.username=response.data.DATA.USERNAME;
 						$scope.email=response.data.DATA.EMAIl;
 						$scope.password=response.data.DATA.PASSWORD;
+						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 						$scope.roles=response.data.DATA.ROLE.ID;
 						console.log(response);
 						alert($scope.roles);
@@ -76,7 +103,7 @@ app.controller('mainCtrl', function( $scope, $http){
 							'last_name':$scope.lastName,
 							'USERNAME':$scope.username,
 							'EMAIl': $scope.email,
-							'PASSWORD':$scope.password
+							'PASSWORD':$scope.password,
 							'ROLE': {
 								    'ID': $scope.role_id
 								  }

@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -66,14 +66,16 @@
 		</div>
 	</section>
 	<!--  Search Section -->
+</div>
 	<section>
 		<div class="container search">
 			<div class="text-md-center row">
 				<div class="offset-sm-3 col-sm-6">
 					 <form class="">
 					  <div class="form-group">
-					    <div class="input-group">
-					      <input type="text" class="form-control" id="keyword" placeholder="search by category .....">
+					    <div class="input-group"  id="remote">
+					      <input type="text" class="form-control typeahead" id="keyword" 
+					     placeholder="search by any restaurant .....">
 					      <div class="input-group-addon" id="btnsearch">
 					      	<button type="submit" class=""><i class="fa fa-search"></i></button>
 					      </div>
@@ -108,7 +110,7 @@
 	</section> 
     
 	<!-- ========= footer ============ -->
-	<footer class="navbar-fixed-bottom">
+	<footer class="">
 		<div class="container">
 			<p>Copy Right 2016. All right reserved.</p>
 		</div>
@@ -148,31 +150,43 @@
     </div>
   </div>
 </div>
+
+
+
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
+	
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
-    
-    
+   
+    <script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
     
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
 		<div class="col-md-3 col-xs-6">
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2>{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize">{{= restype_name }}</h4>
-				<a href="#category1"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
+				<a href="#"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
 			</div>
 		</div>
 	</script>
 	
 	
 	<script>
-		
-		
-        $(function(){
+	
+	
+	
+	
+		function detailRest(id){
+			window.location.href = "${pageContext.request.contextPath}/restaurant/"+id;
+		}
 
+        $(function(){
+        	
+        	
+			/* =======================  Pagination ================== */
         		course = {};
         		currentPage = 1;
         		var check = true;
@@ -204,13 +218,14 @@
 	    			    	if(data.STATUS != false){
 	    			    		$("#getRest").empty();
 	    			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+	    			    		$('#getRest').css("cursor", "pointer");
 	    						if(check){
 	    							 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
 	    					    	 check=false;
 	    					    } 
 	    			    	}else{
 	    						
-	    			    		
+	    			    		$("#getRest").empty();
 	    			    	}
 	    			    }
 	       			});
@@ -246,6 +261,86 @@
 				 
 				
 				course.courses(currentPage, "");
+				
+		
+				// constructs the suggestion engine
+				var substringMatcher = function(strs) {
+					  return function findMatches(q, cb) {
+					    var matches, substringRegex;
+
+					    // an array that will be populated with substring matches
+					    matches = [];
+
+					    // regex used to determine if a string contains the substring `q`
+					    substrRegex = new RegExp(q, 'i');
+
+					    // iterate through the pool of strings and for any string that
+					    // contains the substring `q`, add it to the `matches` array
+					    $.each(strs, function(i, str) {
+					      if (substrRegex.test(str)) {
+					        matches.push(str);
+					      }
+					    });
+
+					    cb(matches);
+					  };
+					};
+					
+					
+					var states;
+					
+					states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+							  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+							  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+							  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+							  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+							  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+							  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+							  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+							  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+							]; 
+					
+				
+				
+
+					
+/* 
+					$('#the-basics .typeahead').typeahead({
+						 url:"${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4", 
+						  hint: true,
+						  highlight: true,
+						  minLength: 1
+					},
+					{
+					  name: url,
+					  source: substringMatcher(states)
+					}); */
+					
+					var bestPictures = new Bloodhound({
+						  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+						  queryTokenizer: Bloodhound.tokenizers.whitespace,
+						  remote: {
+						        url: "${pageContext.request.contextPath}/rest/restype?keyword=%QUERY"+"&page="+currentPage+"&limit=4",
+						        //url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
+						        wildcard: '%QUERY',
+						        filter: function (restypes) {
+						            // Map the remote source JSON array to a JavaScript array
+						            return $.map(restypes.DATA, function (restype) {
+						                return {
+						                        //value: movie //Use this if your url returns a list of strings
+						                        value: restype.restype_name
+						                };
+						            });
+						        }
+						    }
+						});
+
+						$('#remote .typeahead').typeahead(null, {
+						  name: 'best-pictures',
+						  display: 'value',
+						  source: bestPictures
+						});
+
 				 
 				
         });

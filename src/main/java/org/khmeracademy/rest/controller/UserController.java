@@ -46,10 +46,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Map<String , Object>> adduser(@RequestBody Users user){
-		user.toString();
-		System.out.println("ROLE ID ====== "+ user.getRole().getId());
-		HttpEntity<Object> request = new HttpEntity<Object>(user,header);
+	public ResponseEntity<Map<String , Object>> adduser(@RequestBody Users users){
+		HttpEntity<Object> request = new HttpEntity<Object>(users,header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/insert-user", HttpMethod.POST , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}

@@ -59,9 +59,7 @@
 	  	            	}else{
 	  	            		alert("success");
 	  	            		window.location.href = "${pageContext.request.contextPath}/"+data;
-	  	            		
 	  	            	}
-	  	            	
 	  	            },
 	  	         	error: function(data){
 	  	         		console.log(data);

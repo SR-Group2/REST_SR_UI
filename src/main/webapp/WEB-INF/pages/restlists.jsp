@@ -45,12 +45,11 @@
 				<div class="col-md-3">
 					<div class="row">
 						<div class="box-filter">
-							<h2>SEARCH:</h2>
-								<form class="form-inline">
+							<h2>ស្វែងរក:</h2>
+								<form>
 								  <div class="form-group">
-								    <div class="input-group">
-								      <input type="text" class="form-control" id="keyword" placeholder="I want to eat..." style="background-color:#339524;color: #ffffff;">
-								    </div> 							    
+								      <input type="text" class="form-control" id="keyword" placeholder="I want to eat..." 
+								      style="background-color:#339524;color: #ffffff;">
 								  </div>						 
 								</form>
 						</div>
@@ -69,7 +68,7 @@
 								        </select>
 								        <i class="fa fa-chevron-down"></i>							        
 								      </div>
-									<h5>PRICE : <output id="rangevalue"></output>$</h5>
+									<h5>តម្លៃ : <output id="rangevalue"></output>$</h5>
 									<!-- end option sort -->
 									<!-- range-slider -->
 									<div class="range-slider">
@@ -128,186 +127,16 @@
 				</div>
 				
 				<div class="col-md-9">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="list-box ">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/photodune-2717005-lettuce-m.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/photodune-2717005-lettuce-m.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="list-box">
-									<div>
-										<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/photodune-2717005-lettuce-m.png"></img></a>
-									</div>
-									
-									<div class="list-des">
-									
-											<h4>Green Salad</h4>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<p>text food description here</p>
-										
-									</div>
-								
-							</div>
-						</div>
-					</div><!-- end row -->	
-					<div class="row">
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/beef_noodle_soup1.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<p>text food description here</p>
-								</div>
-							</div>	
-						</div>
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/beef_noodle_soup1.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/beef_noodle_soup1.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-					</div><!-- end row -->
-					<div class="row">
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/beef_noodle_soup1.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/Burger-PNG-Image.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-secondary"></i>
-									<i class="fa fa-star text-secondary"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="list-box">
-								<div>
-									<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/Burger-PNG-Image.png"></img></a>
-								</div>
-								<div class="list-des">
-									<h4>Green Salad</h4>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-warning"></i>
-									<i class="fa fa-star text-secondary"></i>
-									<p>text food description here</p>
-								</div>
-							</div>
-						</div>
-					</div><!-- end row -->
-				
-					<!-- Pagination -->
-					<div class="text-md-center">
-						<nav aria-label="...">
-						  <ul class="pagination pagination-sm ">
-						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						        <span class="sr-only">Previous</span>
-						      </a>
-						    </li>
-						    <li class="page-item"><a class="page-link" href="#">1</a></li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>
-						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						        <span class="sr-only">Next</span>
-						      </a>
-						    </li>
-						  </ul>
-						</nav>
-					</div>
-					<!-- end pagination -->
-				</div>	
-			</div>
+					<div class="row" id="getRest">
+						
+						<!-- ========= Pagination ============ -->
+						<section class="cotainer text-xs-center">
+							<nav id="pagination"  class="pagination"></nav>
+						</section> 
+						
+						<!-- end pagination -->
+					</div>	
+				</div>
 		</div>
 	</section>	
 	
@@ -390,10 +219,150 @@
 			<p>Copy Right 2016. All right reserved.</p>
 		</div>
 	</footer>
+	
+	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/freshslider.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
+    
+     
+	<script id="rest_tmpl" type="text/x-jquery-tmpl">
+		<div class="col-md-4">
+			<div class="list-box">
+				<div>
+					<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/Burger-PNG-Image.png"></img></a>
+				</div>
+				<div class="list-des">
+					<h4>{{= rest_name }}</h4>
+					<i class="fa fa-star text-warning"></i>
+					<i class="fa fa-star text-warning"></i>
+					<i class="fa fa-star text-warning"></i>
+					<i class="fa fa-star text-secondary"></i>
+					<i class="fa fa-star text-secondary"></i>
+					<p>{{= about}}</p>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script>
+	
+	$(function(){
+		
+		
+   		/* =======================  Pagination ================== */
+		restaurant = {};
+		var currentPage = 1;
+		var check = true;
+		var keyword = "";
+		
+		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+		var URLREST =  "${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4";
+		var URLRESTYPE = "${pageContext.request.contextPath}/rest/restaurant/"+id;
+		
+		$.ajax({ 
+		    url: URLRESTYPE, 
+		    type: 'GET',
+		    beforeSend: function(xhr) {
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+            },
+		    success: function(data) { 
+		    	
+		    	console.log(data);
+		    	
+		    	if(data.STATUS != false){
+		    		$("#getRest").empty();
+		    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+		    		$('#getRest').css("cursor", "pointer");
+					if(check){
+						//restaurant.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
+				    	 check=false;
+				    } 
+		    	}else{
+					
+		    		$("#getRest").empty();
+		    	}
+		    }
+		});
+		
+		/*
+		$('#keyword').on("keyup", function(e){
+			e.preventDefault();
+			
+			keyword = $(this).val();
+			
+			restaurant.getRest(currentPage,keyword);
+			
+		});
+		*/
+		
+		restaurant.getRest = function(currentPage, keyword){
+    		if(keyword == undefined){
+    			keyword = "";
+    		}
+   			$.ajax({ 
+			    url: URLREST, 
+			    type: 'GET',
+			    beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                },
+			    success: function(data) { 
+			    	
+			    	console.log(data);
+			    	
+			    	if(data.STATUS != false){
+			    		$("#getRest").empty();
+			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+			    		$('#getRest').css("cursor", "pointer");
+						if(check){
+							//restaurant.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
+					    	 check=false;
+					    } 
+			    	}else{
+						
+			    		$("#getRest").empty();
+			    	}
+			    }
+   			});
+   		};
+		
+   		restaurant.setPagination = function(totalPage, currentPage){
+	    	
+			$('#pagination').bootpag({
+		        total: totalPage,
+		        page: currentPage,
+		        maxVisible: 10,
+		        leaps: true,
+		        firstLastUse: true,
+		        first: '←',
+		        last: '→',
+		        wrapClass: 'pagination',
+		        activeClass: 'active',
+		        disabledClass: 'disabled',
+		        nextClass: 'next',
+		        prevClass: 'prev',
+		        lastClass: 'last',
+		        firstClass: 'first'
+		    }).on("page", function(event, currentPage){
+		    	check = false;
+		    	restaurant.getRest(currentPage);
+
+	   		 });
+			
+			 $('#pagination .bootpag li').addClass("page-item");
+			 $('#pagination .bootpag li a').addClass("page-link");
+	    	
+		}; 
+		 
+		
+	/* 	restaurant.getRest(currentPage, ""); */
+		 
+		
+	});
+	</script>
 </body>
 </html>		

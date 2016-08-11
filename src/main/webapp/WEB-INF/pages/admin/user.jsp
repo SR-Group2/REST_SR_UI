@@ -1,7 +1,6 @@
 <div ng-controller="mainCtrl">
 				<div class="well">
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUser" ng-click="clearInput()">
-					<i class="fa fa-plus-square-o"></i> Add New User</button>
+					<h3>User Information</h3>
 				</div>
 				<table class="table table-striped table-inverse">
 					<thead class="thead-default">
@@ -78,9 +77,12 @@
 					  </div>
 					  <div class="form-group">
 					    <label for="" class="col-sm-2 control-label">Date of Birth</label>
-					    <div class="col-sm-10">
-					      <input type="text" class="form-control" ng-model="txtdob"  name="dob" required>
-					    </div>
+					     <div class='input-group date' id='datetimepicker1' >	                	 
+							<input type='text' class="form-control" ng-model="txtdob" name="dob"  placeholder="Year-Month-Day"/>
+								<span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+						</div>
 					  </div>
 					  
 					  <div class="form-group">
@@ -160,9 +162,14 @@
 					  </div>
 					  
 					  <div class="form-group">
-					    <label for="" class="col-sm-2 control-label">Date of Birth</label>
+					    <label for="" class="col-sm-2 control-label">Date of Birth </label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{dob}}" ng-model="dob"  name="updatedob" required>
+					       <div class='input-group date' id='datetimepicker1' >	                	 
+							<input type='text' class="form-control" value="{{ dob }}" ng-model="dob" name="dob"  placeholder="Year-Month-Day"/>
+								<span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+						</div>
 					    </div>
 					  </div>
 					  
@@ -170,9 +177,9 @@
 					    <label for="" class="col-sm-2 control-label">Role</label>
 					    <div class="col-sm-10">
 					      <select  value="{{roles}}" ng-model="roles" ng-change="getRoleId(roles)">
-					      		<option>ROLE_STANDARD_USER</option>
-					      		<option>ROLE_OWNER</option>
-					      		<option>ROLE_ADMIN</option>
+					      		<option value="1">ROLE_STANDARD_USER</option>
+					      		<option value="2">ROLE_OWNER</option>
+					      		<option value="">ROLE_ADMIN</option>
 					      </select>
 					    </div>
 					  </div>

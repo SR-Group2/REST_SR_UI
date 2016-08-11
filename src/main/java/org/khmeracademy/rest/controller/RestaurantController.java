@@ -3,7 +3,6 @@ package org.khmeracademy.rest.controller;
 import java.util.Map;
 
 import org.khmeracademy.rest.entities.Restaurants;
-import org.khmeracademy.rest.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -28,7 +27,6 @@ public class RestaurantController {
 	
 	@Autowired
 	private String WS_URL;
-	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getAllRestaurant(){
@@ -66,5 +64,10 @@ public class RestaurantController {
 //		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 //	}
 	
-
+	@RequestMapping(value="/{rest_id}",method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> getUserById(@PathVariable int rest_id){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/"+rest_id, HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody(), HttpStatus.OK);
+	}
 }
