@@ -28,9 +28,16 @@ public class RestaurantController {
 	private String WS_URL;
 	
 	@RequestMapping(value="/{rest_id}",method = RequestMethod.GET)
-	public ResponseEntity<Map<String , Object>> getUserById(@PathVariable int rest_id){
+	public ResponseEntity<Map<String , Object>> getRestaurantFromRestype(@PathVariable int rest_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/"+rest_id, HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/rest/{rest_id}",method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> getUserById(@PathVariable int rest_id){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/"+rest_id, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody(), HttpStatus.OK);
 	}
 	

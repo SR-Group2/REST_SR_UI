@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <meta charset="UTF-8">
 <title>Restaurant || Page</title>
@@ -11,11 +11,12 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.booklet.latest.css">
 </head>
-<body>
+<body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded" style="background-color: #ffffff;">
 		<div class="container">
-				 <a href="#"><img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
+				<a href="${pageContext.request.contextPath}/home">
+				 <img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
 			  <div class="menu">
 				  <ul class="nav navbar-nav pull-xs-right">
 				    <li class="nav-item">
@@ -63,19 +64,19 @@
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
 							 ONEMORE</h4>
-							<p> Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod....</p>
-							<table class="table" ng-repeat="restaurant in restaurants">
+							<p>{{about}}</p>
+							<table class="table">
 								<tr>
 									<td><i class="fa fa-users"> Name</i></td>
-									<td>{{restaurant.rest_name}}</td>
+									<td>{{rest_name}}</td>
 								</tr>	
 								<tr>
 									<td><i class="fa fa-phone"> Contact</i></td>
-									<td>{{restaurant.contact}}</td>
+									<td>{{contact}}</td>
 								</tr>
 								<tr>
 									<td><i class="fa fa-home"> Location</i></td>
-									<td>{{restaurant.location}}</td>
+									<td>{{location}}</td>
 								</tr>
 							</table>
 					</div>
@@ -137,14 +138,44 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.easing.1.3.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.booklet.latest.min.js"></script>
 	<script>
+	//==================== Get Restaurant Information ===================
+		var app = angular.module("app", []);
+	  	app.controller("mainCtrl", function($http, $scope){
+	  		
+	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	  		
+	  		$scope.getRestDetail = function(){
+	  			
+	  			$http.get("${pageContext.request.contextPath}/rest/restaurant/rest/"+id)
+	  			.then(function(rsp){
+	  				console.log(rsp);
+	  				$scope.rest = rsp.data.DATA;
+	  				$scope.rest_name = $scope.rest.rest_name;
+	  				$scope.about = $scope.rest.about;
+	  				$scope.contact = $scope.rest.contact;
+	  				$scope.location = $scope.rest.location;
+	  				console.log($scope.location)
+	  			});
+	  		}
+	  		
+	  		$scope.getRestDetail();
+	  	});
+	// ===============  Animation Menu Restaurant ========= 
 	    $(function () {		
 	        $("#menu").booklet({
 	        	speed:500,
 	        	width: 600,
         		height: 400
 	        });
+	      
+	     
 
 	    });
+	
+	
+		
+	
+	    
     </script>
 </body>
 </html>

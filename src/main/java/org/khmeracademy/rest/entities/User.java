@@ -69,8 +69,6 @@ public class User implements UserDetails{
 		this.role = role;
 	}
 	
-
-	
 	public Date getDob() {
 		return dob;
 	}

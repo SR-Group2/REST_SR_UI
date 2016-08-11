@@ -9,8 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 <style>
 
 </style>
@@ -19,7 +18,8 @@
   <!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded" style="background-color: #ffffff;">
 		<div class="container">
-				 <a href="#"><img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
+				 <a href="${pageContext.request.contextPath}/home">
+				 <img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
 			  <div class="menu">
 				  <ul class="nav navbar-nav pull-xs-right">
 				    <li class="nav-item">
@@ -47,8 +47,10 @@
 						<div class="box-filter">
 							<h2>ស្វែងរក:</h2>
 								<form>
-								  <div class="form-group">
-								      <input type="text" class="form-control" id="keyword" placeholder="I want to eat..." 
+								  <div class="form-group" id="remote">
+								      <input type="text" class="form-control typeahead" id="keyword" 
+								      placeholder="          search restaurant ....." 
+								      
 								      style="background-color:#339524;color: #ffffff;">
 								  </div>						 
 								</form>
@@ -133,10 +135,31 @@
 						<section class="cotainer text-xs-center">
 							<nav id="pagination"  class="pagination"></nav>
 						</section> 
-						
 						<!-- end pagination -->
-					</div>	
-				</div>
+					</div>
+					<nav aria-label="Page navigation" class="text-xs-center">
+					  <ul class="pagination">
+					    <li class="page-item">
+					      <a class="page-link" href="#" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					        <span class="sr-only">Previous</span>
+					      </a>
+					    </li>
+					    <li class="page-item"><a class="page-link" href="#">1</a></li>
+					    <li class="page-item"><a class="page-link" href="#">2</a></li>
+					    <li class="page-item"><a class="page-link" href="#">3</a></li>
+					    <li class="page-item"><a class="page-link" href="#">4</a></li>
+					    <li class="page-item"><a class="page-link" href="#">5</a></li>
+					    <li class="page-item">
+					      <a class="page-link" href="#" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					        <span class="sr-only">Next</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
+						
+				</div><!-- ======== col-md-9 -->
 		</div>
 	</section>	
 	
@@ -226,13 +249,13 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
-    
+    <script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
      
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
 		<div class="col-md-4">
-			<div class="list-box">
+			<div class="list-box" onclick="detailRest({{= rest_id}})">
 				<div>
-					<a href="#"><img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/Burger-PNG-Image.png"></img></a>
+					<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/Burger-PNG-Image.png">
 				</div>
 				<div class="list-des">
 					<h4>{{= rest_name }}</h4>
@@ -249,6 +272,14 @@
 
 	<script>
 	
+	function listRestaurnat(){
+		alert();
+	}
+	function detailRest(id){
+		
+		window.location.href = "${pageContext.request.contextPath}/detail_rest/"+id;
+	}
+	
 	$(function(){
 		
 		
@@ -260,56 +291,17 @@
 		
 		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 		var URLREST =  "${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4";
-		var URLRESTYPE = "${pageContext.request.contextPath}/rest/restaurant/"+id;
+
 		
-		$.ajax({ 
-		    url: URLRESTYPE, 
-		    type: 'GET',
-		    beforeSend: function(xhr) {
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
-            },
-		    success: function(data) { 
-		    	
-		    	console.log(data);
-		    	
-		    	if(data.STATUS != false){
-		    		$("#getRest").empty();
-		    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-		    		$('#getRest').css("cursor", "pointer");
-					if(check){
-						//restaurant.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
-				    	 check=false;
-				    } 
-		    	}else{
-					
-		    		$("#getRest").empty();
-		    	}
-		    }
-		});
-		
-		/*
-		$('#keyword').on("keyup", function(e){
-			e.preventDefault();
-			
-			keyword = $(this).val();
-			
-			restaurant.getRest(currentPage,keyword);
-			
-		});
-		*/
-		
-		restaurant.getRest = function(currentPage, keyword){
-    		if(keyword == undefined){
-    			keyword = "";
-    		}
-   			$.ajax({ 
-			    url: URLREST, 
+		restaurant.getRest = function(id){
+			console.log(id);
+			$.ajax({ 
+			    url: "${pageContext.request.contextPath}/rest/restaurant/"+id, 
 			    type: 'GET',
 			    beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Accept", "application/json");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                },
+	                xhr.setRequestHeader("Accept", "application/json");
+	                xhr.setRequestHeader("Content-Type", "application/json");
+	            },
 			    success: function(data) { 
 			    	
 			    	console.log(data);
@@ -327,41 +319,113 @@
 			    		$("#getRest").empty();
 			    	}
 			    }
-   			});
-   		};
-		
-   		restaurant.setPagination = function(totalPage, currentPage){
-	    	
-			$('#pagination').bootpag({
-		        total: totalPage,
-		        page: currentPage,
-		        maxVisible: 10,
-		        leaps: true,
-		        firstLastUse: true,
-		        first: '←',
-		        last: '→',
-		        wrapClass: 'pagination',
-		        activeClass: 'active',
-		        disabledClass: 'disabled',
-		        nextClass: 'next',
-		        prevClass: 'prev',
-		        lastClass: 'last',
-		        firstClass: 'first'
-		    }).on("page", function(event, currentPage){
-		    	check = false;
-		    	restaurant.getRest(currentPage);
-
-	   		 });
+			});
 			
-			 $('#pagination .bootpag li').addClass("page-item");
-			 $('#pagination .bootpag li a').addClass("page-link");
-	    	
-		}; 
-		 
+		}
 		
-	/* 	restaurant.getRest(currentPage, ""); */
-		 
+		restaurant.getRest(id);
 		
+		$('#keyword').on('typeahead:selected', function(){ //datum will be the object that is selected 
+			$("#getRest").empty();
+			var keyword = $(this).val();
+			$.ajax({ 
+			    url:"${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4", 
+			    type: 'GET',
+			    beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                },
+			    success: function(data) { 
+
+			    	
+			    	var id = data.DATA[0].restype_id;
+			    	
+			    	restaurant.getRest(id);
+			    	
+			    	/* console.log(data);
+			    	
+			    	if(data.STATUS != false){
+			    		$("#getRest").empty();
+			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+			    		$('#getRest').css("cursor", "pointer");
+						if(check){
+							 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
+					    	 check=false;
+					    } 
+			    	}else{
+						
+			    		$("#getRest").empty();
+			    	} */
+			    }
+   			});
+		});
+		
+		$('#keyword').on("",function(e){
+			alert();
+			
+			
+	    });
+		
+		// ==================== Get Restaurant Type ============================
+		// constructs the suggestion engine
+		var substringMatcher = function(strs) {
+			  return function findMatches(q, cb) {
+			    var matches, substringRegex;
+
+			    // an array that will be populated with substring matches
+			    matches = [];
+
+			    // regex used to determine if a string contains the substring `q`
+			    substrRegex = new RegExp(q, 'i');
+
+			    // iterate through the pool of strings and for any string that
+			    // contains the substring `q`, add it to the `matches` array
+			    $.each(strs, function(i, str) {
+			      if (substrRegex.test(str)) {
+			        matches.push(str);
+			      }
+			    });
+
+			    cb(matches);
+			  };
+			};
+			
+			
+			var states;
+			
+			var bestPictures = new Bloodhound({
+				  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+				  queryTokenizer: Bloodhound.tokenizers.whitespace,
+				  remote: {
+				        url: "${pageContext.request.contextPath}/rest/restype?keyword=%QUERY"+"&page="+currentPage+"&limit=4",
+				        //url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
+				        wildcard: '%QUERY',
+				        filter: function (restypes) {
+				            // Map the remote source JSON array to a JavaScript array
+				            return $.map(restypes.DATA, function (restype) {
+				                return {
+				                        //value: movie //Use this if your url returns a list of strings
+				                        value: restype.restype_name
+				                };
+				            });
+				        }
+				    }
+				});
+		
+				$('#remote .typeahead').typeahead(null, {
+				  	name: 'best-pictures',
+				  	display: 'value',
+				  	source: bestPictures
+				});
+				
+			$("#keyword").keyup(function(){
+				if($(this).val() != "" || $(this).val() == undefined){
+				
+					$("#keyword").css("background", "trasparent !important");
+					
+				}
+			})
+
 	});
 	</script>
 </body>

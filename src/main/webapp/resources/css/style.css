@@ -144,3 +144,9 @@ footer p{
 	width: 100%;
 	height: 100%;
 }
+
+#keyword{
+
+    background-size: 10%;
+    background-position-x: 10px;
+}
