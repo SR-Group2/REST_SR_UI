@@ -26,9 +26,9 @@ app.controller('mainCtrl', function( $scope, $http){
 				$scope.getYear=function(year){
 					$scope.byear=parseInt(year);
 				}
-				$scope.getDOB= function(){
-					$scope.dob= $scope.bday+'-'+$scope.bmonth+'-'+ $scope.byear;
-				}
+//				$scope.getDOB= function(){
+//					$scope.dob= $scope.bday+'-'+$scope.bmonth+'-'+ $scope.byear;
+//				}
 				$scope.addUser=function(){
 					data={
 							"first_name": $scope.txtfirstname,
@@ -63,8 +63,11 @@ app.controller('mainCtrl', function( $scope, $http){
 						$scope.username=response.data.DATA.USERNAME;
 						$scope.email=response.data.DATA.EMAIl;
 						$scope.password=response.data.DATA.PASSWORD;
+						$scope.roles=response.data.DATA.ROLE.ID;
 						console.log(response);
+						alert($scope.roles);
 					});
+					
 				}
 				$scope.updateUser=function(){
 					data={
@@ -74,14 +77,19 @@ app.controller('mainCtrl', function( $scope, $http){
 							'USERNAME':$scope.username,
 							'EMAIl': $scope.email,
 							'PASSWORD':$scope.password
-							}
+							'ROLE': {
+								    'ID': $scope.role_id
+								  }
+						}
 					console.log(data);
-//					$http.PUT('http://localhost:8080/rest/user',data).then(function(response){
-//						 console.log(data);
-//					});
+					alert("success");
+					$http.put('http://localhost:8080/rest/user',data).then(function(response){					 
+						$scope.getAllUsers();
+					});
 				}
 			});
 
+//Resturan Controller
 app.controller('RestaurantCtrl',function($scope,$http){
 		
 		$scope.restaurants='';

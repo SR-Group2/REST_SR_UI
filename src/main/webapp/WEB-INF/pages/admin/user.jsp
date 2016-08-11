@@ -125,6 +125,7 @@
 		      </div>
 		      <div class="modal-body">
 		        <form class="form-horizontal" name="frmUpdate">
+		        	
 					  <div class="form-group">
 					    <label for="" class="col-sm-2 control-label">First Name</label>
 					    <div class="col-sm-10">
@@ -168,7 +169,7 @@
 					   <div class="form-group">
 					    <label for="" class="col-sm-2 control-label">Role</label>
 					    <div class="col-sm-10">
-					      <select>
+					      <select  value="{{roles}}" ng-model="roles" ng-change="getRoleId(roles)">
 					      		<option>ROLE_STANDARD_USER</option>
 					      		<option>ROLE_OWNER</option>
 					      		<option>ROLE_ADMIN</option>
@@ -178,7 +179,7 @@
 					  
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
-					      <input type="button" class="btn btn-success" ng-click=""  value="Update" data-dismiss="modal" >
+					      <input type="button" class="btn btn-success" ng-click="updateUser()"  value="Update" data-dismiss="modal" >
 					    </div>
 					  </div>
 				</form>
