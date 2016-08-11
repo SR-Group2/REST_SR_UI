@@ -46,17 +46,17 @@ public class UserServiceImpl implements UserService {
 		if(map.get("DATA") != null){
 			Map<String , Object> data = (HashMap<String , Object>) map.get("DATA");
 			User u = new User();
-			u.setId((Integer)data.get("ID"));
-			u.setEmail((String)data.get("EMAIL"));
-			u.setUsername((String)data.get("USERNAME"));
-			u.setPassword((String) data.get("PASSWORD"));
+			u.setId((Integer)data.get("user_id"));
+			u.setEmail((String)data.get("email"));
+			u.setUsername((String)data.get("username"));
+			u.setPassword((String) data.get("password"));
 			
 			List<Role> roles = new ArrayList<Role>();
 			List<HashMap<String, Object>> dataRole = (List<HashMap<String, Object>>) data.get("roles");
 			for (Map<String , Object> datas  : dataRole) {
 				Role role = new Role();
-				role.setId((Integer)datas.get("ID"));
-				role.setName((String) datas.get("NAME"));
+				role.setId((Integer)datas.get("id"));
+				role.setName((String) datas.get("name"));
 				roles.add(role);
 			}
 			System.out.println(dataRole);

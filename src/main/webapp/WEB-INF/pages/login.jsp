@@ -34,7 +34,6 @@
 	      		</form>
       	</div>
       </div>
-      
  
 <script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
@@ -57,7 +56,7 @@
 	  	            	}else if(data == "Bad credentials"){
 	  	            		alert(data);
 	  	            	}else{
-	  	            		alert("success");
+	  	            		alert(data);
 	  	            		window.location.href = "${pageContext.request.contextPath}/"+data;
 	  	            	}
 	  	            },
