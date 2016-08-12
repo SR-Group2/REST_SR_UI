@@ -1,14 +1,14 @@
 package org.khmeracademy.rest.entities;
 
 public class Roles {
-	private int role_id;
+	private int id;
 	private String role_name;
 	
-	public int getRole_id() {
-		return role_id;
+	public int getId() {
+		return id;
 	}
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getRole_name() {
 		return role_name;

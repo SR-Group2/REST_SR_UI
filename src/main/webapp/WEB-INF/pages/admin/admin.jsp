@@ -20,17 +20,12 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-core.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-icons/font-awesome/css/font-awesome.min.css">
-	
-	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/angular.min.js"></script>
-	<script>$.noConflict();</script>
-
-	
-
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 
 </head>
-<body ng-controller="mainCtrl">
-
+<body >
 <div class="page-container">
 	<div class="sidebar-menu">
 		<div class="sidebar-menu-inner">
@@ -64,11 +59,26 @@
 						<span class="title">Dashboard</span>
 					</a>
 				</li>
-				<li>
-					<a href="${pageContext.request.contextPath}/admin/user" target="_self">
+				<li >
+					<a href="${pageContext.request.contextPath}/admin/user" target="_self" >
 						<i class="entypo-user"></i>
 						<span class="title">Users</span>
 					</a>
+				 			
+					<ul >
+						<li>
+							<a href="${pageContext.request.contextPath}/admin/user" target="_self">
+								<span class="title">View User</span>
+							</a>
+						</li>
+						<li>
+							<a href="${pageContext.request.contextPath}/admin/adduser">
+								<span class="title">Add New User</span>
+							</a>	
+						</li>
+						
+					</ul>
+				
 				</li>
 				
 				
@@ -78,6 +88,7 @@
 						<i class="entypo-layout"></i>
 						<span class="title">Category</span>
 					</a>
+					
 				</li>
 				<li>
 					<a href="index.html" target="_blank">
@@ -86,24 +97,14 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/admin/restaurant" target="_self">
 						<i class="entypo-newspaper"></i>
 						<span class="title">Restaurant</span>
 					</a>
 					<ul>
 						<li>
-							<a href="#">
-								<span class="title">Lucky</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Lukluk</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">KFC</span>
+							<a href="${pageContext.request.contextPath}/admin/brand" target="_self">
+								<span class="title">Brand</span>
 							</a>
 						</li>
 					</ul>
@@ -140,8 +141,7 @@
 		</div>
 
 	</div>
-	<div class="main-content">
-		<h3>Hello</h3>				
+	<div class="main-content">			
 		<div class="row">
 			<!-- ======= Dynamic Page Content ====== -->
 			
@@ -153,14 +153,16 @@
 			
 		</div>
 				
-		<!-- Footer -->
+		<!-- Footer 
 		<footer class="main">
 			&copy; 2016 <strong>KHMAEY</strong> Admin Theme by SRGroup2
 		</footer>
+		-->
 	
 	</div><!-- end main content -->
-</div>
 
+	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<!-- Bottom scripts (common) -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/gsap/main-gsap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
@@ -172,47 +174,11 @@
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-custom.js"></script>
-	
-	
-	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-
-	<script>
-			var app= angular.module('app',[]);
-			app.controller('mainCtrl', function( $scope, $http){
-				$scope.users='';
-				$scope.getAllUsers=function(){
-					$http.get('http://localhost:8080/rest/user').then(function(response){
-						$scope.users=response.data.DATA;
-						console.log(response);
-					});
-				}
-				$scope.getAllUsers();
-				
-				$scope.deleteUsers=function(id){
-					$http.delete('http://localhost:8080/rest/user/'+id).then(function(response){
-						$scope.getAllUsers();
-					});
-				}
-				$scope.getUserById=function(id){
-					$http.get('http://localhost:8080/rest/user/'+id).then(function(response){
-						$scope.users=response.data.DATA;
-						$scope.id= $scope.users.ID;
-						$scope.firstName= $scope.users.first_name;
-						$scope.lastName=$scope.users.last_name;
-						$scope.username=$scope.users.USERNAME;
-						$scope.email=$scope.users.EMAIL;
-						$scope.password=$scope.users.PASSWORD;
-						console.log(response);
-					});
-				}
-				$scope.updateUser=function(){
-					$http.put('http://localhost:8080/rest/user').then(function(response){
-						
-					});
-				}
-			});
-		
-		</script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/moment.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/app.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/script.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	
 
 </body>
