@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@page import="org.khmeracademy.rest.entities.User"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
@@ -10,46 +16,73 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.booklet.latest.css">
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	
 </head>
 <body ng-controller="mainCtrl">
-	<!-- ======== Navigation ==========  -->
-	<nav class="navbar navbar-light bg-faded" style="background-color: #ffffff;">
+	<nav class="navbar navbar-light bg-faded"
+		style="background-color: #ffffff;">
 		<div class="container">
-				<a href="${pageContext.request.contextPath}/home">
-				 <img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
-			  <div class="menu">
-				  <ul class="nav navbar-nav pull-xs-right">
-				    <li class="nav-item">
-				      <a class="nav-link" href="#" data-toggle="modal" data-target="#login">ចូលប្រើ</a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link" href="#">បង្កើតគណនី</a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link" href="#">ទំនាក់ទំនង់</a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link" href="#">អំពីយើង</a>
-				    </li>
-				  </ul>
-			  </div>
-		</div> 
+			<a href="${pageContext.request.contextPath}/home"> <img
+				class="navbar-brand img-fluid logo"
+				src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
+			<div class="menu">
+				<ul class="nav navbar-nav pull-xs-right">
+					<sec:authorize access="!isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="#"
+							data-toggle="modal" data-target="#login">ចូលប្រើ</a></li>
+					</sec:authorize>
+					<sec:authorize access="!isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="#">បង្កើតគណនី</a></li>
+					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+					</li>
+					<sec:authorize access="isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">ចាកចេញ</a>
+						</li>
+					</sec:authorize>
+				</ul>
+			</div>
+		</div>
 	</nav>
+
+	
 	<!-- ========= Restaurant Menu and Detail ============ -->
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
 						<div class="box-img formlogin">
 							<div id="menu">
+								<a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
+						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" >
+						        </a>
+						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
 						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        </a>
+						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
 						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        </a>
+						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
 						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        </a>
+						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
 						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
-						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        </a>
 						    </div>
 						</div>
 						<br>
-						<div class="btn-outline-success">
+						<div class="more_part">
 							<button class="btn-outline-success btn"><i class="fa fa-plus"> ADD FAVORITE</i></button>
 							<button class="btn-outline-success btn"><i class="fa fa-plus"> VIEW MORE</i></button>
 						</div>
@@ -137,6 +170,17 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-ui.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.easing.1.3.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.booklet.latest.min.js"></script>
+	
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/jquery.fancybox.js?v=2.1.5"></script>
+	
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+	
 	<script>
 	//==================== Get Restaurant Information ===================
 		var app = angular.module("app", []);
@@ -168,7 +212,12 @@
         		height: 400
 	        });
 	      
-	     
+	        $(".fancybox").fancybox({
+	    		openEffect	: 'none',
+	    		closeEffect	: 'none',
+	    		fitToView: true
+	    		
+	    	});
 
 	    });
 	

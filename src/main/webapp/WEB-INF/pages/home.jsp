@@ -226,10 +226,11 @@
 			var keyword = "";
 
 			$('#btnsearch').on("click", function(e) {
-
-				$("#getRest").empty();
+		
+				
 				e.preventDefault();
-
+	
+				check = true;
 				keyword = $('#keyword').val();
 
 				course.courses(currentPage, keyword);
@@ -245,7 +246,7 @@
 									+ keyword
 									+ "&page="
 									+ currentPage
-									+ "&limit=4",
+									+ "&limit=5",
 							type : 'GET',
 							beforeSend : function(xhr) {
 								xhr.setRequestHeader("Accept",
@@ -256,6 +257,7 @@
 							success : function(data) {
 
 								if (data.STATUS != false) {
+									console.log(data);
 									$("#getRest").empty();
 									$("#rest_tmpl").tmpl(data.DATA).appendTo(
 											"#getRest");
@@ -266,8 +268,9 @@
 												currentPage);
 										check = false;
 									}
+									$("#pagination").show()
 								} else {
-
+									$("#pagination").hide();	
 									$("#getRest").empty();
 								}
 							}

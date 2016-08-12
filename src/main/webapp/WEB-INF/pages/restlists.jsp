@@ -1,43 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@page import="org.khmeracademy.rest.entities.User"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
-<style>
-
-</style>
+<title>NHAM EY Welcome</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/screen.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
 </head>
-<body>	
-  <!-- ======== Navigation ==========  -->
-	<nav class="navbar navbar-light bg-faded" style="background-color: #ffffff;">
+<body ng-controller="mainCtrl">
+	<!-- ======== Navigation ==========  -->
+	<nav class="navbar navbar-light bg-faded"
+		style="background-color: #ffffff;">
 		<div class="container">
-				 <a href="${pageContext.request.contextPath}/home">
-				 <img class="navbar-brand img-fluid logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></a>	
-			  <div class="menu">
-				  <ul class="nav navbar-nav pull-xs-right">
-				    <li class="nav-item">
-				      <a class="nav-link" href="#" data-toggle="modal" data-target="#login">ចូលប្រើ</a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link" href="#">បង្កើតគណនី</a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link" href="#">ទំនាក់ទំនង់</a>
-				    </li>
-				    <li class="nav-item">
-				      <a class="nav-link" href="#">អំពីយើង</a>
-				    </li>
-				  </ul>
-			  </div>
-		</div> 
-	</nav>		
+			<a href="${pageContext.request.contextPath}/home"> <img
+				class="navbar-brand img-fluid logo"
+				src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
+			<div class="menu">
+				<ul class="nav navbar-nav pull-xs-right">
+					<sec:authorize access="!isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="#"
+							data-toggle="modal" data-target="#login">ចូលប្រើ</a></li>
+					</sec:authorize>
+					<sec:authorize access="!isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="#">បង្កើតគណនី</a></li>
+					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+					</li>
+					<sec:authorize access="isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">ចាកចេញ</a>
+						</li>
+					</sec:authorize>
+				</ul>
+			</div>
+		</div>
+	</nav>	
 		
 	<section class="rest-list">
 		<div class="container">
@@ -342,20 +356,6 @@
 			    	
 			    	restaurant.getRest(id);
 			    	
-			    	/* console.log(data);
-			    	
-			    	if(data.STATUS != false){
-			    		$("#getRest").empty();
-			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-			    		$('#getRest').css("cursor", "pointer");
-						if(check){
-							 course.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
-					    	 check=false;
-					    } 
-			    	}else{
-						
-			    		$("#getRest").empty();
-			    	} */
 			    }
    			});
 		});
