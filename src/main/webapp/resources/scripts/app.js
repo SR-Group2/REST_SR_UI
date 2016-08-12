@@ -25,9 +25,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				$scope.getYear=function(year){
 					$scope.byear=parseInt(year);
 				}
-//				$scope.getDOB= function(){
-//					$scope.dob= $scope.bday+'-'+$scope.bmonth+'-'+ $scope.byear;
-//				}
+
 				$scope.addUser=function(){
 					data={
 							"first_name": $scope.txtfirstname,
@@ -82,7 +80,6 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				}
 				$scope.getUserById=function(id){
 					$http.get('http://localhost:8080/rest/user/'+id).then(function(response){
-						//$scope.users=response.data.DATA;
 						$scope.id= response.data.DATA.ID;
 						$scope.firstName= response.data.DATA.first_name;
 						$scope.lastName=response.data.DATA.last_name;
@@ -92,7 +89,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 						$scope.roles=response.data.DATA.ROLE.ID;
 						console.log(response);
-						alert($scope.roles);
+						alert('DOB '+$scope.dob);
 					});
 					
 				}
@@ -104,6 +101,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 							'USERNAME':$scope.username,
 							'EMAIl': $scope.email,
 							'PASSWORD':$scope.password,
+							'dob':$scope.dob,
 							'ROLE': {
 								    'ID': $scope.role_id
 								  }
@@ -134,9 +132,7 @@ app.controller('RestaurantCtrl',function($scope,$http){
 					  "open_close": $scope.txttime,
 					  "location": $scope.txtlocation
 			}
-			console.log(data);
 			$http.post('http://localhost:8080/rest/restaurant', data).then(function(response){
-				alert('success');
 			});
 		}
 		

@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-icons/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/sweetalert.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	
 	
 	

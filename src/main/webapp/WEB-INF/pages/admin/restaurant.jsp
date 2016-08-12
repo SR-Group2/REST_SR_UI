@@ -4,7 +4,7 @@
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addRestaurant" ng-click="clearInput()">
 					<i class="fa fa-plus-square-o"></i> Add New Restaurant</button>
 				</div>
-				<table class="table table-striped table-inverse">
+				<table class="table table-striped">
 					<thead class="thead-default">
 						<tr>
 							<th>ID</th>

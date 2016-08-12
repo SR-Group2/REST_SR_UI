@@ -4,7 +4,7 @@
 		<h2 class="">Register</h2>
 	</div>
 	<!-- =========== Panel ========== -->	
-	<div class="card card-outline-primary">
+	<div class="card card-outline-secondary">
 		<div class="card-header">
 			<h3 class="card-title">USER INFORMATION</h3>
 		</div>
@@ -42,7 +42,8 @@
 								                <div class='input-group date' id='datetimepicker1' > 
 								                    <input type='text' class="form-control" ng-model="txtdob" name="dob"  placeholder="Year-Month-Day"/>
 								                    <span class="input-group-addon">
-								                        <span class="glyphicon glyphicon-calendar"></span>
+								                       <!-- <span class="glyphicon glyphicon-calendar"></span> --> 
+								                       <i  class="fa fa-calendar"></i>
 								                    </span>
 								                </div>
 								            </div>
@@ -78,6 +79,7 @@
 					</fieldset>
 				</div>
 		</div>
+		
 	<!-- =========== End Panel ========== -->	
 	</div>
 </div>
