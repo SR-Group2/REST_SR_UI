@@ -1,6 +1,8 @@
 <div ng-controller="brandCtrl">
 			<div class="well">
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#btnAddBrand"><i class="fa fa-plus-square-o" ></i> Add New Brand</button>
+				<button type="button" class="btn btn-success btn-sm" ng-click="clearBrandForm()" 
+				data-toggle="modal" data-target="#btnAddBrand">
+				<i class="fa fa-plus-square-o" ></i> Add New Brand</button>
 			</div>
 			<table class="table">
 				<thead>
@@ -47,26 +49,44 @@
 				          <div class="modal-body">
 							<form name="brandInfo">
 								<div class="form-group row">
-									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Contact</label>
+									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Restaurant Name</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="contact" ng-model="contact" name="contact" placeholder="Contact" required>
+										<input type="text" class="form-control" name="rest_name" ng-model="rest_name" required>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="rest_id" class="form-control-label col-sm-3 text-sm-center" >Restaurant ID</label>
+									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Contact Number</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="rest_id" name="rest_id" ng-model="rest_id" placeholder="Restaurant ID" required>
+										<input type="text" class="form-control" name="contact" ng-model="contact" required>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="address_id" class="form-control-label col-sm-3 text-sm-center" >Address ID</label>
+									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Street Number</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="address_id" name="address_id" ng-model="address_id" placeholder="Address ID" required>
+										<input type="text" class="form-control" name="street" ng-model="street">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="address_id" class="form-control-label col-sm-3 text-sm-center">District</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="district" ng-model="district">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="address_id" class="form-control-label col-sm-3 text-sm-center">Communce</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="communce" ng-model="communce">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="address_id" class="form-control-label col-sm-3 text-sm-center">Province</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="province" ng-model="province">
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-offset-3 col-sm-10">
-										<button type="button" class="btn btn-success" ng-disabled="brandInfo.brand.$invalid || brandInfo.brand.$invalid " ng-click="addBrand()" data-dismiss="modal"><i class="fa fa-plus-square"> Add Brand</i></button>
+										<button type="button" class="btn btn-success btn-sm" ng-disabled="brandInfo.brand.$invalid || brandInfo.brand.$invalid " ng-click="addBrand()" data-dismiss="modal"><i class="fa fa-pencil" aria-hidden="true"> Adding</i></button>
 									</div>
 								</div>
 							</form>
@@ -125,7 +145,7 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-offset-3 col-sm-10">
-										<button type="button" class="btn btn-success" ng-disabled="brandInfo.brand.$invalid || brandInfo.brand.$invalid " ng-click="updateBrand()" data-dismiss="modal"><i class="fa fa-pencil" aria-hidden="true"> Update</i></button>
+										<button type="button" class="btn btn-success btn-sm" ng-disabled="brandInfo.brand.$invalid || brandInfo.brand.$invalid " ng-click="updateBrand()" data-dismiss="modal"><i class="fa fa-pencil" aria-hidden="true"> Update</i></button>
 									</div>
 								</div>
 							</form>

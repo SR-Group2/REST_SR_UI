@@ -1,10 +1,10 @@
 <div ng-controller="RestaurantCtrl">
 
 				<div class="well">
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addRestaurant" ng-click="clearInput()">
+					<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addRestaurant" ng-click="clearInput()">
 					<i class="fa fa-plus-square-o"></i> Add New Restaurant</button>
 				</div>
-				<table class="table table-striped">
+				<table class="table">
 					<thead class="thead-default">
 						<tr>
 							<th>ID</th>
@@ -12,7 +12,7 @@
 							<th>RestType</th>
 							<th>Contact</th>
 							<th>About</th>
-							<th>Open/Close</th>
+							<th>Open-Close</th>
 							<th>Location</th>
 							<th>Action</th>
 							
@@ -22,14 +22,14 @@
 						<tr ng-repeat=" rest in restaurants | limitTo: 8">
 							<td>{{rest.rest_id}}</td>
 							<td>{{rest.rest_name}}</td>
-							<td>{{rest.restypes}}</td>
+							<td>{{rest.restypes.restype_name}}</td>
 							<td>{{rest.contact}}</td>
 							<td>{{rest.about}}</td>
-							<td>{{rest.open_close}}</td>
+							<td>{{rest.open_close | date: "dd:mm:yy"}}</td>
 							<td>{{rest.location}}</td>
 							<td>
-								<button type="button" class="btn btn-success" data-toggle="modal" data-target="#btnUpdate" ng-click=""><i class="fa fa-pencil-square-o"></i>Update</button> 
-								<button type="button" class="btn btn-danger" ng-click="deleteRestaurant(rest.rest_id)"><i class="fa fa-trash-o"></i>Delete</button>
+								<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="updateRestaurant()"><i class="fa fa-pencil-square-o"></i>Update</button> 
+								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteRestaurant(rest.rest_id)"><i class="fa fa-trash-o"></i>Delete</button>
 							</td>
 							
 						</tr>

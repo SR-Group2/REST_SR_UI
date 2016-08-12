@@ -28,7 +28,6 @@ public class BrandController {
 	
 	@Autowired
 	private String WS_URL;
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getAllBrand(){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
@@ -36,21 +35,21 @@ public class BrandController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/find-brand-by-id/{brand_id}",method = RequestMethod.GET)
+	@RequestMapping(value = "{brand_id}",method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> findBrandById(@PathVariable int brand_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/brand/"+brand_id, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/delete-brand/{brand_id}",method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Map<String , Object>> insertBrand(@RequestBody AddBrand addBrand){
 		HttpEntity<Object> request = new HttpEntity<Object>(addBrand,header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/brand/insert-brand", HttpMethod.POST , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/delete-brand/{brand_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value="/{brand_id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String , Object>> deleteBrand(@PathVariable int brand_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(brand_id, header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/brand/"+brand_id, HttpMethod.DELETE , request , Map.class) ;
@@ -62,6 +61,5 @@ public class BrandController {
 		HttpEntity<Object> request = new HttpEntity<Object>(addBrand, header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/brand", HttpMethod.PUT , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
-	}
-	
+	}	
 }
