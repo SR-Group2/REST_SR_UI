@@ -38,4 +38,9 @@ public class PageController {
 		map.addAttribute("page", "brand.jsp");
 		return "admin/admin";
 	}
+	@RequestMapping(value="/comment", method = RequestMethod.GET)
+	public String commentPage(ModelMap map){
+		map.addAttribute("page", "comment.jsp");
+		return "admin/admin";
+	}
 }

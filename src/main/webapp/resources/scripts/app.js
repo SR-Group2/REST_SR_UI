@@ -270,6 +270,57 @@ $scope.addBrand = function(){
 });
 
 
+/* ================================ Comment Controller ================================ */
+
+app.controller('commentCtrl', function($scope, $http) {
+	$scope.comments = '';
+
+	$scope.getAllComment = function () {
+	
+    $http.get('http://localhost:8080/rest/comment')
+    .then(function (response) {
+    	
+    	$scope.comments = response.data.DATA;
+    	console.log($scope.comments);
+    });
+    
+	}
+    
+    $scope.getAllComment();
+    
+    $scope.getCommentById = function(comment_id){
+   		$http({
+   			url: 'http://localhost:8080/rest/comment/'+ comment_id,
+   			method:'GET'
+   		}).then(function(response){
+   			$scope.comment = response.data.DATA;
+   			$scope.first_name = response.data.DATA.user.first_name;
+   			$scope.last_name = response.data.DATA.user.last_name;
+   			$scope.comment = response.data.DATA.comment;
+   			
+   		},function(){
+
+   		});
+   		
+   	}
+    
+    $scope.addComment = function(){
+    	$http({
+    		url: 'http://localhost:8080/rest/comment',
+    		data:{
+    			comment: $scope.comment
+    		},
+    		method:'POST'
+    	}).then(function(response){
+    		 $scope.getAllComment();
+    	},function(){
+
+    		});
+
+    	}
+ });
+
+
 
 
 
