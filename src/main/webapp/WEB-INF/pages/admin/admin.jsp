@@ -181,7 +181,7 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/script.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/resources/scripts/phanit.js"></script>
 
 </body>
 </html>

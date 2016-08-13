@@ -1,9 +1,8 @@
 <div ng-controller="commentCtrl">
 <div class="col-md-12">
 	<div class="well">
-		<button type="button" class="btn btn-success" ng-click="clearCommentForm()" 
-				data-toggle="modal" data-target="#btnAddComment">
-		<i class="fa fa-plus-square-o" ></i> Add Comment</button>
+		<a href="${pageContext.request.contextPath}/admin/addComment" target="_self""><button type="button" class="btn btn-success">
+		<i class="fa fa-plus-square-o" ></i> Add Comment</button></a>
 	</div>
 	<div class="card card-outline-secondary">
 		<div class="card-header">
@@ -37,53 +36,7 @@
 				</table>
 		</div>	
 </div>	
-		<!-- Adding Brand Form -->
-				  	<div class="modal fade" id="btnAddComment" role="dialog">
-				    <div class="modal-dialog">
-				      <div class="modal-content">
-				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">Add New Comment</h4>
-				        </div>
-				        <div class="modal-body">
-				          <div class="modal-body">
-							<form name="commentInfo">
-								<div class="form-group row">
-									<label for="contact" class="form-control-label col-sm-3 text-sm-center">First Name</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" name="first_name" ng-model="first_name" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Last Name</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" name="last_name" ng-model="last_name" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Restaurant Name</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" name="rest_name" ng-model="rest_name" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="contact" class="form-control-label col-sm-3 text-sm-center">Comment</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" name="comment" ng-model="comment" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-sm-offset-3 col-sm-10">
-										<button type="button" class="btn btn-success btn-sm" ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid ||brandInfo.rest_name.$invalid || brandInfo.comment.$invalid" ng-click="addComment()" data-dismiss="modal"><i class="fa fa-pencil" aria-hidden="true"> Add Comment</i></button>
-									</div>
-								</div>
-							</form>
-							</div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
-				 <!-- End of Adding Brand Form -->
+		
 		<!-- ================== Modal Update ================== -->		
 		
 		<div class="modal fade" id="btnUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -96,14 +49,20 @@
 		      <div class="modal-body">
 		        <form class="form-horizontal" name="frmUpdate">
 					  <div class="form-group">
-					    <label for="" class="col-sm-2 control-label">Comment</label>
+					    <label for="rest_name" class="col-sm-2 control-label">Restaurant Name</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{comments}}"  ng-model="comment" name="comment" required>
+					      <input type="text" class="form-control" value="{{rest_name}}"  ng-model="rest_name" name="rest_name" required>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="comment" class="col-sm-2 control-label">Comment</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" value="{{comment}}"  ng-model="comment" name="comment" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
-					      <input type="button" class="btn btn-success" ng-click="updateComment()"  value="comments" data-dismiss="modal" >
+					      <input type="button" class="btn btn-success" ng-click="updateComment()"  value="Update" data-dismiss="modal" >
 					    </div>
 					  </div>
 				</form>

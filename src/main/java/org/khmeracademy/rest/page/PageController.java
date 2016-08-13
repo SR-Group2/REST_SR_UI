@@ -38,6 +38,11 @@ public class PageController {
 		map.addAttribute("page", "brand.jsp");
 		return "admin/admin";
 	}
+	@RequestMapping(value="/addComment", method = RequestMethod.GET)
+	public String AddcommentPage(ModelMap map){
+		map.addAttribute("page", "addComment.jsp");
+		return "admin/admin";
+	}
 	@RequestMapping(value="/comment", method = RequestMethod.GET)
 	public String commentPage(ModelMap map){
 		map.addAttribute("page", "comment.jsp");
