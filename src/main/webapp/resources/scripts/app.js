@@ -274,12 +274,29 @@ app.controller("categoryCtrl", function($scope, $http){
 	}
 	$scope.getAllCategory();
 	
-	$scope.deleteCategory= function (id){
-		alert(id);
-		$http.delete('http://localhost:8080/rest/category/delete-category/'+id).then(function(response){
+	$scope.deleteCategory = function (id){
+		$http.delete('http://localhost:8080/rest/category/'+id).then(function(response){
 			$scope.getAllCategory();
 		});
 		
+	}
+	$scope.getCategoryById= function(id){
+		$http.get('http://localhost:8080/rest/category/'+id).then(function(response){
+			$scope.category=response.data.DATA;
+			$scope.category_id= response.data.DATA.category_id;
+			$scope.category_name= response.data.DATA.category_name;
+			alert($scope.category_id);
+			console.log(response);
+		});
+	}
+	$scope.updateCategory= function(){
+		data={
+				'category_id': $scope.category_id,
+				'category_name': $scope.category_name
+		}
+		$http.put('http://localhost:8080/rest/category/',data).then(function(response){
+			$scope.getAllCategory();
+		});
 	}
 });
 

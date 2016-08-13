@@ -56,7 +56,7 @@ public class CategoryController {
 		@RequestMapping(value="/{category_id}", method = RequestMethod.DELETE)
 		public ResponseEntity<Map<String , Object>> deleteCategory(@PathVariable int category_id){
 			HttpEntity<Object> request = new HttpEntity<Object>(category_id, header);
-			ResponseEntity<Map> response = rest.exchange(WS_URL+"/category/delete-category/"+category_id, HttpMethod.DELETE , request , Map.class) ;
+			ResponseEntity<Map> response = rest.exchange(WS_URL+"/category/"+category_id, HttpMethod.DELETE , request , Map.class) ;
 			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 		}
 	
