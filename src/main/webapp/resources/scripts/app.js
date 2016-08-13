@@ -274,6 +274,13 @@ app.controller("categoryCtrl", function($scope, $http){
 	}
 	$scope.getAllCategory();
 	
+	$scope.deleteCategory= function (id){
+		alert(id);
+		$http.delete('http://localhost:8080/rest/category/delete-category/'+id).then(function(response){
+			$scope.getAllCategory();
+		});
+		
+	}
 });
 
 
