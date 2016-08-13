@@ -93,7 +93,7 @@
 	</section>
 	<!--  Search Section -->
 
-	<section>
+	<section class="homepage">
 		<div class="container search">
 			<div class="text-md-center row">
 				<div class="offset-sm-3 col-sm-6">

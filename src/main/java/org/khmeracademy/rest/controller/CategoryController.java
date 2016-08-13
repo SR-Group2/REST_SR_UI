@@ -59,11 +59,19 @@ public class CategoryController {
 			ResponseEntity<Map> response = rest.exchange(WS_URL+"/category/delete-category/"+category_id, HttpMethod.DELETE , request , Map.class) ;
 			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 		}
-		
+	
 		@RequestMapping(method = RequestMethod.PUT)
 		public ResponseEntity<Map<String , Object>> updateCategory(@RequestBody Categories category){
 			HttpEntity<Object> request = new HttpEntity<Object>(category, header);
 			ResponseEntity<Map> response = rest.exchange(WS_URL+"/category", HttpMethod.PUT , request , Map.class) ;
+			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+		}
+		
+		//======================== GET CATEGORY BY RESTAURANT ID ==========================
+		@RequestMapping(value="/catrest/{rest_id}",method = RequestMethod.GET)
+		public ResponseEntity<Map<String , Object>> getCateogryById(@PathVariable int rest_id){
+			HttpEntity<Object> request = new HttpEntity<Object>(header);
+			ResponseEntity<Map> response = rest.exchange(WS_URL+"/category/get-category-by-rest-id/"+rest_id, HttpMethod.GET , request , Map.class) ;
 			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 		}
 		

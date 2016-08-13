@@ -8,16 +8,14 @@ body{
 .menu{
 	padding-top:30px;
 }
-.button{
-	out-line
-}
-.btn-outline-success {
+
+/* .btn-outline-success {
     color: #5cb85c;
     background-image: none;
     background-color: transparent;
     border-color: #5cb85c;
     border-radius: 10px;
-}
+} */
 .has-success .form-control {
     border-color: #5cb85c;
 }
@@ -56,9 +54,7 @@ body{
 .search{
 	padding-top:50px;
 }
-.form-control{
-	  border-radius:15px;
-}
+
 .box-img{
 	padding-top:20px;
 	margin-top:20px;
@@ -137,6 +133,7 @@ footer p{
 }
 .input-group-addon {
     border-radius: 1.25rem;
+    padding: .4rem 0.75rem;
 }
 
 /* ======== detail menu page ========*/
@@ -149,4 +146,27 @@ footer p{
 
     background-size: 10%;
     background-position-x: 10px;
+}
+/*================= Home Page ============*/
+.homepage .form-control{
+	  border-radius:15px;
+	  border-radius: 1.25rem 0 0 1.25rem !important;
+}
+* ================ Restaurnat Detail Page ===========*/
+.cbtn:hover{
+	color: #ffffff !important;
+	
+}
+.btnAdd {
+    background: transparent;
+    padding: 5px 10px;
+    border-color: #5cb85c;
+    border:1px solid #35ac2a;
+    border-radius: 5px;
+}
+.btnAdd:hover{
+	background-color: #5cb85c;
+}
+.btnAdd:hover i{
+	color: #ffffff;
 }

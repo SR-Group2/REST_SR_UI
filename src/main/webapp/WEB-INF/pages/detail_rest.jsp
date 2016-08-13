@@ -59,6 +59,7 @@
 
 	
 	<!-- ========= Restaurant Menu and Detail ============ -->
+	<section class="rest_detail">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
@@ -83,13 +84,13 @@
 						</div>
 						<br>
 						<div class="more_part">
-							<button class="btn-outline-success btn"><i class="fa fa-plus"> ADD FAVORITE</i></button>
-							<button class="btn-outline-success btn"><i class="fa fa-plus"> VIEW MORE</i></button>
+							<button class="btnAdd"><i class="fa fa-heart"> ADD FAVORITE</i></button>
+							<button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button>
 						</div>
 						
 					</div>
 					<div class="col-md-5 box-img formlogin restinfo">
-							<h2>Restaurant Information In Detail</h2>
+							<h2>Restaurant Information</h2>
 							<h4>
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -100,15 +101,19 @@
 							<p>{{about}}</p>
 							<table class="table">
 								<tr>
-									<td><i class="fa fa-users"> Name</i></td>
+									<td><i class="fa fa-users"> OWNER RESTAURANT</i></td>
+									<td>{{owner_name}}</td>
+								</tr>
+								<tr>
+									<td><i class="fa fa-cutlery"> RESTAURANT NAME</i></td>
 									<td>{{rest_name}}</td>
 								</tr>	
 								<tr>
-									<td><i class="fa fa-phone"> Contact</i></td>
+									<td><i class="fa fa-phone"> CONTACT</i></td>
 									<td>{{contact}}</td>
 								</tr>
 								<tr>
-									<td><i class="fa fa-home"> Location</i></td>
+									<td><i class="fa fa-home"> LOCATION</i></td>
 									<td>{{location}}</td>
 								</tr>
 							</table>
@@ -116,8 +121,9 @@
 				</div>
 			</div>
 			<!--  ================ Ending  ========== -->
+		</section>
 			<!-- ========= footer ============ -->
-		<footer class="navbar-fixed-bottom">
+		<footer class="">
 			<div class="container">
 				<p>Copy Right 2016. All right reserved.</p>
 			</div>
@@ -200,13 +206,30 @@
 	  				$scope.about = $scope.rest.about;
 	  				$scope.contact = $scope.rest.contact;
 	  				$scope.location = $scope.rest.location;
-	  				console.log($scope.location)
+	  				$scope.owner_name = $scope.rest.user.username;
+	  				$scope.rest_id = $scope.rest.rest_id;
+	  				
+	  				$scope.getCategoryByRestID($scope.rest_id);
 	  			});
 	  		}
 	  		
 	  		$scope.getRestDetail();
+	  		
+	  		//==================== Get Category From Restaurant ID ===================
+			$scope.getCategoryByRestID = function(rest_id){	
+	  			$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
+	  			.then(function(data){
+	  				console.log(data);
+	  			});
+	  		}
+			
 	  	});
-	// ===============  Animation Menu Restaurant ========= 
+	  	//========================= Style Button ================
+	  	$(".btn-outline-success").on("mouseenter", function(){
+		
+		});
+	  	
+	  	// =============== Book Flip Menu Restaurant ============
 	    $(function () {		
 	        $("#menu").booklet({
 	        	speed:500,

@@ -62,10 +62,15 @@
 							<h2>ស្វែងរក:</h2>
 								<form>
 								  <div class="form-group" id="remote">
-								      <input type="text" class="form-control typeahead" id="keyword" 
-								      placeholder="search restaurant ....." 
-								      typeahead-on-select="onSelect()"
-								      style="background-color:#339524;color: #ffffff;">
+								   	 <div class="input-group">
+								   	 	   <div class="input-group-addon" id="btnsearch">
+									      	<button type="submit" class=""><i class="fa fa-search"></i></button>
+									      </div>
+									      <input type="text" class="form-control typeahead" id="keyword" 
+									      placeholder="search restaurant ....." 
+									      typeahead-on-select="onSelect()"
+									      style="background-color:#339524;color: #ffffff;">
+								      </div>
 								  </div>						 
 								</form>
 						</div>
@@ -374,23 +379,15 @@
 			    }
    			});
 		});
-		
-		
-		
+	
 		// ==================== Get Restaurant Type ============================
-		// constructs the suggestion engine
+	
 		var substringMatcher = function(strs) {
 			  return function findMatches(q, cb) {
 			    var matches, substringRegex;
-
-			    // an array that will be populated with substring matches
 			    matches = [];
-
-			    // regex used to determine if a string contains the substring `q`
 			    substrRegex = new RegExp(q, 'i');
 
-			    // iterate through the pool of strings and for any string that
-			    // contains the substring `q`, add it to the `matches` array
 			    $.each(strs, function(i, str) {
 			      if (substrRegex.test(str)) {
 			        matches.push(str);
@@ -409,13 +406,11 @@
 				  queryTokenizer: Bloodhound.tokenizers.whitespace,
 				  remote: {
 				        url: "${pageContext.request.contextPath}/rest/restype?keyword=%QUERY"+"&page="+currentPage+"&limit=4",
-				        //url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
 				        wildcard: '%QUERY',
 				        filter: function (restypes) {
-				            // Map the remote source JSON array to a JavaScript array
 				            return $.map(restypes.DATA, function (restype) {
 				                return {
-				                        //value: movie //Use this if your url returns a list of strings
+				                      
 				                        value: restype.restype_name
 				                };
 				            });
@@ -429,13 +424,6 @@
 				  	source: bestPictures
 				});
 				
-			$("#keyword").keyup(function(){
-				if($(this).val() != "" || $(this).val() == undefined){
-				
-					$("#keyword").css("background", "trasparent !important");
-					
-				}
-			})
 
 		});
 	</script>
