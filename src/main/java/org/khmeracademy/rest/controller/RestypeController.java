@@ -37,7 +37,7 @@ public class RestypeController {
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/"+restype_id, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
-	
+	//===================== Restype Pagination =====================
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getRestype(
 										  @RequestParam(value = "page", required = false , defaultValue="1") int page 

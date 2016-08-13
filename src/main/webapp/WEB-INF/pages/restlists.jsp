@@ -63,8 +63,8 @@
 								<form>
 								  <div class="form-group" id="remote">
 								      <input type="text" class="form-control typeahead" id="keyword" 
-								      placeholder="          search restaurant ....." 
-								      
+								      placeholder="search restaurant ....." 
+								      typeahead-on-select="onSelect()"
 								      style="background-color:#339524;color: #ffffff;">
 								  </div>						 
 								</form>
@@ -144,34 +144,14 @@
 				
 				<div class="col-md-9">
 					<div class="row" id="getRest">
+					
 						
-						<!-- ========= Pagination ============ -->
+					</div>
+					<!-- ========= Pagination ============ -->
 						<section class="cotainer text-xs-center">
 							<nav id="pagination"  class="pagination"></nav>
 						</section> 
 						<!-- end pagination -->
-					</div>
-					<nav aria-label="Page navigation" class="text-xs-center">
-					  <ul class="pagination">
-					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					        <span class="sr-only">Previous</span>
-					      </a>
-					    </li>
-					    <li class="page-item"><a class="page-link" href="#">1</a></li>
-					    <li class="page-item"><a class="page-link" href="#">2</a></li>
-					    <li class="page-item"><a class="page-link" href="#">3</a></li>
-					    <li class="page-item"><a class="page-link" href="#">4</a></li>
-					    <li class="page-item"><a class="page-link" href="#">5</a></li>
-					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					        <span class="sr-only">Next</span>
-					      </a>
-					    </li>
-					  </ul>
-					</nav>
 						
 				</div><!-- ======== col-md-9 -->
 		</div>
@@ -258,13 +238,23 @@
 	</footer>
 	
 	<!-- ========= footer ============ -->
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
-     
+	<!-- ========= footer ============ -->
+	<script
+		src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
+    
+  
+   <!--  ================ JQuery Template ======== -->
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
 		<div class="col-md-4">
 			<div class="list-box" onclick="detailRest({{= rest_id}})">
@@ -283,12 +273,9 @@
 			</div>
 		</div>
 	</script>
-
+	
 	<script>
 	
-	function listRestaurnat(){
-		alert();
-	}
 	function detailRest(id){
 		
 		window.location.href = "${pageContext.request.contextPath}/detail_rest/"+id;
@@ -296,52 +283,82 @@
 	
 	$(function(){
 		
-		
-   		/* =======================  Pagination ================== */
-		restaurant = {};
-		var currentPage = 1;
-		var check = true;
-		var keyword = "";
-		
 		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-		var URLREST =  "${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4";
+		
+		/* =======================  Load Data With Pagination ================== */
+		restaurant = {};
+		currentPage = 1;
+		var check = true;
 
-		
-		restaurant.getRest = function(id){
-			console.log(id);
-			$.ajax({ 
-			    url: "${pageContext.request.contextPath}/rest/restaurant/"+id, 
-			    type: 'GET',
-			    beforeSend: function(xhr) {
-	                xhr.setRequestHeader("Accept", "application/json");
-	                xhr.setRequestHeader("Content-Type", "application/json");
-	            },
-			    success: function(data) { 
-			    	
-			    	console.log(data);
-			    	
-			    	if(data.STATUS != false){
-			    		$("#getRest").empty();
-			    		$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-			    		$('#getRest').css("cursor", "pointer");
-						if(check){
-							//restaurant.setPagination(data.PAGINATION.TOTAL_PAGES,currentPage);
-					    	 check=false;
-					    } 
-			    	}else{
-						
-			    		$("#getRest").empty();
-			    	}
-			    }
-			});
+		restaurant.getRest = function(currentPage, id) {
 			
-		}
+			$.ajax({
+				url : "${pageContext.request.contextPath}/rest/restaurant/list/"+id+"?page="+currentPage+"&limit=1",
+				type : 'GET',
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("Accept",
+							"application/json");
+					xhr.setRequestHeader("Content-Type",
+							"application/json");
+				},
+				success : function(data) {
+
+					if (data.STATUS != false) {
+						console.log(data);
+						$("#getRest").empty();
+						$("#rest_tmpl").tmpl(data.DATA).appendTo(
+								"#getRest");
+						$('#getRest').css("cursor", "pointer");
+						if (check) {
+							restaurant.setPagination(
+									data.PAGINATION.TOTAL_PAGES,
+									currentPage);
+							check = false;
+						}
+						$("#pagination").show()
+					} else {
+						$("#pagination").hide();
+						$("#getRest").empty();
+					}
+				}
+			});
+		};
+
+		restaurant.setPagination = function(totalPage, currentPage) {
+
+			$('#pagination').bootpag({
+				total : totalPage,
+				page : currentPage,
+				maxVisible : 10,
+				leaps : true,
+				firstLastUse : true,
+				first : '←',
+				last : '→',
+				wrapClass : 'pagination',
+				activeClass : 'active',
+				disabledClass : 'disabled',
+				nextClass : 'next',
+				prevClass : 'prev',
+				lastClass : 'last',
+				firstClass : 'first'
+			}).on("page", function(event, currentPage) {
+				check = false;
+				restaurant.getRest(currentPage,id);
+
+			});
+
+			$('#pagination .bootpag li').addClass("page-item");
+			$('#pagination .bootpag li a').addClass("page-link");
+
+		};
 		
-		restaurant.getRest(id);
-		
-		$('#keyword').on('typeahead:selected', function(){ //datum will be the object that is selected 
+		/* ================= Run First Load With Click Id ==================*/
+		restaurant.getRest(currentPage, id);
+		/* =======================   Load Data Acording to typehead select  With Pagination ================== */
+		$('#keyword').on('typeahead:selected', function(){ 
 			$("#getRest").empty();
 			var keyword = $(this).val();
+			check = true;
 			$.ajax({ 
 			    url:"${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4", 
 			    type: 'GET',
@@ -350,16 +367,14 @@
                     xhr.setRequestHeader("Content-Type", "application/json");
                 },
 			    success: function(data) { 
-
 			    	
-			    	var id = data.DATA[0].restype_id;
-			    	
-			    	restaurant.getRest(id);
+			    	id = data.DATA[0].restype_id;
+			    	restaurant.getRest(currentPage, id);
 			    	
 			    }
    			});
 		});
-		// ========= angular pagination ==========
+		
 		
 		
 		// ==================== Get Restaurant Type ============================
@@ -422,7 +437,7 @@
 				}
 			})
 
-	});
+		});
 	</script>
 </body>
 </html>		

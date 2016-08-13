@@ -21,6 +21,7 @@
 	href="${pageContext.request.contextPath}/resources/css/screen.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -199,6 +200,8 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
+		
+		<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
 		<div class="col-md-3 col-xs-6">
@@ -378,7 +381,7 @@
 												} else if (data == "Bad credentials") {
 													alert(data);
 												} else {
-													alert(data);
+													swal("Welcome To Nham Ey", "You clicked the button!", "success")
 													window.location.href = "${pageContext.request.contextPath}/"
 															+ data;
 												}

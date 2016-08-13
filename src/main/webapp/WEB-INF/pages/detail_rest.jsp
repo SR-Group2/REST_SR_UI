@@ -160,12 +160,14 @@
   </div>
 </div>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/restaurant-menu.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.0.min.js"></script>
+
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/restaurant-menu.js"></script>
+	
+	
+
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-ui-1.10.4.min.js"> </script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-ui.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.easing.1.3.js"></script>
@@ -179,7 +181,7 @@
 	
 
 	<!-- Add Media helper (this is optional) -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 	
 	<script>
 	//==================== Get Restaurant Information ===================
@@ -190,7 +192,7 @@
 	  		
 	  		$scope.getRestDetail = function(){
 	  			
-	  			$http.get("${pageContext.request.contextPath}/rest/restaurant/rest/"+id)
+	  			$http.get("${pageContext.request.contextPath}/rest/restaurant/"+id)
 	  			.then(function(rsp){
 	  				console.log(rsp);
 	  				$scope.rest = rsp.data.DATA;
