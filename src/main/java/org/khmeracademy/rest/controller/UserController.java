@@ -3,7 +3,6 @@ package org.khmeracademy.rest.controller;
 import java.util.Map;
 
 import org.khmeracademy.rest.entities.Users;
-import org.khmeracademy.rest.entities.input.AddUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -61,8 +60,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Map<String , Object>> updateUser(@RequestBody AddUser addUser){
-		HttpEntity<Object> request = new HttpEntity<Object>(addUser, header);
+	public ResponseEntity<Map<String , Object>> updateUser(@RequestBody Users user){
+		System.out.println(user);
+		
+		HttpEntity<Object> request = new HttpEntity<Object>(user, header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/", HttpMethod.PUT , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}

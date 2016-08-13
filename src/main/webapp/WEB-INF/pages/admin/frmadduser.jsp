@@ -63,7 +63,8 @@
 									    <label for="" class="">Role</label>
 									    <div class="">
 									      <select class="form-control" ng-model="roles" ng-change="getRoleId(roles)" name="roles">
-									      		<option value="1" ng-selected="true">ROLE_STANDARD_USER</option>
+												<option value="" style="display:none">-- Select --</option>
+									      		<option value="1">ROLE_STANDARD_USER</option>
 									      		<option value="2">ROLE_OWNER</option>
 									      		<option value="3">ROLE_ADMIN</option>
 									      </select>

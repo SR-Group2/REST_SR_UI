@@ -1,5 +1,8 @@
 var app= angular.module('app',['angularUtils.directives.dirPagination']);
+
+//================================ User Controoerl Pheara =======================================
 app.controller('mainCtrl', function( $scope, $http, $filter){
+	
 				$scope.getAllUsers=function(){
 					$http.get('http://localhost:8080/rest/user').then(function(response){
 						$scope.users=response.data.DATA;
@@ -12,8 +15,12 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 					$('#frmUser')[0].reset();
 				}
 				
-				$scope.getRoleId = function(roles){
+/*				$scope.getRoleId = function(roles){
 					$scope.role_id = parseInt(roles);
+				}*/
+				
+				$scope.getGender=function(gender){
+					$scope.gender=gender;
 				}
 				$scope.getDay=function(day){
 					$scope.bday=parseInt(day);
@@ -26,6 +33,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				}
 
 				$scope.addUser=function(){
+					return;
 					data={
 							"first_name": $scope.txtfirstname,
 							"last_name": $scope.txtlastname,
@@ -88,10 +96,8 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 						$scope.password=response.data.DATA.password;
 						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 						$scope.gender= response.data.DATA.gender;
-						$scope.roles=response.data.DATA.role.id;	
-						console.log(response);
-					});
-					
+						$scope.roles=response.data.DATA.role.id + '';	
+					});					
 				}
 				$scope.updateUser=function(){
 					data={
@@ -104,7 +110,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 							'dob':$scope.dob,
 							'gender':$scope.gender,
 							'role': {
-								'id': $scope.role_id
+								'id': $scope.roles
 							}
 						}
 					console.log(data);
@@ -112,17 +118,11 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 						swal("Update Successfully!", "You clicked the button!", "success");
 						$scope.getAllUsers();
 					});
-				}
-/*=========================== Pagination ====================================*/
-		
-				
-				
-				
-				
-/*=========================== End Pagination ====================================*/		
+				}	
 		
 });
 
+//================================ End User Controoerl =======================================
 //Resturan Controller
 app.controller('RestaurantCtrl',function($scope,$http){
 		

@@ -26,6 +26,7 @@
 							<th>Gender</th>
 							<th>Joined</th>
 							<th>Role</th>
+							<th>Profile</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -42,6 +43,7 @@
 							<td>{{user.gender}}</td>
 							<td>{{user.joined | date: "yyyy-MM-dd"}}</td>
 							<td>{{user.role.name}}</td>
+							<td>{{user.picture}}</td>
 							<td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="getUserById(user.user_id)">
 							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteUsers(user.user_id);">
 							<i class="fa fa-trash-o"></i></button></td>
@@ -118,14 +120,14 @@
 					  <div class="form-group form-inline">
 					    <label for="" class="col-sm-2 control-label">Gender</label>
 					    <div class="col-sm-10">
-					      <input type="radio" class="form-control"  value="{{gender}}" ng-model="gender"  name="updateGender" value="Male" required>Male
-					       <input type="radio" class="form-control" value="{{gender}}" ng-model="gender"  name="updateGender" value="Female" required>Female
+					      <input type="radio" class="form-control"   ng-model="gender"  name="updateGender" value="Male" ng-change="getGender(gender)" required>Male
+					       <input type="radio" class="form-control"  ng-model="gender"  name="updateGender" value="Female" ng-change="getGender(gender)" required>Female
 					    </div>
 					  </div>
 					   <div class="form-group">
 					    <label for="" class="col-sm-2 control-label">Role</label>
 					    <div class="col-sm-10">
-					      <select  value="{{roles}}" ng-model="roles" ng-change="getRoleId(roles)" id="role" >
+					      <select ng-model="roles">
 					      		<option value="1">ROLE_STANDARD_USER</option>
 					      		<option value="2">ROLE_OWNER</option>
 					      		<option value="3">ROLE_ADMIN</option>
