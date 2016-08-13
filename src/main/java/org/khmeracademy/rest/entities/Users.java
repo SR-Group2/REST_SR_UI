@@ -14,6 +14,7 @@ private String first_name;
 private String last_name;
 private String salt;
 private Date dob;
+private String gender;
 private Date joined;
 private String picture;
 
@@ -24,6 +25,14 @@ private String username;
 private String password;
 
 private Roles role;
+
+public String getGender() {
+	return gender;
+}
+
+public void setGender(String gender) {
+	this.gender = gender;
+}
 
 private String email;
 

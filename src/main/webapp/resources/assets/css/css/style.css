@@ -1,0 +1,11 @@
+.input-group-addon {
+    padding: 0 7px;
+}
+
+.page .pagination > .active > a {
+    z-index: 2;
+    color: #ffffff;
+    background-color: #449d44;
+    border-color: #419641;
+    cursor: default;
+}

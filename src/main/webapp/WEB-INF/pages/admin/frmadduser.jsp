@@ -47,25 +47,34 @@
 								                    </span>
 								                </div>
 								            </div>
-								        </div>
-								        <script type="text/javascript">
-								            
-								        </script>
+								  </div>
+								  <div class="col-md-5">
+									  <div class="form-group">
+									      <label for="" class="">Gender</label>
+									      <div class="form-inline">
+									      	<input type="radio" class="form-control"  ng-model="txtgender"  name="gender" value="Male" required> Male
+									      	<input type="radio" class="form-control"  ng-model="txtgender"  name="gender" value="Female" required> Female
+									      </div>
+									  </div>
+								</div>
 								  
 								  <div class="col-md-5">
 									   <div class="form-group">
 									    <label for="" class="">Role</label>
 									    <div class="">
 									      <select class="form-control" ng-model="roles" ng-change="getRoleId(roles)" name="roles">
-									      		<option value="1" selected>ROLE_STANDARD_USER</option>
+									      		<option value="1" ng-selected="true">ROLE_STANDARD_USER</option>
 									      		<option value="2">ROLE_OWNER</option>
 									      		<option value="3">ROLE_ADMIN</option>
 									      </select>
+									      
 									    </div>
 									   </div>
 									   <div class="form-group">
-									    <label for="txtfirstname">Profile</label>
-									    <input type="file" class="form-control" ng-model="picture" name="picture">
+									 		<label class="custom-file">
+											  <input type="file" id="file" class="custom-file-input">
+											  <span class="custom-file-control"></span>
+											</label>
 									  </div>
 									   <div class="form-group">
 									     <input type="button" class="btn btn-success" ng-click="addUser()" value="Submit">

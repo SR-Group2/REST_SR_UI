@@ -1,5 +1,4 @@
-var app= angular.module('app',[]);
-
+var app= angular.module('app',['angularUtils.directives.dirPagination']);
 app.controller('mainCtrl', function( $scope, $http, $filter){
 				$scope.getAllUsers=function(){
 					$http.get('http://localhost:8080/rest/user').then(function(response){
@@ -30,14 +29,16 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 					data={
 							"first_name": $scope.txtfirstname,
 							"last_name": $scope.txtlastname,
-							"dob": $('input[name=dob]').val(),
-							"picture": "string",
 							"username": $scope.txtusername,
+							 "email": $scope.txtemail,
 							"password": $scope.txtpassword,
+							"dob": $('input[name=dob]').val(),
+							'gender': $scope.txtgender,
+							"picture": "string",
 							"role": {
 								"id": $scope.role_id
-							  },
-							 "email": $scope.txtemail
+							  }
+							
 							};
 					console.log(data);
 					$http.post('http://localhost:8080/rest/user', data).then(function(response){
@@ -74,12 +75,9 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 								swal("Cancelled", "Your imaginary file is safe :)", "error");   
 							} 
 					});
-					
-					
-					
+	
 				}
-				$scope.getUserById=function(id){
-					
+				$scope.getUserById=function(id){			
 					$http.get('http://localhost:8080/rest/user/'+id).then(function(response){
 						
 						$scope.id= response.data.DATA.user_id;
@@ -89,14 +87,13 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 						$scope.email=response.data.DATA.email;
 						$scope.password=response.data.DATA.password;
 						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
-						$scope.roles=response.data.DATA.role.id;
-						
-						
+						$scope.gender= response.data.DATA.gender;
+						$scope.roles=response.data.DATA.role.id;	
+						console.log(response);
 					});
 					
 				}
 				$scope.updateUser=function(){
-					console.log($scope.id);
 					data={
 							'user_id':$scope.id,
 							'first_name':$scope.firstName,
@@ -105,29 +102,37 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 							'email': $scope.email,
 							'password':$scope.password,
 							'dob':$scope.dob,
+							'gender':$scope.gender,
 							'role': {
 								'id': $scope.role_id
 							}
 						}
-					
+					console.log(data);
 					$http.put('http://localhost:8080/rest/user',data).then(function(response){
 						swal("Update Successfully!", "You clicked the button!", "success");
 						$scope.getAllUsers();
-						console.log(reponse);
 					});
 				}
-			});
+/*=========================== Pagination ====================================*/
+		
+				
+				
+				
+				
+/*=========================== End Pagination ====================================*/		
+		
+});
 
-/* ================================= Restaurant Controller by Phanit =======================================*/
+//Resturan Controller
 app.controller('RestaurantCtrl',function($scope,$http){
 		
 		$scope.restaurants='';
-		$scope.getRestaurants = function(){		
+		$scope.getRestaurant=function(){		
 		$http.get('http://localhost:8080/rest/restaurant').then(function(response){
 			$scope.restaurants=response.data.DATA;
 		});
 		}
-		$scope.getRestaurants();
+		$scope.getRestaurant();
 		$scope.addRestaurant= function(){
 			data={
 					  "rest_name": $scope.txtrestname,
@@ -140,29 +145,9 @@ app.controller('RestaurantCtrl',function($scope,$http){
 			});
 		}
 		
-		$scope.deleteRestaurant=function(rest_id){
-			$http.delete('http://localhost:8080/rest/restaurant/'+rest_id).then(function(response){
+		$scope.deleteRestaurant=function(id){
+			$http.delete('http://localhost:8080/rest/restaurant/'+id).then(function(response){
 				$scope.getRestaurant();
-			});
-		}
-		$scope.updateRestaurant = function(){
-			console.log($scope);
-			data={
-					'rest_id':$scope.rest_id,
-					'rest_name':$scope.rest_name,
-					'contact':$scope.contact,
-					'about':$scope.about,
-					'open_close': $scope.open_close,
-					'location':$scope.location,
-					"restypes":{
-						'restype':$scope.restye_name
-					}
-				}
-			
-			$http.put('http://localhost:8080/rest/restaurant',data).then(function(response){
-				swal("Update Successfully!", "You clicked the button!", "success");
-				$scope.getRestaurants();
-				console.log(reponse);
 			});
 		}
 });
@@ -184,39 +169,24 @@ app.controller('brandCtrl', function($scope, $http) {
  }	
  $scope.getAllBrand();
  
- $scope.clearBrandForm = function(){
-	
-		contact: $scope.contact = '';
-		rest_id: $scope.rest_id = '';
-		rest_name: $scope.rest_name = '';
-		street: $scope.street = '';
-		district: $scope.district ='';
-		communce: $scope.communce = '';
-		province: $scope.province = '';
-		address_id: $scope.address_id = '';
-	 
- }
- 
 $scope.addBrand = function(){
 	$http({
 		url: 'http://localhost:8080/rest/brand',
 		data:{
 			contact: $scope.contact,
 			"rest": {
-				rest_id: $scope.rest_id,
-				rest_name: $scope.rest_name
+				rest_id: $scope.rest_id
 			},
 			"address": {
-				address_id: $scope.address_id,
-				street: $scope.street,
-				district: $scope.district,
-				communce: $scope.communce,
-				province: $scope.province
+				address_id: $scope.address_id
 			},
 		},
 		method:'POST'
 	}).then(function(response){
-		 $scope.getAllBrand();
+		$scope.getAllBrand();
+		contact: $scope.contact = '';
+		rest_id: $scope.rest_id = '';
+		address_id: $scope.address_id = '';
 	},function(){
 
 		});
@@ -227,6 +197,7 @@ $scope.addBrand = function(){
 			url: 'http://localhost:8080/rest/brand/'+brand_id,
 			method:'GET'
 		}).then(function(response){
+			console.log(response);
 			$scope.brand = response.data.DATA;
 			$scope.contact = response.data.DATA.contact;
 			$scope.rest_name = response.data.DATA.rest.rest_name;
@@ -255,8 +226,8 @@ $scope.addBrand = function(){
 					district: $scope.district,
 					communce: $scope.communce,
 					province: $scope.province
-				},
-			},
+				}
+			}
 		$http.put('http://localhost:8080/rest/brand',data).then(function(response){
 			alert('success');
 			console.log(data);
@@ -297,3 +268,8 @@ $scope.addBrand = function(){
 		});	
 	}
 });
+
+
+
+
+

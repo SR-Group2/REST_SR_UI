@@ -1,8 +1,17 @@
 <div ng-controller="mainCtrl">
 <div class="col-md-12">
 	<div class="card card-outline-secondary">
+		
 		<div class="card-header">
-			<h3 class="card-title">User Information</h3>
+			  <div>
+			  	<h3 class="card-title">User Information</h3>
+			  </div>
+			  <div class="form-group pull-md-right col-md-5">
+			    <div class="input-group ">
+			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
+			      <div class="input-group-addon">Search</div>
+			    </div>
+			  </div>
 		</div>
 				<table class="table table-striped">
 					<thead class="thead-inverse">
@@ -21,7 +30,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat=" user in users | limitTo: 8">
+						<!-- <tr ng-repeat=" user in users | filter:search | limitTo: pageSize"> -->
+						<tr dir-paginate="user in users|filter:search|itemsPerPage:10">
 							<td>{{$index+1}}</td>
 							<td>{{user.first_name}}</td>
 							<td>{{user.last_name}}</td>
@@ -32,14 +42,22 @@
 							<td>{{user.gender}}</td>
 							<td>{{user.joined | date: "yyyy-MM-dd"}}</td>
 							<td>{{user.role.name}}</td>
-							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#btnUpdate" ng-click="getUserById(user.user_id)">
-							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger" ng-click="deleteUsers(user.user_id);">
+							<td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="getUserById(user.user_id)">
+							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteUsers(user.user_id);">
 							<i class="fa fa-trash-o"></i></button></td>
 							
 						</tr>
 					</tbody>
 				
 				</table>
+				<div class="text-md-center page">
+				<dir-pagination-controls 
+			       max-size="5"
+			       direction-links="true"
+			       boundary-links="true" >
+			    </dir-pagination-controls>
+			    </div>
+				
 		</div>	
 </div>	
 		<!-- ================== Modal Update ================== -->		
@@ -97,11 +115,17 @@
 						</div>
 					    </div>
 					  </div>
-					  
+					  <div class="form-group form-inline">
+					    <label for="" class="col-sm-2 control-label">Gender</label>
+					    <div class="col-sm-10">
+					      <input type="radio" class="form-control"  value="{{gender}}" ng-model="gender"  name="updateGender" value="Male" required>Male
+					       <input type="radio" class="form-control" value="{{gender}}" ng-model="gender"  name="updateGender" value="Female" required>Female
+					    </div>
+					  </div>
 					   <div class="form-group">
 					    <label for="" class="col-sm-2 control-label">Role</label>
 					    <div class="col-sm-10">
-					      <select  value="{{roles}}" ng-model="roles" ng-change="getRoleId(roles)">
+					      <select  value="{{roles}}" ng-model="roles" ng-change="getRoleId(roles)" id="role" >
 					      		<option value="1">ROLE_STANDARD_USER</option>
 					      		<option value="2">ROLE_OWNER</option>
 					      		<option value="3">ROLE_ADMIN</option>

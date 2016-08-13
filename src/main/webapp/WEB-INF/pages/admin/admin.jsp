@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/css/style.css">
 
 </head>
 <body >
@@ -179,6 +180,7 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/script.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
+	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>
 	
 
 </body>
