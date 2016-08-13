@@ -359,12 +359,8 @@
 			    }
    			});
 		});
+		// ========= angular pagination ==========
 		
-		$('#keyword').on("",function(e){
-			alert();
-			
-			
-	    });
 		
 		// ==================== Get Restaurant Type ============================
 		// constructs the suggestion engine

@@ -44,8 +44,8 @@
 					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
 					</li>
 					<sec:authorize access="isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">ចាកចេញ</a>
-						</li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/logout">ចាកចេញ</a></li>
 					</sec:authorize>
 				</ul>
 			</div>
@@ -226,10 +226,9 @@
 			var keyword = "";
 
 			$('#btnsearch').on("click", function(e) {
-		
-				
+
 				e.preventDefault();
-	
+
 				check = true;
 				keyword = $('#keyword').val();
 
@@ -246,7 +245,7 @@
 									+ keyword
 									+ "&page="
 									+ currentPage
-									+ "&limit=5",
+									+ "&limit=15",
 							type : 'GET',
 							beforeSend : function(xhr) {
 								xhr.setRequestHeader("Accept",
@@ -270,7 +269,7 @@
 									}
 									$("#pagination").show()
 								} else {
-									$("#pagination").hide();	
+									$("#pagination").hide();
 									$("#getRest").empty();
 								}
 							}
