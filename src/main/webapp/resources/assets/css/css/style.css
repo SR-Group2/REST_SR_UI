@@ -9,3 +9,10 @@
     border-color: #419641;
     cursor: default;
 }
+
+.frmadd a{
+	text-decoration: none;
+}
+.frmadd a:hover{
+	text-decoration: none;
+}

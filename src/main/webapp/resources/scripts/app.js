@@ -13,12 +13,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				$scope.clearInput = function(){
 					
 					$('#frmUser')[0].reset();
-				}
-				
-/*				$scope.getRoleId = function(roles){
-					$scope.role_id = parseInt(roles);
-				}*/
-				
+				}			
 				$scope.getGender=function(gender){
 					$scope.gender=gender;
 				}
@@ -270,118 +265,36 @@ $scope.addBrand = function(){
 });
 
 
-/* ================================ Comment Controller ================================ */
-
-app.controller('commentCtrl', function($scope, $http) {
-	$scope.comments = '';
-
-	$scope.getAllComment = function () {
+/*====================== Category Controller Pheara ========================================*/
+app.controller("categoryCtrl", function($scope, $http){
+	$scope.getAllCategory= function(){	
+		$http.get('http://localhost:8080/rest/category').then(function(response){
+			$scope.category= response.data.DATA;
+		});
+	}
+	$scope.getAllCategory();
 	
-    $http.get('http://localhost:8080/rest/comment')
-    .then(function (response) {
-    	
-    	$scope.comments = response.data.DATA;
-    	console.log($scope.comments);
-    });
-    
-	}
-    
-    $scope.getAllComment();
-    
-    $scope.getCommentById = function(comment_id){
-   		$http({
-   			url: 'http://localhost:8080/rest/comment/'+ comment_id,
-   			method:'GET'
-   		}).then(function(response){
-   			$scope.comment = response.data.DATA;
-   			$scope.first_name = response.data.DATA.user.first_name;
-   			$scope.last_name = response.data.DATA.user.last_name;
-   			$scope.comment = response.data.DATA.comment;
-   			
-   		},function(){
-
-   		});
-   		
-   	}
-    
-    $scope.addComment = function(){
-    	$http({
-    		url: 'http://localhost:8080/rest/comment',
-    		data:{
-    			comment: $scope.comment
-    		},
-    		method:'POST'
-    	}).then(function(response){
-    		 $scope.getAllComment();
-    	},function(){
-
-    		});
-
-    	}
- });
+});
 
 
-/* ================================ Comment Controller ================================ */
 
-app.controller('commentCtrl', function($scope, $http) {
-	$scope.comments = '';
 
-	$scope.getAllComment = function () {
-	
-    $http.get('http://localhost:8080/rest/comment')
-    .then(function (response) {
-    	$scope.comments = response.data.DATA;
-    });
-    
-	}
-    $scope.getAllComment();
-    
-    $scope.addComment = function(){
-    	$http({
-    		url: 'http://localhost:8080/rest/comment',
-    		data:{
-    			"rest":{
-    				rest_name: $scope.rest_name
-    			},
-    			"user":{
-    				first_name: $scope.first_name,
-    				last_name: $scope.last_name
-    			},
-    			comment: $scope.comment
-    		},
-    		method:'POST'
-    	}).then(function(response){
-    		 $scope.getAllComment();
-    	},function(){
 
-    		});
 
-    	}
-    
-    $scope.getCommentById = function(comment_id){
-   		$http({
-   			url: 'http://localhost:8080/rest/comment/'+comment_id,
-   			method:'GET'
-   		}).then(function(response){
-   			$scope.comment = response.data.DATA;
-   			$scope.first_name = response.data.DATA.user.first_name;
-   			$scope.last_name = response.data.DATA.user.last_name;
-   			$scope.rest_name = response.data.DATA.rest.rest_name;
-   			$scope.comments = response.data.DATA.comment;
-   			
-   		},function(){
 
-   		});
-   		
-   	}
-    
-    $scope.deleteComment = function(comment_id) {
-		$http.delete('http://localhost:8080/rest/comment/' + comment_id)
-		.then(function(response){
-			$scope.getAllComment();
-		});	
-	}
- });
+
+
+
+
+
+
+
+
+
+
+
+
+/*====================== Category Controller Pheara ========================================*/
 
 
 

@@ -60,7 +60,8 @@
 			    </dir-pagination-controls>
 			    </div>
 				
-		</div>	
+		</div>
+		<button type="button" class="btn btn-success pull-md-right"><a href="${pageContext.request.contextPath}/admin/adduser">Add New</a></button>	
 </div>	
 		<!-- ================== Modal Update ================== -->		
 		<div class="modal fade" id="btnUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
