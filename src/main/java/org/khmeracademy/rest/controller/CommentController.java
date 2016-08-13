@@ -3,9 +3,7 @@ package org.khmeracademy.rest.controller;
 import java.util.Map;
 
 import org.khmeracademy.rest.entities.Comments;
-import org.khmeracademy.rest.entities.Users;
 import org.khmeracademy.rest.entities.input.AddComment;
-import org.khmeracademy.rest.entities.input.AddUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -41,7 +39,7 @@ public class CommentController {
 	}
 	
 	//!============================ Get Comment By Id ====================================
-	@RequestMapping(value="{comment_id}",method = RequestMethod.GET)
+	@RequestMapping(value="/{comment_id}",method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getCommentById(@PathVariable int comment_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/comment/"+ comment_id, HttpMethod.GET , request , Map.class) ;
