@@ -3,9 +3,7 @@ package org.khmeracademy.rest.controller;
 import java.util.Map;
 
 import org.khmeracademy.rest.entities.Restaurants;
-import org.khmeracademy.rest.entities.Users;
 import org.khmeracademy.rest.entities.input.AddRestaurant;
-import org.khmeracademy.rest.entities.input.AddUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
