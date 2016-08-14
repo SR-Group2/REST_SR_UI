@@ -48,4 +48,12 @@ public class PageController {
 		map.addAttribute("page", "comment.jsp");
 		return "admin/admin";
 	}
+	
+	@RequestMapping(value="/vote", method = RequestMethod.GET)
+	public String votePage(ModelMap map){
+		map.addAttribute("page", "vote.jsp");
+		return "admin/admin";
+	}
+	
+	
 }

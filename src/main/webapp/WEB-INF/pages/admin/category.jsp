@@ -3,9 +3,7 @@
 	<div class="card card-outline-secondary">
 		
 		<div class="card-header">
-			  <div>
-			  	<h3 class="card-title">User Information</h3>
-			  </div>
+			  <button class="btn btn-success" data-toggle="modal" data-target="#btnAdd"  >Add New</button>
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
 			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
@@ -16,8 +14,7 @@
 				<table class="table table-striped">
 					<thead class="thead-inverse">
 						<tr>
-							<th>#</th>
-							<th>ID</th>
+							<th>#</th>					
 							<th>Category Name</th>
 							<th>Other</th>
 							<th>Date Add</th>
@@ -30,7 +27,6 @@
 						<!-- <tr ng-repeat=" user in users | filter:search | limitTo: pageSize"> -->
 						<tr dir-paginate="cat in category | filter:search|itemsPerPage:10">
 							<td>{{$index+1}}</td>
-							<td>{{cat.category_id}}</td>
 							<td>{{cat.category_name}}</td>
 							<td>{{cat.other}}</td>
 							<td>{{cat.date_added | date: "yyyy-MM-dd"}}</td>
@@ -53,6 +49,37 @@
 			    </div>	
 		</div>	
 </div>	
+	<!-- ================== Modal Add New Category ================== -->		
+		<div class="modal fade" id="btnAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Operation</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form class="form-horizontal" name="frmUpdate">
+		        	
+					  <div class="form-group">
+					    <label for="" class="col-sm-2 control-label">Category Name</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control"  ng-model="txtcategory_name" name="category_name" required>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					      <input type="button" class="btn btn-success" ng-click="addCategory()"  value="Add" data-dismiss="modal" >
+					    </div>
+					  </div>
+					  
+				</form>
+				
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- ================== End Modal Add New Category ================== -->		
+	
 	
 		<!-- ================== Modal Update ================== -->		
 		<div class="modal fade" id="btnUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

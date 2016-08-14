@@ -108,6 +108,12 @@
 								<span class="title">Brand</span>
 							</a>
 						</li>
+						
+						<li>
+							<a href="${pageContext.request.contextPath}/admin/vote" target="_self">
+								<span class="title">Vote</span>
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li>

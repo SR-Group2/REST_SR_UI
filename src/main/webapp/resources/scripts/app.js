@@ -43,18 +43,16 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 							  }
 							
 							};
-					console.log(data);
 					$http.post('http://localhost:8080/rest/user', data).then(function(response){
 						$scope.getAllUsers();
-						swal("Successfully Inserted!", "You clicked the button!", "success")
+						swal("Successfully Inserted!", "You clicked the button!", "success");
 						$scope.clearInput();
 						
 					});
 				}
 				
 				
-				$scope.deleteUsers=function(id){
-					
+				$scope.deleteUsers=function(id){	
 					swal({   title: "Are you sure?",
 						text: "You will not be able to recover this imaginary file!",
 						type: "warning",
@@ -108,7 +106,6 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 								'id': $scope.roles
 							}
 						}
-					console.log(data);
 					$http.put('http://localhost:8080/rest/user',data).then(function(response){
 						swal("Update Successfully!", "You clicked the button!", "success");
 						$scope.getAllUsers();
@@ -274,11 +271,39 @@ app.controller("categoryCtrl", function($scope, $http){
 	}
 	$scope.getAllCategory();
 	
-	$scope.deleteCategory = function (id){
-		$http.delete('http://localhost:8080/rest/category/'+id).then(function(response){
+	$scope.addCategory=function(){
+		data={
+				'category_name': $scope.txtcategory_name
+		}
+		$http.post('http://localhost:8080/rest/category',data).then(function(response){
+			swal("Successfully Inserted!", "You clicked the button!", "success");
 			$scope.getAllCategory();
 		});
-		
+	}
+	
+	$scope.deleteCategory = function (id){
+		swal({   title: "Are you sure?",
+			text: "You will not be able to recover this imaginary file!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel",
+			closeOnConfirm: false,
+			closeOnCancel: false },
+			function(isConfirm){
+				if (isConfirm) {   
+					$http.delete('http://localhost:8080/rest/category/'+id).then(function(response){
+						$scope.getAllCategory();
+					});
+					
+					swal("Deleted!",
+						"Your imaginary file has been deleted.",
+						"success");   
+				} else {     
+					swal("Cancelled", "Your imaginary file is safe :)", "error");   
+				} 
+		});
 	}
 	$scope.getCategoryById= function(id){
 		$http.get('http://localhost:8080/rest/category/'+id).then(function(response){
@@ -300,25 +325,44 @@ app.controller("categoryCtrl", function($scope, $http){
 	}
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*====================== Category Controller Pheara ========================================*/
+
+
+/*====================== Vote Controller Pheara ===========================================*/
+app.controller('voteCtrl',function($scope,$http){
+	
+		$scope.getVotes= function(){
+			$http.get('http://localhost:8080/rest/vote').then(function(response){
+				$scope.votes= response.data.DATA;
+			});
+		}
+		$scope.getVotes();
+		$scope.deleteVote= function(id){
+			swal({   title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				cancelButtonText: "No, cancel",
+				closeOnConfirm: false,
+				closeOnCancel: false },
+				function(isConfirm){
+					if (isConfirm) {   
+						$http.delete('http://localhost:8080/rest/vote/'+id).then(function(response){
+							$scope.getVotes();
+						});
+						
+						swal("Deleted!",
+							"Your imaginary file has been deleted.",
+							"success");   
+					} else {     
+						swal("Cancelled", "Your imaginary file is safe :)", "error");   
+					} 
+			});
+		}
+});
+/*====================== Vote Controller Pheara ===========================================*/
 
 
 
