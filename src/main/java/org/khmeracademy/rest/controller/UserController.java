@@ -52,6 +52,13 @@ public class UserController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/img", method = RequestMethod.POST)
+	public ResponseEntity<Map<String , Object>> getImages(@RequestBody Users users){
+		HttpEntity<Object> request = new HttpEntity<Object>(users,header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/insert-user", HttpMethod.POST , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/{user_id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String , Object>> deleteUser(@PathVariable int user_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(user_id, header);
