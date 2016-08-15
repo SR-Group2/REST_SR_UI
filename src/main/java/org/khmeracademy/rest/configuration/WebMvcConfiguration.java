@@ -15,11 +15,13 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 		registry.addViewController("/access-denied").setViewName("/errors/access-denied");
 		registry.addViewController("/home").setViewName("home");
 		registry.addViewController("/user").setViewName("home");
-		registry.addViewController("/admin").setViewName("admin/admin");
+		//registry.addViewController("/admin").setViewName("admin/admin");
+		//registry.addViewController("/admin/").setViewName("admin/admin");
 		registry.addViewController("/detail_menu").setViewName("detail_menu");
 		registry.addViewController("/restaurant/{id}").setViewName("restlists");
 		registry.addViewController("/detail_rest/{id}").setViewName("detail_rest");
 		registry.addViewController("/upload").setViewName("upload");
+		
 	}
 	
 	@Override

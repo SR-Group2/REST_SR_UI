@@ -21,22 +21,13 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
-	
-//			Map<String , Object> map = new HashMap<String , Object>();
-//			map.put("APIUser", getAPIUser());
-//			map.put("targetUrl", determineTargetUrl(auth));
-//			
-//			String json = new Gson().toJson(map);
 			
 			response.getWriter().print(determineTargetUrl(auth));
 	        response.getWriter().flush();
 	        
 	}
 	
-	/*
-	 * This method extracts the roles of currently logged-in user and returns
-	 * appropriate URL according to his/her role.
-	 */
+	
 	private String determineTargetUrl(Authentication authentication) {
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();

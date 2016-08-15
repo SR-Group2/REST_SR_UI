@@ -31,6 +31,8 @@ public class RestypeController {
 	@Autowired
 	private String WS_URL;
 	
+	
+	//===================== Get Restype By Id =====================
 	@RequestMapping(value="/{restype_id}",method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getRestype(@PathVariable int restype_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);

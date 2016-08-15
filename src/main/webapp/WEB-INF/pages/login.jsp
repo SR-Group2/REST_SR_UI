@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 </head>
 <body style=";background:#ffffff">
 
@@ -36,6 +37,7 @@
       </div>
  
 <script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 <script type="text/javascript">
         
         $(function() {
@@ -52,12 +54,27 @@
 	  	            	if(data == "User account is locked"){
 	  	            		alert(data);
 	  	            	}else if(data == "User is disabled"){
-	  	            		alert(data);
+	  	            		swal("LOGIN FAILED!", data, "error");
 	  	            	}else if(data == "Bad credentials"){
-	  	            		alert(data);
+	  	            		swal("LOGIN FAILED!", data, "error");
 	  	            	}else{
-	  	            		alert(data);
-	  	            		window.location.href = "${pageContext.request.contextPath}/"+data;
+	  	            		
+	  	            		swal({   
+	  	          			title: "LOGIN SUCCESSFULLY!",   
+	  	          			text: "THANK YOU",   
+	  	          			type: "success",   
+	  	          			confirmButtonColor: "#007d3d",   
+    						closeOnConfirm: false,   
+	  	          			closeOnCancel: false }, 
+	  	          			function(isConfirm){   
+	  	          				if(isConfirm) {     				
+	  	          					window.location.href="${pageContext.request.contextPath}/"+data;
+  
+	  	          				}else {     
+	  	          					swal("Cancelled", "Your imaginary file is safe :)", "error");   
+	  	          				} 
+	  	          			});
+	       		  
 	  	            	}
 	  	            },
 	  	         	error: function(data){

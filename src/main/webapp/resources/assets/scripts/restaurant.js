@@ -3,15 +3,29 @@
 
 app.controller('restCtrl', function($scope, $http) {
 	$scope.restaurants = '';
-	//================= GET ALL RESTAURANTS =====================
-	$scope.getAllRestaurants = function () {
-	    $http.get('http://localhost:8080/rest/restaurant/category')
+	
+	 //================= Add RESTAURANTS =======================
+	
+	$scope.getCategoryRest = function () {
+	    $http.get("http://localhost:8080/rest/restype?page=1&limit=20")
 	    .then(function (response) {
-	    	console.log(response);
-	    	$scope.restaurants = response.data.DATA;
+	    	$scope.restypes = response.data.DATA;
 	    });
 	}
-    $scope.getAllRestaurants();
+	
+	$scope.getCategoryRest();
+	
+	 //=================END Add RESTAURANTS =====================
+	
+	//================= GET ALL RESTAURANTS =====================
+//	$scope.getAllRestaurants = function () {
+//	    $http.get('http://localhost:8080/rest/restaurant/category')
+//	    .then(function (response) {
+//	    	console.log(response);
+//	    	$scope.restaurants = response.data.DATA;
+//	    });
+//	}
+//    $scope.getAllRestaurants();
   //=================  ADD RESTAURANTS =====================
     $scope.addRestaurant = function(){
     	$http({
