@@ -33,7 +33,7 @@
 <div class="container">
     
     <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" action="http://localhost:9999/api/upload/" method="POST" enctype="multipart/form-data" data-ng-app="demo" 
+    <form id="fileupload" action="http://localhost:9999/api/upload/image" method="POST" enctype="multipart/form-data" data-ng-app="demo" 
     data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <div class="row fileupload-buttonbar">
