@@ -12,3 +12,10 @@
 .frmadd a:hover{
 	text-decoration: none;
 }
+/* ====================== admin page ===================== */
+.page-container .sidebar-menu #main-menu li a:hover {
+   text-decoration:none !important;
+}
+.page-container .sidebar-menu #main-menu li a {
+  text-decoration:none !important;
+}

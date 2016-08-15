@@ -22,8 +22,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-icons/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/css/style.css">
+	
 
 </head>
 <body >
@@ -99,22 +99,27 @@
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/restaurant" target="_self">
-						<i class="entypo-newspaper"></i>
+						<i class="fa fa-cutlery"></i>
 						<span class="title">Restaurant</span>
 					</a>
-					<ul>
-						<li>
-							<a href="${pageContext.request.contextPath}/admin/brand" target="_self">
-								<span class="title">Brand</span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="${pageContext.request.contextPath}/admin/vote" target="_self">
-								<span class="title">Vote</span>
-							</a>
-						</li>
-					</ul>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/admin/brand" target="_self">
+						<i class="fa fa-random"></i>
+						<span class="title">Brand Restaurant</span>
+					</a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/admin/vote" target="_self">
+						<i class="fa fa-star"></i>
+						<span class="title">Vote</span>
+					</a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/admin/comment" target="_self">
+						<i class="fa fa-comment"></i>
+						<span class="title">Comment</span>
+					</a>
 				</li>
 				<li>
 					<a href="mailbox.html">
@@ -585,20 +590,20 @@
 					<li class="sep"></li>
 		
 					<li>
-						<a href="extra-login.html">
+						<a href="${pageContext.request.contextPath}/logout">
 							Log Out <i class="entypo-logout right"></i>
 						</a>
 					</li>
 				</ul>
 		
 			</div>
-			<hr class="clearfix hidden-xs"/>
+			<hr style="margin-top:60px;"/>
 			<!-- ======= Dynamic Page Content ====== -->
-			
+			<div class="row" style="margin-top:-20px;">
 			<jsp:include page="${page}"></jsp:include>
 				
 			<!-- ======= END Dynamic Page Content ====== -->
-			
+			</div>
 		</div>
 			
 		</div>
@@ -610,7 +615,7 @@
 		-->
 	
 	</div><!-- end main content -->
-
+	
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<!-- Bottom scripts (common) -->
@@ -631,6 +636,8 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/phanit.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/scripts/restaurant.js"></script>
 
 </body>
 </html>

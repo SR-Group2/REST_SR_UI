@@ -55,7 +55,7 @@
 
 
 
-	<!-- Slide show -->
+	<!-- ========= Slide show============== -->
 	<section class="slideShow">
 		<div class="container">
 			<div id="sponsor" class="carousel slide" data-ride="carousel">
@@ -91,7 +91,8 @@
 			</div>
 		</div>
 	</section>
-	<!--  Search Section -->
+	
+	<!--  =========== Search Section ====================== -->
 
 	<section class="homepage">
 		<div class="container search">

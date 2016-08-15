@@ -22,6 +22,9 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
+<style>
+
+</style>
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -62,15 +65,18 @@
 							<h2>ស្វែងរក:</h2>
 								<form>
 								  <div class="form-group" id="remote">
-								   	 <div class="input-group">
-								   	 	   <div class="input-group-addon" id="btnsearch">
+								   	 <!-- <div class="input-group"> -->
+								   	 	  <!--  <div class="input-group-addon" id="btnsearch">
 									      	<button type="submit" class=""><i class="fa fa-search"></i></button>
-									      </div>
-									      <input type="text" class="form-control typeahead" id="keyword" 
-									      placeholder="search restaurant ....." 
-									      typeahead-on-select="onSelect()"
-									      style="background-color:#339524;color: #ffffff;">
-								      </div>
+									      	</div> -->
+									      	 <div class="right-inner-addon">
+										         <i class="fa fa-search"></i>
+											      <input type="text" class="form-control typeahead" id="keyword" 
+											      placeholder="search restaurant ....." 
+											      typeahead-on-select="onSelect()"
+											      style="background-color:#339524;color: #ffffff;">
+									      	</div>
+								      <!-- </div> -->
 								  </div>						 
 								</form>
 						</div>
@@ -307,7 +313,7 @@
 							"application/json");
 				},
 				success : function(data) {
-
+					console.log(data);
 					if (data.STATUS != false) {
 						console.log(data);
 						$("#getRest").empty();

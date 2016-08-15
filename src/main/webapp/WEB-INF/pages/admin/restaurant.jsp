@@ -1,7 +1,7 @@
-<div ng-controller="restaurantCtrl">
+<div ng-controller="restCtrl">
 <div class="col-md-12">
 	<div class="well">
-		<a href="${pageContext.request.contextPath}/admin/addRestaurant" target="_self""><button type="button" class="btn btn-success">
+		<a href="${pageContext.request.contextPath}/admin/addRestaurant" target="_self""><button type="button" class="btn btn-primary">
 		<i class="fa fa-plus-square-o" ></i> Add Restaurant</button></a>
 	</div>
 	<div class="card card-outline-secondary">
@@ -14,6 +14,8 @@
 							<th>ID</th>
 							<th>Restaurant Name</th>
 							<th>Restaurant Type</th>
+							<th>Menu</th>
+							<th>Owner</th>
 							<th>Contact</th>
 							<th>About</th>
 							<th>Open - Close</th>
@@ -31,12 +33,21 @@
 							<td>{{restaurant.rest_name}}</td>
 							<td>
 								<select>
-								<option>-- Restaurant Category-- </option>
-								<option ng-repeat="category in restaurant.restypes">
-									{{category.category_name}}
-								</option>
+									<option>-- Restaurant Category-- </option>
+									<option ng-repeat="rest_type in restaurant.restype">
+										{{rest_type.restype_name}}
+									</option>
 								</select>
 							</td>
+							<td>
+								<select>
+									<option>-- Restaurant Menu-- </option>
+									<option ng-repeat="category in restaurant.categories">
+										{{category.category_name}}
+									</option>
+								</select>
+							</td>
+							<td ng-bind-template="{{restaurant.user.last_name}}  {{restaurant.user.first_name}}"></td>
 							<td>{{restaurant.contact}}</td>
 							<td>{{restaurant.about}}</td>
 							<td>{{restaurant.open_close | date: "yyyy-MM-dd"}}</td>
@@ -45,14 +56,24 @@
 							<td>{{restaurant.address.communce}}</td>
 							<td>{{restaurant.address.district}}</td>
 							<td>{{restaurant.address.province}}</td>
-							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#btnUpdate" ng-click="getRestaurantById(restaurant.rest_id)">
-							<i class="fa fa-pencil-square-o"></i> Edit</button> <button type="button" class="btn btn-danger" ng-click="deleteRestaurant(restaurant.rest_id)">
-							<i class="fa fa-trash-o"></i> Delete</button></td>
+							<td>
+								<button type="button" class="btn btn-green btn-icon icon-left" data-toggle="modal" data-target="#btnUpdate" 
+								ng-click="getRestaurantById(restaurant.rest_id)">
+								<i class="fa fa-pencil-square-o"></i> Edit</button>
+							 	<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestaurant(restaurant.rest_id)">
+								<i class="entypo-cancel"></i> Delete</button></td>
 							
 						</tr>
 					</tbody>
 				
 				</table>
+				<!-- ================= Pagination ===================== -->
+				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
+					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
+					 <li><a href="#">3</a></li> <li class="disabled"><a href="#">4</a></li> 
+					 <li><a href="#">5</a></li> <li><a href="#">6</a></li> 
+					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
+				 </ul>
 		</div>	
 </div>	
 		

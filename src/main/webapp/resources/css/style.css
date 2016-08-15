@@ -1,3 +1,4 @@
+
 body{
 	background-color: #f0f0f0;
 }
@@ -8,14 +9,6 @@ body{
 .menu{
 	padding-top:30px;
 }
-
-/* .btn-outline-success {
-    color: #5cb85c;
-    background-image: none;
-    background-color: transparent;
-    border-color: #5cb85c;
-    border-radius: 10px;
-} */
 .has-success .form-control {
     border-color: #5cb85c;
 }
@@ -152,7 +145,7 @@ footer p{
 	  border-radius:15px;
 	  border-radius: 1.25rem 0 0 1.25rem !important;
 }
-* ================ Restaurnat Detail Page ===========*/
+/* ================ Restaurnat Detail Page ===========*/
 .cbtn:hover{
 	color: #ffffff !important;
 	
@@ -169,4 +162,26 @@ footer p{
 }
 .btnAdd:hover i{
 	color: #ffffff;
+}
+/*========================= Rest List Page ================*/
+.rest-list .right-inner-addon {
+    position: relative;
+}
+.rest-list .right-inner-addon input {
+    padding-right: 30px;    
+}
+.rest-list .right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 28px 18px;
+    pointer-events: none;
+    z-index: 60;
+    color: #fff;
+}
+/*======================= Admin Page =======================*/
+hr {
+    margin-top: 5rem !important;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
 }

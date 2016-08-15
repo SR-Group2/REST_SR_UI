@@ -37,7 +37,13 @@ public class RestaurantController {
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/get-restaurant", HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
-	
+	//================== get All Restaurants with Category ID =================================
+		@RequestMapping(value="/category", method = RequestMethod.GET)
+		public ResponseEntity<Map<String , Object>> getRestaurantWithCategory(){
+			HttpEntity<Object> request = new HttpEntity<Object>(header);
+			ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/get-restaurant-with-category", HttpMethod.GET , request , Map.class) ;
+			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+		}
 	//================== GET RESTAURANT BY ID =========================================
 	@RequestMapping(value="/{rest_id}",method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getRestaurantById(@PathVariable int rest_id){

@@ -12,8 +12,8 @@
 <body style=";background:#ffffff">
 
       <div class="container" style="margin-top:70px;background:#ffffff;">
-      		<div class="logo"  style="width:500px;margin:0 auto;align:center;">
-      			<img class="navbar-brand img-fluid logo text-xs-center" src="${pageContext.request.contextPath}/resources/images/logo.png">
+      		<div class="logo"  style="width:200px;margin:0 auto;align:center;">
+      			<img class="navbar-brand logo text-xs-center" src="${pageContext.request.contextPath}/resources/images/logo.png" align="center">
       		</div>
       		<div style="width:500px;margin:0 auto;">
 	      		<form class="formlogin"  id="frmLogin">
