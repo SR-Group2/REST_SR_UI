@@ -54,6 +54,10 @@ public class PageController {
 		map.addAttribute("page", "vote.jsp");
 		return "admin/admin";
 	}
-	
+	@RequestMapping(value="/addRestaurant", method = RequestMethod.GET)
+	public String addRestPage(ModelMap map){
+		map.addAttribute("page", "addRestaurant.jsp");
+		return "admin/admin";
+	}
 	
 }

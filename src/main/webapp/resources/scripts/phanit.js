@@ -127,7 +127,6 @@ app.controller('restaurantCtrl', function($scope, $http) {
    			$scope.communce = response.data.DATA.address.communce;
    			$scope.district = response.data.DATA.address.district;
    			$scope.province = response.data.DATA.address.province;
-   			console.log(response);
    			
    		},function(){
 

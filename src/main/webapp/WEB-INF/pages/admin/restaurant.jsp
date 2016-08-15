@@ -29,10 +29,17 @@
 						<tr ng-repeat="restaurant in restaurants">
 							<td>{{$index+1}}</td>
 							<td>{{restaurant.rest_name}}</td>
-							<td>{{restaurant.restypes.restype_name}}</td>
+							<td>
+								<select>
+								<option>-- Restaurant Category-- </option>
+								<option ng-repeat="category in restaurant.restypes">
+									{{category.category_name}}
+								</option>
+								</select>
+							</td>
 							<td>{{restaurant.contact}}</td>
 							<td>{{restaurant.about}}</td>
-							<td>{{restaurant.open_close}}</td>
+							<td>{{restaurant.open_close | date: "yyyy-MM-dd"}}</td>
 							<td>{{restaurant.location}}</td>
 							<td>{{restaurant.address.street}}</td>
 							<td>{{restaurant.address.communce}}</td>
