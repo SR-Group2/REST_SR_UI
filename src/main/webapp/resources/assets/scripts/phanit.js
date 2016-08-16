@@ -14,16 +14,29 @@ app.controller('commentCtrl', function($scope, $http) {
     
 	}
     $scope.getAllComment();
+    
     //================= Adding Commend ==========================
-    $scope.addComment=function(){
-	
+    $scope.addComment=function(e){
+    	e.preventDefault();
 		data={
+				'user':{
+					user_id: 1//$scope.user_id
+				},
+				'rest':{
+					rest_id: $scope.rest_id
+				},
 				comment:$scope.comment
 		};
-		$http.post('http://localhost:8080/rest/comment', data).then(function(response){
+		
+		
+		
+		$http.post('http://localhost:8080/rest/comment', data)
+		.then(function(response){
+			//console.log(response);
 			$scope.getAllComment();
-			swal("Successfully Inserted!", "You clicked the button!", "success");
-			
+			//swal("Successfully Inserted!", "You clicked the button!", "success");
+		}, function(error){
+			//console.log(error);
 		});
 		
 	}
@@ -75,6 +88,15 @@ app.controller('commentCtrl', function($scope, $http) {
 		});
 
 	}
+    
+	$scope.getAllRestaurants = function () {
+		$http.get('http://localhost:8080/rest/restaurant')
+	    .then(function (response) {
+	    	console.log(response);
+	    	$scope.restaurants = response.data.DATA;
+	    });
+	}
+	$scope.getAllRestaurants();
     
 //    $scope.clearCommentForm = function(){
 //    	

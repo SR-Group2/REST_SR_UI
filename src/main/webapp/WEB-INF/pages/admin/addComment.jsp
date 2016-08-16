@@ -1,4 +1,5 @@
 <div ng-controller="commentCtrl">
+<div ng-controller="restCtrl">
 <div class="col-md-12">	
 	<div class="well">
 		<h2 class="">COMMENT</h2>
@@ -17,11 +18,9 @@
 							<div class="col-md-4">
 									<div class="form-group">
 									    <label for="rest_name">Restaurant Name</label>
-									      <select class="form-control" name="rest_name" ng-model="rest_name" required>
-									      		<option selected>--Select Restaurant Name--</option>
-									      		<option value="1">ABC</option>
-									      		<option value="2">ABC</option>
-									      		<option value="3">ABC</option>
+									      <select class="form-control" name="rest_name" ng-model="$parent.rest_id" required 
+									      ng-options="restaurant.rest_id as restaurant.rest_name for restaurant in restaurants">
+											<option value="">--- Select Restaurant ---</option>
 									      </select>
 									    
 									  </div>
@@ -29,9 +28,9 @@
 								<div class="col-md-4">
 								<div class="form-group">
 									<label for="first_name">Comment</label>
-									<textarea type="text" class="form-control " ng-model="comment" name="comment" rows = "6"></textarea>
+									<textarea class="form-control " ng-model="$parent.comment" name="comment" rows = "6"></textarea>
 									<br>
-									<a href="${pageContext.request.contextPath}/admin/comment" target="_self""><button type="button" class="btn btn-green" ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid ||brandInfo.rest_name.$invalid || brandInfo.comment.$invalid" ng-click="addComment()" data-dismiss="modal">
+									<a href="${pageContext.request.contextPath}/admin/comment" target="_self"><button type="button" class="btn btn-green" ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid ||brandInfo.rest_name.$invalid || brandInfo.comment.$invalid" ng-click="addComment($event)" data-dismiss="modal">
 										<i class="fa fa-plus" aria-hidden="true"> Add Comment</i></button></a>
 								</div>
 								   </div> 
@@ -46,3 +45,4 @@
 	<!-- =========== End Panel ========== -->	
 	</div>
 	</div>
+</div>
