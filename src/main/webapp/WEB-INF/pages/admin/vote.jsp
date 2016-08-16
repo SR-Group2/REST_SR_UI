@@ -14,10 +14,9 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th>#</th>					
-							<th>ID</th>
-							<th>Number Vote</th>
 							<th>Restaurant Name</th>
-							<th>User Name</th>
+							<th>Total Vote</th>
+							<th>Number Of User</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -25,10 +24,9 @@
 						<!-- <tr ng-repeat=" user in users | filter:search | limitTo: pageSize"> -->
 						<tr dir-paginate="vote in votes | filter:search|itemsPerPage:10">
 							<td>{{$index+1}}</td>
-							<td>{{vote.vote_id}}</td>
-							<td>{{vote.vote_number}}</td>
 							<td>{{vote.rest.rest_name}}</td>
-							<td>{{vote.user.first_name}} {{vote.user.last_name}}</td>
+							<td>{{vote.vote_number}}</td>
+							<td>{{vote.numberofuser}}</td>
 							<td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteVote(vote.vote_id);">
 							<i class="fa fa-trash-o"></i> Delete</button></td>
 							

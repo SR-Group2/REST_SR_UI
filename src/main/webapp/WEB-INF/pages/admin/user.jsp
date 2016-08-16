@@ -1,22 +1,41 @@
 <div ng-controller="mainCtrl">
-<div class="col-md-12">
-	<div class="card card-outline-secondary">
-		
-		<div class="card-header">
-			  <div>
-			  	<h3 class="card-title">User Information</h3>
-			  </div>
-			  <div class="form-group pull-md-right col-md-5">
-			    <div class="input-group ">
-			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
-			      <div class="input-group-addon">Search</div>
-			    </div>
-			  </div>
+	<div id="table-1_wrapper" class="dataTables_wrapper form-inline">
+		<div class="row">
+			<div class="col-xs-6 col-left">
+				<div class="dataTables_length" id="table-1_length">
+				<!--  
+					<label>
+						<div class="select2-container form-control input-sm" id="s2id_autogen3" title="" style="display: inline-block;">
+						<a href="javascript:void(0)" class="select2-choice" tabindex="-1">   
+						<span class="select2-chosen" id="select2-chosen-4">25</span>
+						<abbr class="select2-search-choice-close"></abbr>   
+						<span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a>
+						<label for="s2id_autogen4" class="select2-offscreen"></label>
+						<input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-4" id="s2id_autogen4"></div>
+						<select name="table-1_length" aria-controls="table-1" class="form-control input-sm" title="" style="display: none;" tabindex="-1">
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="-1">All</option>
+						</select> records per page
+					</label>
+					-->
+					<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/adduser">Add New</a>
+
+				</div>
+			</div>
+			<div class="col-xs-6 col-right">
+				<div id="table-1_filter" class="dataTables_filter">
+						<label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="table-1" ng-model="search" ></label>
+				</div>
+			</div>
 		</div>
-				<table class="table table-striped">
-					<thead class="thead-inverse">
-						<tr>
-							<th>ID</th>
+
+		
+		<table class="table table-bordered datatable" id="table-1">
+			<thead>
+				<tr>
+					        <th data-hide="phone">ID</th>
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Username</th>
@@ -28,11 +47,13 @@
 							<th>Role</th>
 							<th>Profile</th>
 							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!-- <tr ng-repeat=" user in users | filter:search | limitTo: pageSize"> -->
-						<tr dir-paginate="user in users|filter:search|itemsPerPage:10">
+				</tr>
+			</thead>
+
+			<tbody>
+			
+				<!-- <tr ng-repeat=" user in users | filter:search | limitTo: pageSize"> -->
+						<tr class="odd gradeX" dir-paginate="user in users|filter:search|itemsPerPage:10 | orderBy">
 							<td>{{$index+1}}</td>
 							<td>{{user.first_name}}</td>
 							<td>{{user.last_name}}</td>
@@ -44,25 +65,66 @@
 							<td>{{user.joined | date: "yyyy-MM-dd"}}</td>
 							<td>{{user.role.name}}</td>
 							<td>{{user.picture}}</td>
-							<td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="getUserById(user.user_id)">
+							<td><button type="button" class="btn btn-success btn-sm" onclick="jQuery('#modal').modal('show');" ng-click="getUserById(user.user_id)">
 							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteUsers(user.user_id);">
-							<i class="fa fa-trash-o"></i></button></td>
-							
+							<i class="fa fa-trash-o"></i></button></td>					
 						</tr>
-					</tbody>
-				
-				</table>
-				<div class="text-md-center page">
+			</tbody>
+		</table>
+		
+		<div class="text-md-center page">
 				<dir-pagination-controls 
 			       max-size="5"
 			       direction-links="true"
 			       boundary-links="true" >
 			    </dir-pagination-controls>
-			    </div>
-				
+			  
 		</div>
-		<button type="button" class="btn btn-success pull-md-right"><a href="${pageContext.request.contextPath}/admin/adduser">Add New</a></button>	
-</div>	
+		
+		
+		
+		<script type="text/javascript">
+		var responsiveHelper;
+		var breakpointDefinition = {
+		    tablet: 1024,
+		    phone : 480
+		};
+		var tableContainer;
+		
+			jQuery(document).ready(function($)
+			{
+				tableContainer = $("#table-1");
+				
+				tableContainer.dataTable({
+					"sPaginationType": "bootstrap",
+					"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+					"bStateSave": true,
+					
+		
+				    // Responsive Settings
+				    bAutoWidth     : false,
+				    fnPreDrawCallback: function () {
+				        // Initialize the responsive datatables helper once.
+				        if (!responsiveHelper) {
+				            responsiveHelper = new ResponsiveDatatablesHelper(tableContainer, breakpointDefinition);
+				        }
+				    },
+				    fnRowCallback  : function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+				        responsiveHelper.createExpandIcon(nRow);
+				    },
+				    fnDrawCallback : function (oSettings) {
+				        responsiveHelper.respond();
+				    }
+				});
+				
+				$(".dataTables_wrapper select").select2({
+					minimumResultsForSearch: -1
+				});
+			});
+		</script>
+		
+		<br />
+
 		<!-- ================== Modal Update ================== -->		
 		<div class="modal fade" id="btnUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
@@ -111,17 +173,30 @@
 					    <label for="" class="col-sm-2 control-label">Date of Birth </label>
 					    <div class="col-sm-10">
 					       <div class='input-group date' id='datetimepicker1' >	                	 
-							<input type='text' class="form-control" value="{{dob}}" ng-model="dob" name="dob"  placeholder="Year-Month-Day"/>
+							<input type='text' class="form-control" value="{{dob}}" ng-model="dob" name="updateDob"  placeholder="Year-Month-Day"/>
 								<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 								</span>
 						</div>
 					    </div>
 					  </div>
+					  
+					   <div class="form-group">
+						 	<label class="col-sm-2 control-label">Date of Birth</label>
+						 	<div class="col-sm-10">
+							<div class="input-group">
+									<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" value={{dob}} ng-model="dob" name="updateDob">				
+									<div class="input-group-addon">
+										<a href="#"><i class="entypo-calendar"></i></a>
+									</div>
+							</div>
+							</div>
+						</div>
+					  
 					  <div class="form-group form-inline">
 					    <label for="" class="col-sm-2 control-label">Gender</label>
 					    <div class="col-sm-10">
-					      <input type="radio" class="form-control"   ng-model="gender"  name="updateGender" value="Male" ng-change="getGender(gender)" required>Male
+					      <input type="radio" class="form-control"   ng-model="gender"  name="updateGender" value="Male" ng-change="getGender(gender)"  required>Male
 					       <input type="radio" class="form-control"  ng-model="gender"  name="updateGender" value="Female" ng-change="getGender(gender)" required>Female
 					    </div>
 					  </div>
@@ -148,4 +223,108 @@
 		  </div>
 		</div>
 		<!-- ================== End Modal Update ================== -->		
+		
+	
+	<div class="modal fade " id="modal">
+		<div class="modal-dialog" style="width: 60%;">
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Update User</h4>
+				</div>
+				<div class="modal-body">	
+				
+				<div class="panel-body">
+		
+		 <div class="row">
+					<div class="col-md-12">
+			        		
+						  <div class="form-group col-md-12">
+						    <label for="" class="col-sm-2 control-label">First Name</label>
+						    <div class="input-group">
+						      <input type="text" class="form-control" value="{{firstName}}"  ng-model="firstName" name="updateFirstname" required>
+						    </div>
+						  </div>
+							<br>
+						    <br>
+						  <div class="form-group col-md-12">
+						    <label for="" class="col-sm-2 control-label">Last Name</label>
+						    <div class="input-group">
+						      <input type="text" class="form-control" value="{{lastName}}" ng-model="lastName"  name="updatelastname" required>
+						    </div>
+						  </div>
+						    <br>
+						    <br>
+						  <div class="form-group col-md-12">
+						    <label for="" class="col-sm-2 control-label">Username</label>
+						    <div class="input-group minimal">
+										<input type="text" class="form-control"  value="{{username}}" ng-model="username"  name="updateUsername" required placeholder="Username">
+										<span class="input-group-addon"><i class="entypo-user"></i></span>
+							</div>
+						  </div>
+						    <br>
+						    <br>
+						  <div class="form-group col-md-12">
+						    <label for="" class="col-sm-2 control-label">Email</label>
+						    <div class="input-group minimal">
+										<span class="input-group-addon"><i class="entypo-mail"></i></span>
+										<input type="text" class="form-control" value="{{email}}" ng-model="email"  name="updateEmail" required placeholder="Email" >
+							</div>
+						  </div>
+						    <br>
+						    <br>
+						  <div class="form-group col-md-12">
+						    <label for="" class="col-sm-2 control-label">Password</label>
+						    <div class="input-group">
+						      <input type="password" class="form-control" value="{{password}}" ng-model="password"  name="updatePassword" required>
+						    </div>
+						  </div>
+						    <br>
+						    <br>
+						   <div class="form-group col-md-12">
+							 	<label class="col-sm-2 control-label">Date of Birth</label>
+								<div class="input-group">
+										<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" value={{dob}} ng-model="dob" name="updateDob">				
+										<div class="input-group-addon">
+											<a href="#"><i class="entypo-calendar"></i></a>
+										</div>
+								</div>
+							</div>
+							  <br>
+						  	  <br>
+						  <div class="form-group form-inline col-md-12">
+						    <label for="" class="col-sm-2 control-label">Gender</label>
+						    <div class="">
+						        <input type="radio" class="form-control"   ng-model="gender"  name="updateGender" value="Male" ng-change="getGender(gender)"  required>Male
+					       <input type="radio" class="form-control"  ng-model="gender"  name="updateGender" value="Female" ng-change="getGender(gender)" required>Female
+						    </div>
+						    
+						  </div>
+						    <br>
+						    <br>
+						   <div class="form-group col-md-12">
+						    <label for="" class="col-sm-2 control-label">Role</label>
+						    <div >
+						      <select ng-model="roles" class="form-control">
+						      		<option value="1">ROLE_STANDARD_USER</option>
+						      		<option value="2">ROLE_OWNER</option>
+						      		<option value="3">ROLE_ADMIN</option>
+						      </select>
+						    </div>
+						  </div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-info" ng-click="updateUser()">Save changes</button>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+		
+		
 		

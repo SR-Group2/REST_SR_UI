@@ -275,7 +275,7 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/moment.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/angular-bootstrap-multiselect.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/app.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/script.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>

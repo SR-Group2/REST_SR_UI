@@ -61,13 +61,13 @@
 		        <form class="form-horizontal" name="frmUpdate">
 		        	
 					  <div class="form-group">
-					    <label for="" class="col-sm-2 control-label">Category Name</label>
-					    <div class="col-sm-10">
+					    <label for="" class="col-sm-3 control-label">Category Name</label>
+					    <div class="col-sm-9">
 					      <input type="text" class="form-control"  ng-model="txtcategory_name" name="category_name" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
+					    <div class="col-sm-offset-3 col-sm-9">
 					      <input type="button" class="btn btn-success" ng-click="addCategory()"  value="Add" data-dismiss="modal" >
 					    </div>
 					  </div>
@@ -93,13 +93,13 @@
 		        <form class="form-horizontal" name="frmUpdate">
 		        	
 					  <div class="form-group">
-					    <label for="" class="col-sm-2 control-label">Category Name</label>
-					    <div class="col-sm-10">
+					    <label for="" class="col-sm-3 control-label">Category Name</label>
+					    <div class="col-sm-9">
 					      <input type="text" class="form-control" value="{{category_name}}"  ng-model="category_name" name="updatecategory_name" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
+					    <div class="col-sm-offset-3 col-sm-9">
 					      <input type="button" class="btn btn-success" ng-click="updateCategory()"  value="Update" data-dismiss="modal" >
 					    </div>
 					  </div>

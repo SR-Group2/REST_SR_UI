@@ -1,6 +1,6 @@
-var app= angular.module('app',['angularUtils.directives.dirPagination', 'btorfs.multiselect']);
+var app= angular.module('app',['angularUtils.directives.dirPagination']);
 
-//================================ User Controoerl Pheara =======================================
+//================================ User Controler Pheara =======================================
 app.controller('mainCtrl', function( $scope, $http, $filter){
 	
 				$scope.getAllUsers=function(){
@@ -9,26 +9,15 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 					});
 				}
 				$scope.getAllUsers();
-				
 				$scope.clearInput = function(){
 					
 					$('#frmUser')[0].reset();
-				}			
+				}		
+				
 				$scope.getGender=function(gender){
 					$scope.gender=gender;
 				}
-				$scope.getDay=function(day){
-					$scope.bday=parseInt(day);
-				}
-				$scope.getMonth=function(month){
-					$scope.bmonth=parseInt(month);
-				}
-				$scope.getYear=function(year){
-					$scope.byear=parseInt(year);
-				}
-
 				$scope.addUser=function(){
-					return;
 					data={
 							"first_name": $scope.txtfirstname,
 							"last_name": $scope.txtlastname,
@@ -39,7 +28,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 							'gender': $scope.txtgender,
 							"picture": "string",
 							"role": {
-								"id": $scope.role_id
+								"id": $scope.roles
 							  }
 							
 							};
@@ -89,7 +78,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 						$scope.password=response.data.DATA.password;
 						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 						$scope.gender= response.data.DATA.gender;
-						$scope.roles=response.data.DATA.role.id + '';	
+						$scope.roles=response.data.DATA.role.id + '';
 					});					
 				}
 				$scope.updateUser=function(){
@@ -106,6 +95,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 								'id': $scope.roles
 							}
 						}
+					console.log(data);
 					$http.put('http://localhost:8080/rest/user',data).then(function(response){
 						swal("Update Successfully!", "You clicked the button!", "success");
 						$scope.getAllUsers();
@@ -310,8 +300,6 @@ app.controller("categoryCtrl", function($scope, $http){
 			$scope.category=response.data.DATA;
 			$scope.category_id= response.data.DATA.category_id;
 			$scope.category_name= response.data.DATA.category_name;
-			alert($scope.category_id);
-			console.log(response);
 		});
 	}
 	$scope.updateCategory= function(){
@@ -334,6 +322,7 @@ app.controller('voteCtrl',function($scope,$http){
 		$scope.getVotes= function(){
 			$http.get('http://localhost:8080/rest/vote').then(function(response){
 				$scope.votes= response.data.DATA;
+				console.log($scope.votes);
 			});
 		}
 		$scope.getVotes();
