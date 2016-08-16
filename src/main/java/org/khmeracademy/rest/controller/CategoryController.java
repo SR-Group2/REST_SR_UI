@@ -31,7 +31,7 @@ public class CategoryController {
 		@Autowired
 		private String WS_URL;
 		
-		
+		//==================== Get All Category ==============
 		@RequestMapping(method = RequestMethod.GET)
 		public ResponseEntity<Map<String , Object>> getCategory(){
 			HttpEntity<Object> request = new HttpEntity<Object>(header);

@@ -1,4 +1,4 @@
-var app= angular.module('app',['angularUtils.directives.dirPagination']);
+var app= angular.module('app',['angularUtils.directives.dirPagination', 'btorfs.multiselect']);
 
 //================================ User Controoerl Pheara =======================================
 app.controller('mainCtrl', function( $scope, $http, $filter){

@@ -22,7 +22,7 @@ public class CustomUserDetailService implements UserDetailsService{
 			System.out.println("User not found");
 			throw new UsernameNotFoundException("User not found");
 		}
-		System.out.println(user.getRoles().get(0).getName());
+		//System.out.println(user.getRoles().get(0).getName());
 	
 		return user;
 	}

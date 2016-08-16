@@ -53,7 +53,8 @@
 		</div>
 	</nav>
 
-
+  <sec:authentication property="principal.id" /> 
+  <sec:authentication property="principal.username" /> 
 
 	<!-- ========= Slide show============== -->
 	<section class="slideShow">
@@ -249,7 +250,7 @@
 									+ keyword
 									+ "&page="
 									+ currentPage
-									+ "&limit=15",
+									+ "&limit=20",
 							type : 'GET',
 							beforeSend : function(xhr) {
 								xhr.setRequestHeader("Accept",

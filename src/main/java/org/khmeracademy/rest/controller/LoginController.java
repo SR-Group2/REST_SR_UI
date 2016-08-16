@@ -1,5 +1,6 @@
 package org.khmeracademy.rest.controller;
 
+import org.khmeracademy.rest.entities.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,14 +14,30 @@ public class LoginController {
   
   @RequestMapping(value="/admin", method = RequestMethod.GET)
   public String printUser(ModelMap model) {
-
+	 
+	  //User user = (User)authentication.getPrincipal();
+	 /* 
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       String name = auth.getName(); //get logged in username
 
       model.addAttribute("username", name);
-      model.addAttribute("page", "index.jsp");
+      model.addAttribute("page", "index.jsp");*/
  
       return "admin/admin";
+
+  }
+  @RequestMapping(value="/admin/**", method = RequestMethod.GET)
+  public String showUser(ModelMap model) {
+
+     /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      User user = (User) auth.getPrincipal();
+      System.out.println(user.getId());*/
+     
+
+//      model.addAttribute("username", name);
+      model.addAttribute("page", "index.jsp");
+ 
+      return "";
 
   }
   

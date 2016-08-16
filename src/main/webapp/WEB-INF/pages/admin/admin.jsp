@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="Neon Admin Panel" />
+	<meta name="description" content="Restaurant Menu Integration" />
 	<meta name="author" content="" />
 
 	<title>King Of Restaurant Menu Integegration | Dashboard</title>
@@ -32,6 +32,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-forms.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/custom.css">
 	
+	
 </head>
 <body >
 <div class="page-container">
@@ -41,7 +42,7 @@
 
 				<!-- logo -->
 				<div class="logo">
-					<a href="index.html">
+					<a href="${pageContext.request.contextPath}/admin">
 						<h1 style="color:#fff;font-weight:bold;">NHAM EY</h1>
 					</a>
 				</div>
@@ -272,20 +273,23 @@
 	<!-- JavaScripts initializations and stuff -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-custom.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/moment.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/scripts/angular-bootstrap-multiselect.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/app.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/script.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.multi-select.js"></script>
+	
 	
 	<!-- Demo Settings -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-demo.js"></script>
 	
+	
+		
 	<!-- =========== JS Application  ================ -->
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/phanit.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/restaurant.js"></script>
 	
-
+	
 </body>
 </html>

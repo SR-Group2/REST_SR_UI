@@ -1,4 +1,4 @@
-<section class="add_restaurant" ng-controller="restCtrl">
+<section class="add_restaurant"  ng-controller="restCtrl">
 	<h2>Add Restaurant</h2>
 	<br />
 	<div class="row">
@@ -26,35 +26,39 @@
 							<label for="rest_name">Restaurant Name</label>
 							<input type="text" class="form-control" name="rest_name" ng-model="rest_name" required>
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="restype_id">Restaurant Type</label>
 								<select class="form-control">
-									<option>-- Restaurant Category-- </option>
 									<option ng-repeat="restype in restypes" 
 										value="{{restype.restype_id}}">
 										{{restype.restype_name}}
 									</option>
 								</select>
-						</div>
+								========== Multi Select==============
+						</div> -->
 						
 						<div class="form-group">
-								<label>Multi-Select List</label>
-								
-								<div class="col-sm-7">
-									<select multiple="multiple" name="my-select[]" class="form-control multi-select">
-										<option value="elem_1">elem 1</option>
-										<option value="elem_2">elem 2</option>
-										<option value="elem_3">elem 3</option>
-										<option value="elem_4">elem 4</option>
-										<option value="elem_5">elem 5</option>
-										<option value="elem_6">elem 6</option>
-										<option value="elem_7">elem 7</option>
-										<option value="elem_8" selected>Selected element</option>
-										<option value="elem_9" selected>Selected element 2</option>
-									</select>
-								</div>
-							</div>
-							
+							<label for="restype_id">Restaurant Category(Allow only Categories)</label>
+				        	<!--  <pre>Model value: {{selection2}}</pre> -->
+       						<multiselect ng-model="selection2" options="restypes" 
+		       						display-prop="restype_name" id-prop="restype_id"
+		                     		selection-limit="3">
+		                     </multiselect>
+						 </div>
+						 <div class="form-group">
+							<label for="rest_name">Menu</label>
+							<input type="text" class="form-control" name="category_name" ng-model="category_name" required>
+						</div>
+						<div class="form-group">
+							<label for="restype_id">Restaurant Menu</label>
+								<select class="form-control">
+									<option>-- Restaurant Menu-- </option>
+									<option ng-repeat="menu in menus" 
+										value="{{menu.category_id}}">
+										{{menu.category_name}}
+									</option>
+								</select>
+						</div>
 						<div class="form-group">
 							<label for="contact">Contact</label>
 							<input type="text" class="form-control" name="contact" ng-model="contact" required>
@@ -65,11 +69,12 @@
 						</div>
 						<div class="form-group">
 							<label for="open_close">Open - Close</label>
-							<select class="form-control">
+							<!-- <select class="form-control">
 									<option>6:00 AM - 8:00 PM</option>
 									<option>6:00 AM - 8:00 PM</option>
 									<option>6:00 AM - 8:00 PM</option>
-								</select>
+								</select> -->
+							<input type="text" name="open_close" class="form-control" ng-model="open_close" />
 						</div>
 					</div> 
 					<div class="col-md-4">
@@ -102,3 +107,8 @@
 		</div><!-- ==============  end col-md-12 ===================== -->
 	</div>
 </section>
+	
+	
+	
+	
+	
