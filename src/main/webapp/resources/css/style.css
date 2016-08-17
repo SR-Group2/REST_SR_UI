@@ -18,6 +18,13 @@ body{
     margin-bottom: 70px;
 }
 
+.logined a{
+	border:none !important;
+	color:#000000 !important;
+}
+.logined .fa{
+	color:#000000 !important;
+}
 /*======== Customize Nav bar===== */
 .navbar-light .navbar-nav .nav-link {
     border: 1px solid #35ac2a;
@@ -174,7 +181,7 @@ footer p{
     position: absolute;
     right: 0px;
     padding: 28px 18px;
-    pointer-events: none;
+    cursor:pointer;
     z-index: 60;
     color: #fff;
 }

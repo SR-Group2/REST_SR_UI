@@ -16,12 +16,12 @@ public class LoginController {
   public String printUser(ModelMap model) {
 	 
 	  //User user = (User)authentication.getPrincipal();
-	 /* 
+	 
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       String name = auth.getName(); //get logged in username
 
       model.addAttribute("username", name);
-      model.addAttribute("page", "index.jsp");*/
+      model.addAttribute("page", "index.jsp");
  
       return "admin/admin";
 

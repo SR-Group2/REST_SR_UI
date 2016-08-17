@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/rest/restaurant")
@@ -30,6 +31,22 @@ public class RestaurantController {
 	
 	@Autowired
 	private String WS_URL;
+	
+	//================== search All Restaurants =================================
+	@RequestMapping(value="/search",method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> searchRest(
+										  @RequestParam(value = "page", required = false , defaultValue="1") int page 
+									    , @RequestParam(value="limit" , required = false , defaultValue="4") int limit
+									    , @RequestParam(value="keyword" , required = false , defaultValue="") String keyword){
+		UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl(WS_URL + "/restaurant/search-rest")
+									.queryParam("keyword", keyword)
+									.queryParam("page", page)
+									.queryParam("limit", limit);
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(uri.build().toUriString(), HttpMethod.GET , request , Map.class) ;
+		
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
 	//================== get All Restaurants =================================
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getAllRestaurants(){

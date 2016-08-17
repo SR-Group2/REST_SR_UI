@@ -45,16 +45,24 @@
 					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
 					</li>
 					<sec:authorize access="isAuthenticated()">
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/logout">ចាកចេញ</a></li>
+					<li class="nav-item dropdown logined">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
+						role="button" aria-haspopup="true" aria-expanded="false">
+							Welcome  <sec:authentication property="principal.username" />
+						</a>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+						</div>
+					</li>
 					</sec:authorize>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-  <sec:authentication property="principal.id" /> 
-  <sec:authentication property="principal.username" /> 
+<%--   <sec:authentication property="principal.id" /> 
+  <sec:authentication property="principal.username" />  --%>
 
 	<!-- ========= Slide show============== -->
 	<section class="slideShow">
@@ -103,7 +111,7 @@
 						<div class="form-group">
 							<div class="input-group" id="remote">
 								<input type="text" class="form-control typeahead" id="keyword"
-									placeholder="search by any type restaurant .....">
+									placeholder="search restaurant .....">
 								<div class="input-group-addon" id="btnsearch">
 									<button type="submit" class="">
 										<i class="fa fa-search"></i>
@@ -217,6 +225,7 @@
 
 
 	<script>
+		
 		function detailRest(id) {
 			window.location.href = "${pageContext.request.contextPath}/restaurant/"
 					+ id;
@@ -236,8 +245,10 @@
 
 				check = true;
 				keyword = $('#keyword').val();
+				
+				window.location.href ="${pageContext.request.contextPath}/restaurant/q="+keyword;
 
-				course.courses(currentPage, keyword);
+				//course.courses(currentPage, keyword);
 			});
 
 			course.courses = function(currentPage, keyword) {
@@ -337,25 +348,24 @@
 			var states;
 
 			var bestPictures = new Bloodhound(
-					{
-						datumTokenizer : Bloodhound.tokenizers.obj
-								.whitespace('value'),
-						queryTokenizer : Bloodhound.tokenizers.whitespace,
-						remote : {
-							url : "${pageContext.request.contextPath}/rest/restype?keyword=%QUERY"
-									+ "&page=" + currentPage + "&limit=4",
-							//url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
-							wildcard : '%QUERY',
-							filter : function(restypes) {
-								// Map the remote source JSON array to a JavaScript array
-								return $.map(restypes.DATA, function(restype) {
-									return {
-										value : restype.restype_name
-									};
-								});
-							}
+				{
+					datumTokenizer : Bloodhound.tokenizers.obj
+							.whitespace('value'),
+					queryTokenizer : Bloodhound.tokenizers.whitespace,
+					remote : {
+						url : "${pageContext.request.contextPath}/rest/restaurant/search?keyword=%QUERY%"+ "&page=" + currentPage + "&limit=20",
+						//url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
+						wildcard : '%QUERY%',
+						filter : function(restaurants) {
+							// Map the remote source JSON array to a JavaScript array
+							return $.map(restaurants.DATA, function(restaurant) {
+								return {
+									value : restaurant.rest_name
+								};
+							});
 						}
-					});
+					}
+				});
 
 			$('#remote .typeahead').typeahead(null, {
 				name : 'best-pictures',

@@ -2,7 +2,7 @@
 /*=========================== Restaurant Controller ===========================*/
 
 app.controller('restCtrl', function($scope, $http) {
-	$scope.restaurants = '';
+
 	
 	
 	$scope.restypes = [];
@@ -75,14 +75,14 @@ app.controller('restCtrl', function($scope, $http) {
 	 //=================END Add RESTAURANTS =====================
 	
 	//================= GET ALL RESTAURANTS =====================
-//	$scope.getAllRestaurants = function () {
-//	    $http.get('http://localhost:8080/rest/restaurant/category')
-//	    .then(function (response) {
-//	    	console.log(response);
-//	    	$scope.restaurants = response.data.DATA;
-//	    });
-//	}
-//    $scope.getAllRestaurants();
+	$scope.getAllRestaurants = function () {
+	    $http.get('http://localhost:8080/rest/restaurant/category')
+	    .then(function (response) {
+	    	console.log(response);
+	    	$scope.restaurants = response.data.DATA;
+	    });
+	}
+    $scope.getAllRestaurants();
   //=================  ADD RESTAURANTS =====================
     $scope.addRestaurant = function(){
     	$http({

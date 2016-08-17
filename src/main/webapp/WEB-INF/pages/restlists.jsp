@@ -48,13 +48,21 @@
 					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
 					</li>
 					<sec:authorize access="isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">ចាកចេញ</a>
-						</li>
+					<li class="nav-item dropdown logined">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
+						role="button" aria-haspopup="true" aria-expanded="false">
+							Welcome  <sec:authentication property="principal.username" />
+						</a>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+						</div>
+					</li>
 					</sec:authorize>
 				</ul>
 			</div>
 		</div>
-	</nav>	
+	</nav>
 		
 	<section class="rest-list">
 		<div class="container">
@@ -62,21 +70,16 @@
 				<div class="col-md-3">
 					<div class="row">
 						<div class="box-filter">
-							<h2>ស្វែងរក:</h2>
+							<h2>Search:</h2>
 								<form>
 								  <div class="form-group" id="remote">
-								   	 <!-- <div class="input-group"> -->
-								   	 	  <!--  <div class="input-group-addon" id="btnsearch">
-									      	<button type="submit" class=""><i class="fa fa-search"></i></button>
-									      	</div> -->
-									      	 <div class="right-inner-addon">
-										         <i class="fa fa-search"></i>
-											      <input type="text" class="form-control typeahead" id="keyword" 
-											      placeholder="search restaurant ....." 
-											      typeahead-on-select="onSelect()"
-											      style="background-color:#339524;color: #ffffff;">
-									      	</div>
-								      <!-- </div> -->
+							      	 <div class="right-inner-addon">
+								         <i class="fa fa-search" id="fa-btnsearch"></i>
+									      <input type="text" class="form-control typeahead" id="keyword" 
+									      placeholder="search restaurant ....." 
+									      typeahead-on-select="onSelect()"
+									      style="background-color:#339524;color: #ffffff;">
+								      	</div>
 								  </div>						 
 								</form>
 						</div>
@@ -84,44 +87,20 @@
 				
 					<div class="row">
 						<div class="box-sort">
-								<h2>SORTING:</h2>
+								<h2>Filter:</h2>
 								<form >
 									<div class="form-group">
-								        <select class="form-control input-lg">
-								          <option selected>Food</option>
-										  <option value="1">One</option>
-										  <option value="2">Two</option>
-										  <option value="3">Three</option>
+								        <select class="form-control"  id="filterRestype">
+								          <option selected>---- select category -----</option>
+										  <option ng-repeat="category in categories" value="{{category.restype_id}}">
+										  	{{category.restype_name}}
+										  </option>
 								        </select>
 								        <i class="fa fa-chevron-down"></i>							        
 								      </div>
-									<h5>តម្លៃ : <output id="rangevalue"></output>$</h5>
-									<!-- end option sort -->
-									<!-- range-slider -->
-									<div class="range-slider">
-									  <input class="range-slider" type="range" value="100" min="0" max="100" onchange="rangevalue.value=value"/>
-									  
-									</div>
-									<!-- end rang-slider -->
-									
-									<div class="form-group radio-btn">
-									<label class="custom-control custom-radio">
-									  <input id="radio1" name="radio" type="radio" class="custom-control-input">
-									  <span class="custom-control-indicator"></span>
-									  <span class="custom-control-description">PHOTOS</span>
-									</label>
-									
-									</div>
 									
 									<!-- check box option -->
 									<div class="check-option">
-										<div class="check-box">
-											<label class="custom-control custom-checkbox">
-											  <input type="checkbox" class="custom-control-input">
-											  <span class="custom-control-indicator"></span>
-											  <span class="custom-control-description">Hot Food</span>
-											</label>
-										</div>
 										<div class="check-box">
 											<label class="custom-control custom-checkbox">
 											  <input type="checkbox" class="custom-control-input">
@@ -145,7 +124,7 @@
 										</div>
 									</div>
 									<div class="text-md-center">
-										<button type="button" class="btn btn-search">SEARCH</button>
+										<button type="button" class="btn btn-search" id="searchRest">SEARCH</button>
 									</div>
 									<!-- end check box option -->
 								</form>	
@@ -204,39 +183,47 @@
 </div>
 
 	<!--  ========  Model LOgin ====== -->
-<!-- Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-xs-center">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <img id="myModalLabel" class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
-      </div>
-      <div class="modal-body">
-      	<form class="formlogin">
-      		<fieldset>
-      			<h3 class="text-success text-xs-center">Welcome</h3>
-      			<div class="form-group">
-      				<label class="text-xs-left">Username</label>
-      				<input type="text" class="form-control form-control-succes" name="username" placeholder="enter your username">
-      			</div>
-      			<div class="form-group">
-      				<label class="text-xs-left">Password</label>
-      				<input type="password" class="form-control form-control-succes" name="password" placeholder="enter your password">
-      			</div>
-      			<div class="form-group">
-      				<button type="button" class="btn btn-outline-success">Sing in</button>
-      				-- or --
-      				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
-      			</div>
-      		</fieldset>
-      	</form>
-      </div>
-    </div>
-  </div>
-</div>
+<!--  ========  Model LOgin ====== -->
+	<!-- Modal -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-xs-center">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<img id="myModalLabel" class="logo"
+						src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
+				</div>
+				<div class="modal-body">
+					<form class="formlogin" id="frmLogin" method="POST">
+						<fieldset>
+							<h3 class="text-success text-xs-center">Welcome</h3>
+							<div class="form-group">
+								<label class="text-xs-left">Username</label> <input type="text"
+									class="form-control form-control-succes" name="username"
+									placeholder="enter your username">
+							</div>
+							<div class="form-group">
+								<label class="text-xs-left">Password</label> <input
+									type="password" class="form-control form-control-succes"
+									name="password" placeholder="enter your password">
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-outline-success"
+									data-dismiss="modal">Sing in</button>
+								-- or -- <a href="#"><img
+									src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- ========= footer ============ -->
 	<footer>
@@ -249,9 +236,8 @@
 	</footer>
 	
 	<!-- ========= footer ============ -->
-	<!-- ========= footer ============ -->
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
 	<script
@@ -286,6 +272,21 @@
 	</script>
 	
 	<script>
+	var currentPage = 1;
+	var keyword ="";
+	/*================= Get Category ===================*/
+	var app = angular.module("app",[]);
+	app.controller("mainCtrl", function($scope,$http){
+		$scope.getRestype = function () {
+	    	$http.get("${pageContext.request.contextPath}/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=20")
+		    	.then(function (response) {
+		    	$scope.categories = response.data.DATA;
+		    	console.log($scope.categories);
+		    });
+		}
+		$scope.getRestype();
+	})
+	
 	
 	function detailRest(id){
 		
@@ -295,6 +296,8 @@
 	$(function(){
 		
 		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+		var q = id.split("=");
+		
 		
 		/* =======================  Load Data With Pagination ================== */
 		restaurant = {};
@@ -304,7 +307,7 @@
 		restaurant.getRest = function(currentPage, id) {
 			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/rest/restaurant/list/"+id+"?page="+currentPage+"&limit=1",
+				url : "${pageContext.request.contextPath}/rest/restaurant/list/"+id+"?page="+currentPage+"&limit=20",
 				type : 'GET',
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader("Accept",
@@ -317,8 +320,7 @@
 					if (data.STATUS != false) {
 						console.log(data);
 						$("#getRest").empty();
-						$("#rest_tmpl").tmpl(data.DATA).appendTo(
-								"#getRest");
+						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 						$('#getRest').css("cursor", "pointer");
 						if (check) {
 							restaurant.setPagination(
@@ -363,29 +365,91 @@
 
 		};
 		
+		/* ======================= search from home page ================== */
+		searchRestByQuery(q[1]);
+		
 		/* ================= Run First Load With Click Id ==================*/
 		restaurant.getRest(currentPage, id);
-		/* =======================   Load Data Acording to typehead select  With Pagination ================== */
-		$('#keyword').on('typeahead:selected', function(){ 
-			$("#getRest").empty();
-			var keyword = $(this).val();
-			check = true;
+	
+		/* =======================   Load Data According to typehead select  With Pagination ================== */
+		function searchRestByQuery(keywords){
 			$.ajax({ 
-			    url:"${pageContext.request.contextPath}/rest/restype?keyword="+keyword+"&page="+currentPage+"&limit=4", 
+			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keywords+"&page="+currentPage+"&limit=20", 
 			    type: 'GET',
 			    beforeSend: function(xhr) {
                     xhr.setRequestHeader("Accept", "application/json");
                     xhr.setRequestHeader("Content-Type", "application/json");
                 },
 			    success: function(data) { 
-			    	
-			    	id = data.DATA[0].restype_id;
-			    	restaurant.getRest(currentPage, id);
-			    	
+			    	console.log(data);
+			    	if (data.STATUS != false) {
+						console.log(data);
+						$("#getRest").empty();
+						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+						$('#getRest').css("cursor", "pointer");
+						if (check) {
+							restaurant.setPagination(
+									data.PAGINATION.TOTAL_PAGES,
+									currentPage);
+							check = false;
+						}
+						$("#pagination").show()
+					} else {
+						$("#pagination").hide();
+						$("#getRest").empty();
+					}
+			   
+			    }
+   			});
+		}
+		$("#fa-btnsearch").on("click", function(){
+			var keywords = $("#keyword").val();
+			searchRestByQuery(keywords);
+		});
+		
+		$('#keyword').on('typeahead:selected', function(){ 
+			$("#getRest").empty();
+			var keyword = $(this).val();
+			check = true;
+			$.ajax({ 
+			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=20", 
+			    type: 'GET',
+			    beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                },
+			    success: function(data) { 
+			    	console.log(data);
+			    	if (data.STATUS != false) {
+						console.log(data);
+						$("#getRest").empty();
+						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+						$('#getRest').css("cursor", "pointer");
+						if (check) {
+							restaurant.setPagination(
+									data.PAGINATION.TOTAL_PAGES,
+									currentPage);
+							check = false;
+						}
+						$("#pagination").show()
+					} else {
+						$("#pagination").hide();
+						$("#getRest").empty();
+					}
+			   
 			    }
    			});
 		});
-	
+		//==================== search filter by restype =========
+		$("#searchRest").on("click change",function(){
+			var filterRestype = $("#filterRestype").val();
+			restaurant.getRest(currentPage, filterRestype);
+		});
+		// ==================== search btn ===============================
+		function getRestByKeyword(keyword){
+			
+		}
+		
 		// ==================== Get Restaurant Type ============================
 	
 		var substringMatcher = function(strs) {
@@ -404,20 +468,18 @@
 			  };
 			};
 			
-			
 			var states;
 			
 			var bestPictures = new Bloodhound({
 				  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 				  queryTokenizer: Bloodhound.tokenizers.whitespace,
 				  remote: {
-				        url: "${pageContext.request.contextPath}/rest/restype?keyword=%QUERY"+"&page="+currentPage+"&limit=4",
-				        wildcard: '%QUERY',
-				        filter: function (restypes) {
-				            return $.map(restypes.DATA, function (restype) {
+				        url: "${pageContext.request.contextPath}/rest/restaurant/search?keyword=%QUERY%"+"&page="+currentPage+"&limit=20",
+				        wildcard: '%QUERY%',
+				        filter: function (restaurants) {
+				            return $.map(restaurants.DATA, function (restaurant) {
 				                return {
-				                      
-				                        value: restype.restype_name
+				                        value: restaurant.rest_name
 				                };
 				            });
 				        }
@@ -430,7 +492,39 @@
 				  	source: bestPictures
 				});
 				
+				//==================== login  ===================
+					
+				$('#login')
+				.on(
+						'hidden.bs.modal',
+						function(e) {
 
+							console.log($("#frmLogin").serialize());
+
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/login",
+										type : "POST",
+										data : $("#frmLogin").serialize(),
+										success : function(data) {
+											if (data == "User account is locked") {
+												alert(data);
+											} else if (data == "User is disabled") {
+												alert(data);
+											} else if (data == "Bad credentials") {
+												alert(data);
+											} else {
+												swal("Welcome To Nham Ey", "You clicked the button!", "success")
+												window.location.href = "${pageContext.request.contextPath}/"
+														+ data;
+											}
+										},
+										error : function(data) {
+											console.log(data);
+										}
+									});
+						});
+				
 		});
 	</script>
 </body>
