@@ -80,16 +80,16 @@
 						        <img  ng-repeat="menu in menus" src="${pageContext.request.contextPath}/resources/images/flipbook/{{menu.picture}}" >
 						        </a> --%>
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" class="img-fluid">
 						        </a>
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        </a>
+						        <a class="img-fluid" class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
+						        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
 						        </a>
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
-						        </a>
-						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
 						        </a> 
 						    </div>
 						</div>
@@ -310,6 +310,10 @@
 						};
 				
 				console.log(data);
+				
+				if($scope.comment_text = ""){
+					console.log(data);
+				}
 			$http.post("${pageContext.request.contextPath}/rest/comment/", data)
 	  			.then(function(rsp){
 	  				$scope.getComment(id);

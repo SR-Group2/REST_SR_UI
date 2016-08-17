@@ -282,7 +282,7 @@
 	var app = angular.module("app",[]);
 	app.controller("mainCtrl", function($scope,$http){
 		$scope.getRestype = function () {
-	    	$http.get("${pageContext.request.contextPath}/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=12")
+	    	$http.get("${pageContext.request.contextPath}/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=20")
 		    	.then(function (response) {
 		    	$scope.categories = response.data.DATA;
 		    	console.log($scope.categories);

@@ -82,14 +82,14 @@
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/category" target="_self">
 						<i class="fa fa-sitemap"></i>
-						<span class="title">Category Restaurant</span>
+						<span class="title">Menu Restaurant</span>
 					</a>
 					
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
 						<i class="fa fa-book"></i>
-						<span class="title">Menu Restaurant</span>
+						<span class="title">Category Restaurant</span>
 					</a>
 					
 				</li>
