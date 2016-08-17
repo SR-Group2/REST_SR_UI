@@ -1,34 +1,21 @@
 <div ng-controller="mainCtrl">
 	<div id="table-1_wrapper" class="dataTables_wrapper form-inline">
 		<div class="row">
-			<div class="col-xs-6 col-left">
+			<div class="col-xs-12 col-left">
 				<div class="dataTables_length" id="table-1_length">
-				<!--  
-					<label>
-						<div class="select2-container form-control input-sm" id="s2id_autogen3" title="" style="display: inline-block;">
-						<a href="javascript:void(0)" class="select2-choice" tabindex="-1">   
-						<span class="select2-chosen" id="select2-chosen-4">25</span>
-						<abbr class="select2-search-choice-close"></abbr>   
-						<span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a>
-						<label for="s2id_autogen4" class="select2-offscreen"></label>
-						<input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-4" id="s2id_autogen4"></div>
-						<select name="table-1_length" aria-controls="table-1" class="form-control input-sm" title="" style="display: none;" tabindex="-1">
-						<option value="10">10</option>
-						<option value="25">25</option>
-						<option value="50">50</option>
-						<option value="-1">All</option>
-						</select> records per page
-					</label>
-					-->
-					<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/adduser">Add New</a>
+					<a class="btn btn-primary btn-icon" href="${pageContext.request.contextPath}/admin/adduser">Add New <i class="entypo-user-add"></i></a>
+			  </button>
+			  <div class="form-group pull-md-right col-md-5">
+			    <div class="input-group ">
+			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
+			      <div class="input-group-addon btn-blue">Search</div>
+			    </div>
+			  </div>
+			  
 
 				</div>
 			</div>
-			<div class="col-xs-6 col-right">
-				<div id="table-1_filter" class="dataTables_filter">
-						<label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="table-1" ng-model="search" ></label>
-				</div>
-			</div>
+
 		</div>
 
 		
@@ -72,12 +59,16 @@
 			</tbody>
 		</table>
 		
-		<div class="text-md-center page">
-				<dir-pagination-controls 
-			       max-size="5"
-			       direction-links="true"
-			       boundary-links="true" >
-			    </dir-pagination-controls>
+		<div class="text-md-center">
+				<!-- ================= Pagination ===================== -->
+				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
+					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
+					 <li><a href="#">3</a></li> 
+					 <li><a href="#">4</a></li> 
+					 <li><a href="#">5</a></li> 
+					 <li><a href="#">6</a></li> 
+					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
+				 </ul>
 			  
 		</div>
 		

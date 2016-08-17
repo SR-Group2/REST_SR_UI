@@ -27,6 +27,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
+	
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -94,16 +96,36 @@
 						<br>
 						
 						<!-- ============== comment =========== -->
-						<div class="well">
-                    <h5>Leave a Comment:</h5>
-                    <form role="form" lpformnum="1">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
+						<sec:authorize access="isAuthenticated()">
+							<div class="well">
+			                    <h5>Leave a Comment:</h5>
+			                    <form role="form" lpformnum="1">
+			                        <div class="form-group">
+			                            <textarea class="form-control" rows="3" ng-model="comment_text" required></textarea>
+			                           <p id="user_id" style="display:none;"><sec:authentication property="principal.id" /></p>
+			                        </div>
+			                        <button type="submit" class="btn btn-success" ng-click="addComment()">Submit</button>
+			                    </form>
+			                </div>
+			             </sec:authorize>
                 <!-- ============== end comment =========== -->
+                
+                <!--  ======================= List Comment ===================== -->
+                <div class="comment" style="background:#ffffff;padding:10px 14px;border:1px solid rgba(0,0,0,0.2);margin-top:10px;">
+	                <div class="media"  ng-repeat="cm in comments">
+						  <div class="media-left">
+						    <a href="#">
+						    <!-- 	<i class="fa fa-users fa-3x"></i> -->
+						     <img class="media-object" src="${pageContext.request.contextPath}/resources/images/text.png" alt="Generic placeholder image">
+						    </a>
+						  </div>
+						  <div class="media-body">
+						    <h4 class="media-heading" ng-bind-template="{{cm.user.first_name}}"></h4>
+						    <p>{{cm.comment}}</p>
+						  </div>
+					</div>
+				</div>
+			<!--  ======================= end List Comment ===================== -->
 					</div>
 					<div class="col-md-5 box-img formlogin restinfo">
 							<h2>Restaurant Information</h2>
@@ -221,12 +243,15 @@
 	<!-- Add Media helper (this is optional) -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 	
+	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
+	
 	<script>
 	//==================== Get Restaurant Information ===================
 		var app = angular.module("app", []);
 	  	app.controller("mainCtrl", function($http, $scope){
 	  		
 	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	  		console.log(id);
 	  		
 	  		$scope.getRestDetail = function(){
 	  			
@@ -255,7 +280,43 @@
 	  				console.log($scope.menus);
 	  			});
 	  		}
+	  		
+	  		
+	  		
+			//==================== Get comment ===================
+				//http://localhost:8080/rest/comment/restaurant/3
+			$scope.getComment = function(rest_id){
+				$http.get("${pageContext.request.contextPath}/rest/comment/restaurant/"+rest_id)
+	  			.then(function(rsp){
+	  				
+	  				$scope.comments = rsp.data.DATA;
+	  				console.log($scope.comments);
+	  			});
+			}
 			
+			$scope.getComment(id);
+			//==================== add comment ===================
+			$scope.addComment = function(){
+				var user_id = parseInt($("#user_id").text());
+				var rest_id = parseInt(id);
+				data = {
+						  "comment":$scope.comment_text,
+						  "user": {
+						    "user_id": user_id
+						  },
+						  "rest": {
+						    "rest_id": rest_id
+						    }
+						};
+				
+				console.log(data);
+			$http.post("${pageContext.request.contextPath}/rest/comment/", data)
+	  			.then(function(rsp){
+	  				$scope.getComment(id);
+	  				$scope.comment_text = "";
+	  				
+	  			});
+			}
 	  	});
 	  	//========================= Style Button ================
 	  	$(".btn-outline-success").on("mouseenter", function(){

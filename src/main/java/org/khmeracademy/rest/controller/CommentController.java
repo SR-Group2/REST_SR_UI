@@ -31,10 +31,10 @@ public class CommentController {
 	private String WS_URL;
 	
 	//!=========================== Get All Comments ======================================
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Map<String , Object>> getAllComments(){
+	@RequestMapping(value="/restaurant/{rest_id}",method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> getAllComments(@PathVariable int rest_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/comment/get-comment", HttpMethod.GET , request , Map.class) ;
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/comment/get-comment/"+rest_id, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	

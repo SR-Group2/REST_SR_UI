@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="org.khmeracademy.rest.entities.User"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
     
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
@@ -83,7 +87,7 @@
 					
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/admin/category" target="_self">
+					<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
 						<i class="fa fa-book"></i>
 						<span class="title">Menu Restaurant</span>
 					</a>
@@ -94,6 +98,7 @@
 						<i class="fa fa-cutlery"></i>
 						<span class="title">Restaurant</span>
 					</a>
+					
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/brand" target="_self">
@@ -131,7 +136,9 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="" 
 							class="img-circle" width="44">
-							${username}
+							<sec:authorize access="isAuthenticated()">
+								 <sec:authentication property="principal.username" />
+							</sec:authorize>
 						</a>
 		
 						<ul class="dropdown-menu">

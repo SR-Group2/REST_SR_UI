@@ -135,7 +135,6 @@
 				</div>
 			</div>
 
-
 		</div>
 		<!-- end container -->
 	</section>
@@ -143,7 +142,7 @@
 
 	<!-- ========= Pagination ============ -->
 	<section class="cotainer text-xs-center">
-		<nav id="pagination" class="pagination"></nav>
+		<!-- <nav id="pagination" class="pagination"></nav> -->
 	</section>
 
 	<!-- ========= footer ============ -->
@@ -218,7 +217,7 @@
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2>{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize">{{= restype_name }}</h4>
-				<a href="#"><img class="img-fluid" alt="" src="/resources/images/pizza-png-23.png"></a>
+				<a href="#"><img class="" alt="" src="/resources/images/restype/{{= restype_picture}}" width="200" height="150"></a>
 			</div>
 		</div>
 	</script>

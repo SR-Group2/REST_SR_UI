@@ -22,6 +22,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 		registry.addViewController("/detail_rest/{id}").setViewName("detail_rest");
 		registry.addViewController("/upload").setViewName("upload");
 		
+		
 	}
 	
 	@Override

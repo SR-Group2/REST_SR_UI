@@ -22,6 +22,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 <style>
 
 </style>
@@ -249,6 +251,8 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
+		
+	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
     
   
    <!--  ================ JQuery Template ======== -->
@@ -256,10 +260,10 @@
 		<div class="col-md-4">
 			<div class="list-box" onclick="detailRest({{= rest_id}})">
 				<div>
-					<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/Burger-PNG-Image.png">
+					<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restaurants/restaurant_text.png">
 				</div>
 				<div class="list-des">
-					<h4>{{= rest_name }}</h4>
+					<p>{{= rest_name }}</p>
 					<i class="fa fa-star text-warning"></i>
 					<i class="fa fa-star text-warning"></i>
 					<i class="fa fa-star text-warning"></i>
@@ -278,7 +282,7 @@
 	var app = angular.module("app",[]);
 	app.controller("mainCtrl", function($scope,$http){
 		$scope.getRestype = function () {
-	    	$http.get("${pageContext.request.contextPath}/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=20")
+	    	$http.get("${pageContext.request.contextPath}/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=12")
 		    	.then(function (response) {
 		    	$scope.categories = response.data.DATA;
 		    	console.log($scope.categories);
@@ -307,7 +311,7 @@
 		restaurant.getRest = function(currentPage, id) {
 			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/rest/restaurant/list/"+id+"?page="+currentPage+"&limit=20",
+				url : "${pageContext.request.contextPath}/rest/restaurant/list/"+id+"?page="+currentPage+"&limit=12",
 				type : 'GET',
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader("Accept",
@@ -374,7 +378,7 @@
 		/* =======================   Load Data According to typehead select  With Pagination ================== */
 		function searchRestByQuery(keywords){
 			$.ajax({ 
-			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keywords+"&page="+currentPage+"&limit=20", 
+			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keywords+"&page="+currentPage+"&limit=12", 
 			    type: 'GET',
 			    beforeSend: function(xhr) {
                     xhr.setRequestHeader("Accept", "application/json");
@@ -412,7 +416,7 @@
 			var keyword = $(this).val();
 			check = true;
 			$.ajax({ 
-			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=20", 
+			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=12", 
 			    type: 'GET',
 			    beforeSend: function(xhr) {
                     xhr.setRequestHeader("Accept", "application/json");
@@ -474,7 +478,7 @@
 				  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 				  queryTokenizer: Bloodhound.tokenizers.whitespace,
 				  remote: {
-				        url: "${pageContext.request.contextPath}/rest/restaurant/search?keyword=%QUERY%"+"&page="+currentPage+"&limit=20",
+				        url: "${pageContext.request.contextPath}/rest/restaurant/search?keyword=%QUERY%"+"&page="+currentPage+"&limit=12",
 				        wildcard: '%QUERY%',
 				        filter: function (restaurants) {
 				            return $.map(restaurants.DATA, function (restaurant) {

@@ -7,7 +7,7 @@ app.controller('commentCtrl', function($scope, $http) {
 
 	$scope.getAllComment = function () {
 	
-    $http.get('http://localhost:8080/rest/comment')
+    $http.get('http://localhost:8080/rest/comment/restaurant/3')
     .then(function (response) {
     	$scope.comments = response.data.DATA;
     });

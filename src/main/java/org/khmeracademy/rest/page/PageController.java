@@ -59,4 +59,10 @@ public class PageController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping(value="/menu", method = RequestMethod.GET)
+	public String menPage(ModelMap map){
+		map.addAttribute("page", "menu.jsp");
+		return "admin/admin";
+	}
+	
 }

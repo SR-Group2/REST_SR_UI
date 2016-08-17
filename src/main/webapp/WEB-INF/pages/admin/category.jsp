@@ -15,7 +15,7 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th>#</th>					
-							<th>Category Name</th>
+							<th>Menu Name</th>
 							<th>Other</th>
 							<th>Date Add</th>
 							<th>Date Modify</th>
@@ -40,12 +40,21 @@
 					</tbody>
 				
 				</table>
-				<div class="text-md-center page">
-				<dir-pagination-controls
+				<div class="text-md-center">
+				<!-- <dir-pagination-controls
 			       max-size="5"
 			       direction-links="true"
 			       boundary-links="true" >
-			    </dir-pagination-controls>
+			    </dir-pagination-controls> -->
+			    <!-- ================= Pagination ===================== -->
+				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
+					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
+					 <li><a href="#">3</a></li> 
+					 <li><a href="#">4</a></li> 
+					 <li><a href="#">5</a></li> 
+					 <li><a href="#">6</a></li> 
+					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
+				 </ul>
 			    </div>	
 		</div>	
 </div>	

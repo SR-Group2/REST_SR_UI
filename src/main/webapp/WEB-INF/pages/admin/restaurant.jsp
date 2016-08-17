@@ -1,9 +1,16 @@
 <div ng-controller="restCtrl">
 <div class="col-md-12">
-	<div class="well">
-		<a href="${pageContext.request.contextPath}/admin/addRestaurant" target="_self""><button type="button" class="btn btn-primary">
-		<i class="fa fa-plus-square-o" ></i> Add Restaurant</button></a>
-	</div>
+	<div class="card-header">
+			  <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#btnAdd"  >
+			  	Add New <i class="fa fa-cutlery"></i>
+			  </button>
+			  <div class="form-group pull-md-right col-md-5">
+			    <div class="input-group ">
+			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
+			      <div class="input-group-addon btn-blue">Search</div>
+			    </div>
+			  </div>
+		</div>
 	<div class="card card-outline-secondary">
 		<div class="card-header">
 			<h3 class="card-title">Restaurant Information</h3>
