@@ -1,14 +1,21 @@
 <div ng-controller="restCtrl">
 <div class="col-md-12">
 	<div class="card-header">
-			  <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#btnAdd"  >
-			  	Add New <i class="fa fa-cutlery"></i>
-			  </button>
+			 		
+			   <a href="${pageContext.request.contextPath}/admin/addRestaurant">
+				  	<button class="btn btn-primary btn-icon" >
+				  		Add New <i class="fa fa-cutlery"></i>
+				  	</button>
+				 </a>
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
 			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
 			      <div class="input-group-addon btn-blue">Search</div>
+			    
 			    </div>
+			    
+			   
+				  
 			  </div>
 		</div>
 	<div class="card card-outline-secondary">

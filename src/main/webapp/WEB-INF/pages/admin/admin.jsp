@@ -37,6 +37,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/custom.css">
 	
 	
+	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
+	<script>$.noConflict();</script>
+	
 </head>
 <body >
 <div class="page-container">
@@ -269,6 +272,8 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/joinable.js"></script>
 	
+	
+	
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.sparkline.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/rickshaw/vendor/d3.v3.js"></script>
@@ -296,6 +301,10 @@
 	<!-- =========== JS Application  ================ -->
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/phanit.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/restaurant.js"></script>
+	
+	<!--  =====================  File Upload   ========================= -->
+	
+
 	
 	
 </body>

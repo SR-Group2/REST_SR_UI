@@ -148,6 +148,6 @@
 <!-- The File Upload Angular JS module -->
 <script src="${pageContext.request.contextPath}/resources/scripts/js/jquery.fileupload-angular.js"></script>
 <!-- The main application script -->
-<script src="${pageContext.request.contextPath}/resources/scripts/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/scripts/js/uploadApp.js"></script>
 </body>
 </html>
