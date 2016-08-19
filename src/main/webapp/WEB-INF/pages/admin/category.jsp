@@ -33,7 +33,7 @@
 							<td>{{cat.date_modify | date: "yyyy-MM-dd"}}</td>
 							<td>{{cat.picture}}</td>
 							<td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="getCategoryById(cat.category_id)">
-							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteCategory(cat.category_id);">
+							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteCategory(cat.category_id)">
 							<i class="fa fa-trash-o"></i></button></td>
 							
 						</tr>

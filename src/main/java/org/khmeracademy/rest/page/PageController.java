@@ -64,5 +64,15 @@ public class PageController {
 		map.addAttribute("page", "menu.jsp");
 		return "admin/admin";
 	}
+	@RequestMapping(value="/addBrand", method = RequestMethod.GET)
+	public String AddBrandPage(ModelMap map){
+		map.addAttribute("page", "addBrand.jsp");
+		return "admin/admin";
+	}
+	@RequestMapping(value="/addCategory", method = RequestMethod.GET)
+	public String AddCategoryPage(ModelMap map){
+		map.addAttribute("page", "addCategory.jsp");
+		return "admin/admin";
+	}
 	
 }

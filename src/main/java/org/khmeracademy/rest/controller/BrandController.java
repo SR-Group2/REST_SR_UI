@@ -35,7 +35,7 @@ public class BrandController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "{brand_id}",method = RequestMethod.GET)
+	@RequestMapping(value = "/{brand_id}",method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> findBrandById(@PathVariable int brand_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/brand/"+brand_id, HttpMethod.GET , request , Map.class) ;
@@ -56,7 +56,7 @@ public class BrandController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/update-brand", method = RequestMethod.PUT)
+	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<Map<String , Object>> updateBrand(@RequestBody AddBrand addBrand){
 		HttpEntity<Object> request = new HttpEntity<Object>(addBrand, header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/brand", HttpMethod.PUT , request , Map.class) ;
