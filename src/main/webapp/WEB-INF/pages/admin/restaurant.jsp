@@ -57,7 +57,7 @@
 								<select>
 									<option>-- Restaurant Menu-- </option>
 									<option ng-repeat="category in restaurant.categories">
-										{{category.category_name}}
+										{{category.url}}
 									</option>
 								</select>
 							</td>

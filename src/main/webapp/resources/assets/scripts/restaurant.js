@@ -3,7 +3,7 @@
 
 app.controller('restCtrl', function($scope, $http) {
 
-	
+	//================= DATA STATIC RESTYPE	 =======================
 	
 	$scope.restypes = [];
 	
@@ -30,6 +30,17 @@ app.controller('restCtrl', function($scope, $http) {
 //        $scope.restypes.push({restype_name: 'testing' + i, restype_id: i});
 // 
 //    }
+	
+	//================= GET ALL RESTAURANTS =====================
+	$scope.getAllRestaurants = function () {
+	    $http.get('http://localhost:8080/rest/restaurant/category')
+	    .then(function (response) {
+	    	console.log(response);
+	    	$scope.restaurants = response.data.DATA;
+	    });
+	}
+    $scope.getAllRestaurants();
+    
                 
 	 //================= Add RESTAURANTS =======================
 	
@@ -58,57 +69,28 @@ app.controller('restCtrl', function($scope, $http) {
 	    });
 	}
 	
-	$scope.getCategoryRest();
-	$scope.getMenuRest();
+//	$scope.getCategoryRest();
+//	$scope.getMenuRest();
 	 //=================END Add RESTAURANTS =====================
 	
-	//================= GET ALL RESTAURANTS =====================
-	$scope.getAllRestaurants = function () {
-	    $http.get('http://localhost:8080/rest/restaurant/category')
-	    .then(function (response) {
-	    	console.log(response);
-	    	$scope.restaurants = response.data.DATA;
-	    });
-	}
-    $scope.getAllRestaurants();
+	
   //=================  ADD RESTAURANTS =====================
     $scope.addRestaurant = function(e){
     	
     	e.preventDefault();
-    	
+    	$scope.user_id = parseInt($("#user_id").text());
     	data = {
-			  "address": {"street": "22222", "district": "22222","communce": "22222", "province": "22222"},
-				  "rest_name_kh": "22222",
-				  "rest_name": "22222",
-				  "location": "22222",
-				  "about": "22222",
-				  "contact": "22222",
-				  "user_id": 42,
-				  "open_close": "22222",
-				  "categories": [
-				    {
-				      "category_name": "1",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    },{
-				      "category_name": "2",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    },
-				{
-				      "category_name": "3",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    },{
-				      "category_name": "4",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    }
-				  ],
+			  "address": {"street": $scope.street, 
+				  "district": $scope.district,
+				  "communce": $scope.communce, 
+				  "province": $scope.province},
+				  "rest_name_kh": $scope.rest_name_kh,
+				  "rest_name": $scope.rest_name,
+				  "location": $scope.location,
+				  "about": $scope.about,
+				  "contact": $scope.contact,
+				  "user_id": $scope.user_id,
+				  "open_close":$scope.open_close,
 				 "restypes_id": $scope.data_Restypes
 			};
     	
