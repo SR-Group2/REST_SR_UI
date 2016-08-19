@@ -52,6 +52,16 @@ public class UserController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value="/sign-up", method = RequestMethod.POST)
+	public ResponseEntity<Map<String , Object>> signUp(@RequestBody Users user){
+		System.out.println("UI");
+		HttpEntity<Object> request = new HttpEntity<Object>(user,header);
+		System.out.println(WS_URL);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/sign-up", HttpMethod.POST , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/img", method = RequestMethod.POST)
 	public ResponseEntity<Map<String , Object>> getImages(@RequestBody Users users){
 		HttpEntity<Object> request = new HttpEntity<Object>(users,header);

@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html ng-app="myapp">
+<html ng-app="myApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NHAM EY Welcome</title>
@@ -56,6 +56,10 @@
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
 							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
 						</div>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+						</div>
 					</li>
 					</sec:authorize>
 				</ul>
@@ -74,7 +78,7 @@
 				<div class="row">
 					<div class="col-md-3"> 
 						<div class="img-profile">
-							<img class="img-circle img-fluid" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/profile/PH.jpg">
+							<img class="img-circle img-fluid" class="img-fluid" src="${pageContext.request.contextPath}/resources/images/profile/profile-icon.png">
 						</div>	
 					</div>
 					<div class="col-md-9"> 
@@ -94,7 +98,7 @@
 							</div>	
 						</div>
 						<div row>
-							<h3>240</h3>
+							<h3>20</h3>
 							<p>Favoriate</p>
 						</div>
 					</div>
@@ -108,6 +112,7 @@
 				<div class="col-md-3"  ng-repeat=" fav in favouriteRestaurants">
 					<div class="fav-box">
 						<h6>{{fav.rest.rest_name}}</h3>
+						<h6>{{fav.rest.total}}</h6>
 						<img  class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restype/Western food.png">
 					</div>
 				</div>

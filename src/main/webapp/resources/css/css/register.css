@@ -1,12 +1,17 @@
 
-.frmSignup{
+.signup .frmSignup{
 	margin-top:40px;
 	border: 1px solid rgba(0,0,0,0.2);
     padding: 25px 10px;
-    border-radius: 20px;	
+    border-radius: 10px;	
     background-color:#ffffff;
 }
-.frmSignup .input-group-addon {
+.signup .frmSignup .input-group-addon {
     border-radius: 0px !important;
 }
+.signup .register-info {
+	
+	padding: 20px 20px;
+}
+
 

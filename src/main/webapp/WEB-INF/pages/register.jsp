@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="myApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NHAM EY Welcome</title>
@@ -23,12 +23,10 @@
 	href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/css/register.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-forms.css">
 	
 </head>
-<body ng-controller="mainCtrl">
+<body ng-controller="signUpCtrl">
 	<!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded"
 		style="background-color: #ffffff;">
@@ -68,103 +66,113 @@
 
 <%--   <sec:authentication property="principal.id" /> 
   <sec:authentication property="principal.username" />  --%>
-	<section>
+	<section class="signup">
 		<div class="container">
-			<div class="frmSignup">
-				<form>
-				<fieldset>
-				<div class="col-md-8 offset-md-2">
-
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="lblfirstname">First Name</label>
-				    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name">
-				    		</div>
-						</div>
-				    	<div class="col-md-6">
-				    		<div class="form-group">
-				    		<label for="lbllastname">Last Name</label>
-				    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name">
-				    		</div>
-				    	</div>
-				    <div class="col-md-12">
-					  <div class="form-group">
-					    <label for="lblusername">Username</label>
-					    <input type="text" class="form-control" id="lblusername" placeholder="Username">
-					  </div>
-				  	</div>
-				  	<div class="col-md-12">
-				  		 <div class="form-group">
-						    <label for="lblemail">Email</label>
-						    <input type="email" class="form-control" id="lblemail" placeholder="Email">
-						  </div>
-				  	
-				  	</div>
-				  	<div class="col-md-12">
-				  		<div class="form-group">
-				    		<label for="lblpassword">Password</label>
-				   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password">
-						</div>
-				  	</div>
-				  	<div class="col-md-12">
-					  	<div class="form-group">
-						    <label for="lblconfirmpassword">Confirm Password</label>
-						    <input type="password" class="form-control" id="lblconfirmpassword" placeholder="Confirm Password">
-					  	</div>
-				  	</div>
-				  	<div class="col-md-12">
-				  		<div class="form-group">
-							<label for="" class="">Date of Birth</label>
-							<div class="input-group">
-										<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" ng-model="txtdob" name="dob">				
-										<div class="input-group-addon">
-											<i class="fa fa-calendar"></i>
-										</div>
+			
+				<div class="col-md-8">
+					<div class="frmSignup">
+					<div class="register-info">
+						<h3>Register Account</h3>
+						<p>If you already have an account with us, please login at the login page.</p>
+					</div>
+					<form name="frmRegister">
+						<fieldset>
+								<div class="col-md-6">
+									<div class="form-group">
+									<label for="lblfirstname">First Name</label>
+						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" ng-model="txtfirstname" name="password">
+						    		</div>
 								</div>
-							</div>
-				  	</div>
-				  	<div class="col-md-12">
-				  		<label for="">Gender</label>
-				  		<div class="input-group">
-					  		<label class="radio-inline">
-							  <input type="radio" name="gender" id="gender" value="Male"> Male
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="gender" id="gender" value="Female"> Female
-							</label>
-						</div>
-				  	</div>
-				  	<div class="col-md-12">
-				  		<div class="col-md-3">																	
-		  							<div>
-										<label  class="input-label">User Profile</label>
-									</div>
-									<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
-										<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
-											<img src="" alt="...">
-										</div>
-										<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
-										<div>
-											<span class="btn btn-white btn-file">
-												<span class="fileinput-new">Select image</span>
-												<span class="fileinput-exists">Change</span>
-												<input type="file" name="..." accept="image/*">
-											</span>
-											<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+						    		<label for="lbllastname">Last Name</label>
+						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" ng-model="txtlastname" name="lastname">
+						    		</div>
+						    	</div>
+						    <div class="col-md-12">
+							  <div class="form-group">
+							    <label for="lblusername">Username</label>
+							    <input type="text" class="form-control" id="lblusername" placeholder="Username" ng-model="txtusername" name="username" required ng-minlength="3" ng-maxlength="8">
+							  </div>
+						  	</div>
+						  	<div class="col-md-12">
+						  		 <div class="form-group">
+								    <label for="lblemail">Email</label>
+								    <input type="email" class="form-control" id="lblemail" placeholder="Email" ng-model="txtemail" name="email" required>
+								  </div>
+						  	
+						  	</div>
+						  	<div class="col-md-12">
+						  		<div class="form-group">
+						    		<label for="lblpassword">Password</label>
+						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password" ng-model="txtpassword" name="password" required pattern=".{2,}">
+								</div>
+						  	</div>
+						  	<div class="col-md-12">
+							  	<div class="form-group">
+								    <label for="lblconfirmpassword">Confirm Password</label>
+								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" wj-validation-error="txtconfrimpword != txtpassword ? 'Passwords don\'t match' : ''">
+							  	</div>
+						  	</div>
+						  	<div class="col-md-12">
+						  		<div class="form-group">
+									<label for="" class="">Date of Birth</label>
+									<div class="input-group">
+												<input type="date" class="form-control" placeholder="Year-Month-Day" ng-model="txtdob" name="dob">				
+												<div class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</div>
 										</div>
 									</div>
+						  	</div>
+						  	<div class="col-md-12">
+						  		<label for="">Gender</label>
+						  		<div class="input-group">
+							  		<label class="radio-inline">
+									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Male"> Male
+									</label>
+									<label class="radio-inline">
+									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Female"> Female
+									</label>
 								</div>
-				  	</div>
-				  	<div class="col-md-12">
-				    	<div class="form-group">
-							<button type="button" class="btn btn-outline-success">Sign Up</button>
+						  	</div>
+						  	<div class="col-md-12">
+						  		<div class="col-md-3">																	
+				  							<div>
+												<label  class="input-label">User Profile</label>
+											</div>
+											<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
+												<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
+													<img src="" alt="...">
+												</div>
+												<div class="" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
+												<div>
+													<span class="btn btn-white btn-file">
+														<span class="fileinput-new">Select image</span>
+														<span class="fileinput-exists">Change</span>
+														<input type="file" name="..." accept="image/*">
+													</span>
+													<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+												</div>
+											</div>
+										</div>
+						  	</div>
+						  	<div class="col-md-12">
+						    	<div class="form-group">
+									<button type="button" class="btn btn-outline-success" ng-click="addUser()">Sign Up</button>
+								</div>
+						  	</div>
+						  
+						  
+						  </fieldset>					  
+						</form>
 						</div>
-				  	</div>
-				  	
-				  </div>
-				  </fieldset>
-				</form>
-		 	</div>	
+					</div>
+				<div class="col-md-4">
+				
+				
+				</div>
+					
 		</div>		
 	</section>
 
@@ -233,35 +241,10 @@
 	src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 		
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
-	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datepicker.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.js"></script> 
-	
-	
-	
-	
-	<!-- Imported scripts on this page -->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-	<!-- Bottom scripts (common) -->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/gsap/main-gsap.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/resources/assets/js/resizeable.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-api.js"></script>
-
-	<!-- JavaScripts initializations and stuff -->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-custom.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/resources/assets/scripts/angular-bootstrap-multiselect.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/scripts/app.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap-datepicker.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/scripts/script.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
-	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
+	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
 	
-	
-	<!-- Demo Settings -->
 
 	
 </body>
