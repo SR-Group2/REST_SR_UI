@@ -2,6 +2,7 @@ package org.khmeracademy.rest.controller;
 
 import java.util.Map;
 
+import org.khmeracademy.rest.entities.RestaurantForm;
 import org.khmeracademy.rest.entities.Restaurants;
 import org.khmeracademy.rest.entities.input.AddRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,10 +80,10 @@ public class RestaurantController {
 					HttpMethod.GET , request , Map.class) ;
 			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 		}
-	//================== Add To Restaurant =================================
+	//================== INSERT To Restaurant =================================
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Map<String , Object>> addRestaurant(@RequestBody Restaurants restaurants){
-		HttpEntity<Object> request = new HttpEntity<Object>(restaurants,header);
+	public ResponseEntity<Map<String , Object>> addRestaurant(@RequestBody RestaurantForm restaurantForm){
+		HttpEntity<Object> request = new HttpEntity<Object>(restaurantForm,header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/insert-restaurant", HttpMethod.POST , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}

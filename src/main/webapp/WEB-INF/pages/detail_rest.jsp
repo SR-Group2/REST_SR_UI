@@ -79,18 +79,23 @@
 								title="Category">
 						        <img  ng-repeat="menu in menus" src="${pageContext.request.contextPath}/resources/images/flipbook/{{menu.picture}}" >
 						        </a> --%>
+						        
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" class="img-fluid">
+						        	<img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" class="img-fluid">
 						        </a>
+						        
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						       	 	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
 						        </a>
+						        
 						        <a class="img-fluid" class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
 						        </a>
+						        
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
+						        	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
 						        </a> 
+						        
 						    </div>
 						</div>
 						<br>

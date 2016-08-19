@@ -10,8 +10,9 @@
 		<div class="card-header">
 			<h3 class="card-title">COMMENT INFORMATION</h3>
 		</div>
+		<fieldset>
 			<div class="panel-body">
-				<fieldset>
+				
 					<div class="row">
 						<div class="col-md-12">
 						<form name="commentInfo">
@@ -31,11 +32,13 @@
 									<textarea class="form-control " ng-model="$parent.comment" name="comment" rows = "6"></textarea>
 									<br>
 									<a href="${pageContext.request.contextPath}/admin/comment" target="_self"><button type="button" class="btn btn-green" ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid ||brandInfo.rest_name.$invalid || brandInfo.comment.$invalid" ng-click="addComment($event)" data-dismiss="modal">
-										<i class="fa fa-plus" aria-hidden="true"> Add Comment</i></button></a>
+										<i class="fa fa-plus" aria-hidden="true"> Add Comment</i></button>
+										<button type="button" class="btn btn-green" data-dismiss="modal">
+										<i class="fa fa-eye" aria-hidden="true"> View Comment</i></button></a>
 								</div>
-								   </div> 
- 							</div>
-						</form>
+							</div>
+						</form>	 
+ 						</div>
 						</div>
 						</div>
 					</fieldset>
