@@ -2,6 +2,7 @@ package org.khmeracademy.rest.page;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -72,6 +73,13 @@ public class PageController {
 	@RequestMapping(value="/addCategory", method = RequestMethod.GET)
 	public String AddCategoryPage(ModelMap map){
 		map.addAttribute("page", "addCategory.jsp");
+		return "admin/admin";
+	}
+	
+	@RequestMapping(value="/restaurant/{rest_id}", method = RequestMethod.GET)
+	public String UpdateRestaurantpage(ModelMap map, @PathVariable int rest_id){
+		map.addAttribute("page", "updateRestaurant.jsp");
+		map.addAttribute("rest_id", rest_id);
 		return "admin/admin";
 	}
 	

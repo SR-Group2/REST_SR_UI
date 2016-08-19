@@ -55,12 +55,22 @@ public class RestaurantController {
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/get-restaurant", HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
-	//================== get All Restaurants with Category ID =================================
+	//================== get All Restaurants with PAGINATION =================================
 		@RequestMapping(value="/category", method = RequestMethod.GET)
-		public ResponseEntity<Map<String , Object>> getRestaurantWithCategory(){
+		public ResponseEntity<Map<String , Object>> getRestaurantWithCategory(
+				 		@RequestParam(value = "page", required = false , defaultValue="1") int page 
+				 		,@RequestParam(value="limit" , required = false , defaultValue="15") int limit
+				){
+			
+			UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl(WS_URL+"/restaurant/get-restaurant-with-category")
+					.queryParam("page", page)
+					.queryParam("limit", limit);
 			HttpEntity<Object> request = new HttpEntity<Object>(header);
-			ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/get-restaurant-with-category", HttpMethod.GET , request , Map.class) ;
+			ResponseEntity<Map> response = rest.exchange(uri.build().toUriString(), HttpMethod.GET , request , Map.class) ;
+			
 			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+//			ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/get-restaurant-with-category", HttpMethod.GET , request , Map.class) ;
+			//return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 		}
 	//================== GET RESTAURANT BY ID =========================================
 	@RequestMapping(value="/{rest_id}",method = RequestMethod.GET)

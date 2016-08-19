@@ -80,9 +80,9 @@
 						        <img  ng-repeat="menu in menus" src="${pageContext.request.contextPath}/resources/images/flipbook/{{menu.picture}}" >
 						        </a> --%>
 						        
-						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        	<img src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" class="img-fluid">
-						        </a>
+						       <!--  <a class="fancybox"  ng-repeat="menu in menus" rel="gallery1" href="http://localhost:9999{{menu.url}}" title="Category">
+						        	<img src="http://localhost:9999{{menu.url}}" class="img-fluid">
+						        </a> -->
 						        
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
 						       	 	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
@@ -94,7 +94,7 @@
 						        
 						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
 						        	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
-						        </a> 
+						        </a>  
 						        
 						    </div>
 						</div>
@@ -104,7 +104,7 @@
 						<sec:authorize access="isAuthenticated()">
 							<div class="well">
 			                    <h5>Leave a Comment:</h5>
-			                    <form role="form" lpformnum="1">
+			                    <form role="form">
 			                        <div class="form-group">
 			                            <textarea class="form-control" rows="3" ng-model="comment_text" required></textarea>
 			                           <p id="user_id" style="display:none;"><sec:authentication property="principal.id" /></p>
@@ -229,7 +229,7 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/restaurant-menu.js"></script>
+	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/restaurant-menu.js"></script> --%>
 	
 	
 
@@ -293,9 +293,11 @@
 			$scope.getComment = function(rest_id){
 				$http.get("${pageContext.request.contextPath}/rest/comment/restaurant/"+rest_id)
 	  			.then(function(rsp){
+	  				if(rsp.data.DATA !=null){
+	  					$scope.comments = rsp.data.DATA;
+	  				}
 	  				
-	  				$scope.comments = rsp.data.DATA;
-	  				console.log($scope.comments);
+	  				console.log(""rsp);
 	  			});
 			}
 			

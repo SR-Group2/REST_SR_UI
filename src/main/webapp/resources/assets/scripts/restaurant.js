@@ -4,7 +4,7 @@
 app.controller('restCtrl', function($scope, $http) {
 
 	//================= DATA STATIC RESTYPE	 =======================
-	
+	var currentPage = 1;
 	$scope.restypes = [];
 	
 	$scope.dataRestypes = [
@@ -31,18 +31,139 @@ app.controller('restCtrl', function($scope, $http) {
 // 
 //    }
 	
-	//================= GET ALL RESTAURANTS =====================
-	$scope.getAllRestaurants = function () {
-	    $http.get('http://localhost:8080/rest/restaurant/category')
+	//===================================== search restaurant =======================
+	
+	// constructs the suggestion engine
+	var substringMatcher = function(strs) {
+		return function findMatches(q, cb) {
+			var matches, substringRegex;
+
+			// an array that will be populated with substring matches
+			matches = [];
+
+			// regex used to determine if a string contains the substring `q`
+			substrRegex = new RegExp(q, 'i');
+
+			// iterate through the pool of strings and for any string that
+			// contains the substring `q`, add it to the `matches` array
+			$.each(strs, function(i, str) {
+				if (substrRegex.test(str)) {
+					matches.push(str);
+				}
+			});
+
+			cb(matches);
+		};
+	};
+
+	var states;
+
+	var bestPictures = new Bloodhound(
+		{
+			datumTokenizer : Bloodhound.tokenizers.obj
+					.whitespace('value'),
+			queryTokenizer : Bloodhound.tokenizers.whitespace,
+			remote : {
+				url : "http://localhost:8080/rest/restaurant/search?keyword=%QUERY%"+ "&page=" + currentPage + "&limit=15",
+				//url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
+				wildcard : '%QUERY%',
+				filter : function(restaurants) {
+					// Map the remote source JSON array to a JavaScript array
+					return $.map(restaurants.DATA, function(restaurant) {
+						return {
+							value : restaurant.rest_name
+						};
+					});
+				}
+			}
+		});
+
+	$('#remote .typeahead').typeahead(null, {
+		name : 'best-pictures',
+		display : 'value',
+		source : bestPictures
+	});
+
+	$('#keyword').on('typeahead:selected', function(){ 
+		$("#getRest").empty();
+		var keyword = $(this).val();
+		check = true;
+		$.ajax({ 
+		    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=15", 
+		    type: 'GET',
+		    beforeSend: function(xhr) {
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+            },
+		    success: function(data) { 
+		    	console.log(data);
+		    	if (data.STATUS != false) {
+					console.log(data);
+					$("#getRest").empty();
+					$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
+					$('#getRest').css("cursor", "pointer");
+					if (check) {
+						restaurant.setPagination(
+								data.PAGINATION.TOTAL_PAGES,
+								currentPage);
+						check = false;
+					}
+					$("#pagination").show()
+				} else {
+					$("#pagination").hide();
+					$("#getRest").empty();
+				}
+		   
+		    }
+			});
+	});
+	
+	//================= GET ALL RESTAURANTS  WITH PAGINATION =====================
+	var check = true;
+	
+	$scope.getAllRestaurants = function (currentPage) {
+	    $http.get('http://localhost:8080/rest/restaurant/category?limit=15&page='+currentPage)
 	    .then(function (response) {
-	    	console.log(response);
+	    	console.log(response.data);
+	    	console.log(currentPage);
 	    	$scope.restaurants = response.data.DATA;
-	    });
+	    	console.log($scope.restaurants);
+	    	if(check){
+				setPagination(response.data.PAGINATION.TOTAL_PAGES,currentPage);
+				check=false;
+	    	}
+	    }, function(){
+       	 	alert('Error');
+        });
 	}
-    $scope.getAllRestaurants();
+	    	
+    setPagination = function(totalPage, currentPage){
+	    	$('#pagination').bootpag({
+		        total: totalPage,
+		        page: currentPage,
+		        maxVisible: 10,
+		        leaps: true,
+		        firstLastUse: true,
+		        first: 'First',
+		        last: 'Last',
+		        wrapClass: 'pagination',
+		        activeClass: 'active',
+		        disabledClass: 'disabled',
+		        nextClass: 'next',
+		        prevClass: 'prev',
+		        lastClass: 'last',
+		        firstClass: 'first'
+		    }).on("page", function(event, currentPage){
+		    	check = false;
+		    	getCurrentPage = currentPage;
+		    	$scope.getAllRestaurants(currentPage);
+		    }); 	
+		};
+				
+	$scope.getAllRestaurants(currentPage);
     
                 
-	 //================= Add RESTAURANTS =======================
+	 //================= TEST RESTAURANTS =======================
 	
 	$scope.getCategoryRest = function () {
 		
@@ -68,9 +189,7 @@ app.controller('restCtrl', function($scope, $http) {
 	    	$scope.menus = response.data.DATA;
 	    });
 	}
-	
-//	$scope.getCategoryRest();
-//	$scope.getMenuRest();
+
 	 //=================END Add RESTAURANTS =====================
 	
 	
@@ -109,6 +228,21 @@ app.controller('restCtrl', function($scope, $http) {
             headers: {'Content-Type': undefined}
 		}).then(function(response){
 			console.log(response.data);
+			swal({   
+        			title: "INSERTED SUCCESSFULLY!",   
+        			text: "THANK YOU",   
+        			type: "success",   
+        			confirmButtonColor: "#007d3d",   
+        			closeOnConfirm: false,   
+        			closeOnCancel: false }, 
+        			function(isConfirm){   
+        				if(isConfirm) {     				
+        					window.location.href="http://localhost:8080/admin/addRestaurant";
+        				}else {     
+        					swal("Cancelled", "Your imaginary file is safe :)", "error");   
+        				} 
+        			});
+			
 		}, function(error){
 			console.log(error.data);
 			alert('failed to upload data! Please Try again !!!!!');
@@ -137,7 +271,59 @@ app.controller('restCtrl', function($scope, $http) {
    		});
    		
    	}
+    //================= DELETE RESTAURANTS =====================
+    $scope.deleteRestaurant = function(rest_id, e){
+    	e.preventDefault();
+    	swal({   title: "Are you sure?",
+			text: "You will not be able to recover this imaginary file!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel",
+			closeOnConfirm: false,
+			closeOnCancel: false },
+			function(isConfirm){
+				if (isConfirm) {   
+					
+					$http.delete('http://localhost:8080/rest/restaurant/'+rest_id).then(function(response){
+						check = true;
+						$scope.getAllRestaurants(1);
+					});
+					
+					swal("Deleted!",
+						"Your imaginary file has been deleted.",
+						"success");   
+				} else {     
+					swal("Cancelled", "Your imaginary file is safe :)", "error");   
+				} 
+		});
+    	
+    }
+    	
    //================= UPDATE RESTAURANTS =====================
+    
+    var rest_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    $scope.getRestById = function(rest_id){
+    	$http({
+   			url: 'http://localhost:8080/rest/restaurant/'+rest_id,
+   			method:'GET'
+   		}).then(function(response){
+   			$scope.restaurant = response.data.DATA;
+   			$scope.rest_id = $scope.restaurant.rest_id;
+   			$scope.rest_name = $scope.restaurant.rest_name;
+   			$scope.restype_name = $scope.restaurant.restype_name;
+   			$scope.contact = $scope.restaurant.contact;
+   			$scope.about = $scope.restaurant.about;
+   			$scope.street = $scope.restaurant.street;
+   			console.log(response);
+   			
+   		},function(){
+
+   		});
+    };
+    $scope.getRestById(rest_id);
+    
     $scope.updateRestaurant = function(){
 		data={
 				rest_id: $scope.rest_id,
@@ -159,12 +345,6 @@ app.controller('restCtrl', function($scope, $http) {
 		});
 	}
     
-    $scope.deleteRestaurant = function(rest_id) {
-		$http.delete('http://localhost:8080/rest/restaurant/' + rest_id)
-		.then(function(response){
-			$scope.getAllRestaurants();
-		});	
-	}
   //================= CLEAR DATA WHEN LOAD FORM ADD =====================
     $scope.clearRestaurantForm = function(){
     	
@@ -177,53 +357,6 @@ app.controller('restCtrl', function($scope, $http) {
     	district: $scope.district = '';
     	province: $scope.province = '';
     }
-    
-    /*
-    data = {
-			  "address": {"street": "22222", "district": "22222","communce": "22222", "province": "22222"},
-				  "rest_name_kh": "22222",
-				  "rest_name": "22222",
-				  "location": "22222",
-				  "about": "22222",
-				  "contact": "22222",
-				  "user_id": 42,
-				  "open_close": "22222",
-				  "categories": [
-				    {
-				      "category_name": "1",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    },{
-				      "category_name": "2",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    },
-				{
-				      "category_name": "3",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    },{
-				      "category_name": "4",
-				      "other": "string",
-				      "picture": "string",
-				      "category_name_kh": "string"
-				    }
-				  ],
-				 "restypes_id": [
-				    {
-				      "restype_id": 4
-				    },{
-				      "restype_id": 5
-				    },{
-				      "restype_id": 6
-				    }
-				  ]
-			};
-			
-			*/
 
     
  });

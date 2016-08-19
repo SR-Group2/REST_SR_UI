@@ -9,18 +9,14 @@
 				 </a>
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
-			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
+			      <input type="text" class="form-control" ng-model="q" id="q" placeholder="search......" />
 			      <div class="input-group-addon btn-blue">Search</div>
-			    
-			    </div>
-			    
-			   
-				  
+			    </div>				  
 			  </div>
 		</div>
 	<div class="card card-outline-secondary">
 		<div class="card-header">
-			<h3 class="card-title">Restaurant Information</h3>
+			<!-- <h3 class="card-title">Restaurant Information</h3> -->
 		</div>
 				<table class="table table-striped">
 					<thead class="thead-inverse">
@@ -42,7 +38,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="restaurant in restaurants">
+						<tr ng-repeat="restaurant in restaurants | filter:q">
 							<td>{{$index+1}}</td>
 							<td>{{restaurant.rest_name}}</td>
 							<td>
@@ -71,10 +67,10 @@
 							<td>{{restaurant.address.district}}</td>
 							<td>{{restaurant.address.province}}</td>
 							<td>
-								<button type="button" class="btn btn-green btn-icon icon-left" data-toggle="modal" data-target="#btnUpdate" 
-								ng-click="getRestaurantById(restaurant.rest_id)">
-								<i class="fa fa-pencil-square-o"></i> Edit</button>
-							 	<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestaurant(restaurant.rest_id)">
+								<a href="${pageContext.request.contextPath}/admin/restaurant/{{restaurant.rest_id}}">
+								<button type="button" class="btn btn-green btn-icon icon-left" >
+								<i class="fa fa-pencil-square-o"></i> Edit</button></a>
+							 	<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestaurant(restaurant.rest_id, $event)">
 								<i class="entypo-cancel"></i> Delete</button></td>
 							
 						</tr>
@@ -82,14 +78,9 @@
 				
 				</table>
 				<!-- ================= Pagination ===================== -->
-				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
-					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
-					 <li><a href="#">3</a></li> 
-					 <li><a href="#">4</a></li> 
-					 <li><a href="#">5</a></li> 
-					 <li><a href="#">6</a></li> 
-					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
-				 </ul>
+				<div id="pagination" class="pull-right">
+												
+				</div>
 		</div>	
 </div>	
 		

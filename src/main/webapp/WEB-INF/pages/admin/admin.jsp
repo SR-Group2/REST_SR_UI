@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@page import="org.khmeracademy.rest.entities.User"%>
-<%@page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@page import="org.springframework.security.core.Authentication"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
     
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
@@ -35,7 +32,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-theme.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-forms.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/custom.css">
-	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 	
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script>$.noConflict();</script>
@@ -87,7 +84,6 @@
 						<i class="fa fa-sitemap"></i>
 						<span class="title">Menu Restaurant</span>
 					</a>
-					
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
@@ -141,6 +137,7 @@
 							class="img-circle" width="44">
 							<sec:authorize access="isAuthenticated()">
 								 <sec:authentication property="principal.username" />
+								 <p style="display:none" id="user_id"> <sec:authentication property="principal.id" /></p>
 							</sec:authorize>
 						</a>
 		
@@ -235,8 +232,6 @@
 			<div class="">
 			
 				<jsp:include page="${page}"></jsp:include>
-				
-				
 				<footer class="main" style="padding-left:10px;">
 			
 					&copy; 2016 <strong>SR-GROUP2</strong> Admin Dashboard <a href="#" target="_blank">Siem Reap</a>
@@ -291,6 +286,9 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/script.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/dirPagination.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 	
 	
 	<!-- Demo Settings -->
