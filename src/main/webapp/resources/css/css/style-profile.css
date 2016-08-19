@@ -1,0 +1,28 @@
+body{
+	background-color: #ffffff;
+}
+.profile .header-profile{
+
+}
+.profile .fav-box{
+	padding-top:20px;
+	margin-top:20px;
+	border-radius: 10px;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 2px #f9f9f9;
+}
+.profile h3{
+	color:green;
+}
+.profile .img-profile{
+	padding:20px;
+	margin:20px;	
+}
+.profile .text-profile{
+	padding:50px 20px 0px 20px;
+	margin:30px 0px;
+}
+.profile hr{
+	margin-top: 0px !important;
+	border:1px solid #d0d3d4;
+}
