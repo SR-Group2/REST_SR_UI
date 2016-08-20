@@ -34,6 +34,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 	
+	<!--  ================================ jquery image thumbnail ==============================  -->
+	<link href="${pageContext.request.contextPath}/resources/jquery_filter/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/jquery_filter/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+	
+	
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script>$.noConflict();</script>
 	
@@ -290,19 +295,21 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 	
+	<script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 	
 	<!-- Demo Settings -->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/neon-demo.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.js"></script>
 	
-	
+
 		
 	<!-- =========== JS Application  ================ -->
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/phanit.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/restaurant.js"></script>
 	
-	<!--  =====================  File Upload   ========================= -->
+	<!-- =========== JQuery Filter  ================ -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/jquery.filer.min.js?v=1.0.5"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/custom.js?v=1.0.5"></script>
 	
-
 	
 	
 </body>

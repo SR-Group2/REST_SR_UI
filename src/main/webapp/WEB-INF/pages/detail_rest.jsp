@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flipbook.css"/>
+	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flipbook.css"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	
 </head>
@@ -72,8 +72,10 @@
 								  </div>
 								  
 								
-					  			  <div>PAGE7</div>
-								  <div>PAGE8</div>
+					  			<div>Page</div>
+					  			<div>Page</div>
+					  			 <div ng-repeat="menu in menus">PAGE Menu</div>
+								 
 							
 							</div>
 						</flipbook>
@@ -211,6 +213,9 @@
 	
 	<script>
 	//==================== Get Restaurant Information ===================
+		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	  		console.log(id);
+	  		
 		var app = angular.module("app", []);
 		//=========================== flipbook ============================
 		app.directive('flipbook', function(){
@@ -228,8 +233,14 @@
 		    },
 		    controller: function($scope){
 		      $scope.show_page = function(page){
-		        console.log("page", page)
-		        $('#flipbook').turn('page', page);
+		    	  $http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
+		  			.then(function(rsp){
+		  				console.log(rsp);
+		  				$scope.menus = rsp.data.DATA;
+		  				console.log($scope.menus);
+		  				
+		  			});
+		    	  $('#flipbook').turn('page', page);
 		      }
 		     
 		    }
@@ -239,8 +250,7 @@
 	
 	  	app.controller("mainCtrl", function($http, $scope){
 
-	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-	  		console.log(id);
+	  		
 	  		
 	  		$scope.getRestDetail = function(){
 	  			
@@ -255,20 +265,20 @@
 	  				$scope.owner_name = $scope.rest.user.username;
 	  				$scope.rest_id = $scope.rest.rest_id;
 	  				
-	  				$scope.getCategoryByRestID($scope.rest_id);
+	  				//$scope.getCategoryByRestID($scope.rest_id);
 	  			});
 	  		}
 	  		
 	  		$scope.getRestDetail();
 	  		
 	  		//==================== Get Category From Restaurant ID ===================
-			$scope.getCategoryByRestID = function(rest_id){	
+			/* $scope.getCategoryByRestID = function(rest_id){	
 	  			$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
 	  			.then(function(rsp){
 	  				$scope.menus = rsp.data.DATA;
 	  				console.log($scope.menus);
 	  			});
-	  		}
+	  		} */
 
 			//==================== Get comment ===================
 				//http://localhost:8080/rest/comment/restaurant/3
@@ -353,5 +363,6 @@
 	
 	    
     </script>
+   
 </body>
 </html>

@@ -1,7 +1,25 @@
 //var restApp= angular.module('restApp',['btorfs.multiselect']);
 /*=========================== Restaurant Controller ===========================*/
 
+ app.directive('myFilter', [function() {
+    return {
+        restrict: 'A',       
+        link: function(scope, element) {
+            // wait for the last item in the ng-repeat then call init
+        	
+            if(scope.$last) {
+                initJqueryFiler('#gallery', scope.sample);
+            }
+        }
+    };
+    /**** Usable array ****/
+    // => validatedFiles
+    // => deletedImageName
+
+}]);
+ 
 app.controller('restCtrl', function($scope, $http) {
+	$scope.trick = [{id:1},{id:2}];
 
 	//================= DATA STATIC RESTYPE	 =======================
 	var currentPage = 1;
@@ -38,7 +56,7 @@ app.controller('restCtrl', function($scope, $http) {
 	$scope.getAllRestaurants = function (currentPage) {
 	    $http.get('http://localhost:8080/rest/restaurant/category?limit=15&page='+currentPage)
 	    .then(function (response) {
-	    	console.log(response.data);
+	    	
 	    	console.log(currentPage);
 	    	$scope.restaurants = response.data.DATA;
 	    	console.log($scope.restaurants);
@@ -125,13 +143,21 @@ app.controller('restCtrl', function($scope, $http) {
 				  "open_close":$scope.open_close,
 				 "restypes_id": $scope.data_Restypes
 			};
+    	
+    	var frmData = new FormData();
+    	
     	var rest_picture = angular.element('#rest_picture')[0].files;
+    	for(var i=0; i<rest_picture.length; i++){
+			frmData.append("restaurant", rest_picture[i]);
+		}
     	
     	var menu_files = angular.element('#menu')[0].files;
-		var frmData = new FormData();
 		for(var i=0; i<menu_files.length; i++){
 			frmData.append("menu", menu_files[i]);
 		}
+		
+		frmData.append("rest_picture", menu_files);
+		
 		frmData.append('json_data', JSON.stringify(data));
 		
 		$http({
@@ -179,7 +205,6 @@ app.controller('restCtrl', function($scope, $http) {
    			$scope.communce = response.data.DATA.address.communce;
    			$scope.district = response.data.DATA.address.district;
    			$scope.province = response.data.DATA.address.province;
-   			
    		},function(){
 
    		});
@@ -216,6 +241,15 @@ app.controller('restCtrl', function($scope, $http) {
     }
     	
    //================= UPDATE RESTAURANTS =====================
+
+	 $scope.sample = [
+        
+     ];
+
+     $scope.show = function(){
+         console.log('File To Send', validatedFiles);
+         console.log('Image Name to Delete', deletedImageName);
+     }
     
     var rest_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     $scope.getRestById = function(rest_id){
@@ -230,7 +264,20 @@ app.controller('restCtrl', function($scope, $http) {
    			$scope.contact = $scope.restaurant.contact;
    			$scope.about = $scope.restaurant.about;
    			$scope.street = $scope.restaurant.street;
-   			console.log(response);
+   			$scope.restpictures = $scope.restaurant.restpictures;
+   			$scope.categories = $scope.restaurant.categories;
+   			
+   			angular.forEach($scope.restaurant.categories, function(category, key){
+   				
+   				$scope.sample.push({
+   	   				name: category.url,
+   	   				type: "image/jpg",
+   	   				size: '',
+   	   				file: "http://localhost:9999"+category.url
+   	   			});
+   	   			
+   	   			console.log(category);
+   			});   	
    			
    		},function(){
 
@@ -238,24 +285,47 @@ app.controller('restCtrl', function($scope, $http) {
     };
     $scope.getRestById(rest_id);
     
-    $scope.updateRestaurant = function(){
-		data={
-				rest_id: $scope.rest_id,
-				rest_name: $scope.rest_name,
-				restypes: {
-					restype_name: $scope.restype_name
-				},
-				contact:$scope.contact,
-				about:$scope.about,
-				addresses: {
-					street: $scope.street,
-					communce: $scope.communce,
-					district: $scope.district,
-					province: $scope.province
-				}
-			}
-		$http.put('http://localhost:8080/rest/restaurant',data).then(function(response){
-			$scope.getAllRestaurants();
+    $scope.updateRestaurant = function(e){
+    	e.preventDefault();
+		
+    	$scope.user_id = parseInt($("#user_id").text());
+    	data = {
+			  "address": {"street": $scope.street, 
+				  "district": $scope.district,
+				  "communce": $scope.communce, 
+				  "province": $scope.province},
+				  "rest_name_kh": $scope.rest_name_kh,
+				  "rest_name": $scope.rest_name,
+				  "location": $scope.location,
+				  "about": $scope.about,
+				  "contact": $scope.contact,
+				  "user_id": $scope.user_id,
+				  "open_close":$scope.open_close,
+				 "restypes_id": $scope.data_Restypes
+			};
+    	
+    	var frmData = new FormData();
+    	
+    	for (var i=0; i<validatedFiles.length; i++){
+    		frmData.append("menu_picture", validatedFiles[i]);
+    	}
+    	
+    	frmData.append("delete_menu_picture", deletedImageName);
+		frmData.append('json_data', JSON.stringify(data));
+		
+		$http({
+			url:'http://localhost:9999/api/upload/test/update',
+			method: 'POST',
+			data: frmData,
+			transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+		}).then(function(response){
+			//$scope.getAllRestaurants();
+			console.log(response.data);
+		}, function(error){
+			console.log(error.data);
+
+			alert('failed to upload data! Please Try again !!!!!');
 		});
 	}
     
@@ -271,7 +341,6 @@ app.controller('restCtrl', function($scope, $http) {
     	district: $scope.district = '';
     	province: $scope.province = '';
     }
-
     
  });
 

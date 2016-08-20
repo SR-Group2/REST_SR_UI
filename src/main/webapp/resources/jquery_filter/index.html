@@ -1,0 +1,78 @@
+<!DOCTYPE>
+<html lang="html" ng-app="myApp">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jQuery Filer 1.0.5 | CreativeDream</title>
+    
+	<!--Stylesheets-->
+	<link href="css/jquery.filer.css" type="text/css" rel="stylesheet" />
+	<link href="css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="js/angular.js"></script>
+	<!--jQuery-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.filer.min.js?v=1.0.5"></script>
+	<script type="text/javascript" src="js/custom.js?v=1.0.5"></script>
+    
+	<!--[if IE]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="Ctrl">
+    
+    <div id="content">
+        
+        <h4 ng-repeat="s in sample" my-filter>Example 2:</h4>
+        <input type="file" name="files[]" id="gallery" multiple="multiple">
+        <h1 ng-click="show()">Show</h1>
+    </div>
+
+    </body>
+    <script type="text/javascript" src="js/custom.js?v=1.0.5"></script>
+
+    <script type="text/javascript">
+        var app = angular.module('myApp', []);
+        app.controller('Ctrl', function ($scope) {
+            $scope.sample = [
+                {
+                    name: "1",
+                    type: "image/jpg",
+                    size: '',
+                    file: "http://www.gettyimages.com/gi-resources/images/Homepage/Hero/US/MAR2016/prestige-587705839_full.jpg"
+                },
+                {
+                    name: "2",
+                    size: '',
+                    type: "image/jpg",
+                    file: "http://i.imgur.com/RRUe0Mo.png"
+                }
+            ];
+
+            $scope.show = function(){
+                console.log('File To Send', validatedFiles);
+                console.log('Image Name to Delete', deletedImageName);
+            }
+        });
+
+        app.directive('myFilter', [function() {
+            return {
+                restrict: 'A',       
+                link: function(scope, element) {
+                    // wait for the last item in the ng-repeat then call init
+                    if(scope.$last) {
+                        initJqueryFiler('#gallery', scope.sample);
+                    }
+                }
+            };
+            /**** Usable array ****/
+            // => validatedFiles
+            // => deletedImageName
+
+        }]);
+       
+            
+    </script>
+</html>
