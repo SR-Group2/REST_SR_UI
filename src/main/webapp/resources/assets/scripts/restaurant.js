@@ -290,18 +290,18 @@ app.controller('restCtrl', function($scope, $http) {
 		
     	$scope.user_id = parseInt($("#user_id").text());
     	data = {
-			  "address": {"street": $scope.street, 
+    			"address": {"street": $scope.street, 
 				  "district": $scope.district,
 				  "communce": $scope.communce, 
 				  "province": $scope.province},
+				  "rest_id": rest_id,
 				  "rest_name_kh": $scope.rest_name_kh,
 				  "rest_name": $scope.rest_name,
 				  "location": $scope.location,
 				  "about": $scope.about,
 				  "contact": $scope.contact,
 				  "user_id": $scope.user_id,
-				  "open_close":$scope.open_close,
-				 "restypes_id": $scope.data_Restypes
+				  "open_close":$scope.open_close
 			};
     	
     	var frmData = new FormData();
