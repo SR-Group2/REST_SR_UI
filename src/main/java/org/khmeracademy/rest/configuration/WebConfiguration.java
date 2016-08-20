@@ -26,7 +26,6 @@ public class WebConfiguration {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		String credentials = environment.getProperty("RESTAURANT_SR_GROUP2.API.SECRET_HEADER");
 		headers.set("Authorization", "Basic " + credentials);
-		System.out.println(credentials);
 		return headers;
 	}
 	

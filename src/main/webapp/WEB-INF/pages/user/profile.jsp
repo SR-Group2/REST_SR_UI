@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="app">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NHAM EY Welcome</title>
@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/css/style-profile.css">
 </head>
-<body ng-controller="profileCtrl">
+<body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded"
 		style="background-color: #ffffff;">
@@ -51,6 +51,7 @@
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Welcome  <sec:authentication property="principal.username" />
+							<p id="user_id" style="display:none"><sec:authentication property="principal.id" /></p>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
@@ -85,7 +86,7 @@
 						<div class="row">
 							<div class="text-profile">
 							<div class="input-group">
-								<span><h3 style="display: inline;">User Name</h3></span>
+								<span><h3 style="display: inline;">{{user.first_name}} {{user.last_name}}</h3></span>
 								<span>
 									<button class="btn btn-secondary pull-md-right">... <i class="fa fa-pencil"></i>
 									</button>
@@ -98,7 +99,7 @@
 							</div>	
 						</div>
 						<div row>
-							<h3>20</h3>
+							<h3>{{favouriteRestaurants[0].fav_total}}</h3>
 							<p>Favoriate</p>
 						</div>
 					</div>
@@ -111,9 +112,9 @@
 				
 				<div class="col-md-3"  ng-repeat=" fav in favouriteRestaurants">
 					<div class="fav-box">
-						<h6>{{fav.rest.rest_name}}</h3>
+						<h6>{{fav.rest.rest_name}}</h6>
 						<h6>{{fav.rest.total}}</h6>
-						<img  class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restype/Western food.png">
+						<a href="#"><img  class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restype/Western food.png"></a>
 					</div>
 				</div>
 				

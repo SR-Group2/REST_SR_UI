@@ -210,6 +210,7 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/turn.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
+	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script> 
 	
 	<script>
 	//==================== Get Restaurant Information ===================
@@ -250,7 +251,8 @@
 	
 	  	app.controller("mainCtrl", function($http, $scope){
 
-	  		
+	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	  		console.log(id);
 	  		
 	  		$scope.getRestDetail = function(){
 	  			
@@ -265,20 +267,20 @@
 	  				$scope.owner_name = $scope.rest.user.username;
 	  				$scope.rest_id = $scope.rest.rest_id;
 	  				
-	  				//$scope.getCategoryByRestID($scope.rest_id);
+	  				$scope.getCategoryByRestID($scope.rest_id);
 	  			});
 	  		}
 	  		
 	  		$scope.getRestDetail();
 	  		
 	  		//==================== Get Category From Restaurant ID ===================
-			/* $scope.getCategoryByRestID = function(rest_id){	
+			$scope.getCategoryByRestID = function(rest_id){	
 	  			$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
 	  			.then(function(rsp){
 	  				$scope.menus = rsp.data.DATA;
 	  				console.log($scope.menus);
 	  			});
-	  		} */
+	  		}
 
 			//==================== Get comment ===================
 				//http://localhost:8080/rest/comment/restaurant/3
@@ -328,6 +330,30 @@
 				alert($scope.user_id);
 			} */
 			
+	/*========================Add Favorite Restaurant ======================*/
+			
+			
+			$scope.addFavRest= function(rest_id){
+			$("#btnfav").text("Saved");
+			alert(rest_id);
+			$scope.user_id = parseInt($('#user_id').text());
+			alert($scope.user_id);
+			
+			data={
+					'user':{
+						'user_id':$scope.user_id
+					},
+					'rest':{
+						'rest_id':rest_id
+					}	
+			}
+			$http.post('http://localhost:8080/rest/favourite-restaurant',data).then(function(response){
+				alert('successfully added');
+			});
+			
+		} 
+			
+			
 	  	});
 	
 	  	//=================== login action ===============     
@@ -363,6 +389,5 @@
 	
 	    
     </script>
-   
 </body>
 </html>
