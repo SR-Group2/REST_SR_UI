@@ -45,6 +45,7 @@
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Welcome  <sec:authentication property="principal.username" />
+							<p id="user_id" style="display:none"><sec:authentication property="principal.id" /></p>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
@@ -63,18 +64,17 @@
 					<div class="col-md-7">
 						<flipbook>
 							 <div id="flipbook">
+							 	
 								  <div>
 								    <div ng-click="show_page(3)"></div>
 								    <div ng-click="show_page(6)"></div>
 								    <div ng-click="show_page(7)"></div>
 								  </div>
-								  <img src="${pageContext.request.contextPath}/resources/images/logo.png"/>
-								  <div></div>
-								  <div>PAGE4</div>
-								  <div>PAGE5</div>
-								  <div>PAGE6</div>
-								  <div>PAGE7</div>
+								  
+								
+					  			  <div>PAGE7</div>
 								  <div>PAGE8</div>
+							
 							</div>
 						</flipbook>
 
@@ -140,7 +140,7 @@
 							</table>
 							
 							<div class="more_part">
-							<button class="btnAdd"><i class="fa fa-heart"> ADD FAVORITE</i></button>
+							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav"><i class="fa fa-heart"> ADD FAVORITE</i></button>
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
 						</div>
 					</div>
@@ -310,7 +310,16 @@
 	  				
 	  			});
 			}
+			
+			$scope.addFavRest= function(rest_id){
+				$("#btnfav").text("saved");
+				alert(rest_id);
+				$scope.user_id = parseInt($('#user_id').text());
+				alert($scope.user_id);
+			}
+			
 	  	});
+	
 	  	//=================== login action ===============     
 	        $('#login').on('hidden.bs.modal',
 					function(e) {
