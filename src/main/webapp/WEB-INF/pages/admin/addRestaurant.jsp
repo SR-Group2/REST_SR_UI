@@ -32,6 +32,12 @@
 							<input type="text" class="form-control" name="rest_name_kh" ng-model="rest_name_kh" required>
 						</div>
 						<div class="form-group">
+							<label for="rest_name">Restaurant Picture</label>
+							<input type="file" class="form-control file2 btn btn-primary"
+							  data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
+							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="rest_picture" id="rest_picture" required>
+						</div>
+						<div class="form-group">
 							<label for="restype_id">Restaurant Category(Allow only 3 Categories)</label>
 				        	<!-- <pre>Model value: {{data_Restypes}}</pre> -->
        						<multiselect ng-model="data_Restypes" options="dataRestypes" 

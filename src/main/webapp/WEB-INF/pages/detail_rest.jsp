@@ -14,19 +14,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.booklet.latest.css">
-	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/jquery.fancybox.css?v=2.1.5" media="screen" />
-
-	<!-- Add Button helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-
-	<!-- Add Thumbnail helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flipbook.css"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	
 </head>
@@ -72,34 +61,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
-						<div class="box-img formlogin">
-							<div id="menu">
-								<%-- <a class="fancybox" rel="gallery1"  ng-repeat="menu in menus"
-								href="${pageContext.request.contextPath}/resources/images/flipbook/{{menu.picture}}" 
-								title="Category">
-						        <img  ng-repeat="menu in menus" src="${pageContext.request.contextPath}/resources/images/flipbook/{{menu.picture}}" >
-						        </a> --%>
-						        
-						       <!--  <a class="fancybox"  ng-repeat="menu in menus" rel="gallery1" href="http://localhost:9999{{menu.url}}" title="Category">
-						        	<img src="http://localhost:9999{{menu.url}}" class="img-fluid">
-						        </a> -->
-						        
-						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						       	 	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
-						        </a>
-						        
-						        <a class="img-fluid" class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
-						        </a>
-						        
-						        <a class="fancybox" rel="gallery1" href="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png" title="Category">
-						        	<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/flipbook/rest-menu.png">
-						        </a>  
-						        
-						    </div>
-						</div>
-						<br>
-						
+						<flipbook>
+							 <div id="flipbook">
+								  <div>
+								    <div ng-click="show_page(3)"></div>
+								    <div ng-click="show_page(6)"></div>
+								    <div ng-click="show_page(7)"></div>
+								  </div>
+								  <img src="${pageContext.request.contextPath}/resources/images/logo.png"/>
+								  <div></div>
+								  <div>PAGE4</div>
+								  <div>PAGE5</div>
+								  <div>PAGE6</div>
+								  <div>PAGE7</div>
+								  <div>PAGE8</div>
+							</div>
+						</flipbook>
+
 						<!-- ============== comment =========== -->
 						<sec:authorize access="isAuthenticated()">
 							<div class="well">
@@ -131,8 +109,8 @@
 					</div>
 				</div>
 			<!--  ======================= end List Comment ===================== -->
-					</div>
-					<div class="col-md-5 box-img formlogin restinfo">
+			</div>
+			<div class="col-md-5 box-img formlogin restinfo">
 							<h2>Restaurant Information</h2>
 							<h4>
 								<i class="fa fa-star text-warning"></i>
@@ -228,33 +206,39 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-
-	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/restaurant-menu.js"></script> --%>
-	
-	
-
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-ui-1.10.4.min.js"> </script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-ui.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.easing.1.3.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.booklet.latest.min.js"></script>
-	
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery.mousewheel-3.0.6.pack.js"></script>
-
-	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/jquery.fancybox.js?v=2.1.5"></script>
-	
-
-	<!-- Add Media helper (this is optional) -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-	
+	<script src="${pageContext.request.contextPath}/resources/scripts/turn.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	
 	<script>
 	//==================== Get Restaurant Information ===================
 		var app = angular.module("app", []);
+		//=========================== flipbook ============================
+		app.directive('flipbook', function(){
+		  return{
+		    restrict: 'E',
+		    link: function(scope, element, attrs){
+		      $('#flipbook').turn({
+		        width: '100%',
+		        height: '400px',
+		        autoCenter: true,
+		        pages: 18
+		      });
+		      $('#flipbook').turn('peel', 'br');
+		      
+		    },
+		    controller: function($scope){
+		      $scope.show_page = function(page){
+		        console.log("page", page)
+		        $('#flipbook').turn('page', page);
+		      }
+		     
+		    }
+		  }
+		});
+		//============================ end flipbook ============================
+	
 	  	app.controller("mainCtrl", function($http, $scope){
-	  		
+
 	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 	  		console.log(id);
 	  		
@@ -285,9 +269,7 @@
 	  				console.log($scope.menus);
 	  			});
 	  		}
-	  		
-	  		
-	  		
+
 			//==================== Get comment ===================
 				//http://localhost:8080/rest/comment/restaurant/3
 			$scope.getComment = function(rest_id){
@@ -297,7 +279,7 @@
 	  					$scope.comments = rsp.data.DATA;
 	  				}
 	  				
-	  				console.log(""rsp);
+	  				console.log("rsp");
 	  			});
 			}
 			
@@ -329,58 +311,33 @@
 	  			});
 			}
 	  	});
-	  	//========================= Style Button ================
-	  	$(".btn-outline-success").on("mouseenter", function(){
-		
-		});
-	  	
-	  	// =============== Book Flip Menu Restaurant ============
-	    $(function () {		
-	        $("#menu").booklet({
-	        	speed:500,
-	        	width: 600,
-        		height: 400
-	        });
-	        $(".fancybox").fancybox({
-	    		openEffect	: 'none',
-	    		closeEffect	: 'none',
-	    		fitToView: true
-	    		
-	    	});
-	        
-	        
-	        $('#login')
-			.on(
-					'hidden.bs.modal',
+	  	//=================== login action ===============     
+	        $('#login').on('hidden.bs.modal',
 					function(e) {
-
-						console.log($("#frmLogin").serialize());
-
-						$
-								.ajax({
-									url : "${pageContext.request.contextPath}/login",
-									type : "POST",
-									data : $("#frmLogin").serialize(),
-									success : function(data) {
-										if (data == "User account is locked") {
-											alert(data);
-										} else if (data == "User is disabled") {
-											alert(data);
-										} else if (data == "Bad credentials") {
-											alert(data);
-										} else {
-											swal("Welcome To Nham Ey", "You clicked the button!", "success")
-											window.location.href = "${pageContext.request.contextPath}/"
-													+ data;
-										}
-									},
-									error : function(data) {
-										console.log(data);
+						$.ajax({
+								url : "${pageContext.request.contextPath}/login",
+								type : "POST",
+								data : $("#frmLogin").serialize(),
+								success : function(data) {
+									if (data == "User account is locked") {
+										alert(data);
+									} else if (data == "User is disabled") {
+										alert(data);
+									} else if (data == "Bad credentials") {
+										alert(data);
+									} else {
+										swal("Welcome To Nham Ey", "You clicked the button!", "success")
+										window.location.href = "${pageContext.request.contextPath}/"
+												+ data;
 									}
-								});
+								},
+								error : function(data) {
+									console.log(data);
+								}
+							});
 					});
 
-	    });
+	 
 	
 	
 		

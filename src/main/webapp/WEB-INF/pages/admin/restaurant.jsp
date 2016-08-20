@@ -23,16 +23,16 @@
 						<tr>
 							<th>ID</th>
 							<th>Restaurant Name</th>
-							<th>Restaurant Type</th>
-							<th>Menu</th>
+							<!-- <th>Restaurant Type</th> -->
+							<!-- <th>Menu</th> -->
 							<th>Owner</th>
 							<th>Contact</th>
-							<th>About</th>
-							<th>Open - Close</th>
-							<th>Location</th>
+							<!-- <th>About</th>
+							<th>Open - Close</th> -->
+							<!-- <th>Location</th>
 							<th>Street</th>
 							<th>Communce</th>
-							<th>District</th>
+							<th>District</th> -->
 							<th>Province</th>
 							<th>Action</th>
 						</tr>
@@ -41,37 +41,40 @@
 						<tr ng-repeat="restaurant in restaurants | filter:q">
 							<td>{{$index+1}}</td>
 							<td>{{restaurant.rest_name}}</td>
-							<td>
+							<!-- <td>
 								<select>
 									<option>-- Restaurant Category-- </option>
 									<option ng-repeat="rest_type in restaurant.restype">
 										{{rest_type.restype_name}}
 									</option>
 								</select>
-							</td>
-							<td>
+							</td> -->
+							<!-- <td>
 								<select>
 									<option>-- Restaurant Menu-- </option>
 									<option ng-repeat="category in restaurant.categories">
 										{{category.url}}
 									</option>
 								</select>
-							</td>
+							</td> -->
 							<td ng-bind-template="{{restaurant.user.last_name}}  {{restaurant.user.first_name}}"></td>
 							<td>{{restaurant.contact}}</td>
-							<td>{{restaurant.about}}</td>
-							<td>{{restaurant.open_close | date: "yyyy-MM-dd"}}</td>
+							<!-- <td>{{restaurant.about}}</td> -->
+							<!-- <td>{{restaurant.open_close | date: "yyyy-MM-dd"}}</td>
 							<td>{{restaurant.location}}</td>
 							<td>{{restaurant.address.street}}</td>
 							<td>{{restaurant.address.communce}}</td>
-							<td>{{restaurant.address.district}}</td>
+							<td>{{restaurant.address.district}}</td> -->
 							<td>{{restaurant.address.province}}</td>
 							<td>
+								<button type="button" class="btn btn-blue btn-icon icon-left" ng-click="detailRestaurant(restaurant.rest_id)">
+								<i class="entypo-info"></i> Details</button>
 								<a href="${pageContext.request.contextPath}/admin/restaurant/{{restaurant.rest_id}}">
 								<button type="button" class="btn btn-green btn-icon icon-left" >
 								<i class="fa fa-pencil-square-o"></i> Edit</button></a>
 							 	<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestaurant(restaurant.rest_id, $event)">
-								<i class="entypo-cancel"></i> Delete</button></td>
+								<i class="entypo-cancel"></i> Delete</button>
+								</td>
 							
 						</tr>
 					</tbody>

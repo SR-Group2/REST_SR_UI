@@ -31,92 +31,6 @@ app.controller('restCtrl', function($scope, $http) {
 // 
 //    }
 	
-	//===================================== search restaurant =======================
-	
-	// constructs the suggestion engine
-	var substringMatcher = function(strs) {
-		return function findMatches(q, cb) {
-			var matches, substringRegex;
-
-			// an array that will be populated with substring matches
-			matches = [];
-
-			// regex used to determine if a string contains the substring `q`
-			substrRegex = new RegExp(q, 'i');
-
-			// iterate through the pool of strings and for any string that
-			// contains the substring `q`, add it to the `matches` array
-			$.each(strs, function(i, str) {
-				if (substrRegex.test(str)) {
-					matches.push(str);
-				}
-			});
-
-			cb(matches);
-		};
-	};
-
-	var states;
-
-	var bestPictures = new Bloodhound(
-		{
-			datumTokenizer : Bloodhound.tokenizers.obj
-					.whitespace('value'),
-			queryTokenizer : Bloodhound.tokenizers.whitespace,
-			remote : {
-				url : "http://localhost:8080/rest/restaurant/search?keyword=%QUERY%"+ "&page=" + currentPage + "&limit=15",
-				//url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
-				wildcard : '%QUERY%',
-				filter : function(restaurants) {
-					// Map the remote source JSON array to a JavaScript array
-					return $.map(restaurants.DATA, function(restaurant) {
-						return {
-							value : restaurant.rest_name
-						};
-					});
-				}
-			}
-		});
-
-	$('#remote .typeahead').typeahead(null, {
-		name : 'best-pictures',
-		display : 'value',
-		source : bestPictures
-	});
-
-	$('#keyword').on('typeahead:selected', function(){ 
-		$("#getRest").empty();
-		var keyword = $(this).val();
-		check = true;
-		$.ajax({ 
-		    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=15", 
-		    type: 'GET',
-		    beforeSend: function(xhr) {
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
-            },
-		    success: function(data) { 
-		    	console.log(data);
-		    	if (data.STATUS != false) {
-					console.log(data);
-					$("#getRest").empty();
-					$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-					$('#getRest').css("cursor", "pointer");
-					if (check) {
-						restaurant.setPagination(
-								data.PAGINATION.TOTAL_PAGES,
-								currentPage);
-						check = false;
-					}
-					$("#pagination").show()
-				} else {
-					$("#pagination").hide();
-					$("#getRest").empty();
-				}
-		   
-		    }
-			});
-	});
 	
 	//================= GET ALL RESTAURANTS  WITH PAGINATION =====================
 	var check = true;
@@ -171,7 +85,6 @@ app.controller('restCtrl', function($scope, $http) {
 	    .then(function (response) {
 	    
 	    	$scope.data_restypes = response.data.DATA;
-
 	    	
 	    	var loop = $scope.data_restypes.length;
 	    	console.log($scope.data_restypes.length);
@@ -212,6 +125,7 @@ app.controller('restCtrl', function($scope, $http) {
 				  "open_close":$scope.open_close,
 				 "restypes_id": $scope.data_Restypes
 			};
+    	var rest_picture = angular.element('#rest_picture')[0].files;
     	
     	var menu_files = angular.element('#menu')[0].files;
 		var frmData = new FormData();

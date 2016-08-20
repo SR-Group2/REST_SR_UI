@@ -65,9 +65,6 @@
 		</div>
 	</nav>
 
-<%--   <sec:authentication property="principal.id" /> 
-  <sec:authentication property="principal.username" />  --%>
-
 	<!-- ========= Slide show============== -->
 	<section class="slideShow">
 		<div class="container">
@@ -383,8 +380,7 @@
 
 								console.log($("#frmLogin").serialize());
 
-								$
-										.ajax({
+								$.ajax({
 											url : "${pageContext.request.contextPath}/login",
 											type : "POST",
 											data : $("#frmLogin").serialize(),
