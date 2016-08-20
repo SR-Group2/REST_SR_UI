@@ -311,12 +311,12 @@
 	  			});
 			}
 			
-			$scope.addFavRest= function(rest_id){
+			/* $scope.addFavRest= function(rest_id){
 				$("#btnfav").text("saved");
 				alert(rest_id);
 				$scope.user_id = parseInt($('#user_id').text());
 				alert($scope.user_id);
-			}
+			} */
 			
 	  	});
 	
