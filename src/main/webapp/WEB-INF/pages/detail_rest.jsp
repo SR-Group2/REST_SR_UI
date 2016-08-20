@@ -50,6 +50,8 @@
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
 							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+							<i class="fa fa-user"></i> Profile</a>
 						</div>
 					</li>
 					</sec:authorize>
