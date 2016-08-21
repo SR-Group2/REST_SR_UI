@@ -65,21 +65,15 @@
 				<div class="row">
 					<div class="col-md-7">
 						<flipbook>
-							 <div id="flipbook">
-							 	
-								  <div>
-								    <div ng-click="show_page(3)"></div>
-								    <div ng-click="show_page(6)"></div>
-								    <div ng-click="show_page(7)"></div>
-								  </div>
-								  
-								
-					  			<div>Page</div>
-					  			<div>Page</div>
-					  			 <div ng-repeat="menu in menus">PAGE Menu</div>
-								 
-							
-							</div>
+								<div id="flipbook">
+									<img  class="hard" src="${pageContext.request.contextPath}/resources/images/logo.png">
+									<div class="hard"></div>
+									<div> Page 2 </div>
+									<div> Page 3 </div>
+									<div> Page 4 </div>
+									<img src="http:localhost:9999"/>
+									<div class="hard"></div>
+								</div>
 						</flipbook>
 
 						<!-- ============== comment =========== -->
@@ -227,7 +221,8 @@
 	  		
 		var app = angular.module("app", []);
 		//=========================== flipbook ============================
-		app.directive('flipbook', function(){
+		
+	 app.directive('flipbook', function(){
 		  return{
 		    restrict: 'E',
 		    link: function(scope, element, attrs){
@@ -242,19 +237,23 @@
 		    },
 		    controller: function($scope){
 		      $scope.show_page = function(page){
-		    	  $http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
-		  			.then(function(rsp){
-		  				console.log(rsp);
-		  				$scope.menus = rsp.data.DATA;
-		  				console.log($scope.menus);
-		  				
-		  			});
 		    	  $('#flipbook').turn('page', page);
 		      }
 		     
 		    }
 		  }
 		});
+		
+		
+		/* 
+		$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
+			.then(function(rsp){
+				console.log(rsp);
+				$scope.menus = rsp.data.DATA;
+				console.log($scope.menus);
+				
+		}); 
+		 */
 		//============================ end flipbook ============================
 	
 	  	app.controller("mainCtrl", function($http, $scope){

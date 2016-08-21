@@ -1,28 +1,3 @@
-//var restApp= angular.module('restApp',['btorfs.multiselect']);
-/*=========================== Restaurant Controller ===========================*/
-
-/* app.directive('myFilter', [function() {
-    return {
-        restrict: 'A',       
-        link: function(scope, element) {
-            // wait for the last item in the ng-repeat then call init
-        	
-            if(scope.$last) {
-                initJqueryFiler('#gallery', scope.sample);
-                initRestaurantGallery('#restgallery', scope.restData);
-            }
-        }
-    };
-     ============= Usable array ================= 
-	    => validatedFiles
-	    => deletedImageName
-
-	    => addRestFile
-	    => deletedImageRest
-    
-}]);*/
-
-
 app.directive('myFilter', [function() {
     return {
         restrict: 'A',       
@@ -31,17 +6,13 @@ app.directive('myFilter', [function() {
             angular.element(document).ready(function() {
                 
             });
-            
         }
     };
-
 
 }]);
  
 //================= ADD RESTAURANT	 =====================
  app.controller('restAddCtrl', function($scope, $http){
-	  
-	 
 	//================= DATA STATIC RESTYPE	 =======================
 		var currentPage = 1;
 		$scope.restypes = [];
@@ -64,7 +35,47 @@ app.directive('myFilter', [function() {
 			{restype_name: 'Porridge', restype_id: 15},
 			{restype_name: 'Street Food', restype_id: 16}
 	      ];
+		//================= START LOCATION ADDRESS =====================
 		
+		
+		//=================  GET CITIES / PROVINCE =====================
+		$scope.getCities = function(){
+			   $http.get('/rest/location/')
+			   .then(function (response) {
+				  $scope.provinces = response.data.DATA;
+				  console.log($scope.provinces);
+			   });
+		}
+		$scope.getCities();
+		//=================  GET DISTRICT / KHAN =====================
+		$scope.getDistrict = function(id){
+			$http.get('/rest/location/district/'+id)
+			   .then(function (response) {
+				  $scope.districts = response.data.DATA;
+				  console.log($scope.districts);
+			   });
+		}
+		
+		//=================  GET COMMUNE / SANGKAT =====================
+		$scope.getCommune = function(id){
+			
+			$http.get('/rest/location/commune/'+id)
+			   .then(function (response) {
+				  $scope.communes = response.data.DATA;
+				  console.log($scope.communes);
+				  
+				 
+			   });
+		}
+		//=================  GET VILLAGE / KROM =====================
+		$scope.getVillage = function(id){
+			$http.get('/rest/location/village/'+id)
+			   .then(function (response) {
+				  $scope.villages = response.data.DATA;
+				 
+			   });
+		}
+		//================= END LOCATION ADDRESS =====================
 		 
 		//=================  ADD RESTAURANTS =====================
 	    $scope.addRestaurant = function(e){
@@ -179,9 +190,21 @@ app.directive('myFilter', [function() {
    			$scope.categories = $scope.restaurant.categories;
    			
    			console.log($scope.restaurant.restpictures);
-   			angular.forEach($scope.restaurant.categories, function(category, key){
+   			
+   			angular.forEach($scope.restaurant.restpictures, function(rest, key){
    				
    				$scope.sample1.push({
+   	   				name: rest.path_name,
+   	   				type: "image/jpg",
+   	   				size: '',
+   	   				file: "http://localhost:9999"+rest.path_name
+   	   			});
+   	   			
+   			}); 
+   			
+   			angular.forEach($scope.restaurant.categories, function(category, key){
+   				
+   				$scope.sample2.push({
    	   				name: category.url,
    	   				type: "image/jpg",
    	   				size: '',
@@ -190,17 +213,7 @@ app.directive('myFilter', [function() {
    	   			});
  
    			});
-   			
-   			angular.forEach($scope.restaurant.restpictures, function(rest, key){
-   				
-   				$scope.sample2.push({
-   	   				name: rest.path_name,
-   	   				type: "image/jpg",
-   	   				size: '',
-   	   				file: "http://localhost:9999"+rest.path_name
-   	   			});
-   	   			
-   			}); 
+
    			//========================= broadcast load first =======================
    			$scope.$broadcast('pirang');
    			
@@ -258,7 +271,20 @@ app.directive('myFilter', [function() {
 			transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
 		}).then(function(response){
-			//$scope.getAllRestaurants();
+			swal({   
+    			title: "UPDATE SUCCESSFULLY!",   
+    			text: "THANK YOU",   
+    			type: "success",   
+    			confirmButtonColor: "#007d3d",   
+    			closeOnConfirm: false,   
+    			closeOnCancel: false }, 
+    			function(isConfirm){   
+    				if(isConfirm) {     				
+    					window.location.href="http://localhost:8080/admin/restaurant";
+    				}else {     
+    					swal("Cancelled", "Your imaginary file is safe !", "error");   
+    				} 
+    			});
 			console.log(response.data);
 		}, function(error){
 			console.log(error.data);

@@ -310,7 +310,5 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/restaurant.js"></script>
 	
 	
-	
-	
 </body>
 </html>
