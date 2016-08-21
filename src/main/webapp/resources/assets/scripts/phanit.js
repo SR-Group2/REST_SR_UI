@@ -275,3 +275,65 @@ app.controller("categoryCtrl", function($scope, $http){
 });
 
 /*====================== Category Controller Pheara with Phanit ========================================*/
+
+/* =========================== Menu or Restaurant Type Controller By Kong Sophanit ============================================== */
+
+app.controller("restypeCtrl", function($scope, $http){
+	/*=========== Get All the Restaurant Types ===========*/
+	$scope.getAllRestypes = function(){	
+		$http.get('http://localhost:8080/rest/restype').then(function(response){
+			$scope.restypes = response.data.DATA;
+		});
+	}
+	$scope.getAllRestypes();
+	
+	/* ================ Insert Into Table Restaurant types =================== */
+	
+	$scope.addRestype = function(){
+		data={	
+				'restype_name': $scope.restype_name,
+				'restype_name_kh': $scope.restype_name_kh,
+				'restype_picture': $scope.restype_picture,
+				'description': $scope.description
+		}
+		$http.post('http://localhost:8080/rest/restype',data).then(function(response){
+			swal("Successfully Added!", "You clicked the button!", "success");
+			$scope.getAllRestypes();
+		});
+	}
+	
+	/* ============== Delete Restaurant type ======================= */
+	
+	$scope.deleteRestype = function(restype_id) {
+		$http.delete('http://localhost:8080/rest/restype/' + restype_id)
+		.then(function(response){
+			$scope.getAllRestypes();
+		});	
+	}
+	
+	/* ==================== Find Restaurant type By Id ==================== */
+	
+	$scope.getRestypeById = function(restype_id){
+		$http.get('http://localhost:8080/rest/restype/'+restype_id).then(function(response){
+			$scope.restype = response.data.DATA;
+			$scope.restype_id = response.data.DATA.restype_id;
+			$scope.restype_name = response.data.DATA.restype_name;
+			$scope.restype_name_kh = response.data.DATA.restype_name_kh;
+			$scope.restype_picture = response.data.DATA.restype_picture;
+			$scope.description = response.data.DATA.description;
+		});
+	}
+	/* ================== Update Restaurant Type =========================== */
+	$scope.updateRestype = function(){
+		data={
+				'restype_id': $scope.restype_id,	
+				'restype_name': $scope.restype_name,
+				'restype_name_kh': $scope.restype_name_kh,
+				'restype_picture': $scope.restype_picture,
+				'description': $scope.description
+		}
+		$http.put('http://localhost:8080/rest/restype/',data).then(function(response){
+			$scope.getAllCategory();
+		});
+	}
+});

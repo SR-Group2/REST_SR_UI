@@ -3,7 +3,7 @@
 	<div class="card card-outline-secondary">
 		
 		<div class="card-header">
-			  <button class="btn btn-success" data-toggle="modal" data-target="#btnAdd"  >Add New</button>
+			  <button class="btn btn-success" data-toggle="modal" data-target="#btnAdd"  >Add New Category</button>
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
 			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
@@ -32,9 +32,10 @@
 							<td>{{cat.date_added | date: "yyyy-MM-dd"}}</td>
 							<td>{{cat.date_modify | date: "yyyy-MM-dd"}}</td>
 							<td>{{cat.picture}}</td>
-							<td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="getCategoryById(cat.category_id)">
-							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteCategory(cat.category_id)">
-							<i class="fa fa-trash-o"></i></button></td>
+							<td>
+							<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#btnUpdate" ng-click="getCategoryById(cat.category_id)">
+							<i class="fa fa-pencil-square-o"></i>Update Category</button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteCategory(cat.category_id)">
+							<i class="fa fa-trash-o"></i> Delete</button></td>
 							
 						</tr>
 					</tbody>
@@ -48,7 +49,7 @@
 			    </dir-pagination-controls> -->
 			    <!-- ================= Pagination ===================== -->
 				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
-					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
+					</i></a></li> <li class="active"><a href="#">1</a></li> <li><a href="#">2</a></li>
 					 <li><a href="#">3</a></li> 
 					 <li><a href="#">4</a></li> 
 					 <li><a href="#">5</a></li> 

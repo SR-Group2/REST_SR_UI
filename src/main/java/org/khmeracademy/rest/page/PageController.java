@@ -83,4 +83,9 @@ public class PageController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping(value="/addRestype", method = RequestMethod.GET)
+	public String AddRestypePage(ModelMap map){
+		map.addAttribute("page", "addRestype.jsp");
+		return "admin/admin";
+	}
 }

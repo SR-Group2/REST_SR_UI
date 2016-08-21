@@ -1,5 +1,6 @@
+<div ng-controller = "restypeCtrl">
 		<div class="card-header">
-			  <button class="btn btn-success" data-toggle="modal" data-target="#btnAdd"  >Add New</button>
+		<a href = "${pageContext.request.contextPath}/admin/addRestype"><button class = "btn btn-success">Add New Restaurant Type</button></a>
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
 			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
@@ -7,148 +8,52 @@
 			    </div>
 			  </div>
 		</div>
-		
-		<h3>Men in Reataurants</h3>
-		
-		<table class="table table-bordered table-striped datatable" id="table-2">
+		<h3>Restaurants' Types</h3>
+		<div>
+		<table class="table table-bordered table-striped datatable">
 			<thead>
 				<tr>
-					<th>
-						<div class="checkbox checkbox-replace">
-							<input type="checkbox" id="chk-1">
-						</div>
-					</th>
-					<th>Student Name</th>
-					<th>Average Grade</th>
-					<th>Curriculum / Occupation</th>
+					<th>Restaurant Type Name In English</th>
+					<th>Restaurant Type Name In Khmer</th>
+					<th>Restaurant Pictures</th>
+					<th>Description</th>
+					<th>Date Added</th>
+					<th>Date Modified</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 			
-				<tr>
-					<td>
-						<div class="checkbox checkbox-replace">
-							<input type="checkbox" id="chk-1">
-						</div>
-					</td>
-					<td>Randy S. Smith</td>
-					<td>8.7</td>
-					<td>Social and human service</td>
+				<tr ng-repeat ="restype in restypes">
+					<td>{{restype.restype_name}}</td>
+					<td>{{restype.restype_name_kh}}</td>
+					<td>{{restype.restype_picture}}</td>
+					<td>{{restype.description}}</td>
+					<td>{{restype.date_added}}</td>
+					<td>{{restype.date_modify}}</td>
 					<td>
 						<a href="#" class="btn btn-default btn-sm btn-icon icon-left">
 							<i class="entypo-pencil"></i>
 							Edit
 						</a>
 						
-						<a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-							<i class="entypo-cancel"></i>
-							Delete
-						</a>
-						
-						<a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-							<i class="entypo-info"></i>
-							Profile
-						</a>
+						<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestype(restype.restype_id)">
+								<i class="entypo-cancel"></i>Delete</button>
 					</td>
 				</tr>
-				
-				<tr>
-					<td>
-						<div class="checkbox checkbox-replace">
-							<input type="checkbox" id="chk-1">
-						</div>
-					</td>
-					<td>Ellen C. Jones</td>
-					<td>7.2</td>
-					<td>Education and development manager</td>
-					<td>
-						<a href="#" class="btn btn-default btn-sm btn-icon icon-left">
-							<i class="entypo-pencil"></i>
-							Edit
-						</a>
-						
-						<a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-							<i class="entypo-cancel"></i>
-							Delete
-						</a>
-						
-						<a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-							<i class="entypo-info"></i>
-							Profile
-						</a>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-						<div class="checkbox checkbox-replace">
-							<input type="checkbox" id="chk-1">
-						</div>
-					</td>
-					<td>Carl D. Kaya</td>
-					<td>9.5</td>
-					<td>Express Merchant Service</td>
-					<td>
-						<a href="#" class="btn btn-default btn-sm btn-icon icon-left">
-							<i class="entypo-pencil"></i>
-							Edit
-						</a>
-						
-						<a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-							<i class="entypo-cancel"></i>
-							Delete
-						</a>
-						
-						<a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-							<i class="entypo-info"></i>
-							Profile
-						</a>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-						<div class="checkbox checkbox-replace">
-							<input type="checkbox" id="chk-1">
-						</div>
-					</td>
-					<td>Jennifer J. Jefferson</td>
-					<td>10</td>
-					<td>Maxillofacial surgeon</td>
-					<td>
-						<a href="#" class="btn btn-default btn-sm btn-icon icon-left">
-							<i class="entypo-pencil"></i>
-							Edit
-						</a>
-						
-						<a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-							<i class="entypo-cancel"></i>
-							Delete
-						</a>
-						
-						<a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-							<i class="entypo-info"></i>
-							Profile
-						</a>
-					</td>
-				</tr>
-				
-				
 				</tbody>
 				</table>
 				
 	<!-- ================= Pagination ===================== -->
-				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
-					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
+		<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
+					</i></a></li> <li class="active"><a href="#">1</a></li> <li><a href="#">2</a></li>
 					 <li><a href="#">3</a></li> 
 					 <li><a href="#">4</a></li> 
 					 <li><a href="#">5</a></li> 
 					 <li><a href="#">6</a></li> 
 					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
 				 </ul>
-				 
-				 
-				 
+	</div>
+</div>	 
 				 
