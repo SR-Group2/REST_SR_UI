@@ -24,9 +24,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/css/register.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
+	
 	
 </head>
-<body ng-controller="signUpCtrl">
+<body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded"
 		style="background-color: #ffffff;">
@@ -52,10 +54,13 @@
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Welcome  <sec:authentication property="principal.username" />
+							<p id="user_id" style="display:none"><sec:authentication property="principal.id" /></p>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
 							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+							<i class="fa fa-user"></i> Profile</a>
 						</div>
 					</li>
 					</sec:authorize>
@@ -72,7 +77,7 @@
 				<div class="col-md-8">
 					<div class="frmSignup">
 					<div class="register-info">
-						<h3>Register Account</h3>
+						<h3>Edit Profile</h3>
 						<p>If you already have an account with us, please login at the login page.</p>
 					</div>
 					<form name="frmRegister">
@@ -80,45 +85,51 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label for="lblfirstname">First Name</label>
-						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" ng-model="txtfirstname" name="password">
+						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" value="{{firstName}}" ng-model="firstName" name="password">
 						    		</div>
 								</div>
 						    	<div class="col-md-6">
 						    		<div class="form-group">
 						    		<label for="lbllastname">Last Name</label>
-						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" ng-model="txtlastname" name="lastname">
+						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" value="{{lastName}}" ng-model="lastName" name="lastname">
 						    		</div>
 						    	</div>
 						    <div class="col-md-12">
 							  <div class="form-group">
 							    <label for="lblusername">Username</label>
-							    <input type="text" class="form-control" id="lblusername" placeholder="Username" ng-model="txtusername" name="username" required ng-minlength="3" ng-maxlength="8">
+							    <input type="text" class="form-control" id="lblusername" placeholder="Username" value="{{username}}" ng-model="username" name="username">
 							  </div>
 						  	</div>
 						  	<div class="col-md-12">
 						  		 <div class="form-group">
 								    <label for="lblemail">Email</label>
-								    <input type="email" class="form-control" id="lblemail" placeholder="Email" ng-model="txtemail" name="email" required>
+								    <input type="email" class="form-control" id="lblemail" placeholder="Email" ng-model="email" name="email">
 								  </div>
 						  	
 						  	</div>
 						  	<div class="col-md-12">
 						  		<div class="form-group">
-						    		<label for="lblpassword">Password</label>
-						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password" ng-model="txtpassword" name="password" required pattern=".{2,}">
+						    		<label for="lblpassword">Old Password</label>
+						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password"  ng-model="password" name="password"">
+								</div>
+						  	</div>
+						  	<div class="col-md-12">
+						  		<div class="form-group">
+						    		<label for="lblpassword">New Password</label>
+						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="New Password"  ng-model="newpassword" name="password">
 								</div>
 						  	</div>
 						  	<div class="col-md-12">
 							  	<div class="form-group">
 								    <label for="lblconfirmpassword">Confirm Password</label>
-								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" wj-validation-error="txtconfrimpword != txtpassword ? 'Passwords don\'t match' : ''">
+								    <input type="password" class="form-control" id="lblconfirmpassword"  ng-model="txtconfrimpword" placeholder="Confirm Password">
 							  	</div>
 						  	</div>
 						  	<div class="col-md-12">
 						  		<div class="form-group">
 									<label for="" class="">Date of Birth</label>
 									<div class="input-group">
-												<input type="date" class="form-control" placeholder="Year-Month-Day" ng-model="txtdob" name="dob">				
+												<input type="date" class="form-control" placeholder="Year-Month-Day"  ng-model="dob" name="dob">				
 												<div class="input-group-addon">
 													<i class="fa fa-calendar"></i>
 												</div>
@@ -126,13 +137,22 @@
 									</div>
 						  	</div>
 						  	<div class="col-md-12">
+						  		<label for="dtp_input2" class="">Date of Birth</label>
+						  		<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" >
+					                    <input class="form-control form-date"  type="text" value="{{dob}}" id="datetimepicker" placeholder="Year-Month-Day" ng-model="dob" name="dob">
+										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					             </div>
+					             <input type="hidden" id="dtp_input2" value="" />
+						  		
+						  	</div>
+						  	<div class="col-md-12">
 						  		<label for="">Gender</label>
 						  		<div class="input-group">
 							  		<label class="radio-inline">
-									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Male"> Male
+									  <input type="radio" name="gender" id="gender" ng-model="gender" value="Male"> Male
 									</label>
 									<label class="radio-inline">
-									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Female"> Female
+									  <input type="radio" name="gender" id="gender" ng-model="gender" value="Female"> Female
 									</label>
 								</div>
 						  	</div>
@@ -159,7 +179,7 @@
 						  	</div>
 						  	<div class="col-md-12">
 						    	<div class="form-group">
-									<button type="button" class="btn btn-outline-success" ng-click="addUser()">Sign Up</button>
+									<button type="button" class="btn btn-outline-success" ng-click="updateUser()">Update</button>
 								</div>
 						  	</div>
 						  
@@ -226,6 +246,8 @@
 	</div>
 
 	<!-- ========= footer ============ -->
+	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
+	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script
@@ -241,9 +263,22 @@
 	src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 		
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
-	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
-	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
-	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
+	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.min.js"></script> 
+	
+	<script type="text/javascript">
+	$('#datetimepicker').datetimepicker({
+		 format: 'yyyy-mm-dd',
+		 	weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		 
+		 
+    });
+	</script>
 	
 
 	

@@ -60,6 +60,8 @@
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
 							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+							<i class="fa fa-user"></i> Profile</a>
 						</div>
 					</li>
 					</sec:authorize>
@@ -88,7 +90,7 @@
 							<div class="input-group">
 								<span><h3 style="display: inline;">{{user.first_name}} {{user.last_name}}</h3></span>
 								<span>
-									<button class="btn btn-secondary pull-md-right">... <i class="fa fa-pencil"></i>
+									<button class="btn btn-secondary pull-md-right" ng-click="getUserById(user.user_id)">{{user.user_id}}... <i class="fa fa-pencil"></i>
 									</button>
 								</span>						
 							</div>
