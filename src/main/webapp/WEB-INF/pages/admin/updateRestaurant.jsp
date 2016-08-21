@@ -1,5 +1,5 @@
-<section class="add_restaurant"  ng-controller="restCtrl">
-	<h2>Add Restaurant</h2>
+<section class="add_restaurant"  ng-controller="restUpdateCtrl">
+	<h2>Update Restaurant</h2>
 	<br />
 	<form name="frmAddRest" id="frmAddRest">
 	<div class="row">
@@ -41,27 +41,22 @@
 		                     </multiselect>
 						 </div>
 						  <!-- =================    restaurant picture ======================= -->
-						 <div class="form-group">
+						 <%-- <div class="form-group">
 							<label for="rest_name">Restaurant Picture</label>
 							<input type="file" class="form-control file2 btn btn-primary"
 							 multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
 							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="rest_picture" id="rest_picture" required>
-						</div>
-		
-						 
-						<%--  <!-- =================   Menu restaurant  ======================= -->
-						<div class="form-group">
-							<label for="rest_name">Restaurant Menu</label>
-							<input type="file" class="form-control file2 btn btn-orange"
-							 multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
-							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="menu" id="menu" required>
 						</div> --%>
+						
+						 <div id="content">
+						 	<label for="rest_picture">Restaurant Picture</label>
+					        <input type="file" name="files[]" id="restGallery" multiple="multiple">
+						 </div>
+		
 						<!-- =================   image thumbnail  ======================= -->
 						 <div id="content">
-						 	<label for="rest_name">Restaurant Menu</label>
-					        <span ng-repeat="s in sample" my-filter style="display:none">&nbsp;</span>
-					        <input type="file" name="files[]" id="gallery" multiple="multiple">
-					        <h1 ng-click="show()">Show</h1>
+						 	<label for="rest_menu">Restaurant Menu</label>
+					        <input type="file" name="files[]" id="menuGallery" multiple="multiple">
 						 </div>
 						
 						<div class="form-group">

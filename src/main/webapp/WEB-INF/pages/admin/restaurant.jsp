@@ -1,4 +1,4 @@
-<div ng-controller="restCtrl">
+<div ng-controller="restGetCtrl">
 <div class="col-md-12">
 	<div class="card-header">
 			 		
