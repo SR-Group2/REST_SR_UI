@@ -300,15 +300,15 @@
 	<!-- Demo Settings -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.js"></script>
 	
-
+	<!-- =========== JQuery Filter  ================ -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/jquery.filer.min.js?v=1.0.5"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/custom.js?v=1.0.5"></script>
+	<!--  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/restdata.js?v=1.0.5"></script>  -->
 		
 	<!-- =========== JS Application  ================ -->
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/phanit.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/restaurant.js"></script>
 	
-	<!-- =========== JQuery Filter  ================ -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/jquery.filer.min.js?v=1.0.5"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery_filter/js/custom.js?v=1.0.5"></script>
 	
 	
 	
