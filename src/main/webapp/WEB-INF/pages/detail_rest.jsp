@@ -144,7 +144,7 @@
 							</table>
 							
 							<div class="more_part">
-							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav"><i class="fa fa-heart"> ADD FAVORITE</i></button>
+							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav"><i class="fa fa-heart"> ADD FAVORITE </i></button>
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
 						</div>
 					</div>
@@ -206,6 +206,12 @@
 		</div>
 	</div>
 
+
+
+	<sec:authorize access="isAuthenticated()" var="session_isLogin"/>
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.id" var="session_userID"/>
+	</sec:authorize>
 
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
@@ -270,6 +276,16 @@
 	  				$scope.rest_id = $scope.rest.rest_id;
 	  				
 	  				$scope.getCategoryByRestID($scope.rest_id);
+	  				
+	  				
+	  				//=========== Check usersession is login or not=============
+	  				if("${session_isLogin}" == "true"){
+	  					//alert("${session_isLogin}" + " " + "${session_userID}");
+	  					$scope.isExist($scope.rest.rest_id, "${session_userID}");
+	  				
+	  				}
+
+	  				
 	  			});
 	  		}
 	  		
@@ -311,9 +327,7 @@
 						    "rest_id": rest_id
 						    }
 						};
-				
-				console.log(data);
-				
+
 				if($scope.comment_text = ""){
 					console.log(data);
 				}
@@ -325,22 +339,18 @@
 	  			});
 			}
 			
-			/* $scope.addFavRest= function(rest_id){
-				$("#btnfav").text("saved");
-				alert(rest_id);
-				$scope.user_id = parseInt($('#user_id').text());
-				alert($scope.user_id);
-			} */
-			
 	/*========================Add Favorite Restaurant ======================*/
 			
 			
 			$scope.addFavRest= function(rest_id){
-			$("#btnfav").text("Saved");
-			alert(rest_id);
-			$scope.user_id = parseInt($('#user_id').text());
-			alert($scope.user_id);
-			
+				
+				if("${session_isLogin}" == "false"){
+					location.href="/login";
+					return;
+				}
+
+			//$("#btnfav").text("Saved");
+			$scope.user_id = parseInt($('#user_id').text());			
 			data={
 					'user':{
 						'user_id':$scope.user_id
@@ -351,11 +361,26 @@
 			}
 			$http.post('http://localhost:8080/rest/favourite-restaurant',data).then(function(response){
 				alert('successfully added');
+				$("#btnfav").text("Saved");
+				$("#btnfav").attr('disabled', 'disabled');
 			});
 			
 		} 
 			
 			
+		/*======================= Check Restaurant is Exist or not ===================*/
+		$scope.isExist=function(rest_id,user_id){
+				$http.get('http://localhost:8080/rest/favourite-restaurant/is-fav-existed/'+user_id+'/'+rest_id).then(function(response){	
+					if(response.data.STATUS == false){						
+						$("#btnfav").text("Saved");
+						$("#btnfav").attr('disabled', 'disabled');
+					}else{
+						$("#btnfav").text("Add Favorite");
+						
+					}
+					
+				});
+			}
 	  	});
 	
 	  	//=================== login action ===============     
@@ -384,12 +409,6 @@
 							});
 					});
 
-	 
-	
-	
-		
-	
-	    
     </script>
 </body>
 </html>

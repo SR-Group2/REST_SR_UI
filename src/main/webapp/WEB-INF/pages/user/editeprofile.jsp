@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/css/register.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css">
 	
 	
 </head>
@@ -78,7 +78,6 @@
 					<div class="frmSignup">
 					<div class="register-info">
 						<h3>Edit Profile</h3>
-						<p>If you already have an account with us, please login at the login page.</p>
 					</div>
 					<form name="frmRegister">
 						<fieldset>
@@ -125,26 +124,16 @@
 								    <input type="password" class="form-control" id="lblconfirmpassword"  ng-model="txtconfrimpword" placeholder="Confirm Password">
 							  	</div>
 						  	</div>
+						  	
 						  	<div class="col-md-12">
-						  		<div class="form-group">
-									<label for="" class="">Date of Birth</label>
-									<div class="input-group">
-												<input type="date" class="form-control" placeholder="Year-Month-Day"  ng-model="dob" name="dob">				
-												<div class="input-group-addon">
-													<i class="fa fa-calendar"></i>
-												</div>
-										</div>
-									</div>
-						  	</div>
-						  	<div class="col-md-12">
-						  		<label for="dtp_input2" class="">Date of Birth</label>
-						  		<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" >
-					                    <input class="form-control form-date"  type="text" value="{{dob}}" id="datetimepicker" placeholder="Year-Month-Day" ng-model="dob" name="dob">
-										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-					             </div>
-					             <input type="hidden" id="dtp_input2" value="" />
-						  		
-						  	</div>
+								<label for="date" class="">Date of Birth</label>
+							    <div class="input-group">   
+							        <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"  value="{{dob}}"  ng-model="dob" name="dob" />
+							        <div class="input-group-addon">
+							          <i class="fa fa-calendar"></i>
+							        </div>
+							    </div>
+				            </div>
 						  	<div class="col-md-12">
 						  		<label for="">Gender</label>
 						  		<div class="input-group">
@@ -157,25 +146,11 @@
 								</div>
 						  	</div>
 						  	<div class="col-md-12">
-						  		<div class="col-md-3">																	
-				  							<div>
-												<label  class="input-label">User Profile</label>
-											</div>
-											<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
-												<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
-													<img src="" alt="...">
-												</div>
-												<div class="" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
-												<div>
-													<span class="btn btn-white btn-file">
-														<span class="fileinput-new">Select image</span>
-														<span class="fileinput-exists">Change</span>
-														<input type="file" name="..." accept="image/*">
-													</span>
-													<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-												</div>
-											</div>
-										</div>
+						  	<label  for="">User Profile</label>
+						  		<div clsss="form-group">
+						  			<input type="file" >
+						  		
+						  		</div>
 						  	</div>
 						  	<div class="col-md-12">
 						    	<div class="form-group">
@@ -247,7 +222,7 @@
 
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
-	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
+	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  	
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script
@@ -263,22 +238,20 @@
 	src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 		
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
-	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datetimepicker.min.js"></script> 
+	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datepicker.min.js"></script> 
 	
-	<script type="text/javascript">
-	$('#datetimepicker').datetimepicker({
-		 format: 'yyyy-mm-dd',
-		 	weekStart: 1,
-	        todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0
-		 
-		 
-    });
-	</script>
+	<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'yyyy-mm-dd',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
 	
 
 	

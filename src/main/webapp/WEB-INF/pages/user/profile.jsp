@@ -90,19 +90,19 @@
 							<div class="input-group">
 								<span><h3 style="display: inline;">{{user.first_name}} {{user.last_name}}</h3></span>
 								<span>
-									<button class="btn btn-secondary pull-md-right" ng-click="getUserById(user.user_id)">{{user.user_id}}... <i class="fa fa-pencil"></i>
+									<button class="btn btn-secondary pull-md-right" ng-click="getUserById(user.user_id)">... <i class="fa fa-pencil"></i>
 									</button>
 								</span>						
 							</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								</p>
+								<div>
+									<p>Date Of Birth: {{user.dob | date:'yyyy-MM-dd'}}</p>
+									<p>Gender : {{user.gender }}</p>
+								</div>
 							</div>	
 						</div>
 						<div row>
 							<h3>{{favouriteRestaurants[0].fav_total}}</h3>
-							<p>Favoriate</p>
+							<p><i class="fa fa-heart-o"></i> Favorite</p>
 						</div>
 					</div>
 				</div>
@@ -116,7 +116,7 @@
 					<div class="fav-box">
 						<h6>{{fav.rest.rest_name}}</h6>
 						<h6>{{fav.rest.total}}</h6>
-						<a href="#"><img  class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restype/Western food.png"></a>
+						<a href="#"><img  class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restaurants/4.jpg"></a>
 					</div>
 				</div>
 				

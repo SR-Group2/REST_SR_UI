@@ -38,7 +38,7 @@
 							data-toggle="modal" data-target="#login">ចូលប្រើ</a></li>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="#">បង្កើតគណនី</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/register">បង្កើតគណនី</a></li>
 					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
 					</li>

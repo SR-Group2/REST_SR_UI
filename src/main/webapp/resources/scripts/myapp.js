@@ -5,29 +5,11 @@ app.controller('mainCtrl',function($scope, $http,$filter){
 		$http.get('rest/favourite-restaurant/get-fav-rest-by-user-id/'+$scope.user_id).then(function(response){
 			$scope.favouriteRestaurants = response.data.DATA;	
 			$scope.user = $scope.favouriteRestaurants[0].user;
+			console.log($scope.favouriteRestaurants);
 		});
 	}
 	$scope.getAllFavReste();
 
-	$scope.addFavRest= function(rest_id){
-			$("#btnfav").text("Saved");
-			$scope.user_id = parseInt($('#user_id').text());
-		
-			data={
-					'user':{
-						'user_id':$scope.user_id
-					},
-					'rest':{
-						'rest_id':rest_id
-					}	
-			}
-			$http.post('/rest/favourite-restaurant',data).then(function(response){
-				alert('successfully added');
-			});
-			
-		} 
-	
-	
 // ========================= Update User ==============================
 	var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
@@ -46,7 +28,6 @@ app.controller('mainCtrl',function($scope, $http,$filter){
 			$scope.password=response.data.DATA.password;
 			$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 			$scope.gender= response.data.DATA.gender;
-			console.log(response);
 		});	
 	}
 	
@@ -60,13 +41,12 @@ app.controller('mainCtrl',function($scope, $http,$filter){
 				'username':$scope.username,
 				'email': $scope.email,
 				'password':$scope.password,
-				'dob': $scope.dob,
+				'dob': $('input[name="date"]').val(),
 				'gender':$scope.gender,
 				'role': {
 					'id': 1
 				}
 			}
-		console.log(data);
 		$http.put('http://localhost:8080/rest/user',data).then(function(response){
 			swal("Update Successfully!", "You clicked the button!", "success");
 			window.location.href= "http://localhost:8080/login";
@@ -91,10 +71,12 @@ app.controller('signUpCtrl', function($scope,$http){
 				"username": $scope.txtusername,
 				 "email": $scope.txtemail,
 				"password": $scope.txtpassword,
-				"dob": $('input[name=dob]').val(),
+				"dob": $('input[name=date]').val(),
 				'gender': $scope.txtgender,
 				"picture": "string"
 				};
+		console.log(data);
+		return;
 		$http.post('/rest/user/sign-up', data).then(function(response){
 			swal("Successfully Registered!", "You clicked the button!", "success");
 			window.location.href= "http://localhost:8080/login";
@@ -104,14 +86,7 @@ app.controller('signUpCtrl', function($scope,$http){
 
 });
 
-app.directive('wjValidationError', function () {
-	  return {
-	    require: 'ngModel',
-	    link: function (scope, elm, attrs, ctl) {
-	      scope.$watch(attrs['wjValidationError'], function (errorMsg) {
-	        elm[0].setCustomValidity(errorMsg);
-	        ctl.$setValidity('wjValidationError', errorMsg ? false : true);
-	      });
-	    }
-	  };
-	});
+
+
+
+

@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/css/register.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css">
 	
 </head>
 <body ng-controller="signUpCtrl">
@@ -105,16 +106,17 @@
 						  	<div class="col-md-12">
 						  		<div class="form-group">
 						    		<label for="lblpassword">Password</label>
-						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password" ng-model="txtpassword" name="password" required pattern=".{2,}">
+						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password" ng-model="txtpassword" name="password"  required">							
+								  
 								</div>
 						  	</div>
 						  	<div class="col-md-12">
 							  	<div class="form-group">
 								    <label for="lblconfirmpassword">Confirm Password</label>
-								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" wj-validation-error="txtconfrimpword != txtpassword ? 'Passwords don\'t match' : ''">
+								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" >
 							  	</div>
 						  	</div>
-						  	<div class="col-md-12">
+						  	<!--  <div class="col-md-12">
 						  		<div class="form-group">
 									<label for="" class="">Date of Birth</label>
 									<div class="input-group">
@@ -124,7 +126,18 @@
 												</div>
 										</div>
 									</div>
-						  	</div>
+									
+						  	</div>-->
+						  	<div class="col-md-12">
+								<label for="date" class="">Date of Birth</label>
+							    <div class="input-group">   
+							        <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"  ng-model="txtdob" />
+							        <div class="input-group-addon">
+							          <i class="fa fa-calendar"></i>
+							        </div>
+							    </div>
+				            </div>
+						  	
 						  	<div class="col-md-12">
 						  		<label for="">Gender</label>
 						  		<div class="input-group">
@@ -244,6 +257,19 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
+	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datepicker.min.js"></script> 
+	<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'yyyy-mm-dd',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
 	
 
 	

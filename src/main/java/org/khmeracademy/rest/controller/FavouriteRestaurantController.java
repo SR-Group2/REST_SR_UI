@@ -57,4 +57,11 @@ public class FavouriteRestaurantController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/is-fav-existed/{user_id}/{rest_id}",method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> isFavExisted(@PathVariable("user_id") int user_id, @PathVariable("rest_id") int rest_id ){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/favourite-restaurant/is-fav-existed/"+user_id+"/"+rest_id, HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
+	
 }
