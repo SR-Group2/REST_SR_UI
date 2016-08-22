@@ -58,10 +58,16 @@
 						</tr>
 			</tbody>
 		</table>
-		
-		<div class="text-md-center">
+		<div class="text-md-center page">
+				<dir-pagination-controls
+			       max-size="5"
+			       direction-links="true"
+			       boundary-links="true" >
+			    </dir-pagination-controls>
+			    </div>	
+				<!-- <div class="text-md-center">-->
 				<!-- ================= Pagination ===================== -->
-				<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
+				<!--  <ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
 					</i></a></li> <li><a href="#">1</a></li> <li class="active"><a href="#">2</a></li>
 					 <li><a href="#">3</a></li> 
 					 <li><a href="#">4</a></li> 
@@ -69,7 +75,7 @@
 					 <li><a href="#">6</a></li> 
 					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
 				 </ul>
-			  
+			  -->
 		</div>
 		
 		
