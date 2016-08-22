@@ -296,7 +296,7 @@ app.controller("restypeCtrl", function($scope, $http){
 				'restype_picture': $scope.restype_picture,
 				'description': $scope.description
 		}
-		$http.post('http://localhost:8080/rest/restype',data).then(function(response){
+		$http.post('http://localhost:8080/rest/restype?page=1&limit=30',data).then(function(response){
 			swal("Successfully Added!", "You clicked the button!", "success");
 			$scope.getAllRestypes();
 		});

@@ -38,20 +38,28 @@
 		                     		selection-limit="3">
 		                     </multiselect>
 						 </div>
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label for="rest_name">Restaurant Picture</label>
 							<input type="file" class="form-control file2 btn btn-primary"
 							  multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
 							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="rest_picture" id="rest_picture" required>
-						</div> 
-						 <div class="form-group">
+						</div>  --%>
+						<%--  <div class="form-group">
 							<label for="rest_name">Restaurant Menu</label>
 							<input type="file" class="form-control file2 btn btn-orange"
 							 multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
 							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="menu" id="menu" required>
-						</div> 
-						<!-- =================   image thumbnail  ======================= -->
-						
+						</div> --%>
+						 <!-- =================    restaurant picture ======================= -->			
+						 <div id="content">
+						 	<label for="rest_picture">Restaurant Picture</label>
+					        <input type="file" name="files[]" id="restGallery" multiple="multiple">
+						 </div> 
+						<!-- =================   restaurant menu  ======================= -->
+						 <div id="content">
+						 	<label for="rest_menu">Restaurant Menu</label>
+					        <input type="file" name="files[]" id="menuGallery" multiple="multiple">
+						 </div>
 						<div class="form-group">
 							<label for="contact">Contact</label>
 							<input type="text" class="form-control" name="contact" ng-model="contact" required>

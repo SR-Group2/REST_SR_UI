@@ -13,6 +13,10 @@ app.directive('myFilter', [function() {
  
 //================= ADD RESTAURANT	 =====================
  app.controller('restAddCtrl', function($scope, $http){
+     angular.element(document).ready(function() {
+    	 initJqueryFiler(['#restGallery', '#menuGallery'], [[],[]]);
+     });
+	 
 	//================= DATA STATIC RESTYPE	 =======================
 		var currentPage = 1;
 		$scope.restypes = [];
@@ -79,6 +83,7 @@ app.directive('myFilter', [function() {
 		 
 		//=================  ADD RESTAURANTS =====================
 	    $scope.addRestaurant = function(e){
+	    	$scope.open_close = "From "+ $scope.open + " To " + $scope.close;
 	    	
 	    	e.preventDefault();
 	    	$scope.user_id = parseInt($("#user_id").text());
@@ -99,7 +104,7 @@ app.directive('myFilter', [function() {
 	    	
 	    	var frmData = new FormData();
 	    	
-	    	var rest_picture = angular.element('#rest_picture')[0].files;
+	    	/*var rest_picture = angular.element('#rest_picture')[0].files;
 	    	for(var i=0; i<rest_picture.length; i++){
 				frmData.append("restaurant", rest_picture[i]);
 			}
@@ -107,7 +112,17 @@ app.directive('myFilter', [function() {
 	    	var menu_files = angular.element('#menu')[0].files;
 			for(var i=0; i<menu_files.length; i++){
 				frmData.append("menu", menu_files[i]);
-			}
+			}*/
+	    	
+	    	//===========send add restaurant picture to server
+	    	for (var i=0; i<newFiles["restGallery"].length; i++){
+	    		frmData.append("restaurant", newFiles["restGallery"][i]);
+	    	}
+	    	
+	    	//===========send add menu picture to server
+	    	for (var i=0; i<newFiles["menuGallery"].length; i++){
+	    		frmData.append("menu", newFiles["menuGallery"][i]);
+	    	}
 			
 			//frmData.append("rest_picture", menu_files);
 			

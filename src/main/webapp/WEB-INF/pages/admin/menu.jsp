@@ -28,7 +28,7 @@
 				<tr ng-repeat ="restype in restypes">
 					<td>{{restype.restype_name}}</td>
 					<td>{{restype.restype_name_kh}}</td>
-					<td>{{restype.restype_picture}}</td>
+					<td><img src="http://localhost:9999{{restype.restype_picture}}"/></td>
 					<td>{{restype.description}}</td>
 					<td>{{restype.date_added}}</td>
 					<td>{{restype.date_modify}}</td>

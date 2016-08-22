@@ -68,10 +68,7 @@
 								<div id="flipbook">
 									<img  class="hard" src="${pageContext.request.contextPath}/resources/images/logo.png">
 									<div class="hard"></div>
-									<div> Page 2 </div>
-									<div> Page 3 </div>
-									<div> Page 4 </div>
-									<img src="http:localhost:9999"/>
+									<img class="hard" ng-repeat="menu in menus" ng-src="http://localhost:9999{{menu.url}}"></div>
 									<div class="hard"></div>
 								</div>
 						</flipbook>
@@ -245,21 +242,25 @@
 		});
 		
 		
-		/* 
-		$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
+		
+		
+		//============================ end flipbook ============================
+	
+	  	app.controller("mainCtrl", function($http, $scope){
+	  		
+	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	  		console.log(id);
+	  		
+	  		$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+id)
 			.then(function(rsp){
 				console.log(rsp);
 				$scope.menus = rsp.data.DATA;
 				console.log($scope.menus);
 				
 		}); 
-		 */
-		//============================ end flipbook ============================
-	
-	  	app.controller("mainCtrl", function($http, $scope){
+		 
 
-	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-	  		console.log(id);
+	  		
 	  		
 	  		$scope.getRestDetail = function(){
 	  			
