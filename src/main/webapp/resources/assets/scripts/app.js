@@ -1,7 +1,9 @@
 var app= angular.module('app',['angularUtils.directives.dirPagination','btorfs.multiselect']);
 
+ 
 //================================ User Controler Pheara =======================================
 app.controller('mainCtrl', function( $scope, $http, $filter){
+
 	
 				$scope.getAllUsers=function(){
 					$http.get('http://localhost:8080/rest/user').then(function(response){
@@ -17,7 +19,12 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				$scope.getGender=function(gender){
 					$scope.gender=gender;
 				}
+				
+				//======================= Adding User ====================
 				$scope.addUser=function(){
+					
+					var frmData = new FormData();
+					
 					data={
 							"first_name": $scope.txtfirstname,
 							"last_name": $scope.txtlastname,
@@ -26,21 +33,52 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 							"password": $scope.txtpassword,
 							"dob": $('input[name=dob]').val(),
 							'gender': $scope.txtgender,
-							"picture": "string",
 							"role": {
 								"id": $scope.roles
 							  }
 							
 							};
-					$http.post('http://localhost:8080/rest/user', data).then(function(response){
-						$scope.getAllUsers();
-						swal("Successfully Inserted!", "You clicked the button!", "success");
-						$scope.clearInput();
+					//============= Cache File from user profile to server 
+				
+					
+					var picture = angular.element('#file')[0].files;
+					for(var i=0; i<picture.length; i++){
+						frmData.append("picture", picture[i]);
+					}
+					
+					
+					frmData.append('json_data', JSON.stringify(data));
+
+					$http({
+						url:'http://localhost:9999/api/upload/user',
+						method: 'POST',
+						data: frmData,
+						transformRequest: angular.identity,
+			            headers: {'Content-Type': undefined}
+					}).then(function(response){
+						console.log(response.data);
+						swal({   
+			        			title: "INSERTED SUCCESSFULLY!",   
+			        			text: "THANK YOU",   
+			        			type: "success",   
+			        			confirmButtonColor: "#007d3d",   
+			        			closeOnConfirm: false,   
+			        			closeOnCancel: false }, 
+			        			function(isConfirm){   
+			        				if(isConfirm) {     				
+			        					window.location.href="http://localhost:8080/admin/adduser";
+			        				}else {     
+			        					swal("Cancelled", "Your imaginary file is safe !", "error");   
+			        				} 
+			        			});
 						
+					}, function(error){
+						console.log(error.data);
+						alert('failed to upload data! Please Try again !!!!!');
 					});
 				}
 				
-				
+				//======================= DELETE  User ====================
 				$scope.deleteUsers=function(id){	
 					swal({   title: "Are you sure?",
 						text: "You will not be able to recover this imaginary file!",

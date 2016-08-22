@@ -82,23 +82,46 @@
 									
 	 							</div>
 								<div class="col-md-3">																	
-		  							<div>
-										<label  class="input-label">User Profile</label>
-									</div>
+		  				
+										
+										
 									<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
-										<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
-											<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="...">
+										<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+											<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="">
 										</div>
 										<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
 										<div>
 											<span class="btn btn-white btn-file">
 												<span class="fileinput-new">Select image</span>
 												<span class="fileinput-exists">Change</span>
-												<input type="file" name="..." accept="image/*">
+												<input id="file" type="file" name="..." accept="image/*">
 											</span>
 											<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
 										</div>
 									</div>
+									
+									
+									</div>
+									
+									<%-- <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
+										<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
+											<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="...">
+										</div>  --%>
+									
+										<!-- =================    restaurant picture ======================= -->			
+										 <!-- <div id="content" myfilter>
+									        <input type="file" name="files[]" id="userGallery">
+										 </div>
+										<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div> -->
+										<!-- <div>
+											<span class="btn btn-white btn-file">
+												<span class="fileinput-new">Select image</span>
+												<span class="fileinput-exists">Change</span>
+												<input type="file" name="..." accept="image/*">
+											</span>
+											<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+										</div> -->
+									<!-- </div> -->
 								</div>
 								
 
