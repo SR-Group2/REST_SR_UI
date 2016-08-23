@@ -7,7 +7,7 @@
 }
  .list-box img{
 	width:350px;
-	height:200px;
+	height:170px;
 }
  .box-filter, .box-sort {
 	background-color: #41c130;
@@ -69,7 +69,7 @@
 
   .list-des{
 	margin-left:20px;
-	padding-bottom: 30px;
+	padding-bottom: 10px;
 }
  .range-slider ,.radio-btn{
 	margin-top:15px;

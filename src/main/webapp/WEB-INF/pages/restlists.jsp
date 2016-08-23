@@ -19,6 +19,7 @@
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/screen.css">
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/typeaheadjs.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
@@ -26,7 +27,15 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 
 <style>
-
+.flexbox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+.flexbox .col {
+  flex: 1;
+}
 </style>
 </head>
 <body ng-controller="mainCtrl">
@@ -68,9 +77,9 @@
 	</nav>
 		
 	<section class="rest-list">
-		<div class="container">
+		<div class="container flexbox" >
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col">
 					<div class="row">
 						<div class="box-filter">
 							<h2>Search:</h2>
@@ -135,7 +144,7 @@
 					</div><!-- end row -->
 				</div>
 				
-				<div class="col-md-9">
+				<div class="col-md-9 col">
 					<div class="row" id="getRest">
 					
 						
@@ -148,7 +157,8 @@
 						
 				</div><!-- ======== col-md-9 -->
 		</div>
-	</section>	
+	</div>
+	\</section>	
 	
 	
 	<!-- Modal -->
@@ -261,16 +271,20 @@
 		<div class="col-md-4">
 			<div class="list-box" onclick="detailRest({{= rest_id}})">
 				<div>
-					<img class="img-fluid" src="${pageContext.request.contextPath}/resources/images/restaurants/restaurant_text.png">
+					<img class="img-fluid" src="http://localhost:9999{{= restpictures[0].path_name}}">
 				</div>
 				<div class="list-des">
-					<p>{{= rest_name }}</p>
+					<p style="
+						white-space: nowrap;overflow: hidden;
+						text-overflow: ellipsis;max-width: 100px;">{{= rest_name }}</p>
 					<i class="fa fa-star text-warning"></i>
 					<i class="fa fa-star text-warning"></i>
 					<i class="fa fa-star text-warning"></i>
 					<i class="fa fa-star text-secondary"></i>
 					<i class="fa fa-star text-secondary"></i>
-					<p>{{= about}}</p>
+					<p style="
+						white-space: nowrap;overflow: hidden;
+						text-overflow: ellipsis;max-width: 0px;">{{= about}}</p>
 				</div>
 			</div>
 		</div>
@@ -323,7 +337,7 @@
 				success : function(data) {
 					console.log(data);
 					if (data.STATUS != false) {
-						console.log(data);
+						console.log("getRest", data);
 						$("#getRest").empty();
 						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 						$('#getRest').css("cursor", "pointer");
@@ -388,7 +402,7 @@
 			    success: function(data) { 
 			    	console.log(data);
 			    	if (data.STATUS != false) {
-						console.log(data);
+						console.log("select by type of restype ",data);
 						$("#getRest").empty();
 						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 						$('#getRest').css("cursor", "pointer");
@@ -507,28 +521,31 @@
 							console.log($("#frmLogin").serialize());
 
 							$
-									.ajax({
-										url : "${pageContext.request.contextPath}/login",
-										type : "POST",
-										data : $("#frmLogin").serialize(),
-										success : function(data) {
-											if (data == "User account is locked") {
-												alert(data);
-											} else if (data == "User is disabled") {
-												alert(data);
-											} else if (data == "Bad credentials") {
-												alert(data);
-											} else {
-												swal("Welcome To Nham Ey", "You clicked the button!", "success")
-												window.location.href = "${pageContext.request.contextPath}/"
-														+ data;
-											}
-										},
-										error : function(data) {
-											console.log(data);
+								.ajax({
+									url : "${pageContext.request.contextPath}/login",
+									type : "POST",
+									data : $("#frmLogin").serialize(),
+									success : function(data) {
+										if (data == "User account is locked") {
+											alert(data);
+										} else if (data == "User is disabled") {
+											alert(data);
+										} else if (data == "Bad credentials") {
+											alert(data);
+										} else {
+											swal("Welcome To Nham Ey", "You clicked the button!", "success")
+											window.location.href = "${pageContext.request.contextPath}/"
+													+ data;
 										}
-									});
-						});
+									},
+									error : function(data) {
+										console.log(data);
+									}
+								});
+					});
+				
+				
+			
 				
 		});
 	</script>
