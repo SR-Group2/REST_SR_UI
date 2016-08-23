@@ -6,7 +6,7 @@
 			
 			<div class="tile-header">
 				<h3>Visitors</h3>
-				<span>so far in our blog, and our website.</span>
+				<span>10000</span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -29,8 +29,8 @@
 		<div class="tile-progress tile-red">
 			
 			<div class="tile-header">
-				<h3>Visitors</h3>
-				<span>so far in our blog, and our website.</span>
+				<h3>Users</h3>
+				<span>5000</span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -53,8 +53,8 @@
 		<div class="tile-progress tile-blue">
 			
 			<div class="tile-header">
-				<h3>Visitors</h3>
-				<span>so far in our blog, and our website.</span>
+				<h3>Owners</h3>
+				<span>50</span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -77,8 +77,8 @@
 		<div class="tile-progress tile-aqua">
 			
 			<div class="tile-header">
-				<h3>Visitors</h3>
-				<span>so far in our blog, and our website.</span>
+				<h3>Restaurants</h3>
+				<span>50</span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -185,9 +185,43 @@
 				<div class="tile-group tile-group-2">
 					<div class="tile-left tile-white">
 						<div class="tile-entry">
-							<h3>Visitor Map</h3>
+							<h3>Restaurant Map</h3>
 							<span>Where do our visitors come from</span>
+							
 						</div>
+						
+						<script>
+							function initialize() {
+							  var mapProp = {
+							    center:new google.maps.LatLng(11.4901037,104.7623584),
+							    zoom:5,
+							    mapTypeId:google.maps.MapTypeId.ROADMAP
+							  };
+							  var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+							  
+							  
+							  var marker = new google.maps.Marker({
+								  position: myCenter,
+								  title:'Click to zoom'
+								  });
+
+							  	marker.setMap(map);
+								// Zoom to 9 when clicking on marker
+								google.maps.event.addListener(marker,'click',function() {
+								  map.setZoom(9);
+								  map.setCenter(marker.getPosition());
+								  });
+							  
+							}
+							
+							
+							google.maps.event.addDomListener(window, 'load', initialize);
+						</script>
+						<script async defer
+					        src="https://maps.googleapis.com/maps/api/js?key=resturant-141104&callback=initMap">
+					    </script>							
+						
+						
 						<ul class="country-list">
 							<li><span class="badge badge-secondary">3</span>  Cologne, Germany</li>
 							<li><span class="badge badge-secondary">2</span>  Pristina, Kosovo</li>
@@ -198,6 +232,7 @@
 					<div class="tile-right">
 						
 						<div id="map-2" class="map"></div>
+						<div id="googleMap" style="width:100%;height:400px;"></div>
 						
 					</div>
 					
@@ -437,4 +472,5 @@
 
 	
 </div>
+
 

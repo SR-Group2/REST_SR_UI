@@ -38,7 +38,7 @@
 	<link href="${pageContext.request.contextPath}/resources/jquery_filter/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/resources/jquery_filter/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 	
-	
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script>$.noConflict();</script>
 	
@@ -84,12 +84,12 @@
 					</a>
 				
 				</li>
-				<%-- <li>
+				<li>
 					<a href="${pageContext.request.contextPath}/admin/category" target="_self">
 						<i class="fa fa-book"></i>
 						<span class="title">Menu Restaurant</span>
 					</a>
-				</li> --%>
+				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
 						<i class="fa fa-list"></i>
@@ -312,7 +312,6 @@
 	<!-- =========== JS Application  ================ -->
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/phanit.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/scripts/restaurant.js"></script>
-	
-	
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
 </body>
 </html>
