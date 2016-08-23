@@ -44,7 +44,7 @@
 		       						display-prop="restype_name" id-prop="restype_id"
 		                     		selection-limit="3">
 		                     </multiselect> -->
-		                     <multiselect restype ng-model="loadRestype" options="loadRestype" 
+		                     <multiselect restcategory ng-model="loadRestype" options="loadRestype" 
 		       						display-prop="restype_name" id-prop="restype_id"
 		                     		selection-limit="3">
 		                     </multiselect> 

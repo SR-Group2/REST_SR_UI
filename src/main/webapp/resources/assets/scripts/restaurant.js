@@ -11,11 +11,25 @@ app.directive('myFilter', [function() {
 
 }]);
 
+
+
+
 	
  
 //================= ADD RESTAURANT	 =====================
  app.controller('restAddCtrl', function($scope, $http, $rootScope){
 	 
+	 app.directive('restcategory', [function() {
+		    return {
+		        restrict: 'E',       
+		        link: function(scope, element) {
+		         
+		            if(scope.$last){
+		            	
+		            }
+		        }
+		    };
+		}]);
 	 
 	 var currentPage = 1;
 		$scope.loadRestype = [];
@@ -44,27 +58,15 @@ app.directive('myFilter', [function() {
 				$scope.dataRestype =response.data.DATA;
 				for (var i = 0; i < $scope.dataRestype.length; i++) {
 		            $scope.loadRestype.push({
-		            							restype_name:$scope.dataRestype[i].restype_name, 
-		            							restype_id: $scope.dataRestype[i].restype_id
-		            						});
+						restype_name:$scope.dataRestype[i].restype_name, 
+						restype_id: $scope.dataRestype[i].restype_id
+					});
 				}
-				/*console.log($scope.loadRestype);*/
+				
 			});
 		}
 		
-		 app.directive('restype', [function() {
-			    return {
-			        restrict: 'E',       
-			        link: function(scope, element) {
-			            // wait for the last item in the ng-repeat then call init
-			            if(scope.$last){
-			            	$scope.getRestType();
-			            }
-			        }
-			    };
-			}]);
-	 
-	 
+	$scope.getRestType();	
 	 //===================GET RESTAURANT OWNER ==============
 	 $scope.getRestOwner=function(){
 			$http.get('/rest/user/owner').then(function(response){
