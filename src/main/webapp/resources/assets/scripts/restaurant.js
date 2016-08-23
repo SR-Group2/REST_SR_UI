@@ -10,9 +10,59 @@ app.directive('myFilter', [function() {
     };
 
 }]);
+
+	
  
 //================= ADD RESTAURANT	 =====================
- app.controller('restAddCtrl', function($scope, $http){
+ app.controller('restAddCtrl', function($scope, $http, $rootScope){
+	 
+	 
+	 var currentPage = 1;
+		$scope.loadRestype = [];
+		
+		/*$scope.dataRestypes = [
+			{restype_name: 'Khmer Food', restype_id: 1},
+			{restype_name: 'BBQ', restype_id: 2},
+			{restype_name: 'Thai Food', restype_id: 3},
+			{restype_name: 'Vegeterian', restype_id: 4},
+			{restype_name: 'Sea Food', restype_id: 5},
+			{restype_name: 'Japanese Food', restype_id: 6},
+			{restype_name: 'Soup', restype_id: 7},
+			{restype_name: 'Beer', restype_id: 8},
+			{restype_name: 'Coffee and Tea', restype_id: 9},
+			{restype_name: 'Noodle', restype_id: 10},
+			{restype_name: 'Chinese Food', restype_id: 11},
+			{restype_name: 'Korean Food', restype_id: 12},
+			{restype_name: 'Western Food', restype_id: 13},
+			{restype_name: 'Buffet', restype_id: 114},
+			{restype_name: 'Porridge', restype_id: 15},
+			{restype_name: 'Street Food', restype_id: 16}
+	      ];*/
+	 //===================GET RESTAURANT RESTYPE ==============	 
+		$scope.getRestType=function(){
+			$http.get('/rest/restype?limit=30&page=1').then(function(response){
+				$scope.dataRestype =response.data.DATA;
+				for (var i = 0; i < $scope.dataRestype.length; i++) {
+		            $scope.loadRestype.push({
+		            							restype_name:$scope.dataRestype[i].restype_name, 
+		            							restype_id: $scope.dataRestype[i].restype_id
+		            						});
+				}
+				/*console.log($scope.loadRestype);*/
+			});
+		}
+		
+		 app.directive('restype', [function() {
+			    return {
+			        restrict: 'E',       
+			        link: function(scope, element) {
+			            // wait for the last item in the ng-repeat then call init
+			            if(scope.$last){
+			            	$scope.getRestType();
+			            }
+			        }
+			    };
+			}]);
 	 
 	 
 	 //===================GET RESTAURANT OWNER ==============
@@ -32,27 +82,7 @@ app.directive('myFilter', [function() {
      });
 	 
 	//================= DATA STATIC RESTYPE	 =======================
-		var currentPage = 1;
-		$scope.restypes = [];
 		
-		$scope.dataRestypes = [
-			{restype_name: 'Khmer Food', restype_id: 1},
-			{restype_name: 'BBQ', restype_id: 2},
-			{restype_name: 'Thai Food', restype_id: 3},
-			{restype_name: 'Vegeterian', restype_id: 4},
-			{restype_name: 'Sea Food', restype_id: 5},
-			{restype_name: 'Japanese Food', restype_id: 6},
-			{restype_name: 'Soup', restype_id: 7},
-			{restype_name: 'Beer', restype_id: 8},
-			{restype_name: 'Coffee and Tea', restype_id: 9},
-			{restype_name: 'Noodle', restype_id: 10},
-			{restype_name: 'Chinese Food', restype_id: 11},
-			{restype_name: 'Korean Food', restype_id: 12},
-			{restype_name: 'Western Food', restype_id: 13},
-			{restype_name: 'Buffet', restype_id: 114},
-			{restype_name: 'Porridge', restype_id: 15},
-			{restype_name: 'Street Food', restype_id: 16}
-	      ];
 		//================= START LOCATION ADDRESS =====================
 		
 		
@@ -176,6 +206,48 @@ app.directive('myFilter', [function() {
  });
 //================= UPDATE RESTAURANT	 =======================
  app.controller('restUpdateCtrl', function($scope, $http){
+	 
+	//================= START LOCATION ADDRESS =====================
+		
+		
+		//=================  GET CITIES / PROVINCE =====================
+		$scope.getCities = function(){
+			   $http.get('/rest/location/')
+			   .then(function (response) {
+				  $scope.provinces = response.data.DATA;
+				  console.log($scope.provinces);
+			   });
+		}
+		$scope.getCities();
+		//=================  GET DISTRICT / KHAN =====================
+		$scope.getDistrict = function(id){
+			$http.get('/rest/location/district/'+id)
+			   .then(function (response) {
+				  $scope.districts = response.data.DATA;
+				  console.log($scope.districts);
+			   });
+		}
+		
+		//=================  GET COMMUNE / SANGKAT =====================
+		$scope.getCommune = function(id){
+			
+			$http.get('/rest/location/commune/'+id)
+			   .then(function (response) {
+				  $scope.communes = response.data.DATA;
+				  console.log($scope.communes);
+				  
+				 
+			   });
+		}
+		//=================  GET VILLAGE / KROM =====================
+		$scope.getVillage = function(id){
+			$http.get('/rest/location/village/'+id)
+			   .then(function (response) {
+				  $scope.villages = response.data.DATA;
+				 
+			   });
+		}
+		//================= END LOCATION ADDRESS =====================
 
 	 var currentPage = 1;
 		$scope.restypes = [];
@@ -213,14 +285,16 @@ app.directive('myFilter', [function() {
    			$scope.restaurant = response.data.DATA;
    			$scope.rest_id = $scope.restaurant.rest_id;
    			$scope.rest_name = $scope.restaurant.rest_name;
+   			$scope.rest_name_kh = $scope.restaurant.rest_name_kh;
    			$scope.restype_name = $scope.restaurant.restype_name;
    			$scope.contact = $scope.restaurant.contact;
+   			$scope.open_close = $scope.restaurant.open_close;
    			$scope.about = $scope.restaurant.about;
-   			$scope.street = $scope.restaurant.street;
+   			$scope.street_number = $scope.restaurant.address.street;
    			$scope.restpictures = $scope.restaurant.restpictures;
    			$scope.categories = $scope.restaurant.categories;
    			
-   			console.log($scope.restaurant.restpictures);
+   			console.log($scope.restaurant);
    			
    			angular.forEach($scope.restaurant.restpictures, function(rest, key){
    				

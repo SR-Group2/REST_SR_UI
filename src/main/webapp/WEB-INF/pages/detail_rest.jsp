@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css"/>
-	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flipbook.css"/>
+	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/booklet/src/jquery.booklet.latest.css"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	
 </head>
@@ -64,14 +64,38 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
-						<flipbook>
+						<%-- <flipbook>
 								<div id="flipbook">
 									<img  class="hard" src="${pageContext.request.contextPath}/resources/images/logo.png">
 									<div class="hard"></div>
-									<!-- <img class="hard" ng-repeat="menu in menus" ng-src="http://localhost:9999{{menu.url}}"></div>
-									<div class="hard"></div> -->
+									<img class="hard" ng-repeat="menu in menus" ng-src="http://localhost:9999{{menu.url}}"></div>
+									<div class="hard"></div>
 								</div>
-						</flipbook>
+						</flipbook> --%>
+						
+						<div id="menus">
+							<div ng-repeat="menu in menus" menulist>
+								<img src="http://localhost:9999{{menu.url}}" class="img-fluid">
+							</div>
+							
+							
+							<%-- <div>
+								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+							</div> 
+							
+							<div>
+								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+							</div> 
+							
+							<div>
+								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+							</div> 
+							
+							<div>
+								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+							</div>  --%>
+							
+						</div>
 
 						<!-- ============== comment =========== -->
 						<sec:authorize access="isAuthenticated()">
@@ -129,9 +153,16 @@
 									<td>{{contact}}</td>
 								</tr>
 								<tr>
+									<td><i class="fa fa-location-arrow"> Address </i></td>
+									<td>{{address.village}}  </td>
+								</tr>
+								<tr>
+									<td colspan="2">{{address.communce}} {{address.district}} {{address.province}} លេខផ្លូវ:{{address.street}}</td>
+								</tr>
+								<!-- <tr>
 									<td><i class="fa fa-home"> LOCATION</i></td>
 									<td>{{location}}</td>
-								</tr>
+								</tr> -->
 							</table>
 							
 							<div class="more_part">
@@ -197,70 +228,73 @@
 		</div>
 	</div>
 
-
-
 	<sec:authorize access="isAuthenticated()" var="session_isLogin"/>
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication property="principal.id" var="session_userID"/>
 	</sec:authorize>
 
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/turn.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script> 
 	
+	<script> window.jQuery || document.write('<script src="booklet/jquery-2.1.0.min.js"><\/script>') </script>
+	
+	 <!-- ============= jQuery UI (optional) ============= -->
+	<script src="${pageContext.request.contextPath}/resources/booklet/src/jquery-ui-1.10.4.min.js"></script>
+	<script> window.jQuery.ui || document.write('<script src="${pageContext.request.contextPath}/resources/booklet/jquery-ui-1.10.4.min.js"><\/script>') </script>
+	
+	<!-- =============  Booklet ============== -->
+	<script src="${pageContext.request.contextPath}/resources/booklet/src/jquery.easing.1.3.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/booklet/src/jquery.booklet.latest.js" type="text/javascript"></script>
 	<script>
 	//==================== Get Restaurant Information ===================
 		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 	  		console.log(id);
 	  		
-		var app = angular.module("app", []);
-		//=========================== flipbook ============================
-		
-	 app.directive('flipbook', function(){
-		  return{
-		    restrict: 'E',
-		    link: function(scope, element, attrs){
-		      $('#flipbook').turn({
-		        width: '100%',
-		        height: '400px',
-		        autoCenter: true,
-		        pages: 18
-		      });
-		      $('#flipbook').turn('peel', 'br');
-		      
-		    },
-		    controller: function($scope){
-		      $scope.show_page = function(page){
-		    	  $('#flipbook').turn('page', page);
-		      }
-		     
-		    }
-		  }
-		});
-		
-		
-		
-		
-		//============================ end flipbook ============================
-	
-	  	app.controller("mainCtrl", function($http, $scope){
 	  		
+	  		
+	  		app.directive('menulist', [function() {
+	            return {
+	                restrict: 'A',       
+	                link: function(scope, element) {
+	                    // wait for the last item in the ng-repeat then call init
+	                    if(scope.$last){
+	                    	if(scope.$root.checkBooklet){
+	                    		$('#menus').booklet();
+	                    	}
+	                    	scope.$root.checkBooklet = true;
+	                    }
+	                }
+	            };
+	        }]);	
+		
+	  	
+		
+	  	app.controller("mainCtrl", function($http, $scope, $rootScope){
+	  		
+	  		$rootScope.checkBooklet = false;
+	
 	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 	  		console.log(id);
+	  		//============================ LOAD DATA OF CATEGORY ===========================
+	  		$scope.getCategory = function(){
 	  		
-	  		$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+id)
-			.then(function(rsp){
-				console.log(rsp);
-				$scope.menus = rsp.data.DATA;
-				console.log($scope.menus);
+	  			$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+id)
+				.then(function(rsp){
 				
-		}); 
-		 
-
-	  		
+					$scope.menus = rsp.data.DATA;
+					
+				});
+	  		} 
+		 	
+			$scope.getCategory();
+			
+			
+			
+		  	
 	  		
 	  		$scope.getRestDetail = function(){
 	  			
@@ -274,7 +308,7 @@
 	  				$scope.location = $scope.rest.location;
 	  				$scope.owner_name = $scope.rest.user.username;
 	  				$scope.rest_id = $scope.rest.rest_id;
-	  				
+	  				$scope.address = $scope.rest.address;
 	  				$scope.getCategoryByRestID($scope.rest_id);
 	  				
 	  				
@@ -409,6 +443,7 @@
 							});
 					});
 
+	
     </script>
 </body>
 </html>

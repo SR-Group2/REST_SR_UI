@@ -40,10 +40,14 @@
 						<div class="form-group">
 							<label for="restype_id">Restaurant Category(Allow only 3 Categories)</label>
 				        	<!-- <pre>Model value: {{data_Restypes}}</pre> -->
-       						<multiselect ng-model="data_Restypes" options="dataRestypes" 
+       						<!-- <multiselect restype ng-model="loadRestype" options="loadRestype" 
 		       						display-prop="restype_name" id-prop="restype_id"
 		                     		selection-limit="3">
-		                     </multiselect>
+		                     </multiselect> -->
+		                     <multiselect restype ng-model="loadRestype" options="loadRestype" 
+		       						display-prop="restype_name" id-prop="restype_id"
+		                     		selection-limit="3">
+		                     </multiselect> 
 						 </div>
 						<%-- <div class="form-group">
 							<label for="rest_name">Restaurant Picture</label>
@@ -142,7 +146,7 @@
 							  ng-click="addRestaurant($event)" data-dismiss="modal">
 								<i class="fa fa-floppy-o"> Add Restaurant</i></button></a>
 						</div>
-					   </div> 
+					  </div> 
 					
 				</div><!-- ==============  end Panel ===================== -->
 			</div>

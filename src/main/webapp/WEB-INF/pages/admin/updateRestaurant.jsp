@@ -72,35 +72,58 @@
 					</div> 
 					<div class="col-md-5">
 						<div class="form-group">
+							<label for="open_close">City / Province</label>
+							<select name="province" ng-model="province" class="form-control" 
+							ng-change="getDistrict(province)" id="province" required>
+								<option selected>------ Select Province ------</option>
+								<option ng-repeat="province in provinces" 
+									value="{{province.ID}}">{{province.NAME}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="district">District / Khan</label>
+							<select class="form-control" name="district" ng-model="district" 
+								ng-change="getCommune(district)" id="district" required>
+								<option selected>------ Select District ------</option>
+								<option ng-repeat="district in districts" 
+									value="{{district.ID}}">{{district.NAME}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="commune">Commune / Sangkat</label>
+							<select class="form-control" name="communce" ng-model="communce" 
+								ng-change="getVillage(communce)" id="communce" required>
+								<option selected>------ Select Commune ------</option>
+								<option ng-repeat="commune in communes" 
+									value="{{commune.ID}}">{{commune.NAME}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="village">Village / Krom</label>
+							<select class="form-control" name="village" ng-model="village" id="village">
+								<option selected >------ Select Village ------</option>
+								<option ng-repeat="village in villages" value="{{village.ID}}">{{village.NAME}}</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<div class="form-group">
-							<label for="open_close">Street Number</label>
-							<input type="text" class="form-control" name="street" ng-model="street" required>
-							</div>
-							<div class="form-group">
-								<label for="open_close">Commune / Sangkat</label>
-								<input type="text" class="form-control" name="communce" ng-model="communce" required>
-							</div>
-							<div class="form-group">
-								<label for="open_close">District / Khan</label>
-								<input type="text" class="form-control" name="district" ng-model="district" required>
-							</div>
-							<div class="form-group">
-								<label for="open_close">City / Province</label>
-								<input type="text" class="form-control" name="province" ng-model="province" required>
-							</div>
-							<div class="form-group">
+							<label for="street_number">Street Number</label>
+							<input type="text" class="form-control" name="street_number" ng-model="street_number" required>
+						</div>
+						
+							<!-- <div class="form-group">
 								<label for="location">Location</label>
 								<input type="text" class="form-control" name="location" ng-model="location"" required>
-							</div>
-							<br>
+							</div> -->
+							
 							<a href="${pageContext.request.contextPath}/admin/restaurant" target="_self"">
 							<button type="button" class="btn btn-blue btn-block"
 							 ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid || 
 							 brandInfo.rest_name.$invalid || brandInfo.comment.$invalid"
-							  ng-click="updateRestaurant($event)" data-dismiss="modal">
-								<i class="fa fa-floppy-o"> Update Restaurant</i></button></a>
+							  ng-click="addRestaurant($event)" data-dismiss="modal">
+								<i class="fa fa-floppy-o"> Add Restaurant</i></button></a>
 						</div>
-					   </div> 
+					  </div> 
 					
 				</div><!-- ==============  end Panel ===================== -->
 			</div>
