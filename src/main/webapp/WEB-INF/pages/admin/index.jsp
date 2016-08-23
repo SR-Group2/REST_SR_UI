@@ -1,12 +1,12 @@
 		
-<div class="row">
+<div class="row" ng-controller="countCtrl">
 	<div class="col-sm-3">
 	
 		<div class="tile-progress tile-primary">
 			
 			<div class="tile-header">
 				<h3>Visitors</h3>
-				<span>10000</span>
+				<span><h3>10000</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -30,7 +30,7 @@
 			
 			<div class="tile-header">
 				<h3>Users</h3>
-				<span>5000</span>
+				<span><h3>{{totaluser}}</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -54,7 +54,7 @@
 			
 			<div class="tile-header">
 				<h3>Owners</h3>
-				<span>50</span>
+				<span><h3>{{totalOwner}}</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -78,7 +78,7 @@
 			
 			<div class="tile-header">
 				<h3>Restaurants</h3>
-				<span>50</span>
+				<span><h3>{{totalRest}}</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -191,31 +191,43 @@
 						</div>
 						
 						<script>
+						
 							function initialize() {
-							  var mapProp = {
-							    center:new google.maps.LatLng(11.4901037,104.7623584),
-							    zoom:5,
-							    mapTypeId:google.maps.MapTypeId.ROADMAP
-							  };
-							  var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-							  
-							  
-							  var marker = new google.maps.Marker({
-								  position: myCenter,
-								  title:'Click to zoom'
-								  });
+								  var myCenter= new google.maps.LatLng(11.5449, 104.8922);  
+								  var mapProp = {
+										    center:myCenter,
+										    zoom:7,
+										    mapTypeId:google.maps.MapTypeId.ROADMAP
+										  };
+								  var locations = [
+									                 ['Resterunce', 104.921853333333, 11.5394466666667,4],
+									                 ['Tarazu', 104.925063333333, 11.5477883333333,5],
+									                 ['Tutti Frutti', 104.923225, 11.546025,3],
+									                 ['Ninja Bakery', 104.924903333333, 11.54617,2],
+									                 ['S-Café', 104.89817, 11.5730716666667,1]
+									               ];
+								
+									               var map = new google.maps.Map(document.getElementById('googleMap'),mapProp);
+									               var infowindow = new google.maps.InfoWindow();
 
-							  	marker.setMap(map);
-								// Zoom to 9 when clicking on marker
-								google.maps.event.addListener(marker,'click',function() {
-								  map.setZoom(9);
-								  map.setCenter(marker.getPosition());
-								  });
-							  
-							}
-							
-							
+									               var marker, i;
+
+									               for (i = 0; i < locations.length; i++) { 
+									                 marker = new google.maps.Marker({
+									                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+									                   map: map
+									                 });
+
+									                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
+									                   return function() {
+									                     infowindow.setContent(locations[i][0]);
+									                     infowindow.open(map, marker);
+									                   }
+									                 })(marker, i));
+									               }							  
+							}						
 							google.maps.event.addDomListener(window, 'load', initialize);
+													
 						</script>
 						<script async defer
 					        src="https://maps.googleapis.com/maps/api/js?key=resturant-141104&callback=initMap">
@@ -257,7 +269,7 @@
 					<div class="icon"><i class="entypo-users"></i></div>
 					<div class="num" data-start="0" data-end="213" data-postfix="" data-duration="1400" data-delay="0">0</div>
 					
-					<h3>New Followers</h3>
+					<h3>Favorites</h3>
 					<p>Statistics this week</p>
 				</div>	
 				

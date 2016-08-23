@@ -292,7 +292,20 @@ app.controller('voteCtrl',function($scope,$http){
 });
 /*====================== Vote Controller Pheara ===========================================*/
 
-
+app.controller('countCtrl',function($scope,$http){
+	
+	$http.get('/rest/user/count-by-role-id/'+1).then(function(response){
+		$scope.totaluser=response.data.DATA;
+	});
+	$http.get('/rest/user/count-by-role-id/'+2).then(function(response){
+		$scope.totalOwner=response.data.DATA;
+	});
+	$http.get('/rest/restaurant/total-restaurant').then(function(response){
+		$scope.totalRest=response.data.DATA;
+	});
+	
+		
+});
 
 
 

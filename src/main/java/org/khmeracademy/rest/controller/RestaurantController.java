@@ -111,6 +111,12 @@ public class RestaurantController {
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant", HttpMethod.PUT , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value="/total-restaurant", method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> countRest(){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/total-restaurant", HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
 	
 }

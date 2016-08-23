@@ -92,4 +92,12 @@ public class UserController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="count-by-role-id/{role_id}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> countUser(@PathVariable("role_id") int role_id){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/count-by-role-id/"+role_id, HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
+	
+	
 }
