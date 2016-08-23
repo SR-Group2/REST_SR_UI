@@ -23,6 +23,12 @@
 				
 					<div class="col-md-5">
 						<div class="form-group">
+							<label for="owner">Restaurant Owner</label>
+							<select class="form-control" name="owner" id="owner">
+								<option>--- Select Owner ----</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="rest_name">Restaurant Name</label>
 							<input type="text" class="form-control" name="rest_name" ng-model="rest_name" required>
 						</div>
@@ -86,7 +92,7 @@
 						<div class="form-group">
 							<label for="open_close">City / Province</label>
 							<select name="province" ng-model="province" class="form-control" 
-							ng-change="getDistrict(province)" required>
+							ng-change="getDistrict(province)" id="province" required>
 								<option selected>------ Select Province ------</option>
 								<option ng-repeat="province in provinces" 
 									value="{{province.ID}}">{{province.NAME}}</option>
@@ -95,7 +101,7 @@
 						<div class="form-group">
 							<label for="district">District / Khan</label>
 							<select class="form-control" name="district" ng-model="district" 
-								ng-change="getCommune(district)" required>
+								ng-change="getCommune(district)" id="district" required>
 								<option selected>------ Select District ------</option>
 								<option ng-repeat="district in districts" 
 									value="{{district.ID}}">{{district.NAME}}</option>
@@ -104,7 +110,7 @@
 						<div class="form-group">
 							<label for="commune">Commune / Sangkat</label>
 							<select class="form-control" name="communce" ng-model="communce" 
-								ng-change="getVillage(communce)" required>
+								ng-change="getVillage(communce)" id="communce" required>
 								<option selected>------ Select Commune ------</option>
 								<option ng-repeat="commune in communes" 
 									value="{{commune.ID}}">{{commune.NAME}}</option>
@@ -112,7 +118,7 @@
 						</div>
 						<div class="form-group">
 							<label for="village">Village / Krom</label>
-							<select class="form-control" name="village" ng-model="village">
+							<select class="form-control" name="village" ng-model="village" id="village">
 								<option selected >------ Select Village ------</option>
 								<option ng-repeat="village in villages" value="{{village.ID}}">{{village.NAME}}</option>
 							</select>

@@ -4,7 +4,7 @@
 			<div class="col-xs-12 col-left">
 				<div class="dataTables_length" id="table-1_length">
 					<a class="btn btn-primary btn-icon" href="${pageContext.request.contextPath}/admin/adduser">Add New <i class="entypo-user-add"></i></a>
-			  </button>
+			  
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
 			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
@@ -23,16 +23,15 @@
 			<thead>
 				<tr>
 					        <th data-hide="phone">ID</th>
-							<th>First Name</th>
-							<th>Last Name</th>
+						
+							<th>Full Name</th>
 							<th>Username</th>
 							<th>Email</th>
-							<th>Password</th>
-							<th>Date of Birth</th>
+						
 							<th>Gender</th>
-							<th>Joined</th>
+						
 							<th>Role</th>
-							<th>Profile</th>
+							
 							<th>Action</th>
 				</tr>
 			</thead>
@@ -42,19 +41,19 @@
 				<!-- <tr ng-repeat=" user in users | filter:search | limitTo: pageSize"> -->
 						<tr class="odd gradeX" dir-paginate="user in users|filter:search|itemsPerPage:10 | orderBy">
 							<td>{{$index+1}}</td>
-							<td>{{user.first_name}}</td>
-							<td>{{user.last_name}}</td>
+							<td>{{user.first_name}}  {{user.last_name}}</td>
 							<td>{{user.username}}</td>
 							<td>{{user.email}}</td>
-							<td>{{user.password}}</td>
-							<td>{{user.dob | date: "yyyy-MM-dd"}}</td>
+						<!-- 	<td>{{user.dob | date: "yyyy-MM-dd"}}</td> -->
 							<td>{{user.gender}}</td>
-							<td>{{user.joined | date: "yyyy-MM-dd"}}</td>
+							<!-- <td>{{user.joined | date: "yyyy-MM-dd"}}</td> -->
 							<td>{{user.role.name}}</td>
-							<td>{{user.picture}}</td>
-							<td><button type="button" class="btn btn-success btn-sm" onclick="jQuery('#modal').modal('show');" ng-click="getUserById(user.user_id)">
-							<i class="fa fa-pencil-square-o"></i></button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteUsers(user.user_id);">
-							<i class="fa fa-trash-o"></i></button></td>					
+							<td>
+							<button type="button" class="btn btn-blue btn-sm" onclick="jQuery('#modal').modal('show');" ng-click="getUserById(user.user_id)">
+							<i class="fa fa-info"></i> Info</button>
+							<button type="button" class="btn btn-success btn-sm" onclick="jQuery('#modal').modal('show');" ng-click="getUserById(user.user_id)">
+							<i class="fa fa-pencil-square-o"></i> Edit</button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteUsers(user.user_id);">
+							<i class="fa fa-trash-o"></i> Delete</button></td>					
 						</tr>
 			</tbody>
 		</table>

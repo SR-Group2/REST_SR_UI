@@ -1,5 +1,25 @@
 var app= angular.module('app',['angularUtils.directives.dirPagination','btorfs.multiselect']);
 
+ app.controller("ownerCtrl", function($scope, $http, $filter){
+	 $scope.getAllUsers=function(){
+			$http.get('http://localhost:8080/rest/user/owner').then(function(response){
+				$scope.users=response.data.DATA;
+			});
+		}
+		$scope.getAllUsers();
+		
+		
+		$scope.clearInput = function(){
+			
+			$('#frmUser')[0].reset();
+		}
+		
+		$scope.linkToAddRest = function(id){
+			
+			window.location.href="/admin/addRestaurant/"+id;
+			
+		}
+ });
  
 //================================ User Controler Pheara =======================================
 app.controller('mainCtrl', function( $scope, $http, $filter){
@@ -26,18 +46,18 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 					var frmData = new FormData();
 					
 					data={
-							"first_name": $scope.txtfirstname,
-							"last_name": $scope.txtlastname,
-							"username": $scope.txtusername,
-							 "email": $scope.txtemail,
-							"password": $scope.txtpassword,
-							"dob": $('input[name=dob]').val(),
-							'gender': $scope.txtgender,
-							"role": {
-								"id": $scope.roles
-							  }
+						"first_name": $scope.txtfirstname,
+						"last_name": $scope.txtlastname,
+						"username": $scope.txtusername,
+						"email": $scope.txtemail,
+						"password": $scope.txtpassword,
+						"dob": $('input[name=dob]').val(),
+						'gender': $scope.txtgender,
+						"role": {
+							"id": $scope.roles
+						  }
 							
-							};
+					};
 					//============= Cache File from user profile to server 
 				
 					
@@ -45,7 +65,6 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 					for(var i=0; i<picture.length; i++){
 						frmData.append("picture", picture[i]);
 					}
-					
 					
 					frmData.append('json_data', JSON.stringify(data));
 

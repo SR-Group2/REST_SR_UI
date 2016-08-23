@@ -30,6 +30,13 @@ public class UserController {
 	@Autowired
 	private String WS_URL;
 	
+	//==================== Get User Owner ===============
+	@RequestMapping(value="/owner", method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> getUserOwner(){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/user/get-user-owner", HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getUser(){

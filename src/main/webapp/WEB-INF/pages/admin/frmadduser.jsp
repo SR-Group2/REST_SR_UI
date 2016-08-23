@@ -77,7 +77,8 @@
 										    </div>
 								    </div>
 									<div class="form-group">
-										<input type="button" class="btn btn-success" ng-click="addUser()" value="Submit">  <a href="${pageContext.request.contextPath}/admin/user" target="_self" class="btn btn-success">View User</a>
+										<input type="button" class="btn btn-success btn-block" ng-click="addUser()" value="Save">
+										  <%-- <a href="${pageContext.request.contextPath}/admin/user" target="_self" class="btn btn-success">View User</a> --%>
 									</div>
 									
 	 							</div>

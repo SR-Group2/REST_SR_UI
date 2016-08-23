@@ -276,18 +276,60 @@ app.controller("categoryCtrl", function($scope, $http){
 
 /*====================== Category Controller Pheara with Phanit ========================================*/
 
-/* =========================== Menu or Restaurant Type Controller By Kong Sophanit ============================================== */
+/* =========================== Menu or Restaurant Type Controller By Kong Sophanit ============================== */
 
 app.controller("restypeCtrl", function($scope, $http){
 	/*=========== Get All the Restaurant Types ===========*/
-	$scope.getAllRestypes = function(){	
-		$http.get('http://localhost:8080/rest/restype').then(function(response){
+	/*$scope.getAllRestypes = function(){	
+		$http.get('http://localhost:8080/rest/restype?page=1&limit=15').then(function(response){
 			$scope.restypes = response.data.DATA;
 		});
-	}
-	$scope.getAllRestypes();
+	}*/
 	
-	/* ================ Insert Into Table Restaurant types =================== */
+	//================= GET ALL RESTAURANTS TYPE  WITH PAGINATION =====================
+	var check = true;
+	var restypes = [];
+	var currentPage = 1;
+	
+	$scope.getAllRestypes = function (currentPage) {
+	    $http.get('http://localhost:8080/rest/restype?limit=15&page='+currentPage)
+	    .then(function (response) {
+	    	$scope.restypes = response.data.DATA;
+	    	if(check){
+				setPagination(response.data.PAGINATION.TOTAL_PAGES,currentPage);
+				check=false;
+	    	}
+	    }, function(){
+       	 	alert('Error');
+        });
+	}
+	    	
+    setPagination = function(totalPage, currentPage){
+	    	$('#pagination').bootpag({
+		        total: totalPage,
+		        page: currentPage,
+		        maxVisible: 10,
+		        leaps: true,
+		        firstLastUse: true,
+		        first: 'First',
+		        last: 'Last',
+		        wrapClass: 'pagination',
+		        activeClass: 'active',
+		        disabledClass: 'disabled',
+		        nextClass: 'next',
+		        prevClass: 'prev',
+		        lastClass: 'last',
+		        firstClass: 'first'
+		    }).on("page", function(event, currentPage){
+		    	check = false;
+		    	getCurrentPage = currentPage;
+		    	$scope.getAllRestypes(currentPage);
+		    }); 	
+		};
+					
+	$scope.getAllRestypes(currentPage);
+	
+	/* ================ Insert Into Table  types =================== */
 	
 	$scope.addRestype = function(){
 		data={	
@@ -296,8 +338,8 @@ app.controller("restypeCtrl", function($scope, $http){
 				'restype_picture': $scope.restype_picture,
 				'description': $scope.description
 		}
-		$http.post('http://localhost:8080/rest/restype?page=1&limit=30',data).then(function(response){
-			swal("Successfully Added!", "You clicked the button!", "success");
+		$http.post('http://localhost:8080/rest/restype', data).then(function(response){
+			swal("Added Successfully!", "You clicked the button!", "success");
 			$scope.getAllRestypes();
 		});
 	}
@@ -324,12 +366,12 @@ app.controller("restypeCtrl", function($scope, $http){
 		});
 	}
 	/* ================== Update Restaurant Type =========================== */
+	var frmData = new FormData();
 	$scope.updateRestype = function(){
 		data={
 				'restype_id': $scope.restype_id,	
 				'restype_name': $scope.restype_name,
 				'restype_name_kh': $scope.restype_name_kh,
-				'restype_picture': $scope.restype_picture,
 				'description': $scope.description
 		}
 		$http.put('http://localhost:8080/rest/restype/',data).then(function(response){

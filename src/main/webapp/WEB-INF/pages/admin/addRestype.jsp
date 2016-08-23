@@ -21,33 +21,49 @@
 				</div>
 				<div class="panel-body">
 					<!--  ======== Form Add Restaurant Type ============= -->
-				
 					<div class="col-md-5">
 						<div class="form-group">
-							<label for="rest_name">Restaurant Type Name</label>
+							<label for="restype_name">Restaurant Type KH</label>
 							<input type="text" class="form-control" name="restype_name" ng-model="restype_name" placeholder="Ex. Khmer Food, BBQ,..." required>
 						</div>
 						<div class="form-group">
-							<label for="rest_name">Restaurant Type Name In Khmer</label>
-							<input type="text" class="form-control" name="restype_name_kh" ng-model="restype_name_kh" placeholder="Ex........." required>
+							<label for="restype_name_kh">Restaurant Type EN</label>
+							<input type="text" class="form-control" name="restype_name_kh" ng-model="restype_name_kh" placeholder="Ex...." required>
 						</div>
 						<div class="form-group">
-							<label for="about">Description</label>
-							<input type="text" class="form-control" name="description" ng-model="description" placeholder="Ex. Khmer Food is very Tasty..." required>
+							<label for="description">Description</label>
+							<textarea class="form-control" rows="10" cols="20" ng-model="description" id="description"></textarea>
 						</div>	
 					</div> 
 					<div class="col-md-5">
-					
-						<div class="form-group">
-							<label for="rest_name">Restaurant Menu Picture</label>
+						<%-- <div class="form-group">
+							<label for="rest_name">Browse Picture</label>
 							<input type="file" class="form-control file2 btn btn-orange"
 							 multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
 							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="restype_picture" id="menu" ng-model = "restype_picture" required>
+						</div> --%>
+						
+						<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
+							<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+								<img src="${pageContext.request.contextPath}/resources/assets/images/album-thumb-1.jpg"/>
+							</div> 
+							<div class="fileinput-preview fileinput-exists thumbnail" 
+							style="max-width: 250px; max-height: 200px; line-height: 6px;"></div>
+							<div>
+								<span class="btn btn-primary btn-file ">
+									<span class="fileinput-new"><i class="fa fa-file-image-o"></i> Select image</span>
+									<span class="fileinput-exists">Change</span>
+									<input id="file" type="file" name="..." accept="image/*">
+								</span>
+								<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+							</div>
 						</div>
+									
+						
 							<br>
-							<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
+							<%-- <a href="${pageContext.request.contextPath}/admin/menu" target="_self"> --%>
 							<button type="button" class="btn btn-blue btn-block" ng-click="addRestype()">
-								<i class="fa fa-floppy-o"> Adding</i></button></a>
+								<i class="fa fa-floppy-o"> Save</i></button></a>
 						</div>
 					   </div> 
 					

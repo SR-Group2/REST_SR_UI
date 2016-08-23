@@ -38,17 +38,16 @@
 							data-toggle="modal" data-target="#login">ចូលប្រើ</a></li>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/register">បង្កើតគណនី</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/register">បង្កើតគណនី</a></li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
-					</li>
+					
 					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item dropdown logined">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						 style="color:#35ac2a !important;text-transform:uppercase;"
 						role="button" aria-haspopup="true" aria-expanded="false">
-							Welcome  <sec:authentication property="principal.username" />
+							<sec:authentication property="principal.username" />
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
@@ -60,6 +59,10 @@
 							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
 							<i class="fa fa-user"></i> Profile</a>
 						</div>
+					</li>
+					<li class="nav-item">
+						<img class="img-circle" width="60" height="50" 
+						src='http://localhost:9999<sec:authentication property="principal.picture" />'/>
 					</li>
 					</sec:authorize>
 				</ul>
@@ -130,14 +133,13 @@
 	<!-- ======== Category Content ========= -->
 	<section class="category">
 		<div class="container">
-			<div class="card">
+			<!-- <div class="card">
 				<div class="card-header bg-success">Popular Category</div>
-				<div class="card-block">
+				<div class="card-block"> -->
 					<div class="row" id="getRest"></div>
 					<!-- end row 2 -->
-				</div>
-			</div>
-
+			<!-- 	</div>
+			</div> -->
 		</div>
 		<!-- end container -->
 	</section>
@@ -149,9 +151,15 @@
 	</section>
 
 	<!-- ========= footer ============ -->
-	<footer class="">
+	<footer class="footer">
 		<div class="container">
-			<p>Copy Right 2016. All right reserved.</p>
+			<p class="pull-left">Copy Right 2016. All right reserved.</p>
+			<ul class="nav nav-pills pull-right">
+				<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+				</li>
+			</ul>
 		</div>
 	</footer>
 

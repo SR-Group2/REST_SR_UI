@@ -48,7 +48,11 @@ public class PageController {
 		map.addAttribute("page", "comment.jsp");
 		return "admin/admin";
 	}
-	
+	@RequestMapping(value="/owner", method = RequestMethod.GET)
+	public String ownerPage(ModelMap map){
+		map.addAttribute("page", "owner.jsp");
+		return "admin/admin";
+	}
 	@RequestMapping(value="/vote", method = RequestMethod.GET)
 	public String votePage(ModelMap map){
 		map.addAttribute("page", "vote.jsp");
@@ -86,6 +90,13 @@ public class PageController {
 	public String UpdateRestaurantpage(ModelMap map, @PathVariable int rest_id){
 		map.addAttribute("page", "updateRestaurant.jsp");
 		map.addAttribute("rest_id", rest_id);
+		return "admin/admin";
+	}
+	
+	@RequestMapping(value="/addRestaurant/{owner_id}", method = RequestMethod.GET)
+	public String addRestWithOwner(ModelMap map, @PathVariable int owner_id){
+		map.addAttribute("page", "addRestaurant.jsp");
+		map.addAttribute("rest_id", owner_id);
 		return "admin/admin";
 	}
 	

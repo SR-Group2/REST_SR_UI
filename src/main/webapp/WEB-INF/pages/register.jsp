@@ -25,6 +25,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/css/register.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-core.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-forms.css">
 	
 </head>
 <body ng-controller="signUpCtrl">
@@ -67,16 +70,35 @@
 
 <%--   <sec:authentication property="principal.id" /> 
   <sec:authentication property="principal.username" />  --%>
-	<section class="signup">
+	<section class="signup" style="margin:0 auto;background:#f9f9f9;margin-bottom:10px;">
 		<div class="container">
-			
 				<div class="col-md-8">
 					<div class="frmSignup">
-					<div class="register-info">
-						<h3>Register Account</h3>
-						<p>If you already have an account with us, please login at the login page.</p>
-					</div>
 					<form name="frmRegister">
+						<div class="row">
+						<div class="col-md-6">
+							<div class="register-info">
+								<h3>Register Account</h3>
+								<p>If you already have an account with us, please login at the login page.</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
+								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+									<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="">
+								</div>
+								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
+								<div>
+									<span class="btn btn-white btn-file">
+										<span class="fileinput-new">Select image</span>
+										<span class="fileinput-exists">Change</span>
+										<input id="file" type="file" name="..." accept="image/*">
+									</span>
+									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+								</div>
+							</div>
+						</div>
+						</div>
 						<fieldset>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -149,8 +171,9 @@
 									</label>
 								</div>
 						  	</div>
-						  	<div class="col-md-12">
-						  		<div class="col-md-3">																	
+					
+						  	<div class="col-md-6" style="padding-top:20px;">
+						  		<!-- <div class="col-md-3">																	
 				  							<div>
 												<label  class="input-label">User Profile</label>
 											</div>
@@ -163,16 +186,18 @@
 													<span class="btn btn-white btn-file">
 														<span class="fileinput-new">Select image</span>
 														<span class="fileinput-exists">Change</span>
-														<input type="file" name="..." accept="image/*">
+														<input type="file" id="file" name="..." accept="image/*">
 													</span>
 													<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
 												</div>
 											</div>
-										</div>
-						  	</div>
+										</div> -->
+									
+									
+						  	</div><!-- ======= end col-md-12 ===== -->
 						  	<div class="col-md-12">
 						    	<div class="form-group">
-									<button type="button" class="btn btn-outline-success" ng-click="addUser()">Sign Up</button>
+									<button type="button" class="btn btn-block btn-success" ng-click="addUser()">Sign Up</button>
 								</div>
 						  	</div>
 						  
@@ -191,9 +216,14 @@
 
 
 	<!-- ========= footer ============ -->
-	<footer class="">
+	<footer class="footer">
 		<div class="container">
-			<p>Copy Right 2016. All right reserved.</p>
+			<ul class=" nav-inline pull-right">
+				<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+				</li>
+			</ul>
 		</div>
 	</footer>
 
@@ -252,12 +282,16 @@
 
 	<script
 	src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/assets/js/fileinput.js"></script>
 		
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datepicker.min.js"></script> 
+	
+	
 	<script>
 	$(document).ready(function(){
 		var date_input=$('input[name="date"]'); //our date input has the name "date"

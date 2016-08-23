@@ -13,6 +13,7 @@ app.directive('myFilter', [function() {
  
 //================= ADD RESTAURANT	 =====================
  app.controller('restAddCtrl', function($scope, $http){
+	 
      angular.element(document).ready(function() {
     	 initJqueryFiler(['#restGallery', '#menuGallery'], [[],[]]);
      });
@@ -83,15 +84,17 @@ app.directive('myFilter', [function() {
 		 
 		//=================  ADD RESTAURANTS =====================
 	    $scope.addRestaurant = function(e){
+	   
+	    	e.preventDefault();
 	    	$scope.open_close = "From "+ $scope.open + " To " + $scope.close;
 	    	
-	    	e.preventDefault();
 	    	$scope.user_id = parseInt($("#user_id").text());
 	    	data = {
 				  "address": {"street": $scope.street, 
-					  "district": $scope.district,
-					  "communce": $scope.communce, 
-					  "province": $scope.province},
+					  "district": $("#district option:selected").text(),
+					  "village": $("#village option:selected").text(),
+					  "communce": $("#communce option:selected").text(), 
+					  "province": $("#province option:selected").text()},
 					  "rest_name_kh": $scope.rest_name_kh,
 					  "rest_name": $scope.rest_name,
 					  "location": $scope.location,
@@ -384,8 +387,7 @@ app.controller('restGetCtrl', function($scope, $http) {
 		};
 					
 		$scope.getAllRestaurants(currentPage);
-	    
-	                
+	        
 		 //================= TEST RESTAURANTS =======================
 		
 		$scope.getCategoryRest = function () {

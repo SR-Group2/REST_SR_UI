@@ -64,7 +64,7 @@ app.controller('signUpCtrl', function($scope,$http){
 	}
 	$scope.getAllUsers();
 	
-	$scope.addUser=function(){
+	/*$scope.addUser=function(){
 		data={
 				"first_name": $scope.txtfirstname,
 				"last_name": $scope.txtlastname,
@@ -72,8 +72,7 @@ app.controller('signUpCtrl', function($scope,$http){
 				 "email": $scope.txtemail,
 				"password": $scope.txtpassword,
 				"dob": $('input[name=date]').val(),
-				'gender': $scope.txtgender,
-				"picture": "string"
+				'gender': $scope.txtgender
 				};
 		console.log(data);
 		return;
@@ -81,8 +80,64 @@ app.controller('signUpCtrl', function($scope,$http){
 			swal("Successfully Registered!", "You clicked the button!", "success");
 			window.location.href= "http://localhost:8080/login";
 		});
-	}
+	}*/
+	
 
+	$scope.addUser = function(){
+		
+
+		var frmData = new FormData();
+		
+		data={
+			"first_name": $scope.txtfirstname,
+			"last_name": $scope.txtlastname,
+			"username": $scope.txtusername,
+			"email": $scope.txtemail,
+			"password": $scope.txtpassword,
+			"dob": $('input[name=dob]').val(),
+			'gender': $scope.txtgender,
+			"role": {
+				"id": $scope.roles
+			  }
+				
+		};
+		//============= Cache File from user profile to server 
+		var picture = angular.element('#file')[0].files;
+		for(var i=0; i<picture.length; i++){
+			frmData.append("picture", picture[i]);
+		}
+		
+		frmData.append('json_data', JSON.stringify(data));
+		
+		
+		$http({
+			url:'http://localhost:9999/api/upload/signup',
+			method: 'POST',
+			data: frmData,
+			transformRequest: angular.identity,
+	        headers: {'Content-Type': undefined}
+		}).then(function(response){
+			console.log(response.data);
+			swal({   
+	    			title: "SIGN UP SUCCESSFULLY!",   
+	    			text: "THANK YOU",   
+	    			type: "success",   
+	    			confirmButtonColor: "#007d3d",   
+	    			closeOnConfirm: false,   
+	    			closeOnCancel: false }, 
+	    			function(isConfirm){   
+	    				if(isConfirm) {     				
+	    					window.location.href="/home";
+	    				}else {     
+	    					swal("Cancelled", "Your imaginary file is safe !", "error");   
+	    				} 
+	    			});
+			
+		}, function(error){
+			console.log(error.data);
+			alert('failed to upload data! Please Try again !!!!!');
+		});
+	}
 
 });
 

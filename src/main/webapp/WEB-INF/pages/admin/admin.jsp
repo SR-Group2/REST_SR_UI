@@ -84,12 +84,12 @@
 					</a>
 				
 				</li>
-				<li>
+				<%-- <li>
 					<a href="${pageContext.request.contextPath}/admin/category" target="_self">
 						<i class="fa fa-book"></i>
 						<span class="title">Menu Restaurant</span>
 					</a>
-				</li>
+				</li> --%>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
 						<i class="fa fa-list"></i>

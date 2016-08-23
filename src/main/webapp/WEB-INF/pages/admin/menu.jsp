@@ -1,6 +1,7 @@
 <div ng-controller = "restypeCtrl">
 		<div class="card-header">
-		<a href = "${pageContext.request.contextPath}/admin/addRestype"><button class = "btn btn-success">Add New Restaurant Type</button></a>
+		<a href = "${pageContext.request.contextPath}/admin/addRestype">
+			<button class = "btn btn-success"><i class="fa fa-plus"></i> Add </button></a>
 			  <div class="form-group pull-md-right col-md-5">
 			    <div class="input-group ">
 			      <input type="text" class="form-control" ng-model="search" id="search" placeholder="search......">
@@ -13,25 +14,22 @@
 		<table class="table table-bordered table-striped datatable">
 			<thead>
 				<tr>
-					<th>Restaurant Type Name In English</th>
-					<th>Restaurant Type Name In Khmer</th>
-					<th>Restaurant Pictures</th>
+					<th>ID</th>
+					<th>Category KH</th>
+					<th>Category EN</th>
+					<th>Pictures</th>
 					<th>Description</th>
-					<th>Date Added</th>
-					<th>Date Modified</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-			
-				<tr ng-repeat ="restype in restypes">
-					<td>{{restype.restype_name}}</td>
+				<tr ng-repeat ="restype in restypes | filter:search">
+					<td>{{$index+1}}</td>
 					<td>{{restype.restype_name_kh}}</td>
+					<td>{{restype.restype_name}}</td>
 					<td><img src="http://localhost:9999{{restype.restype_picture}}"/></td>
 					<td>{{restype.description}}</td>
-					<td>{{restype.date_added}}</td>
-					<td>{{restype.date_modify}}</td>
 					<td>
 						<a href="#" class="btn btn-default btn-sm btn-icon icon-left">
 							<i class="entypo-pencil"></i>
@@ -45,15 +43,10 @@
 				</tbody>
 				</table>
 				
-	<!-- ================= Pagination ===================== -->
-		<ul class="pagination"> <li><a href="#"><i class="entypo-left-open-mini">
-					</i></a></li> <li class="active"><a href="#">1</a></li> <li><a href="#">2</a></li>
-					 <li><a href="#">3</a></li> 
-					 <li><a href="#">4</a></li> 
-					 <li><a href="#">5</a></li> 
-					 <li><a href="#">6</a></li> 
-					 <li><a href="#"><i class="entypo-right-open-mini"></i></a></li> 
-				 </ul>
+		<!-- ================= Pagination ===================== -->
+				<div id="pagination" class="pull-right">
+												
+				</div>
 	</div>
 </div>	 
 				 
