@@ -68,8 +68,8 @@
 								<div id="flipbook">
 									<img  class="hard" src="${pageContext.request.contextPath}/resources/images/logo.png">
 									<div class="hard"></div>
-									<img class="hard" ng-repeat="menu in menus" ng-src="http://localhost:9999{{menu.url}}"></div>
-									<div class="hard"></div>
+									<!-- <img class="hard" ng-repeat="menu in menus" ng-src="http://localhost:9999{{menu.url}}"></div>
+									<div class="hard"></div> -->
 								</div>
 						</flipbook>
 

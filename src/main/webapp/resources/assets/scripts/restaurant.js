@@ -14,6 +14,19 @@ app.directive('myFilter', [function() {
 //================= ADD RESTAURANT	 =====================
  app.controller('restAddCtrl', function($scope, $http){
 	 
+	 
+	 //===================GET RESTAURANT OWNER ==============
+	 $scope.getRestOwner=function(){
+			$http.get('/rest/user/owner').then(function(response){
+				$scope.owners=response.data.DATA;
+				console.log($scope.owners);
+			});
+		}
+		
+		
+	 $scope.getRestOwner();
+	 
+	//================= BROACAST LOADING	 =======================
      angular.element(document).ready(function() {
     	 initJqueryFiler(['#restGallery', '#menuGallery'], [[],[]]);
      });
@@ -84,13 +97,13 @@ app.directive('myFilter', [function() {
 		 
 		//=================  ADD RESTAURANTS =====================
 	    $scope.addRestaurant = function(e){
-	   
+	    	
 	    	e.preventDefault();
 	    	$scope.open_close = "From "+ $scope.open + " To " + $scope.close;
 	    	
-	    	$scope.user_id = parseInt($("#user_id").text());
+	    	/*$scope.user_id = parseInt($("#user_id").text());*/
 	    	data = {
-				  "address": {"street": $scope.street, 
+				  "address": {"street": $scope.street_number, 
 					  "district": $("#district option:selected").text(),
 					  "village": $("#village option:selected").text(),
 					  "communce": $("#communce option:selected").text(), 

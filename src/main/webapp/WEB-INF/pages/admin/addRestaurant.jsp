@@ -24,8 +24,9 @@
 					<div class="col-md-5">
 						<div class="form-group">
 							<label for="owner">Restaurant Owner</label>
-							<select class="form-control" name="owner" id="owner">
-								<option>--- Select Owner ----</option>
+							<select class="form-control" name="owner" id="owner" ng-model="user_id">
+								<option selected>--- Select Owner ----</option>
+								<option ng-repeat="owner in owners" value="{{owner.user_id}}">{{owner.first_name}} {{owner.last_name}}</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -72,7 +73,7 @@
 						</div>
 						<div class="form-group">
 							<label for="about">About</label>
-							<input type="text" class="form-control" name="about" ng-model="about" required>
+							<textarea type="text" class="form-control" name="about" ng-model="about" row="7" required></textarea>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-12">
