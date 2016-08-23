@@ -1,5 +1,5 @@
-		
-<div class="row" ng-controller="countCtrl">
+<div ng-controller="countCtrl">
+<div class="row" >
 	<div class="col-sm-3">
 	
 		<div class="tile-progress tile-primary">
@@ -130,13 +130,13 @@
 					<span class="pie-chart"></span>
 				</div>		
 			</div>
-		</div>
+</div>
 		
 		<br />
 		
-		<div class="row">
+<div class="row">
 			<div class="col-md-9">
-				
+				<!--  
 				<script type="text/javascript">
 					jQuery(document).ready(function($)
 					{
@@ -181,78 +181,14 @@
 						});
 					});
 				</script>
-				
-				<div class="tile-group tile-group-2">
-					<div class="tile-left tile-white">
-						<div class="tile-entry">
-							<h3>Restaurant Map</h3>
-							<span>Where do our visitors come from</span>
-							
-						</div>
-						
-						<script>
-						
-							function initialize() {
-								  var myCenter= new google.maps.LatLng(11.5449, 104.8922);  
-								  var mapProp = {
-										    center:myCenter,
-										    zoom:7,
-										    mapTypeId:google.maps.MapTypeId.ROADMAP
-										  };
-								  var locations = [
-									                 ['Resterunce', 104.921853333333, 11.5394466666667,4],
-									                 ['Tarazu', 104.925063333333, 11.5477883333333,5],
-									                 ['Tutti Frutti', 104.923225, 11.546025,3],
-									                 ['Ninja Bakery', 104.924903333333, 11.54617,2],
-									                 ['S-Café', 104.89817, 11.5730716666667,1]
-									               ];
-								
-									               var map = new google.maps.Map(document.getElementById('googleMap'),mapProp);
-									               var infowindow = new google.maps.InfoWindow();
-
-									               var marker, i;
-
-									               for (i = 0; i < locations.length; i++) { 
-									                 marker = new google.maps.Marker({
-									                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-									                   map: map
-									                 });
-
-									                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
-									                   return function() {
-									                     infowindow.setContent(locations[i][0]);
-									                     infowindow.open(map, marker);
-									                   }
-									                 })(marker, i));
-									               }							  
-							}						
-							google.maps.event.addDomListener(window, 'load', initialize);
-													
-						</script>
-						<script async defer
-					        src="https://maps.googleapis.com/maps/api/js?key=resturant-141104&callback=initMap">
-					    </script>							
-						
-						
-						<ul class="country-list">
-							<li><span class="badge badge-secondary">3</span>  Cologne, Germany</li>
-							<li><span class="badge badge-secondary">2</span>  Pristina, Kosovo</li>
-							<li><span class="badge badge-secondary">1</span>  Barcelona, Spain</li>
-						</ul>
-					</div>
-					
-					<div class="tile-right">
-						
-						<div id="map-2" class="map"></div>
-						<div id="googleMap" style="width:100%;height:400px;"></div>
-						
-					</div>
-					
+				-->
+				<div class="col-md-12">
+				<div id="googleMap" style="width:100%;height:400px;"></div>
 				</div>
 				
+				
+				
 			</div>
-		
-		
 		
 			<div class="col-md-3">
 				<div class="tile-stats tile-neon-red">
@@ -275,9 +211,9 @@
 				
 					
 			</div>
-		</div>
+</div>
 		
-		<br />
+<br />
 		
 		<div class="row">
 			<div class="col-sm-8">
@@ -366,9 +302,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-		
 	<div id="chat" class="fixed" data-current-user="Art Ramadani" data-order-by-status="1" data-max-chat-history="25">
 	
 		<div class="chat-inner">
@@ -482,7 +415,73 @@
 		</li>
 	</ul>
 
-	
 </div>
+<script src="http://maps.google.com/maps/api/js"></script>
+<script>
+						
+						
+							function initialize() {
+								  var myCenter= new google.maps.LatLng(11.5449, 104.8922);  
+								  var mapProp = {
+										    center:myCenter,
+										    zoom:12,
+										    mapTypeId:google.maps.MapTypeId.ROADMAP
+										  };
+								  var locations = [
+									                 ['Resterunce', 11.5394466666667, 104.921853333333,4],
+									                 ['Tarazu', 11.547849,104.924975],
+									                 ['Tutti Frutti',11.546025, 104.923225, 3],
+									                 ['Ninja Bakery', 11.54617,104.924903333333, 2],
+									                 ['S-Cafe', 11.573101,104.8983687],
+									                 ['ស៊ីងហាវ',11.55305,104.906333333333],
+									                 ['ពៅ គុយទាវឆ្ងាញ់', 11.55628,104.908975],
+									                 ['សូនីវីដ',11.58137,104.897613333333],
+									                 ['សូនីវីដសាច់អាំង 168',11.5806133333333,104.901038333333],
+									                 ['The Terrace',11.6111033333333,104.896538333333],
+									                 ['Cam Café',104.88762,11.5833966666667],
+									                 ['Sea Menu',104.91861,11.550834],
+									                 ['Kiwi Bakery & Restaurant',104.925,11.551666],
+									                 ['Burger King',104.9275,11.551945],
+									                 ['Red Sun',104.928055,11.552222],
+									                 ['Sura',104.929726,11.553333],
+									                 ['Luna',104.93,11.555555],
+									                 ['Arriott',104.92117,11.552972],
+									                 ['ភោជនីយដ្ឋាន ខ្មែរថៃ',104.91519,11.548613]
+									               ];
+								
+									               var map = new google.maps.Map(document.getElementById('googleMap'),mapProp);
+									               var infowindow = new google.maps.InfoWindow();
+
+									               var marker, i;
+									               
+									               for (i = 0; i < locations.length; i++) { 
+									                 marker = new google.maps.Marker({
+									                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+									                   map: map,
+									                   animation:google.maps.Animation.BOUNCE
+									                 });
+
+									                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
+									                   return function() {
+									                     infowindow.setContent(locations[i][0]);
+									                     infowindow.open(map, marker);
+									                     map.setZoom(30);
+									                     
+									                     map.setCenter(marker.getPosition());
+									                   }
+									                 })(marker, i));
+									               
+									               }
+									               
+									               
+									               /* marker= new google.maps.Marker({						            	   
+						            	   position: myCenter,
+						               });
+									   marker.setMap(map); */           
+							}						
+							google.maps.event.addDomListener(window, 'load', initialize);
 
 
+							
+													
+</script>

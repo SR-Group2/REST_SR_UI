@@ -25,7 +25,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/css/register.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css">
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-core.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/neon-forms.css">
 	
 </head>
 <body ng-controller="mainCtrl">
@@ -69,17 +71,38 @@
 		</div>
 	</nav>
 
+
 <%--   <sec:authentication property="principal.id" /> 
   <sec:authentication property="principal.username" />  --%>
 	<section class="signup">
 		<div class="container">
 			
-				<div class="col-md-8">
+				<div class="col-md-8 offset-md-2">
 					<div class="frmSignup">
-					<div class="register-info">
-						<h3>Edit Profile</h3>
-					</div>
-					<form name="frmRegister">
+					<form name="frmRegister">					
+						<div class="row">
+						<div class="col-md-6">
+							<div class="register-info">
+								<h3>Edit Profile</h3>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
+								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+									<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="">
+								</div>
+								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
+								<div>
+									<span class="btn btn-white btn-file">
+										<span class="fileinput-new">Select image</span>
+										<span class="fileinput-exists">Change</span>
+										<input id="file" type="file" name="..." accept="image/*">
+									</span>
+									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+								</div>
+							</div>
+						</div>
+						</div>
 						<fieldset>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -146,19 +169,10 @@
 								</div>
 						  	</div>
 						  	<div class="col-md-12">
-						  	<label  for="">User Profile</label>
-						  		<div clsss="form-group">
-						  			<input type="file" >
-						  		
-						  		</div>
-						  	</div>
-						  	<div class="col-md-12">
 						    	<div class="form-group">
-									<button type="button" class="btn btn-outline-success" ng-click="updateUser()">Update</button>
+									<button type="button" class="btn btn-block btn-success" ng-click="updateUser()">Update</button>
 								</div>
-						  	</div>
-						  
-						  
+						  	</div>						  
 						  </fieldset>					  
 						</form>
 						</div>
@@ -173,9 +187,14 @@
 
 
 	<!-- ========= footer ============ -->
-	<footer class="">
+	<footer class="footer">
 		<div class="container">
-			<p>Copy Right 2016. All right reserved.</p>
+			<ul class=" nav-inline pull-right">
+				<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+				</li>
+			</ul>
 		</div>
 	</footer>
 
@@ -221,8 +240,6 @@
 	</div>
 
 	<!-- ========= footer ============ -->
-	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
-	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  	
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script
@@ -236,9 +253,15 @@
 
 	<script
 	src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/assets/js/fileinput.js"></script>
 		
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
+	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
+	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>  
+	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script>  
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap-datepicker.min.js"></script> 
+	
 	
 	<script>
 	$(document).ready(function(){

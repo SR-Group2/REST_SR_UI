@@ -38,7 +38,7 @@
 	<link href="${pageContext.request.contextPath}/resources/jquery_filter/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/resources/jquery_filter/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 	
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script>$.noConflict();</script>
 	
