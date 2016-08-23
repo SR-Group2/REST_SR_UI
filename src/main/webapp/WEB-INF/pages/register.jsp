@@ -72,7 +72,7 @@
   <sec:authentication property="principal.username" />  --%>
 	<section class="signup" style="margin:0 auto;background:#f9f9f9;margin-bottom:10px;">
 		<div class="container">
-				<div class="col-md-8">
+				<div class="col-md-8 offset-md-2">
 					<div class="frmSignup">
 					<form name="frmRegister">
 						<div class="row">
@@ -138,18 +138,6 @@
 								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" >
 							  	</div>
 						  	</div>
-						  	<!--  <div class="col-md-12">
-						  		<div class="form-group">
-									<label for="" class="">Date of Birth</label>
-									<div class="input-group">
-												<input type="date" class="form-control" placeholder="Year-Month-Day" ng-model="txtdob" name="dob">				
-												<div class="input-group-addon">
-													<i class="fa fa-calendar"></i>
-												</div>
-										</div>
-									</div>
-									
-						  	</div>-->
 						  	<div class="col-md-12">
 								<label for="date" class="">Date of Birth</label>
 							    <div class="input-group">   
@@ -206,11 +194,6 @@
 						</form>
 						</div>
 					</div>
-				<div class="col-md-4">
-				
-				
-				</div>
-					
 		</div>		
 	</section>
 
