@@ -107,8 +107,8 @@
 		
 			<div class="col-md-3 col-sm-6">
 				<div class="tile-stats tile-white stat-tile">
-					<h3>32 Sales</h3>
-					<p>Avg. Sales per day</p>
+					<h3>15% User</h3>
+					<p> Sign up everyday</p>
 					<span class="monthly-sales"></span>
 				</div>		
 			</div>
@@ -116,8 +116,8 @@
 		
 			<div class="col-md-3 col-sm-6">
 				<div class="tile-stats tile-white stat-tile">
-					<h3>-0.0102</h3>
-					<p>Stock Market</p>
+					<h3>30% Owner</h3>
+					<p>Increase their business</p>
 					<span class="stock-market"></span>
 				</div>		
 			</div>
@@ -125,8 +125,8 @@
 		
 			<div class="col-md-3 col-sm-6">
 				<div class="tile-stats tile-white stat-tile">
-					<h3>61.5%</h3>
-					<p>US Dollar Share</p>
+					<h3>50% </h3>
+					<p>Restaurant Search everyday</p>
 					<span class="pie-chart"></span>
 				</div>		
 			</div>
@@ -193,7 +193,7 @@
 			<div class="col-md-3">
 				<div class="tile-stats tile-neon-red">
 					<div class="icon"><i class="entypo-chat"></i></div>
-					<div class="num" data-start="0" data-end="124" data-postfix="" data-duration="1400" data-delay="0">0</div>
+					<div class="num"  data-postfix="" data-duration="1400" data-delay="0">{{totalComment}}</div>
 					
 					<h3>Comments</h3>
 					<p>New comments today</p>
@@ -203,7 +203,7 @@
 				
 				<div class="tile-stats tile-primary">
 					<div class="icon"><i class="entypo-users"></i></div>
-					<div class="num" data-start="0" data-end="213" data-postfix="" data-duration="1400" data-delay="0">0</div>
+					<div class="num" data-postfix="" data-duration="1400" data-delay="0">{{totalFavRest}}</div>
 					
 					<h3>Favorites</h3>
 					<p>Statistics this week</p>
@@ -235,45 +235,16 @@
 						<table class="table table-responsive">
 							<thead>
 								<tr>
-									<th>App Name</th>
-									<th>Download</th>
-									<th class="text-center">Graph</th>
+									<th>Restaurant Name</th>
+									<th class="text-center">Total Favorites</th>
 								</tr>
 							</thead>
 							
 							<tbody>
-								<tr>
-									<td>Flappy Bird</td>
-									<td>2,215,215</td>
-									<td class="text-center"><span class="top-apps">4,3,5,4,5,6,3,2,5,3</span></td>
+								<tr ng-repeat="rest in topRestaurants">
+									<td>{{rest.rest_name}}</td>
+									<td class="text-center"><span class="top-apps">{{rest.total_favorite}}</span></td>
 								</tr>
-								
-								<tr>
-									<td>Angry Birds</td>
-									<td>1,001,001</td>
-									<td class="text-center"><span class="top-apps">3,2,5,4,3,6,7,5,7,9</span></td>
-								</tr>
-								
-								<tr>
-									<td>Asphalt 8</td>
-									<td>998,003</td>
-									<td class="text-center"><span class="top-apps">1,3,4,3,5,4,3,6,9,8</span></td>
-								</tr>
-			
-								
-								<tr>
-									<td>Viber</td>
-									<td>512,015</td>
-									<td class="text-center"><span class="top-apps">9,2,5,7,2,4,6,7,2,6</span></td>
-								</tr>
-			
-								
-								<tr>
-									<td>Whatsapp</td>
-									<td>504,135</td>
-									<td class="text-center"><span class="top-apps">1,4,5,4,4,3,2,5,4,3</span></td>
-								</tr>
-			
 							</tbody>
 						</table>
 					</div>
@@ -457,8 +428,7 @@
 									               for (i = 0; i < locations.length; i++) { 
 									                 marker = new google.maps.Marker({
 									                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-									                   map: map,
-									                   animation:google.maps.Animation.BOUNCE
+									                   map: map
 									                 });
 
 									                 google.maps.event.addListener(marker, 'click', (function(marker, i) {

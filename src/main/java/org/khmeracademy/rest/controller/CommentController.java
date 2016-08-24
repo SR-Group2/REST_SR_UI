@@ -69,5 +69,12 @@ public class CommentController {
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/comment", HttpMethod.PUT , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
+	//!============================= Count Comment ======================================
+	@RequestMapping(value="/total-comment", method = RequestMethod.GET)
+	public ResponseEntity<Map<String , Object>> countComment(){
+		HttpEntity<Object> request = new HttpEntity<Object>(header);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/comment/total-comment", HttpMethod.GET , request , Map.class) ;
+		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+	}
 	
 }

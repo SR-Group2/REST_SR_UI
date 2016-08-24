@@ -64,4 +64,11 @@ public class FavouriteRestaurantController {
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
 	
+	//!============================= Count Favorite Restaurant ======================================
+		@RequestMapping(value="/total-fav-rest", method = RequestMethod.GET)
+		public ResponseEntity<Map<String , Object>> countComment(){
+			HttpEntity<Object> request = new HttpEntity<Object>(header);
+			ResponseEntity<Map> response = rest.exchange(WS_URL+"/favourite-restaurant/total-fav-rest", HttpMethod.GET , request , Map.class) ;
+			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+		}
 }

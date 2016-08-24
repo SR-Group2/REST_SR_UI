@@ -304,7 +304,15 @@ app.controller('countCtrl',function($scope,$http){
 		$scope.totalRest=response.data.DATA;
 	});
 	
-		
+	$http.get('/rest/comment/total-comment').then(function(response){
+		$scope.totalComment=response.data.DATA;
+	});	
+	$http.get('/rest/favourite-restaurant/total-fav-rest').then(function(response){
+		$scope.totalFavRest=response.data.DATA;
+	});	
+	$http.get('http://localhost:9999/api/restaurant/count-by-user-id').then(function(response){
+		$scope.topRestaurants=response.data.DATA;
+	});	
 });
 
 
