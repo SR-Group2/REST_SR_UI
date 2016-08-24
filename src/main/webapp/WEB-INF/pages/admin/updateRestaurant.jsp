@@ -118,10 +118,8 @@
 							
 							<a href="${pageContext.request.contextPath}/admin/restaurant" target="_self"">
 							<button type="button" class="btn btn-blue btn-block"
-							 ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid || 
-							 brandInfo.rest_name.$invalid || brandInfo.comment.$invalid"
-							  ng-click="addRestaurant($event)" data-dismiss="modal">
-								<i class="fa fa-floppy-o"> Add Restaurant</i></button></a>
+							  ng-click="updateRestaurant($event)" data-dismiss="modal">
+								<i class="fa fa-floppy-o"> Save</i></button></a>
 						</div>
 					  </div> 
 					

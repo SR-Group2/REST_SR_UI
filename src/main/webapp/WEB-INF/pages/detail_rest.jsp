@@ -17,6 +17,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css"/>
 	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/booklet/src/jquery.booklet.latest.css"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
+	<!-- Add fancyBox -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 	
 </head>
 <body ng-controller="mainCtrl">
@@ -75,7 +78,9 @@
 						
 						<div id="menus">
 							<div ng-repeat="menu in menus" menulist>
-								<img src="http://localhost:9999{{menu.url}}" class="img-fluid">
+								<a class="fancybox" rel="group" href="http://localhost:9999{{menu.url}}">
+									<img src="http://localhost:9999{{menu.url}}" class="img-fluid">
+								</a>
 							</div>
 							
 							
@@ -113,7 +118,7 @@
                 <!-- ============== end comment =========== -->
                 
                 <!--  ======================= List Comment ===================== -->
-                <div class="comment" style="background:#ffffff;padding:10px 14px;border:1px solid rgba(0,0,0,0.2);margin-top:10px;">
+                <div class="comment" ng-show="checkcomment" style="background:#ffffff;padding:10px 14px;border:1px solid rgba(0,0,0,0.2);margin-top:10px;">
 	                <div class="media"  ng-repeat="cm in comments">
 						  <div class="media-left">
 						    <a href="#">
@@ -122,7 +127,7 @@
 						    </a>
 						  </div>
 						  <div class="media-body">
-						    <h4 class="media-heading" ng-bind-template="{{cm.user.first_name}}"></h4>
+						    <h6 class="media-heading" ng-bind-template="{{cm.user.first_name}}"></h6>
 						    <p>{{cm.comment}}</p>
 						  </div>
 					</div>
@@ -249,7 +254,27 @@
 	<!-- =============  Booklet ============== -->
 	<script src="${pageContext.request.contextPath}/resources/booklet/src/jquery.easing.1.3.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/resources/booklet/src/jquery.booklet.latest.js" type="text/javascript"></script>
+	
+	<!-- =============  Add Fancy Book =============  -->
+	<%-- <script src="${pageContext.request.contextPath}/resources/fancybox/lib/jquery.easing.1.3.js" type="text/javascript"></script> --%>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	
 	<script>
+	//==================== Fancy Book Action ===================
+		$(document).ready(function() {
+			$(".fancybox").fancybox({
+				 helpers:  {
+			        thumbs : {
+			            width: 50,
+			            height: 50
+			        }
+			    }
+			});
+		});
 	//==================== Get Restaurant Information ===================
 		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 	  		console.log(id);
@@ -341,6 +366,9 @@
 	  			.then(function(rsp){
 	  				if(rsp.data.DATA !=null){
 	  					$scope.comments = rsp.data.DATA;
+	  					$scope.checkcomment = true;
+	  				}else{
+	  					$scope.checkcomment = false;
 	  				}
 	  				
 	  				console.log("rsp");

@@ -25,18 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/restlist.css">
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.css">
-
-<style>
-.flexbox {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-}
-.flexbox .col {
-  flex: 1;
-}
-</style>
+	
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -77,9 +66,9 @@
 	</nav>
 		
 	<section class="rest-list">
-		<div class="container flexbox" >
+		<div class="container" >
 			<div class="row">
-				<div class="col-md-3 col">
+				<div class="col-md-3">
 					<div class="row">
 						<div class="box-filter">
 							<h2>Search:</h2>
@@ -144,7 +133,7 @@
 					</div><!-- end row -->
 				</div>
 				
-				<div class="col-md-9 col">
+				<div class="col-md-9">
 					<div class="row" id="getRest">
 					
 						
@@ -271,7 +260,9 @@
 		<div class="col-md-4">
 			<div class="list-box" onclick="detailRest({{= rest_id}})">
 				<div>
-					<img class="img-fluid" src="http://localhost:9999{{= restpictures[0].path_name}}">
+					  
+                    <img class="img-fluid" src="http://localhost:9999{{= restpictures[0].path_name}}">
+                       
 				</div>
 				<div class="list-des">
 					<p style="
@@ -284,270 +275,12 @@
 					<i class="fa fa-star text-secondary"></i>
 					<p style="
 						white-space: nowrap;overflow: hidden;
-						text-overflow: ellipsis;max-width: 0px;">{{= about}}</p>
+						text-overflow: ellipsis;max-width: 150px;">{{= about}}</p>
 				</div>
 			</div>
 		</div>
 	</script>
 	
-	<script>
-	var currentPage = 1;
-	var keyword ="";
-	/*================= Get Category ===================*/
-	var app = angular.module("app",[]);
-	app.controller("mainCtrl", function($scope,$http){
-		$scope.getRestype = function () {
-	    	$http.get("${pageContext.request.contextPath}/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=20")
-		    	.then(function (response) {
-		    	$scope.categories = response.data.DATA;
-		    	console.log($scope.categories);
-		    });
-		}
-		$scope.getRestype();
-	})
-	
-	
-	function detailRest(id){
-		
-		window.location.href = "${pageContext.request.contextPath}/detail_rest/"+id;
-	}
-	
-	$(function(){
-		
-		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-		var q = id.split("=");
-		
-		
-		/* =======================  Load Data With Pagination ================== */
-		restaurant = {};
-		currentPage = 1;
-		var check = true;
-
-		restaurant.getRest = function(currentPage, id) {
-			
-			$.ajax({
-				url : "${pageContext.request.contextPath}/rest/restaurant/list/"+id+"?page="+currentPage+"&limit=12",
-				type : 'GET',
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader("Accept",
-							"application/json");
-					xhr.setRequestHeader("Content-Type",
-							"application/json");
-				},
-				success : function(data) {
-					console.log(data);
-					if (data.STATUS != false) {
-						console.log("getRest", data);
-						$("#getRest").empty();
-						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-						$('#getRest').css("cursor", "pointer");
-						if (check) {
-							restaurant.setPagination(
-									data.PAGINATION.TOTAL_PAGES,
-									currentPage);
-							check = false;
-						}
-						$("#pagination").show()
-					} else {
-						$("#pagination").hide();
-						$("#getRest").empty();
-					}
-				}
-			});
-		};
-
-		restaurant.setPagination = function(totalPage, currentPage) {
-
-			$('#pagination').bootpag({
-				total : totalPage,
-				page : currentPage,
-				maxVisible : 10,
-				leaps : true,
-				firstLastUse : true,
-				first : '←',
-				last : '→',
-				wrapClass : 'pagination',
-				activeClass : 'active',
-				disabledClass : 'disabled',
-				nextClass : 'next',
-				prevClass : 'prev',
-				lastClass : 'last',
-				firstClass : 'first'
-			}).on("page", function(event, currentPage) {
-				check = false;
-				restaurant.getRest(currentPage,id);
-
-			});
-
-			$('#pagination .bootpag li').addClass("page-item");
-			$('#pagination .bootpag li a').addClass("page-link");
-
-		};
-		
-		/* ======================= search from home page ================== */
-		searchRestByQuery(q[1]);
-		
-		/* ================= Run First Load With Click Id ==================*/
-		restaurant.getRest(currentPage, id);
-	
-		/* =======================   Load Data According to typehead select  With Pagination ================== */
-		function searchRestByQuery(keywords){
-			$.ajax({ 
-			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keywords+"&page="+currentPage+"&limit=12", 
-			    type: 'GET',
-			    beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Accept", "application/json");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                },
-			    success: function(data) { 
-			    	console.log(data);
-			    	if (data.STATUS != false) {
-						console.log("select by type of restype ",data);
-						$("#getRest").empty();
-						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-						$('#getRest').css("cursor", "pointer");
-						if (check) {
-							restaurant.setPagination(
-									data.PAGINATION.TOTAL_PAGES,
-									currentPage);
-							check = false;
-						}
-						$("#pagination").show()
-					} else {
-						$("#pagination").hide();
-						$("#getRest").empty();
-					}
-			   
-			    }
-   			});
-		}
-		$("#fa-btnsearch").on("click", function(){
-			var keywords = $("#keyword").val();
-			searchRestByQuery(keywords);
-		});
-		
-		$('#keyword').on('typeahead:selected', function(){ 
-			$("#getRest").empty();
-			var keyword = $(this).val();
-			check = true;
-			$.ajax({ 
-			    url:"${pageContext.request.contextPath}/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=12", 
-			    type: 'GET',
-			    beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Accept", "application/json");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                },
-			    success: function(data) { 
-			    	console.log(data);
-			    	if (data.STATUS != false) {
-						console.log(data);
-						$("#getRest").empty();
-						$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
-						$('#getRest').css("cursor", "pointer");
-						if (check) {
-							restaurant.setPagination(
-									data.PAGINATION.TOTAL_PAGES,
-									currentPage);
-							check = false;
-						}
-						$("#pagination").show()
-					} else {
-						$("#pagination").hide();
-						$("#getRest").empty();
-					}
-			   
-			    }
-   			});
-		});
-		//==================== search filter by restype =========
-		$("#searchRest").on("click change",function(){
-			var filterRestype = $("#filterRestype").val();
-			restaurant.getRest(currentPage, filterRestype);
-		});
-		// ==================== search btn ===============================
-		function getRestByKeyword(keyword){
-			
-		}
-		
-		// ==================== Get Restaurant Type ============================
-	
-		var substringMatcher = function(strs) {
-			  return function findMatches(q, cb) {
-			    var matches, substringRegex;
-			    matches = [];
-			    substrRegex = new RegExp(q, 'i');
-
-			    $.each(strs, function(i, str) {
-			      if (substrRegex.test(str)) {
-			        matches.push(str);
-			      }
-			    });
-
-			    cb(matches);
-			  };
-			};
-			
-			var states;
-			
-			var bestPictures = new Bloodhound({
-				  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-				  queryTokenizer: Bloodhound.tokenizers.whitespace,
-				  remote: {
-				        url: "${pageContext.request.contextPath}/rest/restaurant/search?keyword=%QUERY%"+"&page="+currentPage+"&limit=12",
-				        wildcard: '%QUERY%',
-				        filter: function (restaurants) {
-				            return $.map(restaurants.DATA, function (restaurant) {
-				                return {
-				                        value: restaurant.rest_name
-				                };
-				            });
-				        }
-				    }
-				});
-		
-				$('#remote .typeahead').typeahead(null, {
-				  	name: 'best-pictures',
-				  	display: 'value',
-				  	source: bestPictures
-				});
-				
-				//==================== login  ===================
-					
-				$('#login')
-				.on(
-						'hidden.bs.modal',
-						function(e) {
-
-							console.log($("#frmLogin").serialize());
-
-							$
-								.ajax({
-									url : "${pageContext.request.contextPath}/login",
-									type : "POST",
-									data : $("#frmLogin").serialize(),
-									success : function(data) {
-										if (data == "User account is locked") {
-											alert(data);
-										} else if (data == "User is disabled") {
-											alert(data);
-										} else if (data == "Bad credentials") {
-											alert(data);
-										} else {
-											swal("Welcome To Nham Ey", "You clicked the button!", "success")
-											window.location.href = "${pageContext.request.contextPath}/"
-													+ data;
-										}
-									},
-									error : function(data) {
-										console.log(data);
-									}
-								});
-					});
-				
-				
-			
-				
-		});
-	</script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/restlists.js">></script>
 </body>
 </html>		

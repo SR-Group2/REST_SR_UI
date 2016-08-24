@@ -10,31 +10,15 @@ app.directive('myFilter', [function() {
     };
 
 }]);
-
-
-
-
 	
  
 //================= ADD RESTAURANT	 =====================
  app.controller('restAddCtrl', function($scope, $http, $rootScope){
 	 
-	 app.directive('restcategory', [function() {
-		    return {
-		        restrict: 'E',       
-		        link: function(scope, element) {
-		         
-		            if(scope.$last){
-		            	
-		            }
-		        }
-		    };
-		}]);
-	 
 	 var currentPage = 1;
-		$scope.loadRestype = [];
+		$scope.dataRestypes = [];
 		
-		/*$scope.dataRestypes = [
+		$scope.dataRestypes = [
 			{restype_name: 'Khmer Food', restype_id: 1},
 			{restype_name: 'BBQ', restype_id: 2},
 			{restype_name: 'Thai Food', restype_id: 3},
@@ -51,9 +35,9 @@ app.directive('myFilter', [function() {
 			{restype_name: 'Buffet', restype_id: 114},
 			{restype_name: 'Porridge', restype_id: 15},
 			{restype_name: 'Street Food', restype_id: 16}
-	      ];*/
+	      ];
 	 //===================GET RESTAURANT RESTYPE ==============	 
-		$scope.getRestType=function(){
+	/*	$scope.getRestType=function(){
 			$http.get('/rest/restype?limit=30&page=1').then(function(response){
 				$scope.dataRestype =response.data.DATA;
 				for (var i = 0; i < $scope.dataRestype.length; i++) {
@@ -66,7 +50,7 @@ app.directive('myFilter', [function() {
 			});
 		}
 		
-	$scope.getRestType();	
+	$scope.getRestType();*/	
 	 //===================GET RESTAURANT OWNER ==============
 	 $scope.getRestOwner=function(){
 			$http.get('/rest/user/owner').then(function(response){
@@ -113,7 +97,6 @@ app.directive('myFilter', [function() {
 			   .then(function (response) {
 				  $scope.communes = response.data.DATA;
 				  console.log($scope.communes);
-				  
 				 
 			   });
 		}
@@ -209,6 +192,8 @@ app.directive('myFilter', [function() {
 //================= UPDATE RESTAURANT	 =======================
  app.controller('restUpdateCtrl', function($scope, $http){
 	 
+	 
+	 
 	//================= START LOCATION ADDRESS =====================
 		
 		
@@ -281,7 +266,7 @@ app.directive('myFilter', [function() {
     var rest_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     $scope.getRestById = function(rest_id){
     	$http({
-   			url: 'http://localhost:8080/rest/restaurant/'+rest_id,
+   			url: '/rest/restaurant/'+rest_id,
    			method:'GET'
    		}).then(function(response){
    			$scope.restaurant = response.data.DATA;
@@ -292,10 +277,13 @@ app.directive('myFilter', [function() {
    			$scope.contact = $scope.restaurant.contact;
    			$scope.open_close = $scope.restaurant.open_close;
    			$scope.about = $scope.restaurant.about;
-   			$scope.street_number = $scope.restaurant.address.street;
+   			
    			$scope.restpictures = $scope.restaurant.restpictures;
    			$scope.categories = $scope.restaurant.categories;
-   			
+   			$scope.street_number = $scope.restaurant.address.street;
+   			$scope.village = $scope.restaurant.address.village;
+   			$scope.communce = $scope.restaurant.address.communce;
+   			$scope.province = $scope.restaurant.address.province;
    			console.log($scope.restaurant);
    			
    			angular.forEach($scope.restaurant.restpictures, function(rest, key){
@@ -333,10 +321,10 @@ app.directive('myFilter', [function() {
     $scope.updateRestaurant = function(e){
     	
     	e.preventDefault();
-		
+    	
     	$scope.user_id = parseInt($("#user_id").text());
     	data = {
-    			"address": {"street": $scope.street, 
+    			"address": {"street": $scope.street_number, 
 				  "district": $scope.district,
 				  "communce": $scope.communce, 
 				  "province": $scope.province},
