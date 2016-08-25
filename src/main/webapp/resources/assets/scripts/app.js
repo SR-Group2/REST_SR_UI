@@ -1,5 +1,5 @@
+//var app= angular.module('app',['angularUtils.directives.dirPagination']);
 var app= angular.module('app',['angularUtils.directives.dirPagination','btorfs.multiselect']);
-
  app.controller("ownerCtrl", function($scope, $http, $filter){
 	 $scope.getAllUsers=function(){
 			$http.get('http://localhost:8080/rest/user/owner').then(function(response){
@@ -137,6 +137,7 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 						$scope.gender= response.data.DATA.gender;
 						$scope.roles=response.data.DATA.role.id + '';
+						$scope.role=response.data.DATA.role;
 						$scope.picture = response.data.DATA.picture;
 						console.log(response.data.DATA);
 					});					

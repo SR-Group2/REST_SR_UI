@@ -1,6 +1,6 @@
 <div ng-controller="restGetCtrl">
 <div class="col-md-12">
-	<div class="card-header">
+	<div class="card-header" ng-controller="testCtrl">
 			 		
 			   <a href="${pageContext.request.contextPath}/admin/addRestaurant">
 				  	<button class="btn btn-primary btn-icon" >

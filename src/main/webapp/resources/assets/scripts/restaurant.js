@@ -37,20 +37,24 @@ app.directive('myFilter', [function() {
 			{restype_name: 'Street Food', restype_id: 16}
 	      ];
 	 //===================GET RESTAURANT RESTYPE ==============	 
-	/*	$scope.getRestType=function(){
+	$scope.getRestType=function(){
 			$http.get('/rest/restype?limit=30&page=1').then(function(response){
-				$scope.dataRestype =response.data.DATA;
-				for (var i = 0; i < $scope.dataRestype.length; i++) {
-		            $scope.loadRestype.push({
-						restype_name:$scope.dataRestype[i].restype_name, 
-						restype_id: $scope.dataRestype[i].restype_id
+				$scope.restypeRsp =response.data.DATA;
+				for (var i = 0; i < $scope.restypeRsp.length; i++) {
+		            $scope.dataRestypes.push({
+						restype_name:$scope.restypeRsp[i].restype_name, 
+						restype_id: $scope.restypeRsp[i].restype_id
 					});
+		            
+		            console.log($scope.restypeRsp[i].restype_name);
 				}
 				
 			});
 		}
 		
-	$scope.getRestType();*/	
+	$scope.getRestType();
+	
+	
 	 //===================GET RESTAURANT OWNER ==============
 	 $scope.getRestOwner=function(){
 			$http.get('/rest/user/owner').then(function(response){

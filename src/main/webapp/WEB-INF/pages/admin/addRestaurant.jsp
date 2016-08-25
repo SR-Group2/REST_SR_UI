@@ -46,7 +46,7 @@
 		                     </multiselect> -->
 		                     <multiselect  ng-model="data_Restypes" options="dataRestypes" 
 		       						display-prop="restype_name" id-prop="restype_id"
-		                     		selection-limit="3">
+		                     		selection-limit="3" >
 		                     </multiselect> 
 						 </div>
 						<%-- <div class="form-group">

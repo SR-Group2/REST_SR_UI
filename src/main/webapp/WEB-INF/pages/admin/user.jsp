@@ -49,7 +49,7 @@
 							<!-- <td>{{user.joined | date: "yyyy-MM-dd"}}</td> -->
 							<td>{{user.role.name}}</td>
 							<td>
-							<button type="button" class="btn btn-blue btn-sm" onclick="jQuery('#modal').modal('show');" ng-click="getUserById(user.user_id)">
+							<button type="button" class="btn btn-blue btn-sm" onclick="jQuery('#showDetails').modal('show');" ng-click="getUserById(user.user_id)">
 							<i class="fa fa-info"></i> Info</button>
 							<button type="button" class="btn btn-success btn-sm" onclick="jQuery('#modal').modal('show');" ng-click="getUserById(user.user_id)">
 							<i class="fa fa-pencil-square-o"></i> Edit</button> <button type="button" class="btn btn-danger btn-sm" ng-click="deleteUsers(user.user_id);">
@@ -356,5 +356,64 @@
 	</div>
 </div>
 		
+		
+		<!-- ================== Modal Update ================== -->		
+		<div class="modal fade" id="showDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">User Detail</h4>
+		      </div>
+		      <div class="modal-body">
+		        <table class="table">
+		        	
+					 <tr>
+					    <th>First Name</th>
+					    <td>{{first_name}}</td>
+					</tr>
+					 
+					  <tr>
+					    <th>Last Name</th>
+					    <td>{{last_name}}</td>
+					</tr>
+					
+					<tr>
+					    <th>Username</th>
+					    <td>{{username}}</td>
+					</tr>
+					
+					<tr>
+					    <th>Email</th>
+					    <td>{{email}}</td>
+					</tr>
+					
+					<!-- <tr>
+					    <th>Password</th>
+					    <td>{{password}}</td>
+					</tr> -->
+					
+					<tr>
+					    <th>Date of Birth</th>
+					    <td>{{dob}}</td>
+					</tr>
+					
+					<tr>
+					    <th>Gender</th>
+					    <td>{{gender}}</td>
+					</tr>
+					
+					<tr>
+					    <th>Role</th>
+					    <td>{{role.name}}</td>
+					</tr>
+					
+				</table>
+					
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- ================== End Modal Update ================== -->	
 		
 		
