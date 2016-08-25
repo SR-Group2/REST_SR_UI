@@ -6,7 +6,6 @@
 	<groupId>org.khmeracademy.rest</groupId>
 	<artifactId>REST_SR_UI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
 	<name>REST_SR_UI</name>
 	<description>Restaurant User Interface</description>

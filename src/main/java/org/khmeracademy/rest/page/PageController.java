@@ -70,6 +70,13 @@ public class PageController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping(value="/detailrestaurant/{rest_id}", method = RequestMethod.GET)
+	public String detailRestPage(ModelMap map,  @PathVariable int rest_id){
+		map.addAttribute("page", "detialRestaurant.jsp");
+		map.addAttribute("rest_id", rest_id);
+		return "admin/admin";
+	}
+	
 	@RequestMapping(value="/restype", method = RequestMethod.GET)
 	public String menPage(ModelMap map){
 		map.addAttribute("page", "restype.jsp");

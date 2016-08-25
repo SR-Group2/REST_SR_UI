@@ -67,8 +67,9 @@
 							<td>{{restaurant.address.district}}</td> -->
 							<td>{{restaurant.address.province}}</td>
 							<td>
+								<a href="${pageContext.request.contextPath}/admin/detailrestaurant/{{restaurant.rest_id}}" >
 								<button type="button" class="btn btn-blue btn-icon icon-left" ng-click="detailRestaurant(restaurant.rest_id)">
-								<i class="entypo-info"></i> Details</button>
+								<i class="entypo-info"></i> Details</button></a>
 								<a href="${pageContext.request.contextPath}/admin/restaurant/{{restaurant.rest_id}}">
 								<button type="button" class="btn btn-green btn-icon icon-left" >
 								<i class="fa fa-pencil-square-o"></i> Edit</button></a>
