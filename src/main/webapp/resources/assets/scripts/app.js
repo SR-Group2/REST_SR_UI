@@ -124,40 +124,96 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 					});
 	
 				}
-				$scope.getUserById=function(id){			
-					$http.get('http://localhost:8080/rest/user/'+id).then(function(response){
+				$scope.getUserById=function(id){
+					
+					$http.get('/rest/user/'+id).then(function(response){
 						
-						$scope.id= response.data.DATA.user_id;
-						$scope.firstName= response.data.DATA.first_name;
-						$scope.lastName=response.data.DATA.last_name;
+						$scope.user_id= response.data.DATA.user_id;
+						$scope.first_name= response.data.DATA.first_name;
+						$scope.last_name=response.data.DATA.last_name;
 						$scope.username=response.data.DATA.username;
 						$scope.email=response.data.DATA.email;
 						$scope.password=response.data.DATA.password;
 						$scope.dob =  $filter('date')(response.data.DATA.dob, 'yyyy-MM-dd');
 						$scope.gender= response.data.DATA.gender;
 						$scope.roles=response.data.DATA.role.id + '';
+						$scope.picture = response.data.DATA.picture;
+						console.log(response.data.DATA);
 					});					
 				}
+				
+				$scope.getGender = function (gender){
+					$scope.genders = $scope.gender;
+				}
+				
 				$scope.updateUser=function(){
-					data={
-							'user_id':$scope.id,
+						
+					/*data={
+							'user_id': $scope.user_id,
 							'first_name':$scope.firstName,
 							'last_name':$scope.lastName,
 							'username':$scope.username,
 							'email': $scope.email,
 							'password':$scope.password,
 							'dob':$scope.dob,
-							'gender':$scope.gender,
+							'gender':$scope.genders,
 							'role': {
 								'id': $scope.roles
 							}
+						}*/
+
+				var frmData = new FormData();
+				data={
+						'user_id': $scope.user_id,
+						'first_name':$scope.first_name,
+						'last_name':$scope.last_name,
+						'username':$scope.username,
+						'email': $scope.email,
+						'password':$scope.password,
+						'dob':$scope.dob,
+						'gender':$scope.gender,
+						'role': {
+							'id': $scope.roles
 						}
-					console.log(data);
-					$http.put('http://localhost:8080/rest/user',data).then(function(response){
-						swal("Update Successfully!", "You clicked the button!", "success");
-						$scope.getAllUsers();
-					});
-				}	
+					}
+				//============= Cache File from user profile to server 
+				
+				var picture = angular.element('#file')[0].files;
+				for(var i=0; i<picture.length; i++){
+					frmData.append("picture", picture[i]);
+				}
+				
+				frmData.append('json_data', JSON.stringify(data));
+
+				$http({
+					url:'http://localhost:9999/api/upload/user/update',
+					method: 'POST',
+					data: frmData,
+					transformRequest: angular.identity,
+		            headers: {'Content-Type': undefined}
+				}).then(function(response){
+					console.log(response.data);
+					swal({   
+		        			title: "Update SUCCESSFULLY!",   
+		        			text: "THANK YOU",   
+		        			type: "success",   
+		        			confirmButtonColor: "#007d3d",   
+		        			closeOnConfirm: false,   
+		        			closeOnCancel: false }, 
+		        			function(isConfirm){   
+		        				if(isConfirm) {     				
+		        					window.location.href="/admin/user";
+		        				}else {     
+		        					swal("Cancelled", "Your imaginary file is safe !", "error");   
+		        				} 
+		        			});
+					
+				}, function(error){
+					console.log(error.data);
+					alert('failed to upload data! Please Try again !!!!!');
+				});
+			}
+		//============== end user update
 		
 });
 

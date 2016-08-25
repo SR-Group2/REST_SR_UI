@@ -14,7 +14,9 @@
 
       <div class="container" style="margin-top:70px;background:#ffffff;">
       		<div class="logo"  style="width:200px;margin:0 auto;align:center;">
+      			<a href="/home">
       			<img class="navbar-brand logo text-xs-center" src="${pageContext.request.contextPath}/resources/images/logo.png" align="center">
+      			</a>
       		</div>
       		<div style="width:500px;margin:0 auto;">
 	      		<form class="formlogin"  id="frmLogin">

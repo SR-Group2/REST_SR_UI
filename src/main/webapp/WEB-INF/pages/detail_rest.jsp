@@ -37,25 +37,35 @@
 							data-toggle="modal" data-target="#login">ចូលប្រើ</a></li>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="#">បង្កើតគណនី</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/register">បង្កើតគណនី</a></li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
-					</li>
+					
 					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item dropdown logined">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						 style="color:#35ac2a !important;text-transform:uppercase;"
 						role="button" aria-haspopup="true" aria-expanded="false">
-							Welcome  <sec:authentication property="principal.username" />
-							<p id="user_id" style="display:none"><sec:authentication property="principal.id" /></p>
+							<sec:authentication property="principal.username" />
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
-							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
-							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
-							<i class="fa fa-user"></i> Profile</a>
+							
+							<ul class="list-unstyled">
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+									<i class="fa fa-user"></i>&nbsp;&nbsp; គណនី</a>
+								</li>
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+									<i class="fa fa-sign-out"></i>&nbsp;&nbsp; ចាកចេញ</a>
+								</li>
+							</ul>
+							
 						</div>
+					</li>
+					<li class="nav-item">
+						<img class="img-circle profileimage" 
+						src='http://localhost:9999<sec:authentication property="principal.picture" />'/>
 					</li>
 					</sec:authorize>
 				</ul>
@@ -106,12 +116,12 @@
 						<sec:authorize access="isAuthenticated()">
 							<div class="well">
 			                    <h5>Leave a Comment:</h5>
-			                    <form role="form">
+			                    <form role="form" name="frmcomment">
 			                        <div class="form-group">
-			                            <textarea class="form-control" rows="3" ng-model="comment_text" required></textarea>
+			                            <textarea class="form-control" rows="3" ng-model="comment_text" ng-required="true"></textarea>
 			                           <p id="user_id" style="display:none;"><sec:authentication property="principal.id" /></p>
 			                        </div>
-			                        <button type="submit" class="btn btn-success" ng-click="addComment()">Submit</button>
+			                        <button type="submit" class="btn btn-success" ng-click="addComment()" ng-disabled="frmcomment.$invalid">Submit</button>
 			                    </form>
 			                </div>
 			             </sec:authorize>
@@ -123,13 +133,16 @@
 						  <div class="media-left">
 						    <a href="#">
 						    <!-- 	<i class="fa fa-users fa-3x"></i> -->
-						     <img class="media-object" src="${pageContext.request.contextPath}/resources/images/text.png" alt="Generic placeholder image">
+						    <img class="" width="40" height="40" 
+									src='http://localhost:9999{{cm.user.picture}}'/>
+						    <%--  <img class="media-object" src="${pageContext.request.contextPath}/resources/images/text.png" alt="Generic placeholder image"> --%>
 						    </a>
 						  </div>
 						  <div class="media-body">
 						    <h6 class="media-heading" ng-bind-template="{{cm.user.first_name}}"></h6>
 						    <p>{{cm.comment}}</p>
 						  </div>
+						 
 					</div>
 				</div>
 			<!--  ======================= end List Comment ===================== -->
@@ -317,10 +330,6 @@
 		 	
 			$scope.getCategory();
 			
-			
-			
-		  	
-	  		
 	  		$scope.getRestDetail = function(){
 	  			
 	  			$http.get("${pageContext.request.contextPath}/rest/restaurant/"+id)
@@ -367,11 +376,11 @@
 	  				if(rsp.data.DATA !=null){
 	  					$scope.comments = rsp.data.DATA;
 	  					$scope.checkcomment = true;
+	  					console.log("comment",rsp);	
 	  				}else{
 	  					$scope.checkcomment = false;
 	  				}
-	  				
-	  				console.log("rsp");
+	  		
 	  			});
 			}
 			

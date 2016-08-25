@@ -49,19 +49,26 @@
 						role="button" aria-haspopup="true" aria-expanded="false">
 							<sec:authentication property="principal.username" />
 						</a>
-						<div class="dropdown-menu" aria-labelledby="Preview">
+						<%-- <div class="dropdown-menu" aria-labelledby="Preview">
 							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
 							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
-						</div>
+						</div> --%>
 						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
-							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
-							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
-							<i class="fa fa-user"></i> Profile</a>
+							<ul class="list-unstyled">
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+									<i class="fa fa-user"></i>&nbsp;&nbsp; គណនី</a>
+								</li>
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+									<i class="fa fa-sign-out"></i>&nbsp;&nbsp; ចាកចេញ</a>
+								</li>
+							</ul>
+
 						</div>
 					</li>
 					<li class="nav-item">
-						<img class="img-circle" width="60" height="50" 
+						<img class="img-circle profileimage" 
 						src='http://localhost:9999<sec:authentication property="principal.picture" />'/>
 					</li>
 					</sec:authorize>
@@ -210,7 +217,7 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
 	<script
@@ -224,10 +231,10 @@
 		<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
-		<div class="col-md-3 col-xs-6">
+		<div class="col-md-3 col-xs-6 text-xs-right">
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
-				<h2>{{= restype_name_kh }}</h2>
-				<h4 class="text-capitalize">{{= restype_name }}</h4>
+				<h2 class="text-xs-left">{{= restype_name_kh }}</h2>
+				<h4 class="text-capitalize text-xs-left">{{= restype_name }}</h4>
 				<a href="#"><img class="" alt="" src="/resources/images/restype/{{= restype_picture}}" width="200" height="150"></a>
 			</div>
 		</div>

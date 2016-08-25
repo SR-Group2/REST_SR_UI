@@ -140,8 +140,9 @@ function searchRestByQuery(keywords){
 	});
 }
 $("#fa-btnsearch").on("click", function(){
-var keywords = $("#keyword").val();
+	var keywords = $("#keyword").val();
 	searchRestByQuery(keywords);
+	$("#getRest").css("height", "550px");
 });
 
 $('#keyword').on('typeahead:selected', function(){ 
@@ -189,6 +190,7 @@ $.ajax({
 });
 //==================== search filter by restype =========
 $("#searchRest").on("click change",function(){
+	$("#getRest").css("height", "100%");
 	var filterRestype = $("#filterRestype").val();
 	restaurant.getRest(currentPage, filterRestype);
 });

@@ -42,34 +42,47 @@
 							data-toggle="modal" data-target="#login">ចូលប្រើ</a></li>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="#">បង្កើតគណនី</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/register">បង្កើតគណនី</a></li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
-					</li>
+					
 					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item dropdown logined">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						 style="color:#35ac2a !important;text-transform:uppercase;"
 						role="button" aria-haspopup="true" aria-expanded="false">
-							Welcome  <sec:authentication property="principal.username" />
+							<sec:authentication property="principal.username" />
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
-							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
+							
+							<ul class="list-unstyled">
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+									<i class="fa fa-user"></i>&nbsp;&nbsp; គណនី</a>
+								</li>
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+									<i class="fa fa-sign-out"></i>&nbsp;&nbsp; ចាកចេញ</a>
+								</li>
+							</ul>
+							
 						</div>
+					</li>
+					<li class="nav-item">
+						<img class="img-circle profileimage" 
+						src='http://localhost:9999<sec:authentication property="principal.picture" />'/>
 					</li>
 					</sec:authorize>
 				</ul>
 			</div>
 		</div>
 	</nav>
-		
+	<!-- end  ======== Navigation ==========  -->
 	<section class="rest-list">
-		<div class="container" >
+		<div class="container" id="sidebar" >
 			<div class="row">
 				<div class="col-md-3">
-					<div class="row">
+					<div class="row" style="margin-top:15px">
 						<div class="box-filter">
 							<h2>Search:</h2>
 								<form>
@@ -85,7 +98,7 @@
 								</form>
 						</div>
 					</div><!-- end row -->
-				
+					
 					<div class="row">
 						<div class="box-sort">
 								<h2>Filter:</h2>
@@ -131,26 +144,28 @@
 								</form>	
 							</div>
 					</div><!-- end row -->
-				</div>
+				</div><!-- end col-md-3 -->
 				
 				<div class="col-md-9">
 					<div class="row" id="getRest">
-					
+								
 						
 					</div>
 					<!-- ========= Pagination ============ -->
-						<section class="cotainer text-xs-center">
+					<div class="row"  id="pagelimit">
+						<div class=" text-xs-center">
 							<nav id="pagination"  class="pagination"></nav>
-						</section> 
-						<!-- end pagination -->
+						</div> 
+					</div>
+					<!-- end pagination -->
 						
-				</div><!-- ======== col-md-9 -->
+			 </div><!-- ======== col-md-9 -->
 		</div>
 	</div>
-	\</section>	
+	</section>	
 	
 	
-	<!-- Modal -->
+	<%-- <!-- Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -183,8 +198,8 @@
     </div>
   </div>
 </div>
-
-	<!--  ========  Model LOgin ====== -->
+ --%>
+	
 <!--  ========  Model LOgin ====== -->
 	<!-- Modal -->
 	<div class="modal fade" id="login" tabindex="-1" role="dialog"
@@ -240,18 +255,11 @@
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
-		
+	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
     
   
@@ -281,6 +289,6 @@
 		</div>
 	</script>
 	
-	<script src="${pageContext.request.contextPath}/resources/scripts/restlists.js">></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/restlists.js"></script>
 </body>
 </html>		

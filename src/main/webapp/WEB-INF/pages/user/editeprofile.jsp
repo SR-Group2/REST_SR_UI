@@ -47,10 +47,10 @@
 					<sec:authorize access="!isAuthenticated()">
 						<li class="nav-item"><a class="nav-link" href="#">បង្កើតគណនី</a></li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+					<!-- <li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
-					</li>
+					</li> -->
 					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item dropdown logined">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" 
@@ -58,19 +58,31 @@
 							Welcome  <sec:authentication property="principal.username" />
 							<p id="user_id" style="display:none"><sec:authentication property="principal.id" /></p>
 						</a>
+						
 						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
-							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
-							<a class="nav-link" href="${pageContext.request.contextPath}/profile">
-							<i class="fa fa-user"></i> Profile</a>
+							
+							<ul class="list-unstyled">
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/profile">
+									<i class="fa fa-user"></i>&nbsp;&nbsp; គណនី</a>
+								</li>
+								<li>
+									<a class="nav-link" href="${pageContext.request.contextPath}/logout">
+									<i class="fa fa-sign-out"></i>&nbsp;&nbsp; ចាកចេញ</a>
+								</li>
+							</ul>
+							
 						</div>
+					</li>
+					<li class="nav-item">
+						<img class="img-circle" width="60" height="50" 
+						src='http://localhost:9999<sec:authentication property="principal.picture" />'/>
 					</li>
 					</sec:authorize>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 
 <%--   <sec:authentication property="principal.id" /> 
   <sec:authentication property="principal.username" />  --%>
@@ -89,7 +101,7 @@
 						<div class="col-md-6">
 							<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
 								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
-									<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="">
+									<img src="http://localhost:9999{{picture}}" alt="">
 								</div>
 								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
 								<div>
@@ -107,47 +119,27 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label for="lblfirstname">First Name</label>
-						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" value="{{firstName}}" ng-model="firstName" name="password">
+						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" value="{{first_name}}" ng-model="first_name" name="password">
 						    		</div>
 								</div>
 						    	<div class="col-md-6">
 						    		<div class="form-group">
 						    		<label for="lbllastname">Last Name</label>
-						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" value="{{lastName}}" ng-model="lastName" name="lastname">
+						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" value="{{last_name}}" ng-model="last_name" name="lastname">
 						    		</div>
 						    	</div>
-						    <div class="col-md-12">
+						    <!-- <div class="col-md-12">
 							  <div class="form-group">
 							    <label for="lblusername">Username</label>
 							    <input type="text" class="form-control" id="lblusername" placeholder="Username" value="{{username}}" ng-model="username" name="username">
 							  </div>
-						  	</div>
+						  	</div> -->
 						  	<div class="col-md-12">
 						  		 <div class="form-group">
 								    <label for="lblemail">Email</label>
-								    <input type="email" class="form-control" id="lblemail" placeholder="Email" ng-model="email" name="email">
+								    <input type="email" class="form-control" id="lblemail" placeholder="Email" value="{{email}}" ng-model="email" name="email">
 								  </div>
-						  	
 						  	</div>
-						  	<div class="col-md-12">
-						  		<div class="form-group">
-						    		<label for="lblpassword">Old Password</label>
-						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password"  ng-model="password" name="password"">
-								</div>
-						  	</div>
-						  	<div class="col-md-12">
-						  		<div class="form-group">
-						    		<label for="lblpassword">New Password</label>
-						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="New Password"  ng-model="newpassword" name="password">
-								</div>
-						  	</div>
-						  	<div class="col-md-12">
-							  	<div class="form-group">
-								    <label for="lblconfirmpassword">Confirm Password</label>
-								    <input type="password" class="form-control" id="lblconfirmpassword"  ng-model="txtconfrimpword" placeholder="Confirm Password">
-							  	</div>
-						  	</div>
-						  	
 						  	<div class="col-md-12">
 								<label for="date" class="">Date of Birth</label>
 							    <div class="input-group">   
@@ -157,8 +149,9 @@
 							        </div>
 							    </div>
 				            </div>
+				          	
 						  	<div class="col-md-12">
-						  		<label for="">Gender</label>
+						  		<label for="gender">Gender</label>
 						  		<div class="input-group">
 							  		<label class="radio-inline">
 									  <input type="radio" name="gender" id="gender" ng-model="gender" value="Male"> Male
