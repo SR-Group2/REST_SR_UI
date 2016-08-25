@@ -383,9 +383,12 @@ app.controller("restypeCtrl", function($scope, $http){
 	/* ============== Delete Restaurant type ======================= */
 	
 	$scope.deleteRestype = function(restype_id) {
-		$http.delete('http://localhost:8080/rest/restype/' + restype_id)
+		
+		$http.delete('/rest/restype/'+restype_id)
 		.then(function(response){
-			$scope.getAllRestypes();
+			swal(" Deleted Successfully!", "You clicked the button!", "success");				
+    		$scope.getAllRestypes(1);
+			
 		});	
 	}
 	
