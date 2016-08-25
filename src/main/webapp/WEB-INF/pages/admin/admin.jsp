@@ -91,7 +91,7 @@
 					</a>
 				</li> --%>
 				<li>
-					<a href="${pageContext.request.contextPath}/admin/menu" target="_self">
+					<a href="${pageContext.request.contextPath}/admin/restype" target="_self">
 						<i class="fa fa-list"></i>
 						<span class="title">Category Restaurant</span>
 					</a>

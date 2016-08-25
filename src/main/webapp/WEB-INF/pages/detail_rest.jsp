@@ -431,7 +431,7 @@
 					}	
 			}
 			$http.post('http://localhost:8080/rest/favourite-restaurant',data).then(function(response){
-				alert('successfully added');
+				
 				$("#btnfav").text("Saved");
 				$("#btnfav").attr('disabled', 'disabled');
 			});

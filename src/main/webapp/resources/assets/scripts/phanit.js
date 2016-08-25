@@ -100,6 +100,7 @@ app.controller('commentCtrl', function($scope, $http) {
  });
 
 /* ================================= Brand Controller by Phanit =======================================*/
+
 app.controller('brandCtrl', function($scope, $http) {
 	//$scope.brands = '';
 
@@ -332,16 +333,51 @@ app.controller("restypeCtrl", function($scope, $http){
 	/* ================ Insert Into Table  types =================== */
 	
 	$scope.addRestype = function(){
+		
+		var frmData = new FormData();
+		
 		data={	
-				'restype_name': $scope.restype_name,
-				'restype_name_kh': $scope.restype_name_kh,
-				'restype_picture': $scope.restype_picture,
-				'description': $scope.description
+			'restype_name': $scope.restype_name,
+			'restype_name_kh': $scope.restype_name_kh,
+			'description': $scope.description
 		}
-		$http.post('http://localhost:8080/rest/restype', data).then(function(response){
-			swal("Added Successfully!", "You clicked the button!", "success");
-			$scope.getAllRestypes();
+		
+		//============= Cache File from user profile to server 
+		var picture = angular.element('#file')[0].files;
+		for(var i=0; i<picture.length; i++){
+			frmData.append("picture", picture[i]);
+		}
+		
+		frmData.append('json_data', JSON.stringify(data));
+
+		$http({
+			url:'http://localhost:9999/api/upload/restype/add',
+			method: 'POST',
+			data: frmData,
+			transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+		}).then(function(response){
+			console.log(response.data);
+			swal({   
+        			title: "INSERT SUCCESSFULLY!",   
+        			text: "THANK YOU",   
+        			type: "success",   
+        			confirmButtonColor: "#007d3d",   
+        			closeOnConfirm: false,   
+        			closeOnCancel: false }, 
+        			function(isConfirm){   
+        				if(isConfirm) {     				
+        					window.location.href="/admin/restype";
+        				}else {     
+        					swal("Cancelled", "Your imaginary file is safe !", "error");   
+        				} 
+        			});
+			
+		}, function(error){
+			console.log(error.data);
+			alert('failed to upload data! Please Try again !!!!!');
 		});
+	
 	}
 	
 	/* ============== Delete Restaurant type ======================= */
@@ -354,9 +390,10 @@ app.controller("restypeCtrl", function($scope, $http){
 	}
 	
 	/* ==================== Find Restaurant type By Id ==================== */
-	
-	$scope.getRestypeById = function(restype_id){
-		$http.get('http://localhost:8080/rest/restype/'+restype_id).then(function(response){
+	var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	$scope.getRestypeById = function(id){
+		$http.get('/rest/restype/only/'+id).then(function(response){
+			console.log(response);
 			$scope.restype = response.data.DATA;
 			$scope.restype_id = response.data.DATA.restype_id;
 			$scope.restype_name = response.data.DATA.restype_name;
@@ -365,17 +402,54 @@ app.controller("restypeCtrl", function($scope, $http){
 			$scope.description = response.data.DATA.description;
 		});
 	}
+	$scope.getRestypeById(id);
+	
 	/* ================== Update Restaurant Type =========================== */
-	var frmData = new FormData();
 	$scope.updateRestype = function(){
+		
+		var frmData = new FormData();
+		
 		data={
 				'restype_id': $scope.restype_id,	
 				'restype_name': $scope.restype_name,
 				'restype_name_kh': $scope.restype_name_kh,
 				'description': $scope.description
 		}
-		$http.put('http://localhost:8080/rest/restype/',data).then(function(response){
-			$scope.getAllCategory();
+		
+		//============= Cache File from user profile to server 
+		var picture = angular.element('#file')[0].files;
+		for(var i=0; i<picture.length; i++){
+			frmData.append("picture", picture[i]);
+		}
+		
+		frmData.append('json_data', JSON.stringify(data));
+
+		$http({
+			url:'http://localhost:9999/api/upload/restype/update',
+			method: 'POST',
+			data: frmData,
+			transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+		}).then(function(response){
+			console.log(response.data);
+			swal({   
+        			title: "Update SUCCESSFULLY!",   
+        			text: "THANK YOU",   
+        			type: "success",   
+        			confirmButtonColor: "#007d3d",   
+        			closeOnConfirm: false,   
+        			closeOnCancel: false }, 
+        			function(isConfirm){   
+        				if(isConfirm) {     				
+        					window.location.href="/admin/restype";
+        				}else {     
+        					swal("Cancelled", "Your imaginary file is safe !", "error");   
+        				} 
+        			});
+			
+		}, function(error){
+			console.log(error.data);
+			alert('failed to upload data! Please Try again !!!!!');
 		});
 	}
 });

@@ -28,10 +28,10 @@
 					<td>{{$index+1}}</td>
 					<td>{{restype.restype_name_kh}}</td>
 					<td>{{restype.restype_name}}</td>
-					<td><img src="http://localhost:9999{{restype.restype_picture}}"/></td>
+					<td><img src="http://localhost:9999{{restype.restype_picture}}" width="40px" height="40px"/></td>
 					<td>{{restype.description}}</td>
 					<td>
-						<a href="#" class="btn btn-default btn-sm btn-icon icon-left">
+						<a href="/admin/updateRestype/{{restype.restype_id}}" class="btn btn-default btn-sm btn-icon icon-left">
 							<i class="entypo-pencil"></i>
 							Edit
 						</a>

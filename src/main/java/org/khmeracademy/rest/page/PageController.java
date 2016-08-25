@@ -70,9 +70,9 @@ public class PageController {
 		return "admin/admin";
 	}
 	
-	@RequestMapping(value="/menu", method = RequestMethod.GET)
+	@RequestMapping(value="/restype", method = RequestMethod.GET)
 	public String menPage(ModelMap map){
-		map.addAttribute("page", "menu.jsp");
+		map.addAttribute("page", "restype.jsp");
 		return "admin/admin";
 	}
 	@RequestMapping(value="/addBrand", method = RequestMethod.GET)
@@ -103,6 +103,13 @@ public class PageController {
 	@RequestMapping(value="/addRestype", method = RequestMethod.GET)
 	public String AddRestypePage(ModelMap map){
 		map.addAttribute("page", "addRestype.jsp");
+		return "admin/admin";
+	}
+	
+	@RequestMapping(value="/updateRestype/{restype_id}", method = RequestMethod.GET)
+	public String updateRestype(ModelMap map){
+		map.addAttribute("page", "updateRestype.jsp");
+		map.addAttribute("restype_id", "restype_id");
 		return "admin/admin";
 	}
 }

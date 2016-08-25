@@ -44,11 +44,19 @@ public class RestypeController {
 	
 	//===================== Get Restype By Id =====================
 	@RequestMapping(value="/{restype_id}",method = RequestMethod.GET)
-	public ResponseEntity<Map<String , Object>> getRestype(@PathVariable int restype_id){
+	public ResponseEntity<Map<String , Object>> getRestype(@PathVariable("restype_id") int restype_id){
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/"+restype_id, HttpMethod.GET , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
+	
+	//===================== Get Restype Only By Id =====================
+		@RequestMapping(value="/only/{restype_id}",method = RequestMethod.GET)
+		public ResponseEntity<Map<String , Object>> getOnlyRestype(@PathVariable("restype_id") int restype_id){
+			HttpEntity<Object> request = new HttpEntity<Object>(header);
+			ResponseEntity<Map> response = rest.exchange(WS_URL+"/restype/only/"+restype_id, HttpMethod.GET , request , Map.class) ;
+			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+		}
 	//===================== Restype Pagination =====================
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getRestype(
