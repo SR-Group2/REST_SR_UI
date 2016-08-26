@@ -42,7 +42,7 @@ restaurant.getRest = function(currentPage, id) {
 				"application/json");
 	},
 	success : function(data) {
-		console.log(data);
+		$("#pagination").hide();
 		if (data.STATUS != false) {
 			console.log("getRest", data);
 			//=========== protect list path_name ===========
@@ -59,7 +59,6 @@ restaurant.getRest = function(currentPage, id) {
 			$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 			$('#getRest').css("cursor", "pointer");
 			if (check) {
-				
 				restaurant.setPagination(
 						data.PAGINATION.TOTAL_PAGES,
 						currentPage);
@@ -92,9 +91,9 @@ restaurant.setPagination = function(totalPage, currentPage) {
 	lastClass : 'last',
 	firstClass : 'first'
 }).on("page", function(event, currentPage) {
-	check = false;
+	
 	restaurant.getRest(currentPage,id);
-
+	check = false;
 });
 
 	$('#pagination .bootpag li').addClass("page-item");
@@ -118,6 +117,7 @@ function searchRestByQuery(keywords){
         xhr.setRequestHeader("Content-Type", "application/json");
     },
     success: function(data) { 
+    	  
     	console.log(data);
     	if (data.STATUS != false) {
 			console.log("select by type of restype ",data);
@@ -131,9 +131,10 @@ function searchRestByQuery(keywords){
 				check = false;
 			}
 			$("#pagination").show()
+			check = false; 
 		} else {
-			$("#pagination").hide();
-			$("#getRest").empty();
+				$("#pagination").hide();
+				$("#getRest").empty();
 			}
 	   
 	    }

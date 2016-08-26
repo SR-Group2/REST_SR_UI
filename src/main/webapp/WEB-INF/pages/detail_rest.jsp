@@ -21,10 +21,10 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 	
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.0.min.js"></script>
 	
-	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/myScript.js"></script>
+	
+	<%-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/myScript.js"></script> --%>
 	
     
 </head>
@@ -199,12 +199,12 @@
 						</div>
 					</div>
 					<div class="col-md-12" style="margin-top:15px">
-						 <div id="mapContainer">
-					        <!-- This is where Google map will go. --->
-					    </div>
+						 <!-- <div id="mapContainer">
+					        This is where Google map will go. -
+					    </div> -->
 						 
-						 <p id="map"></p>
-						<button>Stop</button>
+						<!--  <p id="map"></p>
+						<button>Stop</button> -->
 						 
 						    
     
@@ -277,7 +277,7 @@
 
 	
 	
-	
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/turn.min.js"></script>

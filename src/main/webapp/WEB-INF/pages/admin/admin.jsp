@@ -110,12 +110,12 @@
 						<span class="title">Brand Restaurant</span>
 					</a>
 				</li> --%>
-				<li>
+				<%-- <li>
 					<a href="${pageContext.request.contextPath}/admin/vote" target="_self">
 						<i class="fa fa-star"></i>
 						<span class="title">Vote</span>
 					</a>
-				</li>
+				</li> --%>
 				<%-- <li>
 					<a href="${pageContext.request.contextPath}/admin/comment" target="_self">
 						<i class="fa fa-comment"></i>

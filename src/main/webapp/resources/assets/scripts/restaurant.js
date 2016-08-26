@@ -37,7 +37,7 @@ app.directive('myFilter', [function() {
 			{restype_name: 'Street Food', restype_id: 16}
 	      ];
 	 //===================GET RESTAURANT RESTYPE ==============	 
-	$scope.getRestType=function(){
+	/*$scope.getRestType=function(){
 			$http.get('/rest/restype?limit=30&page=1').then(function(response){
 				$scope.restypeRsp =response.data.DATA;
 				for (var i = 0; i < $scope.restypeRsp.length; i++) {
@@ -52,7 +52,7 @@ app.directive('myFilter', [function() {
 			});
 		}
 		
-	$scope.getRestType();
+	$scope.getRestType();*/
 	
 	
 	 //===================GET RESTAURANT OWNER ==============
