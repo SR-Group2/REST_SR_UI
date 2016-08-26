@@ -21,6 +21,12 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 	
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.0.min.js"></script>
+	
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/myScript.js"></script>
+	
+    
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -147,7 +153,9 @@
 				</div>
 			<!--  ======================= end List Comment ===================== -->
 			</div>
-			<div class="col-md-5 box-img formlogin restinfo">
+			<div class="col-md-5 ">
+				<div class="row">
+					<div class="col-md-12 box-img formlogin restinfo">
 							<h2>Restaurant Information</h2>
 							<h4>
 								<i class="fa fa-star text-warning"></i>
@@ -171,23 +179,39 @@
 									<td>{{contact}}</td>
 								</tr>
 								<tr>
-									<td><i class="fa fa-location-arrow"> Address </i></td>
+									<td><i class="fa fa-home"> Address </i></td>
 									<td>{{address.village}}  </td>
 								</tr>
 								<tr>
 									<td colspan="2">{{address.communce}} {{address.district}} {{address.province}} លេខផ្លូវ:{{address.street}}</td>
 								</tr>
 								<!-- <tr>
-									<td><i class="fa fa-home"> LOCATION</i></td>
+									<td><i class="fa fa-location-arrow"> VIEW LOCATION</i></td>
 									<td>{{location}}</td>
 								</tr> -->
 							</table>
 							
 							<div class="more_part">
 							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav"><i class="fa fa-heart"> ADD FAVORITE </i></button>
+							
+							<button class="btnAdd" id="location"><i class="fa fa-location-arrow"> VIEW LOCATION</i></button>
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
 						</div>
 					</div>
+					<div class="col-md-12" style="margin-top:15px">
+						 <div id="mapContainer">
+					        <!-- This is where Google map will go. --->
+					    </div>
+						 
+						 <p id="map"></p>
+						<button>Stop</button>
+						 
+						    
+    
+    
+					</div>
+				</div><!--  end row col-md-5 -->
+			
 				</div>  
 			</div>
 			<!--  ================ Ending  ========== -->
@@ -251,7 +275,9 @@
 		<sec:authentication property="principal.id" var="session_userID"/>
 	</sec:authorize>
 
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.0.min.js"></script>
+	
+	
+	
 	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/turn.min.js"></script>
