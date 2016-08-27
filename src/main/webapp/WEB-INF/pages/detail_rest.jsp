@@ -313,10 +313,12 @@
     	  navigator.geolocation.getCurrentPosition(geoSuccess);
     	  
     	 
+    	 
     	  
     	var myLatLng = {lat: 11.5723936, lng: 104.8870235};
     	
         map = new google.maps.Map(document.getElementById('map'), {
+        enableHighAccuracy: true,
           center: {lat: 11.562108, lng: 104.888535},
           zoom: 18,
 		    disableDefaultUI: false,
@@ -337,8 +339,35 @@
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: 'Hello World!'
+            title: 'Your Location!',
+            icon: ''
           });
+        
+        
+      //One time snapshot
+        navigator.geolocation.getCurrentPosition(
+             processGeolocation,
+             // Optional settings below
+             geolocationError,
+             {
+                 timeout: 0,
+                 enableHighAccuracy: true,
+                 maximumAge: Infinity
+             }
+        );
+         
+        //Tracking users position
+        watchId = navigator.geolocation.watchPosition(
+             processGeolocation,
+             // Optional settings below
+             geolocationError,
+             {
+                 timeout: 0,
+                 enableHighAccuracy: true,
+                 maximumAge: Infinity
+             }
+        );
+        
         
         
         
@@ -353,8 +382,9 @@
       
       
     </script>
-   
+  
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap" async defer></script>
+	
   	<%-- <script src="${pageContext.request.contextPath}/resources/map/List.js"></script>
   	<script src="${pageContext.request.contextPath}/resources/map/Mapster.js"></script>
   	<script src="${pageContext.request.contextPath}/resources/map/map-options.js"></script>
