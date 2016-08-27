@@ -21,12 +21,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 	
-	
-	
-	<%-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-	<script src="${pageContext.request.contextPath}/resources/scripts/myScript.js"></script> --%>
-	
-    
 </head>
 <body ng-controller="mainCtrl">
 	<!-- ======== Navigation ==========  -->
@@ -198,32 +192,32 @@
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
 						</div>
 					</div>
-					<div class="col-md-12" style="margin-top:15px">
-						 <!-- <div id="mapContainer">
-					        This is where Google map will go. -
-					    </div> -->
-						 
-						<!--  <p id="map"></p>
-						<button>Stop</button> -->
-						 
-						    
-    
-    
-					</div>
-				</div><!--  end row col-md-5 -->
-			
-				</div>  
+				</div>
 			</div>
 			<!--  ================ Ending  ========== -->
-			
-			
-                
-		</section>
-			<!-- ========= footer ============ -->
-		<footer class="">
-			<div class="container">
-				<p>Copy Right 2016. All right reserved.</p>
-			</div>
+		 </div>
+       </div><!--  end container -->
+	</section>
+	<section>
+		<div class="contianer-fluid">
+			<div class="col-md-12" style="margin-top:15px">
+							
+				<!-- ======== TESTING GOOGLE MAP ======== -->
+				<div id="startLat"></div>
+				<div id="startLon"></div>
+				<div id="map" style="height:400px;"></div>
+				
+		
+				<!-- ======== TESTING GOOGLE MAP ======== -->
+				
+			</div>  
+		</div>
+	</section>
+	<!-- ========= footer ============ -->
+	<footer class="">
+		<div class="container">
+			<p>Copy Right 2016. All right reserved.</p>
+		</div>
 	</footer>
 			<!-- ========= footer ============ -->
 			
@@ -284,6 +278,89 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script> 
 	
+	<!-- ========================= Google Map ======================== -->
+	<script>
+	
+	
+	
+	window.onload = function() {
+		
+		
+	 var startPos;
+	  var geoSuccess = function(position) {
+	    startPos = position;
+	    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+	    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+	    latuser = startPos.coords.latitude;
+	    longuser = startPos.coords.longitude;
+	  };
+	  navigator.geolocation.getCurrentPosition(geoSuccess);
+	};
+		
+	
+      var map;
+      function initMap() {
+    	
+    	  var latuser, longuser;
+    	  var startPos;
+    	  var geoSuccess = function(position) {
+    	    startPos = position;
+    	    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    	    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+    	    latuser = startPos.coords.latitude;
+    	    longuser = startPos.coords.longitude;
+    	  };
+    	  navigator.geolocation.getCurrentPosition(geoSuccess);
+    	  
+    	 
+    	  
+    	var myLatLng = {lat: 11.5723936, lng: 104.8870235};
+    	
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 11.562108, lng: 104.888535},
+          zoom: 18,
+		    disableDefaultUI: false,
+		    scrollwheel: true,
+		    draggable: true,
+		    mapTypeId: google.maps.MapTypeId.StreetViewPanorama,
+		    zoomControlOptions: {
+		      position: google.maps.ControlPosition.LEFT_BOTTOM,
+		      style: google.maps.ZoomControlStyle.DEFAULT
+		    },
+		    panControlOptions: {
+		      position: google.maps.ControlPosition.LEFT_BOTTOM
+		    }
+        });
+        
+      
+       
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+        
+        
+        
+        
+      }
+      
+    
+      
+      
+      
+      
+      
+      
+    </script>
+   
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap" async defer></script>
+  	<%-- <script src="${pageContext.request.contextPath}/resources/map/List.js"></script>
+  	<script src="${pageContext.request.contextPath}/resources/map/Mapster.js"></script>
+  	<script src="${pageContext.request.contextPath}/resources/map/map-options.js"></script>
+  	<script src="${pageContext.request.contextPath}/resources/map/script.js"></script> --%>
+	
+	<!-- ========================= END Google Map ======================== -->
 	<script> window.jQuery || document.write('<script src="booklet/jquery-2.1.0.min.js"><\/script>') </script>
 	
 	 <!-- ============= jQuery UI (optional) ============= -->
@@ -303,6 +380,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 	
 	<script>
+	
+
+  
 	//==================== Fancy Book Action ===================
 		$(document).ready(function() {
 			$(".fancybox").fancybox({
