@@ -1,11 +1,23 @@
   function initMap() {
+	  	
     	  
     	  //=================== LOAD FIRST MAP POISTION ====================
           var directionsService = new google.maps.DirectionsService;
           var directionsDisplay = new google.maps.DirectionsRenderer;
           var map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: -34.397, lng: 150.644},
-                zoom: 16
+                zoom: 5,
+                disableDefaultUI: false,
+			    scrollwheel: false,
+			    draggable: true,
+			    mapTypeId: google.maps.MapTypeId.ROADMAP,
+			    zoomControlOptions: {
+			      position: google.maps.ControlPosition.LEFT_BOTTOM,
+			      style: google.maps.ZoomControlStyle.DEFAULT
+			    },
+			    panControlOptions: {
+			      position: google.maps.ControlPosition.LEFT_BOTTOM
+			    }
            });
           directionsDisplay.setMap(map);
           
@@ -58,7 +70,7 @@
 	
 	 //=================== DIRECTION FUNCTION ====================
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pos) {
-		 console.log(pos);
+		
         directionsService.route({
         
          /*  origin: document.getElementById('start').value, */

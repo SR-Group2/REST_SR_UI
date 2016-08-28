@@ -76,7 +76,7 @@
 	<section class="rest_detail">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-7">
+					<div class="col-md-7" style="padding: 20px 10px">
 						<%-- <flipbook>
 								<div id="flipbook">
 									<img  class="hard" src="${pageContext.request.contextPath}/resources/images/logo.png">
@@ -88,8 +88,8 @@
 						
 						<div id="menus">
 							<div ng-repeat="menu in menus" menulist>
-								<a class="fancybox" rel="group" href="http://localhost:9999{{menu.url}}">
-									<img src="http://localhost:9999{{menu.url}}" class="img-fluid">
+								<a ng-cloak class="fancybox" rel="group" href="http://localhost:9999{{menu.url}}">
+									<img ng-cloak src="http://localhost:9999{{menu.url}}" class="img-fluid">
 								</a>
 							</div>
 							
@@ -150,34 +150,34 @@
 			<div class="col-md-5 ">
 				<div class="row">
 					<div class="col-md-12 box-img formlogin restinfo">
-							<h2>Restaurant Information</h2>
-							<h4>
+							<h2>ព័ត៌មានលំអិត</h2>
+							<!-- <h4>
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
-							 ONEMORE</h4>
-							<p>{{about}}</p>
-							<table class="table">
+							 ONEMORE</h4> -->
+							<p ng-cloak>{{about}}</p>
+							<table class="table table-responsive">
 								<tr>
-									<td><i class="fa fa-users"> OWNER RESTAURANT</i></td>
-									<td>{{owner_name}}</td>
+									<td><i class="fa fa-users"> ឈ្មោះម្ចាស់ហាង</i></td>
+									<td ng-cloak>{{owner_name}}</td>
 								</tr>
 								<tr>
-									<td><i class="fa fa-cutlery"> RESTAURANT NAME</i></td>
-									<td>{{rest_name}}</td>
+									<td><i class="fa fa-cutlery"> ឈ្មោះហាង</i></td>
+									<td ng-cloak>{{rest_name}}</td>
 								</tr>	
 								<tr>
-									<td><i class="fa fa-phone"> CONTACT</i></td>
-									<td>{{contact}}</td>
+									<td><i class="fa fa-phone"> ទំនាក់ទំនង</i></td>
+									<td ng-cloak>{{contact}}</td>
 								</tr>
 								<tr>
-									<td><i class="fa fa-home"> Address </i></td>
-									<td>{{address.village}}  </td>
+									<td><i class="fa fa-home"> អាស្រ័យដ្ខាន </i></td>
+									<td ng-cloak>{{address.village}}  </td>
 								</tr>
 								<tr>
-									<td colspan="2">{{address.communce}} {{address.district}} {{address.province}} លេខផ្លូវ:{{address.street}}</td>
+									<td colspan="2" ng-cloak>{{address.communce}} {{address.district}} {{address.province}} លេខផ្លូវ:{{address.street}}</td>
 								</tr>
 								<!-- <tr>
 									<td><i class="fa fa-location-arrow"> VIEW LOCATION</i></td>
@@ -188,7 +188,7 @@
 							<div class="more_part">
 							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav"><i class="fa fa-heart"> ADD FAVORITE </i></button>
 							
-							<button class="btnAdd" id="location"><i class="fa fa-location-arrow"> VIEW LOCATION</i></button>
+							<!-- <button class="btnAdd" id="location"><i class="fa fa-location-arrow"> VIEW LOCATION</i></button> -->
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
 						</div>
 					</div>
@@ -201,18 +201,18 @@
 	<section>
 		<div class="contianer-fluid">
 			<div class="col-md-12" style="margin-top:15px">
-							
+				
 				 <div style="display:none">
 					    <select id="start">
 					      <option selected value="11.5732615, 104.8765392">Your Location</option>
 					    </select>
 					    
 					    <select id="end">
-					      <option selected value="11.568673, 104.919539">Your Restaurant</option>
+					      <option selected value="{{coords}}">Your Restaurant</option>
 					    </select>
 				   </div>
 
-				<div id="map" style="height:400px"></div>
+				<div id="map" style="height:450px"></div>
 				<!-- ======== TESTING GOOGLE MAP ======== -->
 				
 			</div>  
@@ -283,11 +283,7 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script> 
 	
-	<!-- ========================= Google Map ======================== -->
-	<script src="${pageContext.request.contextPath}/resources/map/route_for_user.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap">
-    </script>>
+	
 	
 	<!-- ========================= END Google Map ======================== -->
 	<script> window.jQuery || document.write('<script src="booklet/jquery-2.1.0.min.js"><\/script>') </script>
@@ -344,10 +340,9 @@
 	            };
 	        }]);	
 		
-	  	
-		
+
 	  	app.controller("mainCtrl", function($http, $scope, $rootScope){
-	  		
+	  	
 	  		$rootScope.checkBooklet = false;
 	
 	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
@@ -378,6 +373,9 @@
 	  				$scope.owner_name = $scope.rest.user.username;
 	  				$scope.rest_id = $scope.rest.rest_id;
 	  				$scope.address = $scope.rest.address;
+	  				$scope.latitude = $scope.rest.latitude;
+	  				$scope.longitude = $scope.rest.longitude;
+	  				$scope.coords = $scope.latitude +','+ $scope.longitude;
 	  				$scope.getCategoryByRestID($scope.rest_id);
 	  				
 	  				
@@ -517,5 +515,10 @@
 
 	
     </script>
+    
+    <!-- ========================= Google Map ======================== -->
+	<script src="${pageContext.request.contextPath}/resources/map/route_for_user.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap"></script>
 </body>
 </html>
