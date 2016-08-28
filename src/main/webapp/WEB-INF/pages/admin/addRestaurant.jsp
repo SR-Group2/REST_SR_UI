@@ -76,6 +76,14 @@
 							<input type="text" class="form-control" name="contact" ng-model="contact" required>
 						</div>
 						<div class="form-group">
+							<label for="latitude">Latitude</label>
+							<input type="text" class="form-control" name=""latitude"" ng-model="latitude" required>
+						</div>
+						<div class="form-group">
+							<label for="longitude">Longitude</label>
+							<input type="text" class="form-control" name="longitude" ng-model="longitude" required>
+						</div>
+						<div class="form-group">
 							<label for="about">About</label>
 							<textarea type="text" class="form-control" name="about" ng-model="about" row="7" required></textarea>
 						</div>

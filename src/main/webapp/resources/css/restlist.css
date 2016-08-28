@@ -1,4 +1,18 @@
+/*=============== spinner =================*/
 
+.spinner{
+	display:none;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; 
+    margin-top: -50px; 
+    text-align:center;
+    z-index:1234;
+    overflow: auto;
+    width: 200px; 
+    height: 202px; 
+}
 
 
 /* ======================== Page Restaurant List ======================= */
@@ -32,7 +46,7 @@
 }
  .box-sort{
 	margin-top:30px;
-	
+	height:725px;
 }
  .box-sort h5{
 	margin-top:10px;

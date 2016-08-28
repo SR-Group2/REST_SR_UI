@@ -119,7 +119,7 @@
 	<section class="homepage">
 		<div class="container search">
 			<div class="text-md-center row">
-				<div class="offset-md-3 md">
+				<div class="offset-md-2 col-md-8">
 					<form class="">
 						<div class="form-group">
 							<div class="input-group" id="remote">
@@ -231,7 +231,7 @@
 		<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
-		<div class="col-md-3 text-xs-right">
+		<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 text-xs-right">
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2 class="text-xs-left">{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize text-xs-left">{{= restype_name }}</h4>
@@ -392,33 +392,33 @@
 
 			$('#login')
 					.on(
-							'hidden.bs.modal',
-							function(e) {
+						'hidden.bs.modal',
+						function(e) {
 
-								console.log($("#frmLogin").serialize());
+							console.log($("#frmLogin").serialize());
 
-								$.ajax({
-											url : "${pageContext.request.contextPath}/login",
-											type : "POST",
-											data : $("#frmLogin").serialize(),
-											success : function(data) {
-												if (data == "User account is locked") {
-													alert(data);
-												} else if (data == "User is disabled") {
-													alert(data);
-												} else if (data == "Bad credentials") {
-													alert(data);
-												} else {
-													swal("Welcome To Nham Ey", "You clicked the button!", "success")
-													window.location.href = "${pageContext.request.contextPath}/"
-															+ data;
-												}
-											},
-											error : function(data) {
-												console.log(data);
+							$.ajax({
+										url : "${pageContext.request.contextPath}/login",
+										type : "POST",
+										data : $("#frmLogin").serialize(),
+										success : function(data) {
+											if (data == "User account is locked") {
+												alert(data);
+											} else if (data == "User is disabled") {
+												alert(data);
+											} else if (data == "Bad credentials") {
+												alert(data);
+											} else {
+												swal("Welcome To Nham Ey", "You clicked the button!", "success")
+												window.location.href = "${pageContext.request.contextPath}/"
+														+ data;
 											}
-										});
-							});
+										},
+										error : function(data) {
+											console.log(data);
+										}
+									});
+						});
 
 		});
 	</script>

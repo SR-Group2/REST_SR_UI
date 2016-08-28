@@ -6,7 +6,7 @@
           var directionsDisplay = new google.maps.DirectionsRenderer;
           var map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: -34.397, lng: 150.644},
-                zoom: 5,
+                zoom: 15,
                 disableDefaultUI: false,
 			    scrollwheel: false,
 			    draggable: true,
@@ -70,7 +70,7 @@
 	
 	 //=================== DIRECTION FUNCTION ====================
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pos) {
-		
+		console.log(pos);
         directionsService.route({
         
          /*  origin: document.getElementById('start').value, */

@@ -30,7 +30,7 @@
 			
 			<div class="tile-header">
 				<h3>Users</h3>
-				<span><h3>{{totaluser}}</h3></span>
+				<span><h3 ng-cloak>{{totaluser}}</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -54,7 +54,7 @@
 			
 			<div class="tile-header">
 				<h3>Owners</h3>
-				<span><h3>{{totalOwner}}</h3></span>
+				<span><h3 ng-cloak>{{totalOwner}}</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -78,7 +78,7 @@
 			
 			<div class="tile-header">
 				<h3>Restaurants</h3>
-				<span><h3>{{totalRest}}</h3></span>
+				<span><h3 ng-cloak>{{totalRest}}</h3></span>
 			</div>
 			
 			<div class="tile-progressbar">
@@ -193,7 +193,7 @@
 			<div class="col-md-3">
 				<div class="tile-stats tile-neon-red">
 					<div class="icon"><i class="entypo-chat"></i></div>
-					<div class="num"  data-postfix="" data-duration="1400" data-delay="0">{{totalComment}}</div>
+					<div class="num"  data-postfix="" data-duration="1400" data-delay="0" ng-cloak>{{totalComment}}</div>
 					
 					<h3>Comments</h3>
 					<p>New comments today</p>
@@ -203,7 +203,7 @@
 				
 				<div class="tile-stats tile-primary">
 					<div class="icon"><i class="entypo-users"></i></div>
-					<div class="num" data-postfix="" data-duration="1400" data-delay="0">{{totalFavRest}}</div>
+					<div class="num" data-postfix="" data-duration="1400" data-delay="0" ng-cloak>{{totalFavRest}}</div>
 					
 					<h3>Favorites</h3>
 					<p>Statistics this week</p>
@@ -242,8 +242,8 @@
 							
 							<tbody>
 								<tr ng-repeat="rest in topRestaurants">
-									<td>{{rest.rest_name}}</td>
-									<td class="text-center"><span class="top-apps">{{rest.total_favorite}}</span></td>
+									<td ng-cloak>{{rest.rest_name}}</td>
+									<td class="text-center"><span class="top-apps" ng-cloak>{{rest.total_favorite}}</span></td>
 								</tr>
 							</tbody>
 						</table>

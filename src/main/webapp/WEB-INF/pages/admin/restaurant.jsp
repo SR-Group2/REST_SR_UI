@@ -39,8 +39,8 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="restaurant in restaurants | filter:q">
-							<td>{{$index+1}}</td>
-							<td>{{restaurant.rest_name}}</td>
+							<td ng-cloak>{{$index+1}}</td>
+							<td ng-cloak>{{restaurant.rest_name}}</td>
 							<!-- <td>
 								<select>
 									<option>-- Restaurant Category-- </option>
@@ -57,20 +57,20 @@
 									</option>
 								</select>
 							</td> -->
-							<td ng-bind-template="{{restaurant.user.last_name}}  {{restaurant.user.first_name}}"></td>
-							<td>{{restaurant.contact}}</td>
+							<td ng-cloak ng-bind-template="{{restaurant.user.last_name}}  {{restaurant.user.first_name}}"></td>
+							<td ng-cloak>{{restaurant.contact}}</td>
 							<!-- <td>{{restaurant.about}}</td> -->
 							<!-- <td>{{restaurant.open_close | date: "yyyy-MM-dd"}}</td>
 							<td>{{restaurant.location}}</td>
 							<td>{{restaurant.address.street}}</td>
 							<td>{{restaurant.address.communce}}</td>
 							<td>{{restaurant.address.district}}</td> -->
-							<td>{{restaurant.address.province}}</td>
+							<td ng-cloak>{{restaurant.address.province}}</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/admin/detailrestaurant/{{restaurant.rest_id}}" >
+								<a ng-cloak href="${pageContext.request.contextPath}/admin/detailrestaurant/{{restaurant.rest_id}}" >
 								<button type="button" class="btn btn-blue btn-icon icon-left" ng-click="detailRestaurant(restaurant.rest_id)">
 								<i class="entypo-info"></i> Details</button></a>
-								<a href="${pageContext.request.contextPath}/admin/restaurant/{{restaurant.rest_id}}">
+								<a ng-cloak href="${pageContext.request.contextPath}/admin/restaurant/{{restaurant.rest_id}}">
 								<button type="button" class="btn btn-green btn-icon icon-left" >
 								<i class="fa fa-pencil-square-o"></i> Edit</button></a>
 							 	<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestaurant(restaurant.rest_id, $event)">
@@ -102,61 +102,61 @@
 					  <div class="form-group">
 					    <label for="rest_name" class="col-sm-2 control-label">Restaurant Name</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{rest_name}}"  ng-model="rest_name" name="rest_name" required>
+					      <input ng-cloak type="text" class="form-control" value="{{rest_name}}"  ng-model="rest_name" name="rest_name" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="restype_name" class="col-sm-2 control-label">Restaurant Type</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{restype_name}}"  ng-model="restype_name" name="restype_name" required>
+					      <input type="text" class="form-control" ng-cloak value="{{restype_name}}"  ng-model="restype_name" name="restype_name" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="contact" class="col-sm-2 control-label">Contact</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{contact}}"  ng-model="contact" name="contact" required>
+					      <input type="text" class="form-control" ng-cloak value="{{contact}}"  ng-model="contact" name="contact" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="about" class="col-sm-2 control-label">About</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{about}}"  ng-model="about" name="about" required>
+					      <input type="text" class="form-control" ng-cloak value="{{about}}"  ng-model="about" name="about" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="open_close" class="col-sm-2 control-label">Open - Close</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{open_close}}"  ng-model="open_close" name="open_close" required>
+					      <input type="text" class="form-control" ng-cloak value="{{open_close}}"  ng-model="open_close" name="open_close" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="location" class="col-sm-2 control-label">Location</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{location}}"  ng-model="location" name="location" required>
+					      <input type="text" class="form-control" ng-cloak value="{{location}}"  ng-model="location" name="location" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="street" class="col-sm-2 control-label">Street</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{street}}"  ng-model="street" name="street" required>
+					      <input type="text" class="form-control" ng-cloak value="{{street}}"  ng-model="street" name="street" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="communce" class="col-sm-2 control-label">Communce</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{communce}}"  ng-model="communce" name="communce" required>
+					      <input type="text" class="form-control" ng-cloak value="{{communce}}"  ng-model="communce" name="communce" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="district" class="col-sm-2 control-label">District</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{district}}"  ng-model="district" name="district" required>
+					      <input type="text" class="form-control" ng-cloak value="{{district}}"  ng-model="district" name="district" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="province" class="col-sm-2 control-label">Province</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" value="{{province}}"  ng-model="province" name="province" required>
+					      <input type="text" class="form-control" ng-cloak value="{{province}}"  ng-model="province" name="province" required>
 					    </div>
 					  </div>
 					  <div class="form-group">

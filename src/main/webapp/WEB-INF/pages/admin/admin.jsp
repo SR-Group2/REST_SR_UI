@@ -234,7 +234,7 @@
 			</div>
 			<hr style="margin-top:60px;"/>
 			<!-- ======= Dynamic Page Content ====== -->
-			<div class="">
+			<div class="" style="overflow:hidden">
 			
 				<jsp:include page="${page}"></jsp:include>
 				<footer class="main" style="padding-left:10px;">
