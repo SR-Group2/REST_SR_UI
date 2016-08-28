@@ -1,5 +1,11 @@
 /*=============== spinner =================*/
-
+.search_rest{
+	padding:20px 10px;
+}
+.search_rest .container{
+	 background-color: #41c130;
+	 padding:30px 10px 
+}
 .spinner{
 	display:none;
 	position: fixed;
@@ -36,44 +42,44 @@
 	width:350px;
 	height:170px;
 }
- .box-filter, .box-sort {
+.rest-list  .box-filter, .box-sort {
 	background-color: #41c130;
 	padding: 20px 0px 15px 10px;
 	color: #ffffff;
 }
-.box-filter{
+.rest-list .box-filter{
 	margin: 20px 0px 0px 0px;
 }
- .box-sort{
+ .rest-list .box-sort{
 	margin-top:30px;
 	height:725px;
 }
- .box-sort h5{
+.rest-list  .box-sort h5{
 	margin-top:10px;
 }
- .selection{
+.rest-list  .selection{
 	color:#b1b1b1;
 }
 
- .list-box{
+ .rest-list .list-box{
 	background-color:#ffffff;
 	 box-shadow: 5px 5px 5px #dedede;
 	 margin: 20px 0px;
 }
- .list-box img{
+ .rest-list .list-box img{
 	padding: 5px 5px 5px 10px;
 }
- .list-box  p:nth-child(1) {
+ .rest-list .list-box  p:nth-child(1) {
    /*  font-size: 18px; */   
     color: #4dd23b;
    	padding:0px;
    	text-shadow: 0px 1px 1px #fff;
 }
- .list-box i {
+ .rest-list .list-box i {
     color: #e5e5e5;
 }
 
- .form-control {
+ .rest-list .form-control {
     display: block;
     width: 97%;
     padding: 10px 10px;
@@ -87,7 +93,7 @@
     margin:15px 0px 20px 0px;
     
 }
- .btn-search{
+ .rest-list .btn-search{
 	width: 150px;
 	background-color:#ffffff;
 	color:#4dd23b;
@@ -95,23 +101,23 @@
 	margin:30px 0px 30px 0px;
 }
 
-  .list-des{
+ .rest-list .list-des{
 	margin-left:20px;
 	padding-bottom: 10px;
 }
- .range-slider ,.radio-btn{
+.rest-list  .range-slider ,.radio-btn{
 	margin-top:15px;
 	margin-bottom:15px;
 }
 
- select.input-lg {
+ .rest-list select.input-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
   /* no standardized syntax available, no ie-friendly solution available */
 }
 
- select + i.fa {
+.rest-list  select + i.fa {
   float: right;
   margin-top: -47px;
   margin-right: 20px;
@@ -123,14 +129,14 @@
   padding-right: 5px;
 }
 
- .check-option{
+ .rest-list .check-option{
 	line-height: 225%;
 	padding: 10px 0px;
 }
 
 
 /* range slider*/
- input[type=range] {
+.rest-list  input[type=range] {
     /*removes default webkit styles*/
     -webkit-appearance: none;
     
@@ -140,14 +146,14 @@
     /*required for proper track sizing in FF*/
     width: 95%;
 }
- input[type=range]::-webkit-slider-runnable-track {
+ .rest-list input[type=range]::-webkit-slider-runnable-track {
     width: 300px;
     height: 3px;
     background: #ddd;
     border: none;
     border-radius: 3px;
 }
- input[type=range]::-webkit-slider-thumb {
+ .rest-list input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
     height: 20px;
@@ -156,21 +162,21 @@
     background: #ffffff;
     margin-top: -8px;
 }
- input[type=range]:focus {
+ .rest-list input[type=range]:focus {
     outline: none;
 }
- input[type=range]:focus::-webkit-slider-runnable-track {
+ .rest-list input[type=range]:focus::-webkit-slider-runnable-track {
     background: #ccc;
 }
 
- input[type=range]::-moz-range-track {
+.rest-list  input[type=range]::-moz-range-track {
     width: 300px;
     height: 5px;
     background: #ddd;
     border: none;
     border-radius: 3px;
 }
- input[type=range]::-moz-range-thumb {
+.rest-list  input[type=range]::-moz-range-thumb {
     border: none;
     height: 16px;
     width: 16px;
@@ -179,12 +185,12 @@
 }
 
 /*hide the outline behind the border*/
- input[type=range]:-moz-focusring{
+.rest-list input[type=range]:-moz-focusring{
     outline: 1px solid white;
     outline-offset: -1px;
 }
 
- input[type=range]::-ms-track {
+.rest-list input[type=range]::-ms-track {
     width: 300px;
     height: 5px;
     
@@ -198,28 +204,28 @@
     /*remove default tick marks*/
     color: transparent;
 }
- input[type=range]::-ms-fill-lower {
+.rest-list input[type=range]::-ms-fill-lower {
     background: #777;
     border-radius: 10px;
 }
- input[type=range]::-ms-fill-upper {
+ .rest-list input[type=range]::-ms-fill-upper {
     background: #ddd;
     border-radius: 10px;
 }
- input[type=range]::-ms-thumb {
+.rest-list  input[type=range]::-ms-thumb {
     border: none;
     height: 16px;
     width: 16px;
     border-radius: 50%;
     background: goldenrod;
 }
- input[type=range]:focus::-ms-fill-lower {
+.rest-list input[type=range]:focus::-ms-fill-lower {
     background: #888;
 }
- input[type=range]:focus::-ms-fill-upper {
+ .rest-list input[type=range]:focus::-ms-fill-upper {
     background: #ccc;
 }
- input{
+ .rest-list input{
     margin: 0;
     line-height: inherit;
     border-radius: 5px;

@@ -79,40 +79,39 @@
 	</nav>
 	<!-- ======== end Navigation ==========  -->
 	<!-- ======== search section ==========  -->
-	<section>
+	<section class="search_rest">
 		<div class="container">
-		    <div class="row">    
-		        <div class="col-xs-8 col-xs-offset-2">
-				    <div class="input-group">
-		                <div class="input-group-btn search-panel">
-		                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-		                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
-		                    </button>
-		                    <ul class="dropdown-menu" role="menu">
-		                      <li><a href="#contains">Contains</a></li>
-		                      <li><a href="#its_equal">It's equal</a></li>
-		                      <li><a href="#greather_than">Greather than ></a></li>
-		                      <li><a href="#less_than">Less than < </a></li>
-		                      <li class="divider"></li>
-		                      <li><a href="#all">Anything</a></li>
-		                    </ul>
-		                </div>
-		                <input type="hidden" name="search_param" value="all" id="search_param">         
-		                <input type="text" class="form-control" name="x" placeholder="Search term...">
-		                <span class="input-group-btn">
-		                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-		                </span>
-		            </div>
-		        </div>
-			</div>
-</div>
-
+			<div class="row">
+				  <div class="col-md-3" style="padding-right:0 !important">
+				  	 <select class="form-control"  id="filterRestype">
+			          <option selected>---- select category -----</option>
+					  <option ng-repeat="category in categories" value="{{category.restype_id}}">
+					  	{{category.restype_name}}
+					  </option>
+			        </select> 
+				  </div>
+				  <div class="col-md-7">
+				    <div class="input-group" id="remote">
+				      <input type="text" class="form-control typeahead" id="keyword" 
+									      placeholder="search restaurant ....." 
+									      typeahead-on-select="onSelect()">
+				      <span class="input-group-btn">
+				        <button class="btn btn-secondary" type="button"  id="fa-btnsearch">
+				        	<i class="fa fa-search" ></i>
+				        </button>
+				      </span>
+				    </div>
+				  </div>
+		  
+				 
+			</div><!-- end row -->
+		</div><!-- end container -->
 	</section>
 	<!-- ======== end search section ==========  -->
 	<section class="rest-list">
 		<div class="container" id="sidebar" >
 			<div class="row">
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 					<div class="row" style="margin-top:15px">
 						<div class="box-filter">
 							<h2>Search:</h2>
@@ -128,7 +127,7 @@
 								  </div>						 
 								</form>
 						</div>
-					</div><!-- end row -->
+					</div>end row
 					
 					<div class="row">
 						<div class="box-sort">
@@ -144,7 +143,7 @@
 								        <i class="fa fa-chevron-down"></i>							        
 								      </div>
 									
-									<!-- check box option -->
+									check box option
 									<div class="check-option">
 										<div class="check-box">
 											<label class="custom-control custom-checkbox">
@@ -171,13 +170,13 @@
 									<div class="text-md-center">
 										<button type="button" class="btn btn-search" id="searchRest">SEARCH</button>
 									</div>
-									<!-- end check box option -->
+									end check box option
 								</form>	
 							</div>
-					</div><!-- end row -->
-				</div><!-- end col-md-3 -->
+					</div>end row
+				</div>end col-md-3 -->
 				
-				<div class="col-md-9">
+				<div class="col-md-12">
 					<div class="row" id="getRest">
 								
 						
@@ -289,7 +288,7 @@
 	<!-- ========= footer ============ -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/angular.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.tmpl.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bpopup.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.bootpag.min.js"></script>
@@ -299,7 +298,7 @@
   
    <!--  ================ JQuery Template ======== -->
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="list-box" onclick="detailRest({{= rest_id}})">
 				<div>
 					  
