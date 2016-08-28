@@ -119,7 +119,7 @@
 	<section class="homepage">
 		<div class="container search">
 			<div class="text-md-center row">
-				<div class="offset-sm-3 col-sm-6">
+				<div class="offset-md-3 md">
 					<form class="">
 						<div class="form-group">
 							<div class="input-group" id="remote">
@@ -231,7 +231,7 @@
 		<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
-		<div class="col-md-3 col-xs-6 text-xs-right">
+		<div class="col-md-3 text-xs-right">
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2 class="text-xs-left">{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize text-xs-left">{{= restype_name }}</h4>

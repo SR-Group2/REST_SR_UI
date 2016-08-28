@@ -202,12 +202,17 @@
 		<div class="contianer-fluid">
 			<div class="col-md-12" style="margin-top:15px">
 							
-				<!-- ======== TESTING GOOGLE MAP ======== -->
-				<div id="startLat"></div>
-				<div id="startLon"></div>
-				<div id="map" style="height:400px;"></div>
-				
-		
+				 <div style="display:none">
+					    <select id="start">
+					      <option selected value="11.5732615, 104.8765392">Your Location</option>
+					    </select>
+					    
+					    <select id="end">
+					      <option selected value="11.568673, 104.919539">Your Restaurant</option>
+					    </select>
+				   </div>
+
+				<div id="map" style="height:400px"></div>
 				<!-- ======== TESTING GOOGLE MAP ======== -->
 				
 			</div>  
@@ -279,116 +284,10 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script> 
 	
 	<!-- ========================= Google Map ======================== -->
-	<script>
-	
-	
-	
-	window.onload = function() {
-		
-		
-	 var startPos;
-	  var geoSuccess = function(position) {
-	    startPos = position;
-	    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-	    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-	    latuser = startPos.coords.latitude;
-	    longuser = startPos.coords.longitude;
-	  };
-	  navigator.geolocation.getCurrentPosition(geoSuccess);
-	};
-		
-	
-      var map;
-      function initMap() {
-    	
-    	  var latuser, longuser;
-    	  var startPos;
-    	  var geoSuccess = function(position) {
-    	    startPos = position;
-    	    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    	    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-    	    latuser = startPos.coords.latitude;
-    	    longuser = startPos.coords.longitude;
-    	  };
-    	  navigator.geolocation.getCurrentPosition(geoSuccess);
-    	  
-    	 
-    	 
-    	  
-    	var myLatLng = {lat: 11.5723936, lng: 104.8870235};
-    	
-        map = new google.maps.Map(document.getElementById('map'), {
-        enableHighAccuracy: true,
-          center: {lat: 11.562108, lng: 104.888535},
-          zoom: 18,
-		    disableDefaultUI: false,
-		    scrollwheel: true,
-		    draggable: true,
-		    mapTypeId: google.maps.MapTypeId.StreetViewPanorama,
-		    zoomControlOptions: {
-		      position: google.maps.ControlPosition.LEFT_BOTTOM,
-		      style: google.maps.ZoomControlStyle.DEFAULT
-		    },
-		    panControlOptions: {
-		      position: google.maps.ControlPosition.LEFT_BOTTOM
-		    }
-        });
-        
-      
-       
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Your Location!',
-            icon: ''
-          });
-        
-        
-      //One time snapshot
-        navigator.geolocation.getCurrentPosition(
-             processGeolocation,
-             // Optional settings below
-             geolocationError,
-             {
-                 timeout: 0,
-                 enableHighAccuracy: true,
-                 maximumAge: Infinity
-             }
-        );
-         
-        //Tracking users position
-        watchId = navigator.geolocation.watchPosition(
-             processGeolocation,
-             // Optional settings below
-             geolocationError,
-             {
-                 timeout: 0,
-                 enableHighAccuracy: true,
-                 maximumAge: Infinity
-             }
-        );
-        
-        
-        
-        
-        
-      }
-      
-    
-      
-      
-      
-      
-      
-      
-    </script>
-  
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap" async defer></script>
-	
-  	<%-- <script src="${pageContext.request.contextPath}/resources/map/List.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/map/Mapster.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/map/map-options.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/map/script.js"></script> --%>
+	<script src="${pageContext.request.contextPath}/resources/map/route_for_user.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap">
+    </script>>
 	
 	<!-- ========================= END Google Map ======================== -->
 	<script> window.jQuery || document.write('<script src="booklet/jquery-2.1.0.min.js"><\/script>') </script>
