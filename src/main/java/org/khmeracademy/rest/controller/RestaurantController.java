@@ -37,10 +37,12 @@ public class RestaurantController {
 	public ResponseEntity<Map<String , Object>> searchRest(
 										  @RequestParam(value = "page", required = false , defaultValue="1") int page 
 									    , @RequestParam(value="limit" , required = false , defaultValue="4") int limit
+									    , @RequestParam(value="category_id" , required = false , defaultValue="0") int category_id
 									    , @RequestParam(value="keyword" , required = false , defaultValue="") String keyword){
 		UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl(WS_URL + "/restaurant/search-rest")
 									.queryParam("keyword", keyword)
 									.queryParam("page", page)
+									.queryParam("category_id", category_id)
 									.queryParam("limit", limit);
 		HttpEntity<Object> request = new HttpEntity<Object>(header);
 		ResponseEntity<Map> response = rest.exchange(uri.build().toUriString(), HttpMethod.GET , request , Map.class) ;

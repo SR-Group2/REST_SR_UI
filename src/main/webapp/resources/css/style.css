@@ -218,3 +218,23 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0,0,0,.1);
 }
+/* ======================== detail page ======================== */
+.detail_rest{
+	padding:20px;
+	background:#ffffff;
+	margin-top:10px;
+	border:1px solid rgba(0,0,0,0.1);
+	font-size:1em;
+}
+.detail_rest h5{
+	color:#35ac2a;
+}
+.comment{
+	padding:20px;
+	background:#ffffff;
+	margin-top:10px;
+	border:1px solid rgba(0,0,0,0.1);
+}
+
+
+

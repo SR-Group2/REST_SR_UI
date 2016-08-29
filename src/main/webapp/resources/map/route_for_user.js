@@ -33,7 +33,7 @@
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               };
-			 
+             console.log("user location",pos);
               infoWindow.setPosition(pos);
               infoWindow.setContent('Your Location');
               map.setCenter(pos);
@@ -70,11 +70,12 @@
 	
 	 //=================== DIRECTION FUNCTION ====================
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pos) {
-		console.log(pos);
+		console.log("origin", pos);
         directionsService.route({
         
          /*  origin: document.getElementById('start').value, */
           origin:""+pos.lat+","+pos.lng+"",
+          //origin: {lat:pos.lat, lng:pos.lng},
           destination: document.getElementById('end').value,
           travelMode: 'DRIVING'
         }, function(response, status) {

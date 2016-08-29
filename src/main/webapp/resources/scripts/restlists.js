@@ -109,9 +109,9 @@ searchRestByQuery(q[1]);
 restaurant.getRest(currentPage, id);
 
 /* =======================   Load Data According to typehead select  With Pagination ================== */
-function searchRestByQuery(keywords){
+function searchRestByQuery(keywords,category_id){
 	$.ajax({ 
-	    url:"/rest/restaurant/search?keyword="+keywords+"&page="+currentPage+"&limit=12", 
+	    url:"/rest/restaurant/search?keyword="+keywords+"&category_id="+category_id+"&page="+currentPage+"&limit=12", 
     type: 'GET',
     beforeSend: function(xhr) {
         xhr.setRequestHeader("Accept", "application/json");
@@ -143,8 +143,10 @@ function searchRestByQuery(keywords){
 }
 $("#fa-btnsearch").on("click", function(){
 	var keywords = $("#keyword").val();
-	searchRestByQuery(keywords);
-	$("#getRest").css("height", "550px");
+	var category_id = $("#filterRestype").val();
+	searchRestByQuery(keywords,category_id);
+	
+	
 });
 
 $('#keyword').on('typeahead:selected', function(){ 
@@ -197,7 +199,6 @@ $("#searchRest").on("click change",function(){
 	var filterRestype = $("#filterRestype").val();
 	restaurant.getRest(currentPage, filterRestype);
 });
-
 
 // ==================== Get Restaurant Type ============================
 
