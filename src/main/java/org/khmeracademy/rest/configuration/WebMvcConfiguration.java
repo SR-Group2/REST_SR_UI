@@ -27,7 +27,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 		registry.addViewController("/register").setViewName("register");
 		registry.addViewController("/editeprofile/{id}").setViewName("user/editeprofile");
 		registry.addViewController("/googlemap").setViewName("/googlemap");
-		
+		registry.addViewController("/nearby").setViewName("nearby");
 	}
 	
 	@Override

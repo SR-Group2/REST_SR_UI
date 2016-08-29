@@ -31,7 +31,7 @@ currentPage = 1;
 var check = true;
 var limit = 12;
 restaurant.getRest = function(currentPage, id) {
-	
+	$("#loader").show();
 	$.ajax({
 		url : "/rest/restaurant/list/"+id+"?page="+currentPage+"&limit="+limit,
 	type : 'GET',
@@ -43,6 +43,7 @@ restaurant.getRest = function(currentPage, id) {
 	},
 	success : function(data) {
 		$("#pagination").hide();
+		$("#loader").hide();
 		if (data.STATUS != false) {
 			console.log("getRest", data);
 			//=========== protect list path_name ===========
@@ -158,6 +159,7 @@ $.ajax({
         xhr.setRequestHeader("Content-Type", "application/json");
     },
     success: function(data) { 
+    	  	
     	console.log(data);
     	if (data.STATUS != false) {
 			console.log(data);

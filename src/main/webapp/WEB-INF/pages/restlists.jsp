@@ -108,7 +108,14 @@
 		</div><!-- end container -->
 	</section>
 	<!-- ======== end search section ==========  -->
+
 	<section class="rest-list">
+		<div id="loader">
+		<div id="loader-container" class="text-md-center">
+			<img src="${pageContext.request.contextPath}/resources/images/loading1.gif">
+		</div>
+		</div>
+	
 		<div class="container" id="sidebar" >
 			<div class="row">
 				<!-- <div class="col-md-3">
