@@ -1,9 +1,9 @@
 /*=============== spinner =================*/
 .search_rest{
-	padding:20px 10px;
+	padding:20px 0px 0px 0px;
 }
 .search_rest .container{
-	 background-color: #41c130;
+	 /* background-color: #41c130; */
 	 padding:30px 10px 
 }
 .spinner{
@@ -35,7 +35,7 @@
 }
 
 .rest-list{
-	margin-top:30px;
+	/* margin-top:30px; */
 		
 }
  .list-box img{

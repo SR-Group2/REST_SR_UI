@@ -85,72 +85,60 @@
 									<div class="hard"></div>
 								</div>
 						</flipbook> --%>
-						
-						<div id="menus">
-							<div ng-repeat="menu in menus" menulist>
-								<a ng-cloak class="fancybox" rel="group" href="http://localhost:9999{{menu.url}}">
-									<img ng-cloak src="http://localhost:9999{{menu.url}}" class="img-fluid">
-								</a>
+						<div class="row">
+							<div class="col-md-12">
+								<div id="menus">
+									<div ng-repeat="menu in menus" menulist>
+										<a ng-cloak class="fancybox" rel="group" href="http://localhost:9999{{menu.url}}">
+											<img ng-cloak src="http://localhost:9999{{menu.url}}" class="img-fluid">
+										</a>
+									</div>
+									
+									
+									<%-- <div>
+										<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+									</div> 
+									
+									<div>
+										<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+									</div> 
+									
+									<div>
+										<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+									</div> 
+									
+									<div>
+										<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
+									</div>  --%>
+									
+								</div>
 							</div>
-							
-							
-							<%-- <div>
-								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
-							</div> 
-							
-							<div>
-								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
-							</div> 
-							
-							<div>
-								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
-							</div> 
-							
-							<div>
-								<img  src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-fluid">
-							</div>  --%>
-							
-						</div>
-
-						<!-- ============== comment =========== -->
-						<sec:authorize access="isAuthenticated()">
-							<div class="well">
-			                    <h5>Leave a Comment:</h5>
-			                    <form role="form" name="frmcomment">
-			                        <div class="form-group">
-			                            <textarea class="form-control" rows="3" ng-model="comment_text" ng-required="true"></textarea>
-			                           <p id="user_id" style="display:none;"><sec:authentication property="principal.id" /></p>
-			                        </div>
-			                        <button type="submit" class="btn btn-success" ng-click="addComment()" ng-disabled="frmcomment.$invalid">Submit</button>
-			                    </form>
-			                </div>
-			             </sec:authorize>
-                <!-- ============== end comment =========== -->
+							<div class="col-md-12" style="margin-top:15px">
+				
+									 <div style="display:none">
+										    <select id="start">
+										      <option selected value="">Your Location</option>
+										    </select>
+										    
+										    <select id="end">
+										      <option selected value="{{coords}}">Your Restaurant</option>
+										    </select>
+									   </div>
+					
+									<div id="map" style="height:450px"></div>
+									<!-- ======== TESTING GOOGLE MAP ======== -->
+									
+							</div>  
+						</div><!-- end row -->
+					</div><!-- end col-md-7 -->
+                		
                 
-                <!--  ======================= List Comment ===================== -->
-                <div class="comment" ng-show="checkcomment" style="background:#ffffff;padding:10px 14px;border:1px solid rgba(0,0,0,0.2);margin-top:10px;">
-	                <div class="media"  ng-repeat="cm in comments">
-						  <div class="media-left">
-						    <a href="#">
-						    <!-- 	<i class="fa fa-users fa-3x"></i> -->
-						    <img class="" width="40" height="40" 
-									src='http://localhost:9999{{cm.user.picture}}'/>
-						    <%--  <img class="media-object" src="${pageContext.request.contextPath}/resources/images/text.png" alt="Generic placeholder image"> --%>
-						    </a>
-						  </div>
-						  <div class="media-body">
-						    <h6 class="media-heading" ng-bind-template="{{cm.user.first_name}}"></h6>
-						    <p>{{cm.comment}}</p>
-						  </div>
-						 
-					</div>
-				</div>
 			<!--  ======================= end List Comment ===================== -->
-			</div>
+			
 			<div class="col-md-5 ">
 				<div class="row">
-					<div class="col-md-12 box-img formlogin restinfo">
-							<h2>ព័ត៌មានលំអិត</h2>
+					<div class="col-md-12 detail_rest">
+							<h5 class="text-xs-center">ព័ត៌មានលំអិត</h5>
 							<!-- <h4>
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -161,7 +149,7 @@
 							<p ng-cloak>{{about}}</p>
 							<table class="table table-responsive">
 								<tr>
-									<td><i class="fa fa-users"> ឈ្មោះម្ចាស់ហាង</i></td>
+									<td><i class="fa fa-male"> ឈ្មោះម្ចាស់ហាង</i></td>
 									<td ng-cloak>{{owner_name}}</td>
 								</tr>
 								<tr>
@@ -186,10 +174,45 @@
 							</table>
 							
 							<div class="more_part">
-							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav"><i class="fa fa-heart"> ADD FAVORITE </i></button>
+							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav">
+							<i class="fa fa-heart"></i> SAVE FAVORITE </button>
 							
 							<!-- <button class="btnAdd" id="location"><i class="fa fa-location-arrow"> VIEW LOCATION</i></button> -->
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
+						</div>
+					</div>
+					<div class="col-md-12 comment">
+						<!-- ============== comment =========== -->
+						<sec:authorize access="isAuthenticated()">
+							<div class="well">
+			                    <h6>Leave a Comment:</h6>
+			                    <form role="form" name="frmcomment">
+			                        <div class="form-group">
+			                            <textarea class="form-control" rows="3" ng-model="comment_text" ng-required="true"></textarea>
+			                           <p id="user_id" style="display:none;"><sec:authentication property="principal.id" /></p>
+			                        </div>
+			                        <button type="submit" class="btn btn-success btn-sm" ng-click="addComment()" ng-disabled="frmcomment.$invalid">Submit</button>
+			                    </form>
+			                </div>
+			             </sec:authorize>
+                		<!-- ============== end comment =========== -->
+						<!--  ======================= List Comment ===================== -->
+		                <div class="list_comment" ng-show="checkcomment" style="background:#ffffff;padding:10px 14px;margin-top:10px;">
+			                <div class="media"  ng-repeat="cm in comments">
+								  <div class="media-left">
+								    <a href="#">
+								    <!-- 	<i class="fa fa-users fa-3x"></i> -->
+								    <img class="img-circle" width="40" height="40" 
+											src='http://localhost:9999{{cm.user.picture}}' />
+								    <%--  <img class="media-object" src="${pageContext.request.contextPath}/resources/images/text.png" alt="Generic placeholder image"> --%>
+								    </a>
+								  </div>
+								  <div class="media-body">
+								    <h6 class="media-heading" ng-bind-template="{{cm.user.first_name}}"></h6>
+								    <p>{{cm.comment}}</p>
+								  </div>
+								 
+							</div>
 						</div>
 					</div>
 				</div>
@@ -199,24 +222,8 @@
        </div><!--  end container -->
 	</section>
 	<section>
-		<div class="contianer-fluid">
-			<div class="col-md-12" style="margin-top:15px">
-				
-				 <div style="display:none">
-					    <select id="start">
-					      <option selected value="11.5732615, 104.8765392">Your Location</option>
-					    </select>
-					    
-					    <select id="end">
-					      <option selected value="{{coords}}">Your Restaurant</option>
-					    </select>
-				   </div>
-
-				<div id="map" style="height:450px"></div>
-				<!-- ======== TESTING GOOGLE MAP ======== -->
-				
-			</div>  
-		</div>
+		
+			
 	</section>
 	<!-- ========= footer ============ -->
 	<footer class="">
@@ -479,7 +486,7 @@
 						$("#btnfav").text("Saved");
 						$("#btnfav").attr('disabled', 'disabled');
 					}else{
-						$("#btnfav").text("Add Favorite");
+						$("#btnfav").text("save Favorite");
 						
 					}
 					

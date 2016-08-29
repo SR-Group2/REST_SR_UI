@@ -54,7 +54,6 @@
 							<sec:authentication property="principal.username" />
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
-							
 							<ul class="list-unstyled">
 								<li>
 									<a class="nav-link" href="${pageContext.request.contextPath}/profile">
@@ -84,7 +83,7 @@
 			<div class="row">
 				  <div class="col-md-3" style="padding-right:0 !important">
 				  	 <select class="form-control"  id="filterRestype">
-			          <option selected>---- select category -----</option>
+			          <option selected value="0"> select category </option>
 					  <option ng-repeat="category in categories" value="{{category.restype_id}}">
 					  	{{category.restype_name}}
 					  </option>
@@ -96,8 +95,8 @@
 									      placeholder="search restaurant ....." 
 									      typeahead-on-select="onSelect()">
 				      <span class="input-group-btn">
-				        <button class="btn btn-secondary" type="button"  id="fa-btnsearch">
-				        	<i class="fa fa-search" ></i>
+				        <button class="btn btn-secondary" type="button"  id="fa-btnsearch" style="background:#5cb85c">
+				        	<i class="fa fa-search" style="color:#ffffff"></i>
 				        </button>
 				      </span>
 				    </div>
@@ -295,10 +294,9 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/typeahead.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
     
-  
    <!--  ================ JQuery Template ======== -->
 	<script id="rest_tmpl" type="text/x-jquery-tmpl">
-		<div class="col-md-3">
+		<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
 			<div class="list-box" onclick="detailRest({{= rest_id}})">
 				<div>
 					  
