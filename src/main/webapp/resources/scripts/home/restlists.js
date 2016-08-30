@@ -30,6 +30,7 @@ currentPage = 1;
 var check = true;
 var limit = 12;
 restaurant.getRest = function(currentPage, id) {
+	
 	$("#loader").show();
 	$("#getRest").empty();
 	$("#pagination").hide();
@@ -105,8 +106,6 @@ restaurant.setPagination = function(totalPage, currentPage) {
 
 };
 
-/* ======================= search from home page ================== */
-searchRestByQuery(q[1],0);
 
 /* ================= Run First Load With Click Id ==================*/
 restaurant.getRest(currentPage, id);
@@ -134,6 +133,17 @@ function searchRestByQuery(keywords,category_id){
     		
     		$("#loader").hide();
     		
+    		console.log(data);
+    		//=========== protect list path_name ===========
+			for(var i=0;i<data.DATA.length;i++){
+				if(data.DATA[i].restpictures[0] == null){
+					console.log("null");
+					data.DATA[i].restpictures[0] = {
+							path_name: "/resources/upload/restaurant/thumnail_rest.jpg"
+					}
+				}
+			}
+    		
     		//=========== end protect list path_name ===========
 			$("#getRest").empty();
 			$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
@@ -153,6 +163,11 @@ function searchRestByQuery(keywords,category_id){
 	    }
 	});
 }
+
+/* ======================= search from home page ================== */
+searchRestByQuery(q[1],0);
+
+/* ======================= search button in this page ================== */
 $("#frmsearch").on("submit", function(e){
 	e.preventDefault();
 	var keywords = $("#keyword").val();
@@ -160,13 +175,17 @@ $("#frmsearch").on("submit", function(e){
 	searchRestByQuery(keywords,category_id);
 });
 
+//===================== searching by typeeahead ======================
+
 $('#keyword').on('typeahead:selected', function(){ 
 
+
 var keyword = $(this).val();
+
 check = true;
 $.ajax({ 
-   /* url:"$/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=12", */
-	 url:"/rest/restaurant/search?keyword="+keywords+"&category_id="+category_id+"&page="+currentPage+"&limit=12",
+	 url:"/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=12", 
+	/* url:"/rest/restaurant/search?keyword="+keywords+"&category_id="+category_id+"&page="+currentPage+"&limit=12",*/
     type: 'GET',
     beforeSend: function(xhr) {
         xhr.setRequestHeader("Accept", "application/json");
@@ -174,7 +193,6 @@ $.ajax({
     },
     success: function(data) { 
     	  	
-    	console.log(data);
     	if (data.STATUS != false) {
 			console.log(data);
 			//=========== protect list path_name ===========
@@ -207,7 +225,6 @@ $.ajax({
 });
 //==================== search filter by restype =========
 $("#searchRest").on("click change",function(){
-	$("#getRest").css("height", "100%");
 	var filterRestype = $("#filterRestype").val();
 	restaurant.getRest(currentPage, filterRestype);
 });
@@ -236,7 +253,7 @@ var bestPictures = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   remote: {
-        url: "/rest/restaurant/search?keyword=%QUERY%"+"&page="+currentPage+"&limit=12",
+        url: "/rest/restaurant/search?keyword=%QUERY%"+"&page="+currentPage+"&limit=22",
         wildcard: '%QUERY%',
         filter: function (restaurants) {
             return $.map(restaurants.DATA, function (restaurant) {
@@ -253,32 +270,5 @@ $('#remote .typeahead').typeahead(null, {
   	display: 'value',
   	source: bestPictures
 });
-	
-//==================== LOGIN  ===================
-		
-$('#login').on('hidden.bs.modal',function(e) {
-	console.log($("#frmLogin").serialize());
-	$.ajax({
-		url : "${pageContext.request.contextPath}/login",
-		type : "POST",
-		data : $("#frmLogin").serialize(),
-		success : function(data) {
-			if (data == "User account is locked") {
-				alert(data);
-			} else if (data == "User is disabled") {
-				alert(data);
-			} else if (data == "Bad credentials") {
-				alert(data);
-			} else {
-				swal("Welcome To Nham Ey", "You clicked the button!", "success")
-				window.location.href = "${pageContext.request.contextPath}/"
-						+ data;
-			}
-		},
-		error : function(data) {
-			console.log(data);
-		}
-	});
-});//================== EDD LOGIN POP UP
-				
+					
 });//==================START BLOCK JQUERY =================

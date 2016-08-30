@@ -11,12 +11,11 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 	
-		registry.addViewController("/login").setViewName("login");
+		/*registry.addViewController("/login").setViewName("login");*/
 		registry.addViewController("/access-denied").setViewName("/errors/access-denied");
 		registry.addViewController("/home").setViewName("home");
 		registry.addViewController("/home_en").setViewName("home_en");
 		registry.addViewController("/user").setViewName("home");
-		registry.addViewController("/login/{logout}").setViewName("home");
 		//registry.addViewController("/admin/").setViewName("admin/admin");
 		registry.addViewController("/detail_menu").setViewName("detail_menu");
 		registry.addViewController("/restaurant/{id}").setViewName("restlists");

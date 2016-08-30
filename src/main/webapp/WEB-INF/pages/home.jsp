@@ -140,7 +140,7 @@
 	<!-- ======== Category Content ========= -->
 	<section class="category">
 		<div id="loader">
-			<div id="loader-container" class="text-md-center">
+			<div id="loader-container" class="">
 				<img src="${pageContext.request.contextPath}/resources/images/loading1.gif">
 			</div>
 		</div>
@@ -209,7 +209,7 @@
 		</div>
 	</script>
 
-
+	<!-- ================ JS Application ==================== -->
 	<script src="${pageContext.request.contextPath}/resources/scripts/home/home.js" ></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/home/login.js" ></script>
 

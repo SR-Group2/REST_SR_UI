@@ -49,7 +49,7 @@
 	       		  e.preventDefault();
 	       			
 	       		  $.ajax({
-	  	            url: "${pageContext.request.contextPath}/login",
+	  	            url: "/login",
 	  	            type: "POST",
 	  	            data: $("#frmLogin").serialize(),
 	  	            success: function(data) {
@@ -69,9 +69,11 @@
     						closeOnConfirm: false,   
 	  	          			closeOnCancel: false }, 
 	  	          			function(isConfirm){   
-	  	          				if(isConfirm) {     				
-	  	          					window.location.href="${pageContext.request.contextPath}/"+data;
-  
+	  	          				if(isConfirm) {
+	  	          					if(data == "/admin")
+	  	          						window.location.href= data;
+	  	          					else
+	  	          						window.location.href= "/home";
 	  	          				}else {     
 	  	          					swal("Cancelled", "Your imaginary file is safe :)", "error");   
 	  	          				} 

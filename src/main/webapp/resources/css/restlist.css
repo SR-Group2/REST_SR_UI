@@ -1,3 +1,7 @@
+.rest-list .container{
+	background: #ffffff;
+	border-top: 5px solid #41c130;
+}
 
 
 /*=============== spinner =================*/
@@ -22,7 +26,23 @@
     height: 202px; 
 }
 
-
+#filterRestype{
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border: 2px solid #41c130;
+}
+.search_rest #keyword{
+	border-radius: 50px 0px 0px 50px;
+	-webkit-border-radius: 50px 0px 0px 50px;
+	-moz-border-radius: 50px 0px 0px 50px;
+	border-top:1px solid #41c130;
+	border-bottom:1px solid #41c130;
+	border-left:1px solid #41c130;
+}
+#fa-btnsearch{
+	border-radius: 0px 50px 50px 0px;
+}
 /* ======================== Page Restaurant List ======================= */
 #getRest{
 	
@@ -32,7 +52,7 @@
 	/* background-color: #41c130; */
 }
 #pagelimit{
-	background:#f9f9f9;
+	/* background:#f9f9f9; */
 	clear:both;
 }
 

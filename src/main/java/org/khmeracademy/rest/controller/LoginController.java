@@ -1,6 +1,8 @@
 package org.khmeracademy.rest.controller;
 
-import org.khmeracademy.rest.entities.User;
+import javax.servlet.http.HttpServletRequest;
+
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -40,5 +42,16 @@ public class LoginController {
       return "";
 
   }
+  
+
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public String loginPage(HttpServletRequest request){
+		
+		System.out.println("REFERER==>"+ request.getHeader("referer"));
+		
+		//TODO: TO GET THE REFERER AND PUT IT IN THE SESSIOn
+		request.getSession().setAttribute("REDIRECT_URL", request.getHeader("referer"));
+		return "/login";
+	}
   
 }

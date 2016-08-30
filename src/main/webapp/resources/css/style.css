@@ -1,11 +1,12 @@
 /*=============== loading data ======= */
 
 #loader-container{
-	height:400px;
+	height:600px;
 }
 #loader-container img{
 	position:relative;
 	top:30%;
+	left:45%;
 }
 
 /*=============== loading data ======= */
@@ -246,6 +247,9 @@ hr {
 	margin-top:10px;
 	border:1px solid rgba(0,0,0,0.1);
 }
-
+footer{
+	
+	margin-bottom:0px;
+}
 
 

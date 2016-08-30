@@ -12,8 +12,15 @@ function(e) {
 			} else if (data == "Bad credentials") {
 				alert(data);
 			} else {
-					swal("Welcome To Nham Ey", "You clicked the button!", "success")
-					window.location.href = "/"+ data;
+				swal({
+					  title: "LOGIN SUCCESSFULLY!",
+					  type: "success",
+					  showCancelButton: false,
+					  closeOnConfirm: false,
+					  showConfirmButton: false
+				});
+				
+					window.location.href = data;
 			 }
 		 },
 			error : function(data) {

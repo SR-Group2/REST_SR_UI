@@ -82,7 +82,7 @@
 		<div class="container">
 			<div class="row">
 				<form id="frmsearch">
-				  <div class="col-md-3" style="padding-right:0 !important">
+				  <div class="col-md-3 col-sm-3  col-xs-12" style="padding:10px 13px!important">
 				  	 <select class="form-control"  id="filterRestype">
 			          <option selected value="0"> select category </option>
 					  <option ng-repeat="category in categories" value="{{category.restype_id}}">
@@ -90,7 +90,8 @@
 					  </option>
 			        </select> 
 				  </div>
-				  <div class="col-md-7">
+				  
+				  <div class="col-md-7 col-sm-9  col-xs-12" style="padding:10px 13px!important">
 				    <div class="input-group" id="remote">
 				      <input type="text" class="form-control typeahead" id="keyword" 
 									      placeholder="search restaurant ....." 
@@ -109,8 +110,8 @@
 	<!-- ======== end search section ==========  -->
 
 	<section class="rest-list">
-		<div id="loader">
-			<div id="loader-container" class="text-md-center">
+		<div id="loader" class="container">
+			<div id="loader-container">
 				<img src="${pageContext.request.contextPath}/resources/images/loading1.gif">
 			</div>
 		</div>
@@ -200,90 +201,21 @@
 	</div>
 	</section>	
 	
-	<%-- <!-- Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-xs-center">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <img id="myModalLabel" class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
-      </div>
-      <div class="modal-body">
-      	<form class="formlogin">
-      		<fieldset>
-      			<h3 class="text-success text-xs-center">Welcome</h3>
-      			<div class="form-group">
-      				<label class="text-xs-left">Username</label>
-      				<input type="text" class="form-control form-control-succes" name="username" placeholder="enter your username">
-      			</div>
-      			<div class="form-group">
-      				<label class="text-xs-left">Password</label>
-      				<input type="password" class="form-control form-control-succes" name="password" placeholder="enter your password">
-      			</div>
-      			<div class="form-group">
-      				<button type="button" class="btn btn-outline-success">Sing in</button>
-      				-- or --
-      				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
-      			</div>
-      		</fieldset>
-      	</form>
-      </div>
-    </div>
-  </div>
-</div>
- --%>
-	
-<!--  ========  Model LOgin ====== -->
-	<!-- Modal -->
-	<div class="modal fade" id="login" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header text-xs-center">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<img id="myModalLabel" class="logo"
-						src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
-				</div>
-				<div class="modal-body">
-					<form class="formlogin" id="frmLogin" method="POST">
-						<fieldset>
-							<h3 class="text-success text-xs-center">Welcome</h3>
-							<div class="form-group">
-								<label class="text-xs-left">Username</label> <input type="text"
-									class="form-control form-control-succes" name="username"
-									placeholder="enter your username">
-							</div>
-							<div class="form-group">
-								<label class="text-xs-left">Password</label> <input
-									type="password" class="form-control form-control-succes"
-									name="password" placeholder="enter your password">
-							</div>
-							<div class="form-group">
-								<button type="button" class="btn btn-outline-success"
-									data-dismiss="modal">Sing in</button>
-								-- or -- <a href="#"><img
-									src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--  ========  Model LOgin ====== -->
+		<jsp:include page="modal_login.jsp"></jsp:include>
+	<!--  ========  Model LOgin ====== -->
 
 
 	<!-- ========= footer ============ -->
-	<footer>
+	<footer class="footer">
 		<div class="container">
-			<div class="row">
-				
-			</div>
-			<p>Copy Right 2016. All right reserved.</p>
+			<p class="pull-left">Copy Right 2016. All right reserved.</p>
+			<ul class="nav nav-pills pull-right">
+				<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+				</li>
+			</ul>
 		</div>
 	</footer>
 	
@@ -323,6 +255,7 @@
 		</div>
 	</script>
 	
-	<script src="${pageContext.request.contextPath}/resources/scripts/restlists.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/home/restlists.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/home/login.js" ></script>
 </body>
 </html>		

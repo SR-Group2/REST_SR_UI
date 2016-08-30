@@ -23,6 +23,17 @@
 	
 </head>
 <body ng-controller="mainCtrl">
+<!-- ===================== FACEBOOK LIKE SHARE BUTTON================== -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- ===================== FACEBOOK LIKE SHARE BUTTON================== -->
 	<!-- ======== Navigation ==========  -->
 	<nav class="navbar navbar-light bg-faded"
 		style="background-color: #ffffff;">
@@ -177,6 +188,8 @@
 							<button class="btnAdd" ng-click="addFavRest(rest_id)" id="btnfav">
 							<i class="fa fa-heart"></i> SAVE FAVORITE </button>
 							
+						<!-- 	<button class="fb-like" data-href="https://nhamey.com" data-layout="button_count" data-action="like" data-show-faces="false" ></button>
+							<button class="fb-share-button" data-href="https://nhamey.com/detail_rest/" data-layout="button_count"  data-show-faces="false" data-share="true"></button> -->
 							<!-- <button class="btnAdd" id="location"><i class="fa fa-location-arrow"> VIEW LOCATION</i></button> -->
 							<!-- <button class="btnAdd"><i class="fa fa-plus-circle"> VIEW MORE</i></button> -->
 						</div>
@@ -226,55 +239,23 @@
 			
 	</section>
 	<!-- ========= footer ============ -->
-	<footer class="">
+	<footer class="footer">
 		<div class="container">
-			<p>Copy Right 2016. All right reserved.</p>
+			<p class="pull-left">Copy Right 2016. All right reserved.</p>
+			<ul class="nav nav-pills pull-right">
+				<li class="nav-item"><a class="nav-link" href="#">ទំនាក់ទំនង់</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">អំពីយើង</a>
+				</li>
+			</ul>
 		</div>
 	</footer>
-			<!-- ========= footer ============ -->
 			
 			
-			<!--  ========  Model LOgin ====== -->
-<!--  ========  Model LOgin ====== -->
-	<!-- Modal -->
-	<div class="modal fade" id="login" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header text-xs-center">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<img id="myModalLabel" class="logo"
-						src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
-				</div>
-				<div class="modal-body">
-					<form class="formlogin" id="frmLogin" method="POST">
-						<fieldset>
-							<h3 class="text-success text-xs-center">Welcome</h3>
-							<div class="form-group">
-								<label class="text-xs-left">Username</label> <input type="text"
-									class="form-control form-control-succes" name="username"
-									placeholder="enter your username">
-							</div>
-							<div class="form-group">
-								<label class="text-xs-left">Password</label> <input
-									type="password" class="form-control form-control-succes"
-									name="password" placeholder="enter your password">
-							</div>
-							<div class="form-group">
-								<button type="button" class="btn btn-outline-success"
-									data-dismiss="modal">Sing in</button>
-								-- or -- <a href="#"><img
-									src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--  ========  Model LOgin ====== -->
+		<jsp:include page="modal_login.jsp"></jsp:include>
+	<!--  ========  Model LOgin ====== -->
+
 
 	<sec:authorize access="isAuthenticated()" var="session_isLogin"/>
 	<sec:authorize access="isAuthenticated()">
@@ -289,8 +270,6 @@
 	<script src="${pageContext.request.contextPath}/resources/scripts/turn.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/sweetalert.min.js"></script> 
 	<script src="${pageContext.request.contextPath}/resources/scripts/myapp.js"></script> 
-	
-	
 	
 	<!-- ========================= END Google Map ======================== -->
 	<script> window.jQuery || document.write('<script src="booklet/jquery-2.1.0.min.js"><\/script>') </script>
@@ -310,222 +289,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-	
-	<script>
-	
-
-  
-	//==================== Fancy Book Action ===================
-		$(document).ready(function() {
-			$(".fancybox").fancybox({
-				 helpers:  {
-			        thumbs : {
-			            width: 50,
-			            height: 50
-			        }
-			    }
-			});
-		});
-	//==================== Get Restaurant Information ===================
-		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-	  		console.log(id);
-	  		
-	  		
-	  		
-	  		app.directive('menulist', [function() {
-	            return {
-	                restrict: 'A',       
-	                link: function(scope, element) {
-	                    // wait for the last item in the ng-repeat then call init
-	                    if(scope.$last){
-	                    	if(scope.$root.checkBooklet){
-	                    		$('#menus').booklet();
-	                    	}
-	                    	scope.$root.checkBooklet = true;
-	                    }
-	                }
-	            };
-	        }]);	
-		
-
-	  	app.controller("mainCtrl", function($http, $scope, $rootScope){
-	  	
-	  		$rootScope.checkBooklet = false;
-	
-	  		var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-	  		console.log(id);
-	  		//============================ LOAD DATA OF CATEGORY ===========================
-	  		$scope.getCategory = function(){
-	  		
-	  			$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+id)
-				.then(function(rsp){
-				
-					$scope.menus = rsp.data.DATA;
-					
-				});
-	  		} 
-		 	
-			$scope.getCategory();
-			
-	  		$scope.getRestDetail = function(){
-	  			
-	  			$http.get("${pageContext.request.contextPath}/rest/restaurant/"+id)
-	  			.then(function(rsp){
-	  				console.log(rsp);
-	  				$scope.rest = rsp.data.DATA;
-	  				$scope.rest_name = $scope.rest.rest_name;
-	  				$scope.about = $scope.rest.about;
-	  				$scope.contact = $scope.rest.contact;
-	  				$scope.location = $scope.rest.location;
-	  				$scope.owner_name = $scope.rest.user.username;
-	  				$scope.rest_id = $scope.rest.rest_id;
-	  				$scope.address = $scope.rest.address;
-	  				$scope.latitude = $scope.rest.latitude;
-	  				$scope.longitude = $scope.rest.longitude;
-	  				$scope.coords = $scope.latitude +','+ $scope.longitude;
-	  				$scope.getCategoryByRestID($scope.rest_id);
-	  				
-	  				
-	  				//=========== Check usersession is login or not=============
-	  				if("${session_isLogin}" == "true"){
-	  					//alert("${session_isLogin}" + " " + "${session_userID}");
-	  					$scope.isExist($scope.rest.rest_id, "${session_userID}");
-	  				
-	  				}
-
-	  				
-	  			});
-	  		}
-	  		
-	  		$scope.getRestDetail();
-	  		
-	  		//==================== Get Category From Restaurant ID ===================
-			$scope.getCategoryByRestID = function(rest_id){	
-	  			$http.get("${pageContext.request.contextPath}/rest/category/catrest/"+rest_id)
-	  			.then(function(rsp){
-	  				$scope.menus = rsp.data.DATA;
-	  				console.log($scope.menus);
-	  			});
-	  		}
-
-			//==================== Get comment ===================
-				//http://localhost:8080/rest/comment/restaurant/3
-			$scope.getComment = function(rest_id){
-				$http.get("${pageContext.request.contextPath}/rest/comment/restaurant/"+rest_id)
-	  			.then(function(rsp){
-	  				if(rsp.data.DATA !=null){
-	  					$scope.comments = rsp.data.DATA;
-	  					$scope.checkcomment = true;
-	  					console.log("comment",rsp);	
-	  				}else{
-	  					$scope.checkcomment = false;
-	  				}
-	  		
-	  			});
-			}
-			
-			$scope.getComment(id);
-			//==================== add comment ===================
-			$scope.addComment = function(){
-				var user_id = parseInt($("#user_id").text());
-				var rest_id = parseInt(id);
-				data = {
-						  "comment":$scope.comment_text,
-						  "user": {
-						    "user_id": user_id
-						  },
-						  "rest": {
-						    "rest_id": rest_id
-						    }
-						};
-
-				if($scope.comment_text = ""){
-					console.log(data);
-				}
-			$http.post("${pageContext.request.contextPath}/rest/comment/", data)
-	  			.then(function(rsp){
-	  				$scope.getComment(id);
-	  				$scope.comment_text = "";
-	  				
-	  			});
-			}
-			
-	/*========================Add Favorite Restaurant ======================*/
-			
-			
-			$scope.addFavRest= function(rest_id){
-				
-				if("${session_isLogin}" == "false"){
-					location.href="/login";
-					return;
-				}
-
-			//$("#btnfav").text("Saved");
-			$scope.user_id = parseInt($('#user_id').text());			
-			data={
-					'user':{
-						'user_id':$scope.user_id
-					},
-					'rest':{
-						'rest_id':rest_id
-					}	
-			}
-			$http.post('http://localhost:8080/rest/favourite-restaurant',data).then(function(response){
-				
-				$("#btnfav").text("Saved");
-				$("#btnfav").attr('disabled', 'disabled');
-			});
-			
-		} 
-			
-			
-		/*======================= Check Restaurant is Exist or not ===================*/
-		$scope.isExist=function(rest_id,user_id){
-				$http.get('http://localhost:8080/rest/favourite-restaurant/is-fav-existed/'+user_id+'/'+rest_id).then(function(response){	
-					if(response.data.STATUS == false){						
-						$("#btnfav").text("Saved");
-						$("#btnfav").attr('disabled', 'disabled');
-					}else{
-						$("#btnfav").text("save Favorite");
-						
-					}
-					
-				});
-			}
-	  	});
-	
-	  	//=================== login action ===============     
-	        $('#login').on('hidden.bs.modal',
-					function(e) {
-						$.ajax({
-								url : "${pageContext.request.contextPath}/login",
-								type : "POST",
-								data : $("#frmLogin").serialize(),
-								success : function(data) {
-									if (data == "User account is locked") {
-										alert(data);
-									} else if (data == "User is disabled") {
-										alert(data);
-									} else if (data == "Bad credentials") {
-										alert(data);
-									} else {
-										swal("Welcome To Nham Ey", "You clicked the button!", "success")
-										window.location.href = "${pageContext.request.contextPath}/"
-												+ data;
-									}
-								},
-								error : function(data) {
-									console.log(data);
-								}
-							});
-					});
-
-	
-    </script>
     
     <!-- ========================= Google Map ======================== -->
 	<script src="${pageContext.request.contextPath}/resources/map/route_for_user.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcO947dFk6IkMpQlHtrCUDjOiyfp19AI&callback=initMap"></script>
+    
+    <!-- =============== Application JS ================= -->
+    <script src="${pageContext.request.contextPath}/resources/scripts/home/login.js" ></script>
+    <script src="${pageContext.request.contextPath}/resources/scripts/home/detail_rest.js" ></script>
+    
 </body>
 </html>
