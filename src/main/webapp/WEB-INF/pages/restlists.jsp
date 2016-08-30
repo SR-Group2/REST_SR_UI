@@ -81,6 +81,7 @@
 	<section class="search_rest">
 		<div class="container">
 			<div class="row">
+				<form id="frmsearch">
 				  <div class="col-md-3" style="padding-right:0 !important">
 				  	 <select class="form-control"  id="filterRestype">
 			          <option selected value="0"> select category </option>
@@ -95,14 +96,13 @@
 									      placeholder="search restaurant ....." 
 									      typeahead-on-select="onSelect()">
 				      <span class="input-group-btn">
-				        <button class="btn btn-secondary" type="button"  id="fa-btnsearch" style="background:#5cb85c">
+				        <button class="btn btn-secondary" type="submit"  id="fa-btnsearch" style="background:#5cb85c">
 				        	<i class="fa fa-search" style="color:#ffffff"></i>
 				        </button>
 				      </span>
 				    </div>
 				  </div>
-		  
-				 
+				</form>
 			</div><!-- end row -->
 		</div><!-- end container -->
 	</section>
@@ -110,9 +110,9 @@
 
 	<section class="rest-list">
 		<div id="loader">
-		<div id="loader-container" class="text-md-center">
-			<img src="${pageContext.request.contextPath}/resources/images/loading1.gif">
-		</div>
+			<div id="loader-container" class="text-md-center">
+				<img src="${pageContext.request.contextPath}/resources/images/loading1.gif">
+			</div>
 		</div>
 	
 		<div class="container" id="sidebar" >
@@ -199,10 +199,6 @@
 		</div>
 	</div>
 	</section>	
-	
-	<section class="spinner">
-		<img src="${pageContext.request.contextPath}/resources/images/spinner.gif"/>
-	</section>
 	
 	<%-- <!-- Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

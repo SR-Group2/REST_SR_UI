@@ -7,7 +7,6 @@ app.controller("mainCtrl", function($scope,$http){
     	$http.get("/rest/restype?keyword="+ keyword+"&page="+ currentPage+ "&limit=20")
 	    	.then(function (response) {
 	    	$scope.categories = response.data.DATA;
-	    	console.log($scope.categories);
 	    });
 	}
 	$scope.getRestype();
@@ -32,6 +31,8 @@ var check = true;
 var limit = 12;
 restaurant.getRest = function(currentPage, id) {
 	$("#loader").show();
+	$("#getRest").empty();
+	$("#pagination").hide();
 	$.ajax({
 		url : "/rest/restaurant/list/"+id+"?page="+currentPage+"&limit="+limit,
 	type : 'GET',
@@ -45,7 +46,7 @@ restaurant.getRest = function(currentPage, id) {
 		$("#pagination").hide();
 		$("#loader").hide();
 		if (data.STATUS != false) {
-			console.log("getRest", data);
+			console.log("get restaurant by restype id", data);
 			//=========== protect list path_name ===========
 			for(var i=0;i<data.DATA.length;i++){
 				if(data.DATA[i].restpictures[0] == null){
@@ -64,12 +65,14 @@ restaurant.getRest = function(currentPage, id) {
 						data.PAGINATION.TOTAL_PAGES,
 						currentPage);
 				check = false;
+				
 			}
 			$("#pagination").show()
-		} else {
-			$("#pagination").hide();
-			$("#getRest").empty();
-			}
+			
+		 }else {
+				$("#pagination").hide();
+				$("#getRest").empty();
+		  }
 		}
 	});
 };
@@ -103,13 +106,22 @@ restaurant.setPagination = function(totalPage, currentPage) {
 };
 
 /* ======================= search from home page ================== */
-searchRestByQuery(q[1]);
+searchRestByQuery(q[1],0);
 
 /* ================= Run First Load With Click Id ==================*/
 restaurant.getRest(currentPage, id);
 
 /* =======================   Load Data According to typehead select  With Pagination ================== */
 function searchRestByQuery(keywords,category_id){
+	
+	$("#getRest").empty();
+	$("#loader").show();
+	$("#pagination").hide();
+	check =true;
+	
+	if(category_id == undefined){
+		category_id =0;
+	}
 	$.ajax({ 
 	    url:"/rest/restaurant/search?keyword="+keywords+"&category_id="+category_id+"&page="+currentPage+"&limit=12", 
     type: 'GET',
@@ -118,10 +130,11 @@ function searchRestByQuery(keywords,category_id){
         xhr.setRequestHeader("Content-Type", "application/json");
     },
     success: function(data) { 
-    	  
-    	console.log(data);
     	if (data.STATUS != false) {
-			console.log("select by type of restype ",data);
+    		
+    		$("#loader").hide();
+    		
+    		//=========== end protect list path_name ===========
 			$("#getRest").empty();
 			$("#rest_tmpl").tmpl(data.DATA).appendTo("#getRest");
 			$('#getRest').css("cursor", "pointer");
@@ -132,8 +145,7 @@ function searchRestByQuery(keywords,category_id){
 				check = false;
 			}
 			$("#pagination").show()
-			check = false; 
-		} else {
+			} else {
 				$("#pagination").hide();
 				$("#getRest").empty();
 			}
@@ -141,12 +153,11 @@ function searchRestByQuery(keywords,category_id){
 	    }
 	});
 }
-$("#fa-btnsearch").on("click", function(){
+$("#frmsearch").on("submit", function(e){
+	e.preventDefault();
 	var keywords = $("#keyword").val();
-	var category_id = $("#filterRestype").val();
+	var category_id = parseInt($("#filterRestype").val());
 	searchRestByQuery(keywords,category_id);
-	
-	
 });
 
 $('#keyword').on('typeahead:selected', function(){ 
@@ -154,7 +165,8 @@ $('#keyword').on('typeahead:selected', function(){
 var keyword = $(this).val();
 check = true;
 $.ajax({ 
-    url:"$/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=12", 
+   /* url:"$/rest/restaurant/search?keyword="+keyword+"&page="+currentPage+"&limit=12", */
+	 url:"/rest/restaurant/search?keyword="+keywords+"&category_id="+category_id+"&page="+currentPage+"&limit=12",
     type: 'GET',
     beforeSend: function(xhr) {
         xhr.setRequestHeader("Accept", "application/json");

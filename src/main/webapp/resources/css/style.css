@@ -1,3 +1,14 @@
+/*=============== loading data ======= */
+
+#loader-container{
+	height:400px;
+}
+#loader-container img{
+	position:relative;
+	top:30%;
+}
+
+/*=============== loading data ======= */
 
 body{
 	background-color: #f9f9f9;

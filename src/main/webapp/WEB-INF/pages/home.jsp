@@ -139,6 +139,12 @@
 	</section>
 	<!-- ======== Category Content ========= -->
 	<section class="category">
+		<div id="loader">
+			<div id="loader-container" class="text-md-center">
+				<img src="${pageContext.request.contextPath}/resources/images/loading1.gif">
+			</div>
+		</div>
+		
 		<div class="container">
 			<!-- <div class="card">
 				<div class="card-header bg-success">Popular Category</div>
@@ -171,47 +177,10 @@
 	</footer>
 
 	<!--  ========  Model LOgin ====== -->
-	<!-- Modal -->
-	<div class="modal fade" id="login" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header text-xs-center">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<img id="myModalLabel" class="logo"
-						src="${pageContext.request.contextPath}/resources/images/logo.png"></img>
-				</div>
-				<div class="modal-body">
-					<form class="formlogin" id="frmLogin" method="POST">
-						<fieldset>
-							<h3 class="text-success text-xs-center">Welcome</h3>
-							<div class="form-group">
-								<label class="text-xs-left">Username</label> <input type="text"
-									class="form-control form-control-succes" name="username"
-									placeholder="enter your username">
-							</div>
-							<div class="form-group">
-								<label class="text-xs-left">Password</label> <input
-									type="password" class="form-control form-control-succes"
-									name="password" placeholder="enter your password">
-							</div>
-							<div class="form-group">
-								<button type="button" class="btn btn-outline-success"
-									data-dismiss="modal">Sing in</button>
-								-- or -- <a href="#"><img
-									src="${pageContext.request.contextPath}/resources/images/facebooklogin.png"></a>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+		<jsp:include page="modal_login.jsp"></jsp:include>
+	<!--  ========  Model LOgin ====== -->
 
-
+	
 
 	<!-- ========= footer ============ -->
 	<script
@@ -241,188 +210,8 @@
 	</script>
 
 
-	<script>
-		
-		function detailRest(id) {
-			window.location.href = "${pageContext.request.contextPath}/restaurant/"
-					+ id;
-		}
-
-		$(function() {
-
-			/* =======================  Pagination ================== */
-			course = {};
-			currentPage = 1;
-			var check = true;
-			var keyword = "";
-
-			$('#btnsearch').on("click", function(e) {
-
-				e.preventDefault();
-
-				check = true;
-				keyword = $('#keyword').val();
-				
-				window.location.href ="${pageContext.request.contextPath}/restaurant/q="+keyword;
-
-				//course.courses(currentPage, keyword);
-			});
-
-			course.courses = function(currentPage, keyword) {
-				if (keyword == undefined) {
-					keyword = "";
-				}
-				$
-						.ajax({
-							url : "${pageContext.request.contextPath}/rest/restype?keyword="
-									+ keyword
-									+ "&page="
-									+ currentPage
-									+ "&limit=20",
-							type : 'GET',
-							beforeSend : function(xhr) {
-								xhr.setRequestHeader("Accept",
-										"application/json");
-								xhr.setRequestHeader("Content-Type",
-										"application/json");
-							},
-							success : function(data) {
-
-								if (data.STATUS != false) {
-									console.log(data);
-									$("#getRest").empty();
-									$("#rest_tmpl").tmpl(data.DATA).appendTo(
-											"#getRest");
-									$('#getRest').css("cursor", "pointer");
-									if (check) {
-										course.setPagination(
-												data.PAGINATION.TOTAL_PAGES,
-												currentPage);
-										check = false;
-									}
-									$("#pagination").show()
-								} else {
-									$("#pagination").hide();
-									$("#getRest").empty();
-								}
-							}
-						});
-			};
-
-			course.setPagination = function(totalPage, currentPage) {
-
-				$('#pagination').bootpag({
-					total : totalPage,
-					page : currentPage,
-					maxVisible : 10,
-					leaps : true,
-					firstLastUse : true,
-					first : '←',
-					last : '→',
-					wrapClass : 'pagination',
-					activeClass : 'active',
-					disabledClass : 'disabled',
-					nextClass : 'next',
-					prevClass : 'prev',
-					lastClass : 'last',
-					firstClass : 'first'
-				}).on("page", function(event, currentPage) {
-					check = false;
-					course.courses(currentPage);
-
-				});
-
-				$('#pagination .bootpag li').addClass("page-item");
-				$('#pagination .bootpag li a').addClass("page-link");
-
-			};
-
-			course.courses(currentPage, "");
-
-			// constructs the suggestion engine
-			var substringMatcher = function(strs) {
-				return function findMatches(q, cb) {
-					var matches, substringRegex;
-
-					// an array that will be populated with substring matches
-					matches = [];
-
-					// regex used to determine if a string contains the substring `q`
-					substrRegex = new RegExp(q, 'i');
-
-					// iterate through the pool of strings and for any string that
-					// contains the substring `q`, add it to the `matches` array
-					$.each(strs, function(i, str) {
-						if (substrRegex.test(str)) {
-							matches.push(str);
-						}
-					});
-
-					cb(matches);
-				};
-			};
-
-			var states;
-
-			var bestPictures = new Bloodhound(
-				{
-					datumTokenizer : Bloodhound.tokenizers.obj
-							.whitespace('value'),
-					queryTokenizer : Bloodhound.tokenizers.whitespace,
-					remote : {
-						url : "${pageContext.request.contextPath}/rest/restaurant/search?keyword=%QUERY%"+ "&page=" + currentPage + "&limit=20",
-						//url: 'http://yourhost_ip/foo_autocomplete?query=%QUERY',
-						wildcard : '%QUERY%',
-						filter : function(restaurants) {
-							// Map the remote source JSON array to a JavaScript array
-							return $.map(restaurants.DATA, function(restaurant) {
-								return {
-									value : restaurant.rest_name
-								};
-							});
-						}
-					}
-				});
-
-			$('#remote .typeahead').typeahead(null, {
-				name : 'best-pictures',
-				display : 'value',
-				source : bestPictures
-			});
-
-			$('#login')
-					.on(
-						'hidden.bs.modal',
-						function(e) {
-
-							console.log($("#frmLogin").serialize());
-
-							$.ajax({
-										url : "${pageContext.request.contextPath}/login",
-										type : "POST",
-										data : $("#frmLogin").serialize(),
-										success : function(data) {
-											if (data == "User account is locked") {
-												alert(data);
-											} else if (data == "User is disabled") {
-												alert(data);
-											} else if (data == "Bad credentials") {
-												alert(data);
-											} else {
-												swal("Welcome To Nham Ey", "You clicked the button!", "success")
-												window.location.href = "${pageContext.request.contextPath}/"
-														+ data;
-											}
-										},
-										error : function(data) {
-											console.log(data);
-										}
-									});
-						});
-
-		});
-	</script>
-
+	<script src="${pageContext.request.contextPath}/resources/scripts/home/home.js" ></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/home/login.js" ></script>
 
 </body>
 </html>
