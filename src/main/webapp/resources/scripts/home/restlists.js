@@ -34,6 +34,7 @@ restaurant.getRest = function(currentPage, id) {
 	$("#loader").show();
 	$("#getRest").empty();
 	$("#pagination").hide();
+	
 	$.ajax({
 		url : "/rest/restaurant/list/"+id+"?page="+currentPage+"&limit="+limit,
 	type : 'GET',
@@ -44,6 +45,8 @@ restaurant.getRest = function(currentPage, id) {
 				"application/json");
 	},
 	success : function(data) {
+		
+	
 		$("#pagination").hide();
 		$("#loader").hide();
 		if (data.STATUS != false) {
@@ -71,8 +74,11 @@ restaurant.getRest = function(currentPage, id) {
 			$("#pagination").show()
 			
 		 }else {
+			 
+			   $("#getRest").html("<h3>No Result</h3>");
 				$("#pagination").hide();
 				$("#getRest").empty();
+			
 		  }
 		}
 	});
@@ -115,6 +121,7 @@ function searchRestByQuery(keywords,category_id){
 	
 	$("#getRest").empty();
 	$("#loader").show();
+	
 	$("#pagination").hide();
 	check =true;
 	
@@ -129,9 +136,11 @@ function searchRestByQuery(keywords,category_id){
         xhr.setRequestHeader("Content-Type", "application/json");
     },
     success: function(data) { 
+    	
+    	
     	if (data.STATUS != false) {
     		
-    		$("#loader").hide();
+    		$("#loader").hide();    		
     		
     		console.log(data);
     		//=========== protect list path_name ===========
@@ -156,6 +165,12 @@ function searchRestByQuery(keywords,category_id){
 			}
 			$("#pagination").show()
 			} else {
+				
+				$("#getRest").html("<h3>No Result</h3>");
+				$("#loader").hide();
+				
+	    		console.log(data);
+	    		
 				$("#pagination").hide();
 				$("#getRest").empty();
 			}

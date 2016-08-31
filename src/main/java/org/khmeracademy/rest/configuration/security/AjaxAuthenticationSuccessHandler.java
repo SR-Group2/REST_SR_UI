@@ -40,7 +40,7 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 			System.out.println("Extract Role: " + authority.getAuthority());
 		}
 		
-		//=============== catch current url
+		//=============== catch current url ================
 		String redirectURL = (String)request.getSession().getAttribute("REDIRECT_URL");
 		request.getSession().setAttribute("REDIRECT_URL", null);
 		
@@ -50,7 +50,7 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		}else if(roles.contains("ROLE_OWNER")){
 			return "owner";
 		}else if(roles.contains("ROLE_STANDARD_USER")){
-			return redirectURL;
+			return "user";
 		}else{
 			return "/accessDenied";
 		}

@@ -49,10 +49,6 @@
 						role="button" aria-haspopup="true" aria-expanded="false">
 							<sec:authentication property="principal.username" />
 						</a>
-						<%-- <div class="dropdown-menu" aria-labelledby="Preview">
-							<a class="nav-link" href="${pageContext.request.contextPath}/logout">
-							<i class="fa fa-sign-out"></i> ចាកចេញ</a>
-						</div> --%>
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<ul class="list-unstyled">
 								<li>

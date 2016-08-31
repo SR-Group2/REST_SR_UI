@@ -1,3 +1,14 @@
+#block_result{
+	display:none;
+}
+#no_result{
+	color: #41c130;
+	padding-top:14%;
+	padding-bottom:20%;
+	text-algin:center;
+	display:none;
+}
+
 .rest-list .container{
 	background: #ffffff;
 	border-top: 5px solid #41c130;

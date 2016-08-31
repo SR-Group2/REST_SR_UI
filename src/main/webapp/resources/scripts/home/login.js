@@ -20,7 +20,8 @@ function(e) {
 					  showConfirmButton: false
 				});
 				
-					window.location.href = data;
+					//window.location.href = data;
+				 	location.reload();
 			 }
 		 },
 			error : function(data) {

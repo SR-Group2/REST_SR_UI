@@ -97,7 +97,8 @@
 									      placeholder="search restaurant ....." 
 									      typeahead-on-select="onSelect()">
 				      <span class="input-group-btn">
-				        <button class="btn btn-secondary" type="submit"  id="fa-btnsearch" style="background:#5cb85c">
+				        <button class="btn btn-secondary" type="submit"  id="fa-btnsearch" 
+				        style="background:#5cb85c;outline:none;">
 				        	<i class="fa fa-search" style="color:#ffffff"></i>
 				        </button>
 				      </span>
@@ -118,74 +119,12 @@
 	
 		<div class="container" id="sidebar" >
 			<div class="row">
-				<!-- <div class="col-md-3">
-					<div class="row" style="margin-top:15px">
-						<div class="box-filter">
-							<h2>Search:</h2>
-								<form>
-								  <div class="form-group" id="remote">
-							      	 <div class="right-inner-addon">
-								         <i class="fa fa-search" id="fa-btnsearch"></i>
-									      <input type="text" class="form-control typeahead" id="keyword" 
-									      placeholder="search restaurant ....." 
-									      typeahead-on-select="onSelect()"
-									      style="background-color:#339524;color: #ffffff;">
-								      	</div>
-								  </div>						 
-								</form>
-						</div>
-					</div>end row
-					
-					<div class="row">
-						<div class="box-sort">
-								<h2>Filter:</h2>
-								<form >
-									<div class="form-group">
-								        <select class="form-control"  id="filterRestype">
-								          <option selected>---- select category -----</option>
-										  <option ng-repeat="category in categories" value="{{category.restype_id}}">
-										  	{{category.restype_name}}
-										  </option>
-								        </select>
-								        <i class="fa fa-chevron-down"></i>							        
-								      </div>
-									
-									check box option
-									<div class="check-option">
-										<div class="check-box">
-											<label class="custom-control custom-checkbox">
-											  <input type="checkbox" class="custom-control-input">
-											  <span class="custom-control-indicator"></span>
-											  <span class="custom-control-description">Recommended</span>
-											</label>
-										</div>
-										<div class="check-box">
-											<label class="custom-control custom-checkbox">
-											  <input type="checkbox" class="custom-control-input">
-											  <span class="custom-control-indicator"></span>
-											  <span class="custom-control-description">Promotion</span>
-											</label>
-										</div>
-										<div class="check-box">
-											<label class="custom-control custom-checkbox">
-											  <input type="checkbox" class="custom-control-input">
-											  <span class="custom-control-indicator"></span>
-											  <span class="custom-control-description">Most Favorite</span>
-											</label>
-										</div>
-									</div>
-									<div class="text-md-center">
-										<button type="button" class="btn btn-search" id="searchRest">SEARCH</button>
-									</div>
-									end check box option
-								</form>	
-							</div>
-					</div>end row
-				</div>end col-md-3 -->
-				
+				<div class="col-md-12 text-xs-center" id="block_result">
+					<h3 id="no_result">No Result</h3>
+				</div>
 				<div class="col-md-12">
 					<div class="row" id="getRest">
-								
+						
 						
 					</div>
 					<!-- ========= Pagination ============ -->
@@ -197,10 +136,10 @@
 					<!-- end pagination -->
 						
 			 </div><!-- ======== col-md-9 -->
-		</div>
-	</div>
+			</div>
+		</div><!-- ======== END CONTAINER ======= -->
 	</section>	
-	
+		
 	<!--  ========  Model LOgin ====== -->
 		<jsp:include page="modal_login.jsp"></jsp:include>
 	<!--  ========  Model LOgin ====== -->
