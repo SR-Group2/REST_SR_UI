@@ -146,7 +146,6 @@ app.directive('myFilter', [function() {
 		//=================  ADD RESTAURANTS =====================
 	    $scope.addRestaurant = function(e){
 	    	
-	    	
 	    	e.preventDefault();
 	    	$scope.open_close = "From "+ $scope.open + " To " + $scope.close;
 	    	
@@ -352,6 +351,8 @@ app.directive('myFilter', [function() {
    			$scope.communce = $scope.restaurant.address.communce;
    			$scope.district = $scope.restaurant.address.district;
    			$scope.province = $scope.restaurant.address.province;
+   			$scope.province = $scope.restaurant.address.province;
+   			$scope.address_id = $scope.restaurant.address.address_id;
    			
    			
    			
@@ -394,9 +395,13 @@ app.directive('myFilter', [function() {
     	e.preventDefault();
     	
     	$scope.user_id = parseInt($("#user_id").text());
+    	
+    	var frmData = new FormData();
+    	
     	data = {
     			"address": {"street": $scope.street_number, 
 				  "district": $scope.district,
+				  "address_id": $scope.address_id,
 				  "village": $scope.village,
 				  "communce": $scope.communce, 
 				  "province": $scope.province},
@@ -412,8 +417,8 @@ app.directive('myFilter', [function() {
 				  "restypes_id": $scope.arr
 			};
     	
-    	var frmData = new FormData();
-
+    	
+    	
     	//===========send add restaurant picture to server
     	for (var i=0; i<newFiles["restGallery"].length; i++){
     		frmData.append("addRestFile", newFiles["restGallery"][i]);

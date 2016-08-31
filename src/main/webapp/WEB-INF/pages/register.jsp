@@ -103,45 +103,45 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label for="lblfirstname">First Name</label>
-						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" ng-model="txtfirstname" name="password">
+						    		<input type="text" class="form-control" id="lblfirstname" placeholder="First Name" ng-model="txtfirstname" name="password" ng-required="true">
 						    		</div>
 								</div>
 						    	<div class="col-md-6">
 						    		<div class="form-group">
 						    		<label for="lbllastname">Last Name</label>
-						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" ng-model="txtlastname" name="lastname">
+						    		<input type="text" class="form-control" id="lbllastname" placeholder="Last Name" ng-model="txtlastname" name="lastname" ng-required="true">
 						    		</div>
 						    	</div>
 						    <div class="col-md-12">
 							  <div class="form-group">
 							    <label for="lblusername">Username</label>
-							    <input type="text" class="form-control" id="lblusername" placeholder="Username" ng-model="txtusername" name="username" required ng-minlength="3" ng-maxlength="8">
+							    <input type="text" class="form-control" id="lblusername" placeholder="Username" ng-model="txtusername" name="username" ng-required="true" ng-minlength="3" ng-maxlength="8">
 							  </div>
 						  	</div>
 						  	<div class="col-md-12">
 						  		 <div class="form-group">
 								    <label for="lblemail">Email</label>
-								    <input type="email" class="form-control" id="lblemail" placeholder="Email" ng-model="txtemail" name="email" required>
+								    <input type="email" class="form-control" id="lblemail" placeholder="Email" ng-model="txtemail" name="email" ng-required="true">
 								  </div>
 						  	
 						  	</div>
 						  	<div class="col-md-12">
 						  		<div class="form-group">
 						    		<label for="lblpassword">Password</label>
-						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password" ng-model="txtpassword" name="password"  required">							
+						   	 		<input type="password" class="form-control" id="lblpassword" placeholder="Password" ng-model="txtpassword" name="password"  ng-required="true"">							
 								  
 								</div>
 						  	</div>
 						  	<div class="col-md-12">
 							  	<div class="form-group">
 								    <label for="lblconfirmpassword">Confirm Password</label>
-								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" >
+								    <input type="password" class="form-control" id="lblconfirmpassword" ng-model="txtconfrimpword" placeholder="Confirm Password" ng-required="true" >
 							  	</div>
 						  	</div>
 						  	<div class="col-md-12">
 								<label for="date" class="">Date of Birth</label>
 							    <div class="input-group">   
-							        <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"  ng-model="txtdob" />
+							        <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"  ng-model="txtdob" ng-required="true" />
 							        <div class="input-group-addon">
 							          <i class="fa fa-calendar"></i>
 							        </div>
@@ -152,40 +152,22 @@
 						  		<label for="">Gender</label>
 						  		<div class="input-group">
 							  		<label class="radio-inline">
-									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Male"> Male
+									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Male" ng-required="true"> Male
 									</label>
 									<label class="radio-inline">
-									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Female"> Female
+									  <input type="radio" name="gender" id="gender" ng-model="txtgender" value="Female" ng-required="true"> Female
 									</label>
 								</div>
 						  	</div>
 					
 						  	<div class="col-md-6" style="padding-top:20px;">
-						  		<!-- <div class="col-md-3">																	
-				  							<div>
-												<label  class="input-label">User Profile</label>
-											</div>
-											<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
-												<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
-													<img src="" alt="...">
-												</div>
-												<div class="" style="max-width: 200px; max-height: 150px; line-height: 6px;"></div>
-												<div>
-													<span class="btn btn-white btn-file">
-														<span class="fileinput-new">Select image</span>
-														<span class="fileinput-exists">Change</span>
-														<input type="file" id="file" name="..." accept="image/*">
-													</span>
-													<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-												</div>
-											</div>
-										</div> -->
+
 									
 									
 						  	</div><!-- ======= end col-md-12 ===== -->
 						  	<div class="col-md-12">
 						    	<div class="form-group">
-									<button type="button" class="btn btn-block btn-success" ng-click="addUser()">Sign Up</button>
+									<button type="button" class="btn btn-block btn-success" ng-click="addUser()" ng-disabled="frmRegister.$invalid">Sign Up</button>
 								</div>
 						  	</div>
 						  

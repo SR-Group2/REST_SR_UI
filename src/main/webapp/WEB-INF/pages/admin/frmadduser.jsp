@@ -7,49 +7,39 @@
 			<h3 class="card-title">Register</h3>
 			</div>
 			<div class="panel-body">
-				<fieldset>
+				
 					<div class="row">
 						<div class="col-md-12">
-							<form id="frmUser">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="txtusername">First Name</label>
-										<input type="text" class="form-control " ng-model="txtfirstname" name="firstname" >
-									</div>
-									<div class="form-group">
-										<label for="txtusername">Last Name</label>
-										<input type="text" class="form-control " ng-model="txtlastname" name="lastname" >
-									</div>
-										
-									<div class="form-group">
-									 <label for="txtusername">Username</label>
-									    <input type="text" class="form-control " ng-model="txtusername" name="username" >
-									  </div>
-									  <div class="form-group">
-									    <label for="txtfirstname">Email</label>
-									    <input type="email" class="form-control" ng-model="txtemail"  name="email">
-									  </div>
-									  <div class="form-group">  
-									    <label for="txtfirstname">Password</label>
-									    <input type="password" class="form-control" ng-model="txtpassword" name="password">
-									  </div>
-								  </div> <!-- End column -->
-								<div class='col-sm-4'>
-									<!--<div class="form-group">
-										 <label for="" class="">Date of Birth</label>
-										  <div class='input-group date' id='datetimepicker1' > 
-										       <input type='text' class="form-control" ng-model="txtdob" name="dob"  placeholder="Year-Month-Day"/>
-										       <span class="input-group-addon">
-										 
-										        <i  class="fa fa-calendar"></i>
-										        </span>
+							<form id="frmUser" name="frmAddUser">
+								<fieldset>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label for="txtusername">First Name</label>
+											<input type="text" class="form-control " ng-model="txtfirstname" name="firstname"  ng-required="true">
+										</div>
+										<div class="form-group">
+											<label for="txtusername">Last Name</label>
+											<input type="text" class="form-control " ng-model="txtlastname" name="lastname" ng-required="true">
+										</div>
+											
+										<div class="form-group">
+										 <label for="txtusername">Username</label>
+										    <input type="text" class="form-control " ng-model="txtusername" name="username" ng-required="true" >
 										  </div>
-										 
-									 </div>	-->
+										  <div class="form-group">
+										    <label for="txtfirstname">Email</label>
+										    <input type="email" class="form-control" ng-model="txtemail"  name="email" ng-required="true">
+										  </div>
+										  <div class="form-group">  
+										    <label for="txtfirstname">Password</label>
+										    <input type="password" class="form-control" ng-model="txtpassword" name="password" ng-required="true">
+										  </div>
+									  </div> <!-- End column -->
+									  								<div class='col-sm-4'>
 									 <div class="form-group">
 									 	<label for="" class="">Date of Birth</label>
 										<div class="input-group">
-												<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" ng-model="txtdob" name="dob">				
+												<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" ng-model="txtdob" name="dob" ng-required="true">				
 												<div class="input-group-addon">
 													<a href="#"><i class="entypo-calendar"></i></a>
 												</div>
@@ -59,15 +49,15 @@
 									<div class="form-group">
 										      <label for="" class="">Gender</label>
 										      <div class="form-inline">
-										      	<input type="radio" class="form-control"  ng-model="txtgender"  name="gender" value="Male" required> Male
-										      	<input type="radio" class="form-control"  ng-model="txtgender"  name="gender" value="Female" required> Female
+										      	<input type="radio" class="form-control"  ng-model="txtgender"  name="gender" value="Male" ng-required="true"> Male
+										      	<input type="radio" class="form-control"  ng-model="txtgender"  name="gender" value="Female" ng-required="true"> Female
 											</div>
 									</div>
 									
 									<div class="form-group">
 										    <label for="" class="">Role</label>
 										    <div class="">
-										      <select class="form-control" ng-model="roles" name="roles">
+										      <select class="form-control" ng-model="roles" name="roles" ng-required="true">
 													<option value="" style="display:none">-- Select --</option>
 										      		<option value="1">ROLE_STANDARD_USER</option>
 										      		<option value="2">ROLE_OWNER</option>
@@ -77,15 +67,12 @@
 										    </div>
 								    </div>
 									<div class="form-group">
-										<input type="button" class="btn btn-success btn-block" ng-click="addUser()" value="Save">
+										<input type="button" class="btn btn-success btn-block" ng-click="addUser()" value="Save"  ng-disabled="frmAddUser.$invalid">
 										  <%-- <a href="${pageContext.request.contextPath}/admin/user" target="_self" class="btn btn-success">View User</a> --%>
 									</div>
 									
-	 							</div>
-								<div class="col-md-3">																	
-		  				
-										
-										
+	 							</div><!-- End column -->
+								<div class="col-md-3">																										
 									<div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
 										<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
 											<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="">
@@ -102,8 +89,11 @@
 									</div>
 									
 									
-									</div>
-									
+								</div>
+								</fieldset>
+							
+							</form>
+		
 									<%-- <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden">
 										<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" data-trigger="fileinput">
 											<img src="${pageContext.request.contextPath}/resources/assets/images/profile-icon.png" alt="...">
@@ -123,19 +113,12 @@
 											<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
 										</div> -->
 									<!-- </div> -->
-								</div>
-								
-
-								
-							</form>
-	 						
+								</div>																	
 					    </div>
 							
-					</div>
-				</fieldset>
+					</div>				
 			</div>
 			</div>
 		<!-- =========== End Panel ========== -->	
 		</div><!-- End Form add -->
-	</div>
 </div><!-- End Controller -->
