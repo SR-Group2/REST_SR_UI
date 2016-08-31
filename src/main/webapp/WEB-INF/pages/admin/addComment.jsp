@@ -31,7 +31,8 @@
 									<label for="first_name">Comment</label>
 									<textarea class="form-control " ng-model="$parent.comment" name="comment" rows = "6"></textarea>
 									<br>
-									<a href="${pageContext.request.contextPath}/admin/comment" target="_self"><button type="button" class="btn btn-green" ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid ||brandInfo.rest_name.$invalid || brandInfo.comment.$invalid" ng-click="addComment($event)" data-dismiss="modal">
+									<a href="${pageContext.request.contextPath}/admin/comment" target="_self">
+									<button type="button" class="btn btn-green" ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid ||brandInfo.rest_name.$invalid || brandInfo.comment.$invalid" ng-click="addComment($event)" data-dismiss="modal">
 										<i class="fa fa-plus" aria-hidden="true"> Add Comment</i></button>
 										<button type="button" class="btn btn-green" data-dismiss="modal">
 										<i class="fa fa-eye" aria-hidden="true"> View Comment</i></button></a>

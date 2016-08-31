@@ -16,9 +16,9 @@ app.directive('myFilter', [function() {
  app.controller('restAddCtrl', function($scope, $http, $rootScope){
 	 
 	 var currentPage = 1;
-		$scope.dataRestypes = [];
+		/*$scope.dataRestypes = [];*/
 		
-		$scope.dataRestypes = [
+		/*$scope.dataRestypes = [
 			{restype_name: 'Khmer Food', restype_id: 1},
 			{restype_name: 'BBQ', restype_id: 2},
 			{restype_name: 'Thai Food', restype_id: 3},
@@ -35,7 +35,7 @@ app.directive('myFilter', [function() {
 			{restype_name: 'Buffet', restype_id: 114},
 			{restype_name: 'Porridge', restype_id: 15},
 			{restype_name: 'Street Food', restype_id: 16}
-	      ];
+	      ];*/
 	 //===================GET RESTAURANT RESTYPE ==============	 
 	/*$scope.getRestType=function(){
 			$http.get('/rest/restype?limit=30&page=1').then(function(response){
@@ -54,7 +54,36 @@ app.directive('myFilter', [function() {
 		
 	$scope.getRestType();*/
 	
-	
+		$scope.check = false;
+		$scope.options = [];
+	    $http({
+			url: '/rest/restype?limit=30&page=1',
+			method: 'GET'
+		}).then(function (response) {
+			console.log(response);
+			$scope.check= true;
+			//$scope.options = response.data.DATA;
+			angular.forEach(response.data.DATA, function(rest, key){
+	   				
+	   				$scope.options.push({
+	   					restype_name: response.data.DATA[key].restype_name,
+	   					restype_id: response.data.DATA[key].restype_id
+	   	   			});
+	   	   			
+	   		}); 
+		}, function (error) {
+			
+		});
+
+		$scope.getVal = function (x) {
+			$scope.arr = x;
+			
+		}
+
+		$scope.show = function (x) {
+			console.log($scope.arr);
+		}
+		
 	 //===================GET RESTAURANT OWNER ==============
 	 $scope.getRestOwner=function(){
 			$http.get('/rest/user/owner').then(function(response){
@@ -117,6 +146,7 @@ app.directive('myFilter', [function() {
 		//=================  ADD RESTAURANTS =====================
 	    $scope.addRestaurant = function(e){
 	    	
+	    	
 	    	e.preventDefault();
 	    	$scope.open_close = "From "+ $scope.open + " To " + $scope.close;
 	    	
@@ -135,8 +165,10 @@ app.directive('myFilter', [function() {
 					  "contact": $scope.contact,
 					  "user_id": $scope.user_id,
 					  "open_close":$scope.open_close,
-					 "restypes_id": $scope.data_Restypes
+					  "restypes_id": $scope.arr
 				};
+	    	
+	    	console.log(data);
 	    	
 	    	var frmData = new FormData();
 	    	
@@ -197,7 +229,35 @@ app.directive('myFilter', [function() {
 //================= UPDATE RESTAURANT	 =======================
  app.controller('restUpdateCtrl', function($scope, $http){
 	 
-	 
+	 $scope.check = false;
+		$scope.options = [];
+	    $http({
+			url: '/rest/restype?limit=30&page=1',
+			method: 'GET'
+		}).then(function (response) {
+			console.log(response);
+			$scope.check= true;
+			//$scope.options = response.data.DATA;
+			angular.forEach(response.data.DATA, function(rest, key){
+	   				
+	   				$scope.options.push({
+	   					restype_name: response.data.DATA[key].restype_name,
+	   					restype_id: response.data.DATA[key].restype_id
+	   	   			});
+	   	   			
+	   		}); 
+		}, function (error) {
+			
+		});
+
+		$scope.getVal = function (x) {
+			$scope.arr = x;
+			
+		}
+
+		$scope.show = function (x) {
+			console.log($scope.arr);
+		}
 	 
 	//================= START LOCATION ADDRESS =====================
 		
@@ -242,7 +302,7 @@ app.directive('myFilter', [function() {
 		//================= END LOCATION ADDRESS =====================
 
 	 var currentPage = 1;
-		$scope.restypes = [];
+		/*$scope.restypes = [];
 		
 		$scope.dataRestypes = [
 			{restype_name: 'Khmer Food', restype_id: 1},
@@ -261,7 +321,7 @@ app.directive('myFilter', [function() {
 			{restype_name: 'Buffet', restype_id: 114},
 			{restype_name: 'Porridge', restype_id: 15},
 			{restype_name: 'Street Food', restype_id: 16}
-	      ];
+	      ];*/
 		
 		
 	 $scope.sample1 = [];
@@ -274,6 +334,8 @@ app.directive('myFilter', [function() {
    			url: '/rest/restaurant/'+rest_id,
    			method:'GET'
    		}).then(function(response){
+   			
+   		
    			$scope.restaurant = response.data.DATA;
    			$scope.rest_id = $scope.restaurant.rest_id;
    			$scope.rest_name = $scope.restaurant.rest_name;
@@ -288,8 +350,12 @@ app.directive('myFilter', [function() {
    			$scope.street_number = $scope.restaurant.address.street;
    			$scope.village = $scope.restaurant.address.village;
    			$scope.communce = $scope.restaurant.address.communce;
+   			$scope.district = $scope.restaurant.address.district;
    			$scope.province = $scope.restaurant.address.province;
-   			console.log($scope.restaurant);
+   			
+   			
+   			
+   			console.log(response);
    			
    			angular.forEach($scope.restaurant.restpictures, function(rest, key){
    				
@@ -331,6 +397,7 @@ app.directive('myFilter', [function() {
     	data = {
     			"address": {"street": $scope.street_number, 
 				  "district": $scope.district,
+				  "village": $scope.village,
 				  "communce": $scope.communce, 
 				  "province": $scope.province},
 				  "rest_id": rest_id,
@@ -341,7 +408,8 @@ app.directive('myFilter', [function() {
 				  "about": $scope.about,
 				  "contact": $scope.contact,
 				  "user_id": $scope.user_id,
-				  "open_close":$scope.open_close
+				  "open_close":$scope.open_close,
+				  "restypes_id": $scope.arr
 			};
     	
     	var frmData = new FormData();

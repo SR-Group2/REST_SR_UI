@@ -18,85 +18,74 @@
 						<a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
 					</div>
 				</div>
+				
 				<div class="panel-body">
 					<!--  ======== Form Add Restaurant ============= -->
-				
+					<form name="frmAddRest">
 					<div class="col-md-5">
 						<div class="form-group">
 							<label for="owner">Restaurant Owner</label>
-							<select class="form-control" name="owner" id="owner" ng-model="user_id">
+							<select class="form-control" name="owner" id="owner" ng-model="user_id" ng-required="true">
 								<option selected>--- Select Owner ----</option>
 								<option ng-repeat="owner in owners" value="{{owner.user_id}}">{{owner.first_name}} {{owner.last_name}}</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="rest_name">Restaurant Name</label>
-							<input type="text" class="form-control" name="rest_name" ng-model="rest_name" required>
+							<input type="text" class="form-control" name="rest_name" ng-model="rest_name" ng-required="true">
 						</div>
 						<div class="form-group">
 							<label for="rest_name">Restaurant Name Khmer</label>
-							<input type="text" class="form-control" name="rest_name_kh" ng-model="rest_name_kh" required>
+							<input type="text" class="form-control" name="rest_name_kh" ng-model="rest_name_kh" ng-required="true">
 						</div>
 						<div class="form-group">
 							<label for="restype_id">Restaurant Category(Allow only 3 Categories)</label>
 				        	<!-- <pre>Model value: {{data_Restypes}}</pre> -->
-       						<!-- <multiselect restype ng-model="loadRestype" options="loadRestype" 
-		       						display-prop="restype_name" id-prop="restype_id"
-		                     		selection-limit="3">
-		                     </multiselect> -->
-		                     <multiselect  ng-model="data_Restypes" options="dataRestypes" 
+		                     <!-- <multiselect  ng-model="data_Restypes" options="dataRestypes" 
 		       						display-prop="restype_name" id-prop="restype_id"
 		                     		selection-limit="3" >
-		                     </multiselect> 
+		                     </multiselect>  -->
+		                     <div ng-if="check">
+								<multiselect ng-model="data_Restypes" options="options" selection-limit="3" ng-change="getVal(data_Restypes)"
+								id-prop="restype_id" display-prop="restype_name"></multiselect>
+							</div>
 						 </div>
-						<%-- <div class="form-group">
-							<label for="rest_name">Restaurant Picture</label>
-							<input type="file" class="form-control file2 btn btn-primary"
-							  multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
-							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="rest_picture" id="rest_picture" required>
-						</div>  --%>
-						<%--  <div class="form-group">
-							<label for="rest_name">Restaurant Menu</label>
-							<input type="file" class="form-control file2 btn btn-orange"
-							 multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> 
-							 &nbsp;Browse Files" style="left: -8.75px; top: -1.5px;"  name="menu" id="menu" required>
-						</div> --%>
 						 <!-- =================    restaurant picture ======================= -->			
 						 <div id="content">
 						 	<label for="rest_picture">Restaurant Picture</label>
-					        <input type="file" name="files[]" id="restGallery" multiple="multiple">
+					        <input type="file" name="files[]" id="restGallery" multiple="multiple" ng-required="true">
 						 </div> 
 						<!-- =================   restaurant menu  ======================= -->
 						 <div id="content">
 						 	<label for="rest_menu">Restaurant Menu</label>
-					        <input type="file" name="files[]" id="menuGallery" multiple="multiple">
+					        <input type="file" name="files[]" id="menuGallery" multiple="multiple" ng-required="true">
 						 </div>
 						<div class="form-group">
 							<label for="contact">Contact</label>
-							<input type="text" class="form-control" name="contact" ng-model="contact" required>
+							<input type="text" class="form-control" name="contact" ng-model="contact" ng-required="true">
 						</div>
 						<div class="form-group">
 							<label for="latitude">Latitude</label>
-							<input type="text" class="form-control" name=""latitude"" ng-model="latitude" required>
+							<input type="text" class="form-control" name=""latitude"" ng-model="latitude" ng-required="true">
 						</div>
 						<div class="form-group">
 							<label for="longitude">Longitude</label>
-							<input type="text" class="form-control" name="longitude" ng-model="longitude" required>
+							<input type="text" class="form-control" name="longitude" ng-model="longitude" ng-required="true">
 						</div>
 						<div class="form-group">
 							<label for="about">About</label>
-							<textarea type="text" class="form-control" name="about" ng-model="about" row="7" required></textarea>
+							<textarea type="text" class="form-control" name="about" ng-model="about" row="7" ng-required="true"></textarea>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-12">
 								<label for="open_close">Open - Close</label>
 							</div>
 							<div class="col-md-6">
-								<input type="text" name="open" class="form-control" ng-model="open" placeholder="10:30 AM"/>
+								<input type="text" name="open" class="form-control" ng-model="open" placeholder="10:30 AM" ng-required="true"/>
 							</div>
 							
 							<div class="col-md-6">
-								<input type="text" name="close" class="form-control" ng-model="close" placeholder="12:30 PM"/>
+								<input type="text" name="close" class="form-control" ng-model="close" placeholder="12:30 PM" ng-required="true"/>
 							</div>
 		
 						</div>
@@ -105,7 +94,7 @@
 						<div class="form-group">
 							<label for="open_close">City / Province</label>
 							<select name="province" ng-model="province" class="form-control" 
-							ng-change="getDistrict(province)" id="province" required>
+							ng-change="getDistrict(province)" id="province" ng-required="true">
 								<option selected>------ Select Province ------</option>
 								<option ng-repeat="province in provinces" 
 									value="{{province.ID}}">{{province.NAME}}</option>
@@ -114,7 +103,7 @@
 						<div class="form-group">
 							<label for="district">District / Khan</label>
 							<select class="form-control" name="district" ng-model="district" 
-								ng-change="getCommune(district)" id="district" required>
+								ng-change="getCommune(district)" id="district" ng-required="true">
 								<option selected>------ Select District ------</option>
 								<option ng-repeat="district in districts" 
 									value="{{district.ID}}">{{district.NAME}}</option>
@@ -123,7 +112,7 @@
 						<div class="form-group">
 							<label for="commune">Commune / Sangkat</label>
 							<select class="form-control" name="communce" ng-model="communce" 
-								ng-change="getVillage(communce)" id="communce" required>
+								ng-change="getVillage(communce)" id="communce" ng-required="true">
 								<option selected>------ Select Commune ------</option>
 								<option ng-repeat="commune in communes" 
 									value="{{commune.ID}}">{{commune.NAME}}</option>
@@ -131,7 +120,7 @@
 						</div>
 						<div class="form-group">
 							<label for="village">Village / Krom</label>
-							<select class="form-control" name="village" ng-model="village" id="village">
+							<select class="form-control" name="village" ng-model="village" id="village" ng-required="true">
 								<option selected >------ Select Village ------</option>
 								<option ng-repeat="village in villages" value="{{village.ID}}">{{village.NAME}}</option>
 							</select>
@@ -139,23 +128,15 @@
 						<div class="form-group">
 							<div class="form-group">
 							<label for="street_number">Street Number</label>
-							<input type="text" class="form-control" name="street_number" ng-model="street_number" required>
+							<input type="text" class="form-control" name="street_number" ng-model="street_number" ng-required="true">
 						</div>
-						
-							<!-- <div class="form-group">
-								<label for="location">Location</label>
-								<input type="text" class="form-control" name="location" ng-model="location"" required>
-							</div> -->
-							
-							<a href="${pageContext.request.contextPath}/admin/restaurant" target="_self"">
+							<%-- <a href="${pageContext.request.contextPath}/admin/restaurant" target="_self""> --%>
 							<button type="button" class="btn btn-blue btn-block"
-							 ng-disabled="commentInfo.first_name.$invalid || brandInfo.last_name.$invalid || 
-							 brandInfo.rest_name.$invalid || brandInfo.comment.$invalid"
-							  ng-click="addRestaurant($event)" data-dismiss="modal">
-								<i class="fa fa-floppy-o"> Add Restaurant</i></button></a>
+							  ng-disabled="frmAddRest.$invalid" ng-click="addRestaurant($event)" data-dismiss="modal">
+								<i class="fa fa-floppy-o"> Add Restaurant</i></button><!-- </a> -->
 						</div>
 					  </div> 
-					
+					</form>
 				</div><!-- ==============  end Panel ===================== -->
 			</div>
 		</div><!-- ==============  end col-md-12 ===================== -->
