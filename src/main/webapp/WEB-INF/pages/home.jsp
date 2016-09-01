@@ -200,7 +200,7 @@
 			<div class="box-img" onclick="detailRest({{= restype_id }})">
 				<h2 class="text-xs-left">{{= restype_name_kh }}</h2>
 				<h4 class="text-capitalize text-xs-left">{{= restype_name }}</h4>
-				<a href="#"><img class="" alt="" src="/resources/images/restype/{{= restype_picture}}" width="200" height="150"></a>
+				<a href="#"><img class="" alt="" src="http://localhost:9999{{= restype_picture}}" width="200" height="150"></a>
 			</div>
 		</div>
 	</script>

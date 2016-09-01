@@ -39,7 +39,7 @@
 									 <div class="form-group">
 									 	<label for="" class="">Date of Birth</label>
 										<div class="input-group">
-												<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" ng-model="txtdob" name="dob" ng-required="true">				
+												<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" placeholder="Year-Month-Day" ng-model="txtdob" name="dob">				
 												<div class="input-group-addon">
 													<a href="#"><i class="entypo-calendar"></i></a>
 												</div>

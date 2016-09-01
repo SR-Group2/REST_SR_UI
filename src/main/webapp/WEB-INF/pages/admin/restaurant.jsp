@@ -73,7 +73,8 @@
 								<a ng-cloak href="${pageContext.request.contextPath}/admin/restaurant/{{restaurant.rest_id}}">
 								<button type="button" class="btn btn-green btn-icon icon-left" >
 								<i class="fa fa-pencil-square-o"></i> Edit</button></a>
-							 	<button type="button" class="btn btn-red btn-icon icon-left" ng-click="deleteRestaurant(restaurant.rest_id, $event)">
+							 	<button type="button" class="btn btn-red btn-icon icon-left" 
+							 	ng-click="deleteRestaurant(restaurant.rest_id,restaurant.address.address_id, $event)">
 								<i class="entypo-cancel"></i> Delete</button>
 								</td>
 							

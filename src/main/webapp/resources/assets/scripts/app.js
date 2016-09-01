@@ -148,20 +148,6 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				}
 				
 				$scope.updateUser=function(){
-						
-					/*data={
-							'user_id': $scope.user_id,
-							'first_name':$scope.firstName,
-							'last_name':$scope.lastName,
-							'username':$scope.username,
-							'email': $scope.email,
-							'password':$scope.password,
-							'dob':$scope.dob,
-							'gender':$scope.genders,
-							'role': {
-								'id': $scope.roles
-							}
-						}*/
 
 				var frmData = new FormData();
 				data={

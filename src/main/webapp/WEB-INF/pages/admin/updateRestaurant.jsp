@@ -56,10 +56,7 @@
 					        <input type="file" name="files[]" id="menuGallery" multiple="multiple"  ng-required="true">
 						 </div>
 						
-						<div class="form-group">
-							<label for="contact">Contact</label>
-							<input type="text" class="form-control" name="contact" ng-model="contact"  ng-required="true">
-						</div>
+						
 						<div class="form-group">
 							<label for="about">About</label>
 							<input type="text" class="form-control" name="about" ng-model="about"  ng-required="true">
@@ -70,6 +67,18 @@
 						</div>
 					</div> 
 					<div class="col-md-5">
+						<div class="form-group">
+							<label for="contact">Contact</label>
+							<input type="text" class="form-control" name="contact" ng-model="contact"  ng-required="true">
+						</div>
+						<div class="form-group">
+							<label for="latitude">Latitude</label>
+							<input type="text" class="form-control" name=""latitude"" ng-model="latitude" ng-required="true">
+						</div>
+						<div class="form-group">
+							<label for="longitude">Longitude</label>
+							<input type="text" class="form-control" name="longitude" ng-model="longitude" ng-required="true">
+						</div>
 						<div class="form-group">
 							<label for="open_close">City / Province</label>
 							<select name="province" ng-model="province" class="form-control" 

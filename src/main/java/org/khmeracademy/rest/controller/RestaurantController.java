@@ -49,6 +49,23 @@ public class RestaurantController {
 		
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
+	//================== Delete Restaurant =================================
+		@RequestMapping(value="/delete",method = RequestMethod.DELETE)
+		public ResponseEntity<Map<String , Object>> deleteRestaurant(
+				 	@RequestParam(value = "rest_id", required = false , defaultValue="0") int rest_id
+					, @RequestParam(value="address_id" , required = false , defaultValue="0") int address_id){
+			
+			UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl(WS_URL + "/restaurant/delete")
+					.queryParam("rest_id", rest_id)
+					.queryParam("address_id", address_id);
+			
+			HttpEntity<Object> request = new HttpEntity<Object>(header);
+			ResponseEntity<Map> response = rest.exchange(uri.build().toUriString(), HttpMethod.GET , request , Map.class) ;
+			
+		/*	HttpEntity<Object> request = new HttpEntity<Object>(rest_id, header);
+			ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/"+rest_id+"/"+address_id, HttpMethod.DELETE , request , Map.class) ;*/
+			return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
+		}
 	//================== get All Restaurants =================================
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String , Object>> getAllRestaurants(){
@@ -98,13 +115,7 @@ public class RestaurantController {
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/insert-restaurant", HttpMethod.POST , request , Map.class) ;
 		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
 	}
-	//================== Delete Restaurant =================================
-	@RequestMapping(value="/{rest_id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Map<String , Object>> deleteRestaurant(@PathVariable int rest_id){
-		HttpEntity<Object> request = new HttpEntity<Object>(rest_id, header);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/restaurant/"+rest_id, HttpMethod.DELETE , request , Map.class) ;
-		return new ResponseEntity<Map<String , Object>>(response.getBody() , HttpStatus.OK);
-	}
+	
 	//==================Update  Restaurant =================================
 	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<Map<String , Object>> updateRestaurant(@RequestBody AddRestaurant addRestaurant){

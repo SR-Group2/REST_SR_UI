@@ -40,7 +40,7 @@
 						</tr>
 						<tr>
 							<td>Place:</td>
-							<td> Street {{restaurant.address.street}}  {{restaurant.address.communce}} {{restaurant.address.district}}  {{restaurant.address.province}}</td>
+							<td> Street {{restaurant.address.street}} {{restaurant.address.village}} {{restaurant.address.communce}} {{restaurant.address.district}}  {{restaurant.address.province}}</td>
 						</tr>		
 					
 					</tbody>				
@@ -58,8 +58,8 @@
 						<table class="table table-bordered table-responsive">
 						<thead class="thead-inverse">
 							<tr>
-								<th>Restaurant Name </th>
-								<th>Restaurant Name Khmer </th>
+								<th>Restaurant Type EN </th>
+								<th>Restaurant Type Khmer </th>
 							</tr>
 						</thead>
 						<tbody>

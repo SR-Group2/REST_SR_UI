@@ -121,7 +121,7 @@
 		
 		<br />
 
-		<!-- ================== Modal Update ================== -->		
+		<!-- <!-- ================== Modal Update ================== -->		
 		<div class="modal fade" id="btnUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -218,7 +218,7 @@
 		    </div>
 		  </div>
 		</div>
-		<!-- ================== End Modal Update ================== -->		
+	<!--	================== End Modal Update ==================	 -->	
 		
 	
 	<div class="modal fade" id="modal">

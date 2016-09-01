@@ -301,26 +301,7 @@ app.directive('myFilter', [function() {
 		//================= END LOCATION ADDRESS =====================
 
 	 var currentPage = 1;
-		/*$scope.restypes = [];
 		
-		$scope.dataRestypes = [
-			{restype_name: 'Khmer Food', restype_id: 1},
-			{restype_name: 'BBQ', restype_id: 2},
-			{restype_name: 'Thai Food', restype_id: 3},
-			{restype_name: 'Vegeterian', restype_id: 4},
-			{restype_name: 'Sea Food', restype_id: 5},
-			{restype_name: 'Japanese Food', restype_id: 6},
-			{restype_name: 'Soup', restype_id: 7},
-			{restype_name: 'Beer', restype_id: 8},
-			{restype_name: 'Coffee and Tea', restype_id: 9},
-			{restype_name: 'Noodle', restype_id: 10},
-			{restype_name: 'Chinese Food', restype_id: 11},
-			{restype_name: 'Korean Food', restype_id: 12},
-			{restype_name: 'Western Food', restype_id: 13},
-			{restype_name: 'Buffet', restype_id: 114},
-			{restype_name: 'Porridge', restype_id: 15},
-			{restype_name: 'Street Food', restype_id: 16}
-	      ];*/
 		
 		
 	 $scope.sample1 = [];
@@ -343,6 +324,8 @@ app.directive('myFilter', [function() {
    			$scope.contact = $scope.restaurant.contact;
    			$scope.open_close = $scope.restaurant.open_close;
    			$scope.about = $scope.restaurant.about;
+   			$scope.latitude = $scope.restaurant.latitude;
+   			$scope.longitude = $scope.restaurant.longitude;
    			
    			$scope.restpictures = $scope.restaurant.restpictures;
    			$scope.categories = $scope.restaurant.categories;
@@ -399,13 +382,13 @@ app.directive('myFilter', [function() {
     	var frmData = new FormData();
     	
     	data = {
-    			"address": {"street": $scope.street_number, 
-				  "district": $scope.district,
+			  "address": {"street": $scope.street_number,
 				  "address_id": $scope.address_id,
-				  "village": $scope.village,
-				  "communce": $scope.communce, 
-				  "province": $scope.province},
-				  "rest_id": rest_id,
+				  "district": $("#district option:selected").text(),
+				  "village": $("#village option:selected").text(),
+				  "communce": $("#communce option:selected").text(), 
+				  "province": $("#province option:selected").text()},
+				  "rest_id": $scope.rest_id,
 				  "rest_name_kh": $scope.rest_name_kh,
 				  "rest_name": $scope.rest_name,
 				  "latitude": $scope.latitude,
@@ -416,8 +399,6 @@ app.directive('myFilter', [function() {
 				  "open_close":$scope.open_close,
 				  "restypes_id": $scope.arr
 			};
-    	
-    	
     	
     	//===========send add restaurant picture to server
     	for (var i=0; i<newFiles["restGallery"].length; i++){
@@ -571,7 +552,8 @@ app.controller('restGetCtrl', function($scope, $http) {
 		}
 		
 	//================= DELETE RESTAURANTS =====================
-	    $scope.deleteRestaurant = function(rest_id, e){
+	    $scope.deleteRestaurant = function(rest_id, address_id,  e){
+	    	
 	    	e.preventDefault();
 	    	swal({   title: "Are you sure?",
 				text: "You will not be able to recover this imaginary file!",
@@ -585,7 +567,8 @@ app.controller('restGetCtrl', function($scope, $http) {
 				function(isConfirm){
 					if (isConfirm) {   
 						
-						$http.delete('http://localhost:8080/rest/restaurant/'+rest_id).then(function(response){
+						$http.delete('/rest/restaurant/delete?rest_id='+rest_id+'&address_id='+address_id)
+						.then(function(response){
 							check = true;
 							$scope.getAllRestaurants(1);
 						});
