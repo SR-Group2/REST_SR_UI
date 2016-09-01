@@ -148,7 +148,8 @@ app.controller('mainCtrl', function( $scope, $http, $filter){
 				}
 				
 				$scope.updateUser=function(){
-
+					
+					
 				var frmData = new FormData();
 				data={
 						'user_id': $scope.user_id,

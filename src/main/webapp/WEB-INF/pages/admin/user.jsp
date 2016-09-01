@@ -169,7 +169,8 @@
 					    <label for="" class="col-sm-2 control-label">Date of Birth </label>
 					    <div class="col-sm-10">
 					       <div class='input-group date' id='datetimepicker1' >	                	 
-							<input type='text' class="form-control" value="{{dob}}" ng-model="dob" name="updateDob"  placeholder="Year-Month-Day"/>
+							<input type='text' class="form-control" value="{{dob}}" ng-model="dob" name="updateDob"  
+							placeholder="Year-Month-Day"/  ng-required="true">
 								<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -232,14 +233,14 @@
 				
 				<div class="panel-body">
 		 			<div class="row">
-		 				<form class="form-horizontal">
+		 				<form class="form-horizontal" name="frmUpdateUser">
 						<div class="col-sm-7">
 						
 						  <div class="form-group col-sm-12">
 							<label for="username" class="col-sm-3 control-label">First Name</label>
 							<div class="col-sm-9">
 								<div class="input-group minimal">
-									<input type="text" class="form-control" value="{{first_name}}"  ng-model="first_name" name="first_name" required>
+									<input type="text" class="form-control" value="{{first_name}}"  ng-model="first_name" name="first_name" ng-required="true">
 									<span class="input-group-addon"></span>
 								</div>
 							</div>
@@ -249,7 +250,7 @@
 							<label for="" class="col-sm-3 control-label">Last Name</label>
 							<div class="col-sm-9">
 								<div class="input-group minimal">
-									<input type="text" class="form-control" value="{{last_name}}" ng-model="last_name"  name="last_name" required>
+									<input type="text" class="form-control" value="{{last_name}}" ng-model="last_name"  name="last_name" ng-required="true">
 									<span class="input-group-addon"></span>
 								</div>
 							</div>
@@ -261,7 +262,7 @@
 							<div class="col-sm-9">
 								<div class="input-group minimal">
 									<input type="text" class="form-control"  value="{{username}}" ng-model="username"  
-										name="username" required placeholder="Username">
+										name="username" ng-required="true" placeholder="Username">
 									<span class="input-group-addon"><i class="entypo-user"></i></span>
 								</div>
 								
@@ -273,7 +274,7 @@
 							<label for="username" class="col-sm-3 control-label">Email</label>
 							<div class="col-sm-9">
 								<div class="input-group minimal">
-									<input type="email" class="form-control" value="{{email}}" ng-model="email"  name="email" required placeholder="Email" >
+									<input type="email" class="form-control" value="{{email}}" ng-model="email"  name="email" required placeholder="Email" ng-required="true">
 									<span class="input-group-addon"><i class="entypo-mail"></i></span>
 								</div>
 								
@@ -285,7 +286,7 @@
 							<label for="password" class="col-sm-3 control-label">Password</label>
 							<div class="col-sm-9">
 								<div class="input-group minimal">
-									 <input type="password" class="form-control" value="{{password}}" ng-model="password"  name="password" required>
+									 <input type="password" class="form-control" value="{{password}}" ng-model="password"  name="password" ng-required="true">
 									<span class="input-group-addon"></span>
 								</div>
 							</div>
@@ -304,11 +305,12 @@
 							<label class="col-sm-3 control-label">Gender</label>
 							<div class="col-sm-5">
 								<div class="radio radio-replace">
-									<input type="radio" class="form-control" id="male" ng-model="gender" selected  checked="checked"  name="gender" value="Male" ng-change="getGender(gender)"  required>
+									<input type="radio" class="form-control" id="male" ng-model="gender" selected  checked="checked"  name="gender" value="Male" ng-change="getGender(gender)"  ng-required="true">
 									<label for="male">Male</label>
 								</div>
 								<div class="radio radio-replace">
-									<input type="radio" class="form-control"  id="female" ng-model="gender"  name="gender" value="Female" ng-change="getGender(gender)" required>
+									<input type="radio" class="form-control"  id="female" ng-model="gender"  
+									name="gender" value="Female" ng-change="getGender(gender)" ng-required="true">
 									<label for="female">Female</label>
 								</div>
 								
@@ -319,7 +321,7 @@
 					   <div class="form-group col-md-12">
 					    	<label for="" class="col-sm-3 control-label">Role</label>
 					    	 <div class="col-sm-9">
-						      <select ng-model="roles" class="form-control">
+						      <select ng-model="roles" class="form-control" ng-required="true">
 						      		<option value="1">ROLE_STANDARD_USER</option>
 						      		<option value="2">ROLE_OWNER</option>
 						      		<option value="3">ROLE_ADMIN</option>
@@ -328,7 +330,7 @@
 					  </div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-info" ng-click="updateUser()">Save changes</button>
+							<button type="button" class="btn btn-info" ng-disabled="frmUpdateUser.$invalid" ng-click="updateUser()">Save changes</button>
 						</div>
 						
 					</div><!-- end container 12 -->
@@ -342,7 +344,7 @@
 								<span class="btn btn-white btn-file">
 									<span class="fileinput-new">Select image</span>
 									<span class="fileinput-exists">Change</span>
-									<input id="file" type="file" name="..." accept="image/*">
+									<input id="file" type="file" name="..." accept="image/*"  ng-required="true">
 								</span>
 								<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
 							</div>
